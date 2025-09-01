@@ -18,3 +18,12 @@ Key features:
   - Web scraping
 
 By combining the flexibility of language-based agents with the reliability of compiled execution, NetGent provides a scalable foundation for generating diverse and repeatable datasets to advance ML in networking.
+
+
+## NetGent Workflow
+
+![workflow](docs/figures/workflow.png)
+
+
+## NetGen Architecture
+![architecture](docs/figures/architecture.png)
