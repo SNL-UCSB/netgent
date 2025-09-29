@@ -1,0 +1,67 @@
+[
+  {
+    "name": "On the Movie/Show Page",
+    "description": "Press the Play Button on the Movie Page",
+    "checks": [
+      { "type": "element", "value": "span" },
+      { "type": "element", "value": "a.XVtXO[href=\"/movies\"]" },
+      { "type": "element", "value": "a.XVtXO[href=\"/tv-shows\"]" },
+      { "type": "element", "value": "a.XWAvF.XVtXO[href=\"/live\"]" },
+      { "type": "element", "value": "button.XVtXO" },
+      { "type": "element", "value": "button.XVtXO" },
+      {
+        "type": "element",
+        "value": "a.Ofxs1[href=\"/login?redirect=/series/300017090/lego-masters-jr\"]"
+      },
+      {
+        "type": "element",
+        "value": "a.Es0hd[href=\"/signup?redirect=/series/300017090/lego-masters-jr\"]"
+      },
+      { "type": "element", "value": "div.web-button__content" },
+      { "type": "element", "value": "div.web-tooltip__container.top.dark" },
+      { "type": "element", "value": "div.web-button__content" },
+      { "type": "element", "value": "div.web-button__content" },
+      { "type": "element", "value": "h1.c1jX9" },
+      { "type": "element", "value": "span.web-attributes__year-duration" },
+      { "type": "element", "value": "div.web-attributes__rating-badge" },
+      { "type": "element", "value": "a.ATag[href=\"/category/reality_tv\"]" },
+      { "type": "element", "value": "div.Xx95I" },
+      { "type": "element", "value": "div" },
+      { "type": "element", "value": "span.FokQF" },
+      { "type": "element", "value": "span.web-dropdown--input-text" },
+      { "type": "element", "value": "h2" }
+    ],
+    "actions": [
+      "click(by='css selector', selector='button.web-button.etFQQ.web-button--primary.web-button--has-icon', button='left', percentage=0.5, scroll_to=True, fallback_x=70.0, fallback_y=415.25, fallback_width=196.0, fallback_height=56.0)",
+      "click(by='css selector', selector='div.SIG6O', button='left', percentage=0.2, scroll_to=True, fallback_x=129.640625, fallback_y=585.0, fallback_width=1020.6875, fallback_height=25.625)",
+      "wait(seconds=5)",
+      "click(by='css selector', selector='div.SIG6O', button='left', percentage=0.4, scroll_to=True, fallback_x=129.640625, fallback_y=585.0, fallback_width=1020.6875, fallback_height=25.625)",
+      "wait(seconds=5)",
+      "click(by='css selector', selector='div.SIG6O', button='left', percentage=0.6, scroll_to=True, fallback_x=129.640625, fallback_y=585.0, fallback_width=1020.6875, fallback_height=25.625)",
+      "wait(seconds=5)",
+      "wait(seconds=5)"
+    ],
+    "end_state": "Action Completed"
+  },
+  {
+    "name": "On Tubi Home Page",
+    "description": "On Tubi Home Page",
+    "checks": [
+      { "type": "url", "value": "https://tubitv.com/" },
+      { "type": "text", "value": "Browse" },
+      { "type": "element", "value": "span" }
+    ],
+    "actions": [
+      "type(by='css selector', selector='input.W2l7v[required=\"\"][type=\"search\"][placeholder*=\"Find movies, TV shows and more\"]', text='Lego', scroll_to=True, fallback_x=938.640625, fallback_y=27.0, fallback_width=61.0, fallback_height=42.0)",
+      "click(by='css selector', selector='div.web-content-tile', button='left', percentage=0.5, scroll_to=True, fallback_x=65.0, fallback_y=333.0, fallback_width=222.0, fallback_height=322.5625)"
+    ],
+    "end_state": ""
+  },
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [{ "type": "url", "value": "chrome://new-tab-page/" }],
+    "actions": ["navigate_to(url='https://tubitv.com/')"],
+    "end_state": ""
+  }
+]

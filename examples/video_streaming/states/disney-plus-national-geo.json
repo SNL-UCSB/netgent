@@ -1,0 +1,89 @@
+[
+  {
+    "name": "On the Movie/Show Page",
+    "description": "Press the Play Button on the Movie Page",
+    "checks": [
+      { "type": "text", "value": "SUGGESTED" },
+      { "type": "text", "value": "DETAILS" }
+    ],
+    "actions": [
+      "press_key(key='tab')",
+      "press_key(key='enter')",
+      "press_key(key='enter')",
+      "click(by='css selector', selector='div.slider-container[role=\"slider\"][aria-label=\"Slider\"]', button='left', percentage=0.2, scroll_to=True)",
+      "wait(seconds=5)",
+      "click(by='css selector', selector='div.slider-container[role=\"slider\"][aria-label=\"Slider\"]', button='left', percentage=0.4, scroll_to=True)",
+      "wait(seconds=5)",
+      "click(by='css selector', selector='div.slider-container[role=\"slider\"][aria-label=\"Slider\"]', button='left', percentage=0.6, scroll_to=True)",
+      "wait(seconds=5)",
+      "wait(seconds=5)"
+    ],
+    "end_state": "Action Completed"
+  },
+  {
+    "name": "On National Geographic Channel",
+    "description": "On National Geographic Channel, Go to the First Movie/Show",
+    "checks": [{ "type": "text", "value": "Featured" }],
+    "actions": [
+      "click(by='css selector', selector='a._180kkgi1.stueet1._180kkgi0.r3t2ihgi.r3t2ihl6.r3t2ihpu.r3t2ihui.r3t2ih1z0.r3t2ih7x.r3t2ih8t[data-testid=\"set-item\"][aria-label*=\"Trafficked with Mariana van Zeller National Geographic Select for details on this title.\"][href=\"/browse/entity-670262ba-abc0-4d91-b0ce-7dae17db4767\"]', button='left', percentage=0.5, scroll_to=True)"
+    ],
+    "end_state": ""
+  },
+  {
+    "name": "On the Disney Plus Home Page (When Logged In)",
+    "description": "Go to the National Geographic Channel After Logging In In the Home Page",
+    "checks": [{ "type": "url", "value": "https://www.disneyplus.com/home" }],
+    "actions": [
+      "click(by='css selector', selector='a._180kkgi1.stueet1._180kkgi0.r3t2ihgi.r3t2ihl6.r3t2ihpu.r3t2ihui.r3t2ih1z0.r3t2ih7x.r3t2ih8t.t62z114.t62z111[data-testid=\"set-item\"][aria-label*=\"National Geographic\"][href=\"/browse/page-a577ee5e-2f37-443f-bc13-594a20520492\"]', button='left', percentage=0.5, scroll_to=True)"
+    ],
+    "end_state": ""
+  },
+  {
+    "name": "On Select Profile",
+    "description": "On Select Profile",
+    "checks": [{ "type": "text", "value": "Who's watching?" }],
+    "actions": [
+      "click(by='css selector', selector='div.sc-kQsIoO.sc-jdeSqf.HhbNn[aria-label=\"snlclient\"][data-testid=\"profile-avatar-0\"][role=\"button\"]', button='left', percentage=0.5, scroll_to=True)"
+    ],
+    "end_state": ""
+  },
+  {
+    "name": "Login to Account",
+    "description": "On Login",
+    "checks": [
+      {
+        "type": "url",
+        "value": "https://www.disneyplus.com/identity/login/enter-email"
+      },
+      { "type": "text", "value": "Enter your email to continue" },
+      {
+        "type": "element",
+        "value": "h1.leading-h2.text-xl.font-semibold[data-testid=\"heading-title\"]"
+      }
+    ],
+    "actions": [
+      "type(by='css selector', selector='input.flex-auto.h-full.pt-26.px-16.pb-10.text-form_field_input_text.leading-lg.border-0.bg-transparent.outline-none[id=\"email\"][name=\"email\"][type=\"email\"]', text='snlclient1@gmail.com', scroll_to=True)",
+      "click(by='css selector', selector='button.flex.items-center.justify-center.w-full.h-52.py-14.px-24.rounded-xl.border-2.border-solid.cursor-pointer.outline-0.select-none.transition-colors.text-button_primary_default_text.bg-button_primary_default.border-button_primary_default_border[data-testid=\"continue-btn\"][type=\"submit\"]', button='left', percentage=0.5, scroll_to=True)",
+      "type(by='css selector', selector='input.flex-auto.h-full.pt-26.px-16.pb-10.text-form_field_input_text.leading-lg.border-0.bg-transparent.outline-none[aria-describedby=\"password-prompt\"][id=\"password\"][name=\"password\"][type=\"password\"]', text='password', scroll_to=True)",
+      "click(by='css selector', selector='button.flex.items-center.justify-center.w-full.h-52.py-14.px-24.rounded-xl.border-2.border-solid.cursor-pointer.outline-0.select-none.transition-colors.text-button_primary_default_text.bg-button_primary_default.border-button_primary_default_border[type=\"submit\"]', button='left', percentage=0.5, scroll_to=True)"
+    ],
+    "end_state": ""
+  },
+  {
+    "name": "On Disney Plus Home Page",
+    "description": "On Disney Plus Home Page",
+    "checks": [{ "type": "text", "value": "Endless entertainment for all." }],
+    "actions": [
+      "click(by='css selector', selector='a.ngw6jp1.ngw6jp0.ngw6jp7.ngw6jp6.ngw6jp3.ngw6jp2[href=\"/identity/login\"][data-testid=\"log_in\"]', button='left', percentage=0.5, scroll_to=True)",
+      "wait(seconds=3)"
+    ],
+    "end_state": ""
+  },
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [{ "type": "url", "value": "chrome://new-tab-page/" }],
+    "actions": ["navigate_to(url='https://www.disneyplus.com/')"],
+    "end_state": ""
+  }
+]

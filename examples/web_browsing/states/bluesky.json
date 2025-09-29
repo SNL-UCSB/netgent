@@ -1,0 +1,26 @@
+[
+  {
+    "name": "On Bluesky Home Page",
+    "description": "On Bluesky Home Page",
+    "checks": [
+      { "type": "url", "value": "https://bsky.app/" },
+      { "type": "text", "value": "Discover" }
+    ],
+    "actions": [
+      "scroll(direction='down', scroll_amount=20)",
+      "scroll(direction='down', scroll_amount=20)",
+      "scroll(direction='down', scroll_amount=20)",
+      "scroll(direction='down', scroll_amount=20)",
+      "scroll(direction='down', scroll_amount=20)",
+      "scroll(direction='down', scroll_amount=20)"
+    ],
+    "end_state": "Action Completed"
+  },
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [{ "type": "url", "value": "chrome://new-tab-page/" }],
+    "actions": ["navigate_to(url='https://bsky.app/')"],
+    "end_state": ""
+  }
+]

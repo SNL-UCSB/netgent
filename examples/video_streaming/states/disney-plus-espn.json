@@ -1,0 +1,131 @@
+[
+  {
+    "name": "On the Movie/Show Page",
+    "description": "Press the Play Button on the Movie Page",
+    "checks": [
+      { "type": "text", "value": "Upcoming 6:00 AM" },
+      { "type": "element", "value": "span" },
+      {
+        "type": "text",
+        "value": "Watch the Latest Episode | New Episode Daily"
+      },
+      {
+        "type": "element",
+        "value": "p.r3t2ihc.r3t2ih3s.r3t2ih94.uo95ho2.uo95ho1.r3t2ih96.r3t2ih95.r3t2ih1xo.r3t2ih21i.r3t2ih21e._1a52im62._1a52im61.r3t2ihwc"
+      },
+      { "type": "text", "value": "1 Season" },
+      { "type": "element", "value": "span" },
+      { "type": "text", "value": "S1:E161 Sun, 8/10 - SC+" },
+      {
+        "type": "element",
+        "value": "p.r3t2ihc.r3t2ih3i.r3t2ih94.uo95ho2.uo95ho1.r3t2ih96.r3t2ih95.r3t2ih1xo.r3t2ih21i._1nhpvsl1._1nhpvsl0.r3t2ihl6.r3t2ihih[data-testid=\"details-featured-focused-title\"][role=\"heading\"][aria-label*=\"Season 1 Episode 161 Sun, 8/10 - SC+\"]"
+      },
+      {
+        "type": "text",
+        "value": "Join Gary Striewski and Randy Scott weekdays at 9 a.m. ET, Hannah Storm on weekends."
+      },
+      {
+        "type": "element",
+        "value": "p.r3t2ihi.r3t2ih3i.r3t2ih92.uo95ho2.uo95ho1.r3t2ih96.r3t2ih95.r3t2ih1xo.r3t2ih21u.r3t2ih21q[data-testid=\"details-featured-description\"]"
+      },
+      { "type": "text", "value": "13m remaining" },
+      {
+        "type": "element",
+        "value": "label._1jxocne3._1jxocne2.r3t2ih2c.r3t2ih37[data-testid=\"details-progress-label\"]"
+      },
+      { "type": "text", "value": "CONTINUE" },
+      {
+        "type": "element",
+        "value": "a._14aj7771._14aj7770.r3t2ih1x6.r3t2ih1zi.r3t2ih20c.r3t2ih8v.r3t2ih8x.r3t2ih10.r3t2ih8t.r3t2ih7y._1055dze3.r3t2ih86.r3t2ih8l._14aj777g._14aj777c._14aj7775._14aj7773._14aj7772.r3t2ihnc.r3t2ihs0._14aj7774.r3t2ih5q.r3t2ih3w._1mp1hfw3._1mp1hfw1.r3t2ihwc.fl2b6o4._1mp1hfw2.r3t2ih19o.r3t2ih1ak[aria-label=\"CONTINUE\"][data-testid=\"playback-action-button\"][href=\"/play/bf57bbd4-ecd1-4787-90e1-094e1fca837b\"]"
+      },
+      { "type": "text", "value": "RESTART" },
+      {
+        "type": "element",
+        "value": "a._14aj7771._14aj7770.r3t2ih1x6.r3t2ih1zi.r3t2ih20c.r3t2ih8v.r3t2ih8x.r3t2ih10.r3t2ih8t.r3t2ih7y._1055dze3.r3t2ih86.r3t2ih8l._14aj777g._14aj777d._14aj7779._14aj7773._14aj7772.r3t2ihnc.r3t2ihs0._14aj7777._14aj7776.r3t2ih3i.r3t2ih5s._14aj7778._1mp1hfw3._1mp1hfw1.r3t2ihwc.fl2b6o4._1mp1hfw2.r3t2ih19o.r3t2ih1ak[aria-label=\"RESTART\"][data-testid=\"playback-action-button\"][href=\"/play/bf57bbd4-ecd1-4787-90e1-094e1fca837b\"]"
+      }
+    ],
+    "actions": [
+      "press_key(key='tab')",
+      "press_key(key='enter')",
+      "press_key(key='enter')",
+      "press_key(key='space')",
+      "click(by='css selector', selector='div.slider-container[role=\"slider\"][aria-label=\"Slider\"]', button='left', percentage=0.2, scroll_to=True)",
+      "wait(seconds=5)",
+      "click(by='css selector', selector='div.slider-container[role=\"slider\"][aria-label=\"Slider\"]', button='left', percentage=0.4, scroll_to=True)",
+      "wait(seconds=5)",
+      "click(by='css selector', selector='div.slider-container[role=\"slider\"][aria-label=\"Slider\"]', button='left', percentage=0.6, scroll_to=True)",
+      "wait(seconds=5)",
+      "wait(seconds=5)",
+      "wait(seconds=5)"
+    ],
+    "end_state": "Action Completed"
+  },
+  {
+    "name": "On ESPN Channel",
+    "description": "On ESPN Channel, Go to the First Movie/Show",
+    "checks": [
+      { "type": "url", "value": "https://www.disneyplus.com/browse/espn" }
+    ],
+    "actions": [
+      "click(by='css selector', selector='a._180kkgi1.stueet1._180kkgi0.r3t2ihgi.r3t2ihl6.r3t2ihpu.r3t2ihui.r3t2ih1z0.r3t2ih7x.r3t2ih8t[data-testid=\"set-item\"][aria-label*=\"Upcoming 6:00 AM 6:00 AM - 6:20 AM SC+ Season 1 Episode 162 Mon, 8/11 - SC+ Select for details on this title.\"][href=\"/browse/entity-6ea92ae9-01c8-4795-9fed-ae46cddffa4b\"]', button='left', percentage=0.5, scroll_to=True)"
+    ],
+    "end_state": ""
+  },
+  {
+    "name": "On the Disney Plus Home Page (When Logged In)",
+    "description": "Go to the ESPN Channel After Logging In In the Home Page",
+    "checks": [{ "type": "url", "value": "https://www.disneyplus.com/home" }],
+    "actions": [
+      "click(by='css selector', selector='a._180kkgi1.stueet1._180kkgi0.r3t2ihgi.r3t2ihl6.r3t2ihpu.r3t2ihui.r3t2ih1z0.r3t2ih7x.r3t2ih8t.t62z114.t62z111[data-testid=\"set-item\"][aria-label=\"ESPN\"][href=\"/browse/espn\"]', button='left', percentage=0.5, scroll_to=True)"
+    ],
+    "end_state": ""
+  },
+  {
+    "name": "On Select Profile",
+    "description": "On Select Profile",
+    "checks": [{ "type": "text", "value": "Who's watching?" }],
+    "actions": [
+      "click(by='css selector', selector='div.sc-kQsIoO.sc-jdeSqf.HhbNn[aria-label=\"snlclient\"][data-testid=\"profile-avatar-0\"][role=\"button\"]', button='left', percentage=0.5, scroll_to=True)"
+    ],
+    "end_state": ""
+  },
+  {
+    "name": "Login to Account",
+    "description": "On Login",
+    "checks": [
+      {
+        "type": "url",
+        "value": "https://www.disneyplus.com/identity/login/enter-email"
+      },
+      { "type": "text", "value": "Enter your email to continue" },
+      {
+        "type": "element",
+        "value": "h1.leading-h2.text-xl.font-semibold[data-testid=\"heading-title\"]"
+      }
+    ],
+    "actions": [
+      "type(by='css selector', selector='input.flex-auto.h-full.pt-26.px-16.pb-10.text-form_field_input_text.leading-lg.border-0.bg-transparent.outline-none[id=\"email\"][name=\"email\"][type=\"email\"]', text='snlclient1@gmail.com', scroll_to=True)",
+      "click(by='css selector', selector='button.flex.items-center.justify-center.w-full.h-52.py-14.px-24.rounded-xl.border-2.border-solid.cursor-pointer.outline-0.select-none.transition-colors.text-button_primary_default_text.bg-button_primary_default.border-button_primary_default_border[data-testid=\"continue-btn\"][type=\"submit\"]', button='left', percentage=0.5, scroll_to=True)",
+      "type(by='css selector', selector='input.flex-auto.h-full.pt-26.px-16.pb-10.text-form_field_input_text.leading-lg.border-0.bg-transparent.outline-none[aria-describedby=\"password-prompt\"][id=\"password\"][name=\"password\"][type=\"password\"]', text='password', scroll_to=True)",
+      "click(by='css selector', selector='button.flex.items-center.justify-center.w-full.h-52.py-14.px-24.rounded-xl.border-2.border-solid.cursor-pointer.outline-0.select-none.transition-colors.text-button_primary_default_text.bg-button_primary_default.border-button_primary_default_border[type=\"submit\"]', button='left', percentage=0.5, scroll_to=True)"
+    ],
+    "end_state": ""
+  },
+  {
+    "name": "On Disney Plus Home Page",
+    "description": "On Disney Plus Home Page",
+    "checks": [{ "type": "text", "value": "Endless entertainment for all." }],
+    "actions": [
+      "click(by='css selector', selector='a.ngw6jp1.ngw6jp0.ngw6jp7.ngw6jp6.ngw6jp3.ngw6jp2[href=\"/identity/login\"][data-testid=\"log_in\"]', button='left', percentage=0.5, scroll_to=True)",
+      "wait(seconds=3)"
+    ],
+    "end_state": ""
+  },
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [{ "type": "url", "value": "chrome://new-tab-page/" }],
+    "actions": ["navigate_to(url='https://www.disneyplus.com/')"],
+    "end_state": ""
+  }
+]
