@@ -1,4 +1,7 @@
 # NetGent
+### Reseach Paper:
+[NetGent: Agent-Based Automation of Network Application Workflows](https://arxiv.org/abs/2406.08392)
+
 ### Agent-Based Automation of Network Application Workflows
 
 
