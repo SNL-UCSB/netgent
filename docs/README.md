@@ -12,7 +12,7 @@ For example, in a Disney+/ESPN workflow, states may include `login`, `select_pro
 
 ### Concrete NFA
 
-During execution, \sys{} compiles each abstract state into a _concrete state_ defined by \(\hat{s}=(\textit{detectors},\textit{code})\): a set of CSS element, text, or URL detectors bound to the current application version, together with reusable executable code. This compiled form enables deterministic replay (repeatability) and cross-run reuse (efficiency).  
+During execution, NetGent compiles each abstract state into a _concrete state_ defined by \(\hat{s}=(\textit{detectors},\textit{code})\): a set of CSS element, text, or URL detectors bound to the current application version, together with reusable executable code. This compiled form enables deterministic replay (repeatability) and cross-run reuse (efficiency).  
 For example, the abstract trigger "if on login page" becomes a detector set (form labels, button text, stable DOM paths) and a short program that types credentials and clicks "Log In."
 
 ### Cache and Replay
@@ -49,7 +49,7 @@ An end state is declared when an application-level condition holds (e.g., for ES
 
 ### Concrete example
 
-Starting at the Disney+ homepage, the Controller hits cached `login` and `select_profile` states on subsequent runs; on the first run these are synthesized once. Navigating to the ESPN hub and clicking the first video may trigger ads or a PIN prompt; the NFA branches handle these cases by synthesizing (once) a `type_pin` or `skip_ad` state and writing them to the repository. Playback detection serves as the end state, after which \sys{} records the successful trace and terminates.
+Starting at the Disney+ homepage, the Controller hits cached `login` and `select_profile` states on subsequent runs; on the first run these are synthesized once. Navigating to the ESPN hub and clicking the first video may trigger ads or a PIN prompt; the NFA branches handle these cases by synthesizing (once) a `type_pin` or `skip_ad` state and writing them to the repository. Playback detection serves as the end state, after which NetGent records the successful trace and terminates.
 
 # NetGent Architecture
 
