@@ -1,25 +1,8 @@
 # NetGent Workflow:
 
 ## Abstractions
-<<<<<<< HEAD
-\sys{} separates *what* a workflow should do from *how* it is executed through three abstractions.
 
-### Abstract NFA
-Users define an abstract nondeterministic finite automaton (NFA) using natural-language state prompts.  
-Each state prompt specifies *triggers* (conditions that identify the state), *actions* (intended task), and an optional *end condition*. This representation captures non-linear flows (complexity) while keeping intent decoupled from UI specifics (robustness).  
-For example, in a Disney+/ESPN workflow, states may include `login`, `select_profile`, `navigate_to_espn`, `select_video`, and `playback`.
-
-### Concrete NFA
-During execution, \sys{} compiles each abstract state into a *concrete state* defined by \(\hat{s}=(\textit{detectors},\textit{code})\): a set of CSS element, text, or URL detectors bound to the current application version, together with reusable executable code. This compiled form enables deterministic replay (repeatability) and cross-run reuse (efficiency).  
-For example, the abstract trigger "if on login page" becomes a detector set (form labels, button text, stable DOM paths) and a short program that types credentials and clicks "Log In."
-
-### Cache and Replay
-Concrete states are stored in a *State Repository*; a *State Executor* replays their code deterministically. If a detector later fails due to UI drift, only that state is regenerated from the abstract rule (robustness). Common states (e.g., `login`, `select_profile`) are reusable across workflows and apps (efficiency, diversity).
-
-## Workflow Execution Model
-=======
-
-\sys{} separates _what_ a workflow should do from _how_ it is executed through three abstractions.
+NetGent separates _what_ a workflow should do from _how_ it is executed through three abstractions.
 
 ### Abstract NFA
 
@@ -38,28 +21,11 @@ Concrete states are stored in a _State Repository_; a _State Executor_ replays t
 
 ## Workflow Execution Model
 
->>>>>>> origin/dev
 Figure below illustrates the runtime loop which generates executable code from user prompts.
 
 ![workflow](figures/workflow.png)
 
 ### Controller queries the cache first
-<<<<<<< HEAD
-Given the current page (DOM) and the last transition, the *Program Controller* queries the *State Repository*.  
-If a cache hit occurs, the Controller invokes the *State Executor* to replay the stored code in the browser and the workflow advances.  
-This cache-first policy is the core of compile–then–replay and eliminates repeated reasoning (repeatability, efficiency).
-
-### Cache miss triggers one-shot synthesis
-On a cache miss, the Controller invokes *State Synthesis* (LLM), which performs four steps using the current DOM, screenshot, and user's rules:  
-1. *Observe* the environment to form a structured view;  
-2. *Select* the appropriate next abstract state (trigger–action pair);  
-3. *Generate* concrete detectors that reliably recognize that state;  
-4. *Decompose* the action into a simplified plan with decomposed tasks.  
-
-The decomposed tasks are then executed by the *Web Agent* which also generates the executable code. Then, the *Concrete State* is written back to the repository. Only the missing node is synthesized; the abstract NFA and prior states remain intact (robustness, efficiency).
-
-### Realistic execution and termination
-=======
 
 Given the current page (DOM) and the last transition, the _Program Controller_ queries the _State Repository_.  
 If a cache hit occurs, the Controller invokes the _State Executor_ to replay the stored code in the browser and the workflow advances.  
@@ -78,28 +44,13 @@ The decomposed tasks are then executed by the _Web Agent_ which also generates t
 
 ### Realistic execution and termination
 
->>>>>>> origin/dev
 To enhance realism and evade bot detection, our web agent integrates browser stealth, human-like interaction, and network control (details in Appendix).  
 An end state is declared when an application-level condition holds (e.g., for ESPN, a `<video>` element is playing and time is advancing). Otherwise, the Controller loops to the next state.
 
 ### Concrete example
-<<<<<<< HEAD
-Starting at the Disney+ homepage, the Controller hits cached `login` and `select_profile` states on subsequent runs; on the first run these are synthesized once. Navigating to the ESPN hub and clicking the first video may trigger ads or a PIN prompt; the NFA branches handle these cases by synthesizing (once) a `type_pin` or `skip_ad` state and writing them to the repository. Playback detection serves as the end state, after which \sys{} records the successful trace and terminates.
-
-
-
-
-
-
-
-
-
-
-=======
 
 Starting at the Disney+ homepage, the Controller hits cached `login` and `select_profile` states on subsequent runs; on the first run these are synthesized once. Navigating to the ESPN hub and clicking the first video may trigger ads or a PIN prompt; the NFA branches handle these cases by synthesizing (once) a `type_pin` or `skip_ad` state and writing them to the repository. Playback detection serves as the end state, after which \sys{} records the successful trace and terminates.
 
->>>>>>> origin/dev
 # NetGent Architecture
 
 The system takes high-level user intents expressed as an NFA, where each prompt defines an abstract trigger (the current state of the webpage) and the corresponding task to be executed at that state. For example, a user may specify: if the page is a login screen, enter these credentials and log in.
@@ -115,17 +66,6 @@ The overview illustrates how NetGent interprets high-level intents and executes 
 NetGent is built around five core components. We describe each component in turn, highlighting its inputs, internal operations, and outputs to illustrate how they collectively enable scalable, repeatable, and robust workflow automation.
 
 ### Program Controller
-<<<<<<< HEAD
-The Program Controller receives user prompts in natural language (an abstract NFA) and uses them to drive execution from the initial state to the end state. Whenever the action for the current state is performed (e.g., logging in), the controller receives the resulting Document Object Model (DOM), a screenshot, and a descriptor for the new state. It then deterministically evaluates concrete triggers in the DOM against the state repository using a simple coded workflow (no LLMs or agents). If a matching state is found, the controller retrieves the corresponding executable code and passes it to the State Executor to perform the actions. If no match is found, the controller forwards the user prompts, DOM, screenshot, and descriptor to the State Synthesis Component for further processing and generation of executable code.
-
-### State Repository
-The State Repository receives the initial state defined by the user, along with any new states generated during execution by the web agent. It stores these states in the form of concrete **trigger–action** pairs. Its primary role is to maintain a cache of states, enabling the system to efficiently reuse executable code for recurring scenarios instead of regenerating it each time. When the system reaches an *end state*, the repository serves as the final output, providing a structured record of all relevant states (a concrete NFA) that were utilized or created during the process.
-
-### State Executor
-The State Executor receives executable code from the Program Controller, executes it in the browser, and then forwards the resulting DOM, screenshot, and state descriptor back to the Program Controller.
-
-### State Synthesis Components
-=======
 
 The Program Controller receives user prompts in natural language (an abstract NFA) and uses them to drive execution from the initial state to the end state. Whenever the action for the current state is performed (e.g., logging in), the controller receives the resulting Document Object Model (DOM), a screenshot, and a descriptor for the new state. It then deterministically evaluates concrete triggers in the DOM against the state repository using a simple coded workflow (no LLMs or agents). If a matching state is found, the controller retrieves the corresponding executable code and passes it to the State Executor to perform the actions. If no match is found, the controller forwards the user prompts, DOM, screenshot, and descriptor to the State Synthesis Component for further processing and generation of executable code.
 
@@ -139,7 +79,6 @@ The State Executor receives executable code from the Program Controller, execute
 
 ### State Synthesis Components
 
->>>>>>> origin/dev
 Component ① serves as the entry point of State Synthesis and receives its inputs—pre-processed DOM, a screenshot of the current browser, and the list of user-defined prompts—from the Program Executor. Using these inputs, the LLM interprets both the DOM structure and the visual context of the screenshot to produce a structured observation of the browser environment. This observation forms the basis for the following components.
 
 Component ② uses the observation from Component ① along with the user-defined prompts to identify the appropriate next state. Leveraging the LLM’s ability to understand context, it selects the most suitable **abstract trigger–action** pair that represents the next step in the workflow. The selected state is then passed forward for refinement into a concrete trigger–action representation.
@@ -149,21 +88,14 @@ Component ③ refines the selected state by combining the environment observatio
 Component ④ processes the user-defined action associated with the state selected in Component ②. Using an LLM, it translates the high-level action into a structured, step-by-step execution plan for the Web Agent. This plan specifies ordered tasks, prerequisites, and expected outcomes, resulting in an executable workflow that the Web Agent can directly execute or refine further as needed.
 
 ### Web Agent
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/dev
 The Web Agent receives instructions from Component ④ to carry out a given task. Its output includes the generated code, which is stored in the State Repository together with the corresponding concrete triggers for future reuse and reference.  
 The Web Agent operates in a continuous **observe–plan–act–reflect** loop that ensures adaptability and accuracy. It begins by observing the current application state through analysis of the preprocessed DOM and screenshots. Using these observations, it plans the next sequence of steps through reasoning and context interpretation. The agent then acts by generating and executing code to interact with the browser—performing operations such as clicking, typing, or scrolling. After execution, it reflects on the outcome by validating results against expectations and adjusting its strategy to improve accuracy and efficiency. This iterative cycle continues until the task is completed, enabling the Web Agent not only to execute instructions but also to adapt dynamically and optimize performance over time.
 
 ---
 
 In order to support realism, we adapted different methods in the web agent to perform the task in a way that is more like a human interacting with the web and avoid getting detected as a bot.  
-<<<<<<< HEAD
-To mitigate automated behavior detection, our system integrates three layers of anti-bot techniques: browser stealth, movement realism, and network control.  
-=======
 To mitigate automated behavior detection, our system integrates three layers of anti-bot techniques: browser stealth, movement realism, and network control.
->>>>>>> origin/dev
 
 At the browser layer, we employ SeleniumBase with undetected-chromedriver to suppress common automation fingerprints. We also disable flags such as AutomationControlled, execute Chrome in headful mode rather than headless, and support persistent user profiles through the `--user-data-dir` option. These design choices enable our agent to more closely emulate a human-operated browser session, preserving cookies and local storage across repeated tasks.
 
