@@ -1,15 +1,28 @@
 # NetGent
+<<<<<<< HEAD
 ### Reseach Paper:
+=======
+
+### Reseach Paper:
+
+>>>>>>> origin/dev
 [NetGent: Agent-Based Automation of Network Application Workflows](https://arxiv.org/abs/2406.08392)
 
 ### Agent-Based Automation of Network Application Workflows
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/dev
 NetGent is an AI-agent framework for automating complex application workflows to generate realistic network traffic datasets.
 
 Developing generalizable ML models for networking requires data collection from environments with traffic produced by diverse real-world web applications. Existing browser automation tools that aim for diversity, repeatability, realism, and efficiency are often fragile and costly. NetGent addresses this challenge by allowing users to specify workflows as natural-language rules that define state-dependent actions. These specifications are compiled into nondeterministic finite automata (NFAs), which a state synthesis component translates into reusable, executable code.
 
 Key features:
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/dev
 - Deterministic replay of workflows
 - Reduced redundant LLM calls via state caching
 - Fast adaptation to changing application interfaces
@@ -23,10 +36,19 @@ Key features:
 By combining the flexibility of language-based agents with the reliability of compiled execution, NetGent provides a scalable foundation for generating diverse and repeatable datasets to advance ML in networking. [^1]
 
 [^1]: Credit to Eugene Vuong for primary development.
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/dev
 ## NetGent Workflow
 
 ![workflow](docs/figures/workflow.png)
 
+<<<<<<< HEAD
 
 ## NetGen Architecture
+=======
+## NetGen Architecture
+
+>>>>>>> origin/dev
 ![architecture](docs/figures/architecture.png)

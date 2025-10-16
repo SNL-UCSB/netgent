@@ -1,0 +1,54 @@
+[project]
+name = "netgent"
+version = "0.1.0"
+description = "Agent-Based Automation of Network Application Workflows using LLMs and browser automation"
+authors = [
+    {name = "Eugene Vuong", email = "vuongeugene@gmail.com"}
+]
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.11"
+keywords = [
+    "automation",
+    "browser-automation",
+    "llm",
+    "web-agent",
+    "workflow-automation",
+    "network-traffic",
+    "selenium",
+    "ai-agent",
+    "state-machine"
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Topic :: Software Development :: Testing",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Internet :: WWW/HTTP :: Browsers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "seleniumbase (>=4.42.5,<5.0.0)",
+    "selenium (>=4.36.0,<5.0.0)",
+    "pyautogui (>=0.9.54,<0.10.0)",
+    "langgraph (>=0.5.0,<0.6.0)",
+    "langchain (>=0.3.26,<0.4.0)",
+    "langchain-google-genai (>=2.1.6,<3.0.0)",
+    "langchain-google-vertexai (>=2.0.27,<3.0.0)",
+    "langchain-core (>=0.3.67,<0.4.0)",
+    "langchain-community (>=0.3.26,<0.4.0)",
+    "python-dotenv (>=1.1.1,<2.0.0)",
+    "pydantic (>=2.11.7,<3.0.0)"
+]
+
+[tool.poetry]
+packages = [{include = "netgent", from = "src"}, {include = "utils", from = "src"}]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
