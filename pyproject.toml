@@ -1,12 +1,37 @@
 [project]
 name = "netgent"
 version = "0.1.0"
-description = ""
+description = "Agent-Based Automation of Network Application Workflows using LLMs and browser automation"
 authors = [
-    {name = "Eugene Vuong",email = "vuongeugene@gmail.com"}
+    {name = "Eugene Vuong", email = "vuongeugene@gmail.com"}
 ]
 readme = "README.md"
+license = {file = "LICENSE"}
 requires-python = ">=3.11"
+keywords = [
+    "automation",
+    "browser-automation",
+    "llm",
+    "web-agent",
+    "workflow-automation",
+    "network-traffic",
+    "selenium",
+    "ai-agent",
+    "state-machine"
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Topic :: Software Development :: Testing",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Internet :: WWW/HTTP :: Browsers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
 dependencies = [
     "seleniumbase (>=4.42.5,<5.0.0)",
     "selenium (>=4.36.0,<5.0.0)",
@@ -22,8 +47,7 @@ dependencies = [
 ]
 
 [tool.poetry]
-packages = [{include = "netgent", from = "src"}]
-
+packages = [{include = "netgent", from = "src"}, {include = "utils", from = "src"}]
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

@@ -17,7 +17,6 @@ class StateSynthesisState(TypedDict):
     prompts: list[StatePrompt] # Available States
     choice: StatePrompt | None # State Choice
     triggers: list[str] # Triggers
-    parameters: dict[str, Any] # Parameters
     prompt: Optional[str] # Generated prompt for browser agent
 
 class StateSynthesis():
@@ -29,8 +28,8 @@ class StateSynthesis():
         self.graph = self.workflow.compile()
 
 
-    def run(self, prompts: list[StatePrompt], executed: list[dict[str, Any]], parameters: dict[str, Any] = {}):
-        state = StateSynthesisState(prompts=prompts, choice=None, executed=executed, triggers=[], parameters=parameters)
+    def run(self, prompts: list[StatePrompt], executed: list[dict[str, Any]]):
+        state = StateSynthesisState(prompts=prompts, choice=None, executed=executed, triggers=[])
         state = self.graph.invoke(state, { "recursion_limit": 100})
         return state
     
@@ -98,6 +97,7 @@ class StateSynthesis():
         available_trigger_types = list(self.trigger_registry.get_all_triggers().keys())
         print("AVAILABLE_TRIGGER_TYPES: ", available_trigger_types)
         
+        #--- TODO: Current Hardcoded Triggers But Should be Dynamic (We Will Be Changed in the Future) ---#
         triggers_dict = {}
         # Add URL as Trigger 0
         triggers_dict["URL"] = {
@@ -119,6 +119,7 @@ class StateSynthesis():
                         "selector": trigger.get("enhancedCssSelector", "")
                     }
                 }
+        #--- Current Hardcoded Triggers But Should be Dynamic (We Will Be Changed in the Future) ---#
 
         # Format Triggers for Prompt
         formatted_triggers = []
@@ -166,8 +167,6 @@ class StateSynthesis():
     ## Current Website State
     URL: {self.controller.driver.current_url}
     Title: {self.controller.driver.title}
-    ## Parameters
-    {chr(10).join(f"- {key}: %{key}%" for key in state.get('parameters', {}).keys()) if state.get('parameters') else 'No Parameters'}
     """
                 },
             ])

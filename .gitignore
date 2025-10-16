@@ -149,5 +149,6 @@ Thumbs.db
 # NetGent Specific
 .downloaded_files/
 downloaded_files/
+./downloaded_files/
 
 google_creds.json

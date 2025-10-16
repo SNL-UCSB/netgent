@@ -24,6 +24,12 @@ class BaseController(ABC, metaclass=ActionTriggerMeta):
         """Wait for a specified number of seconds"""
         time.sleep(seconds)
     
+    @action()
+    def terminate(self, reason: str = "Task completed"):
+        """Terminate the agent execution"""
+        print(f"TERMINATING: {reason}")
+        return reason
+    
     def quit(self):
         """Quit the browser (not an action - used for cleanup)"""
         if self.driver:
@@ -32,25 +38,47 @@ class BaseController(ABC, metaclass=ActionTriggerMeta):
     # -- Actions Methods --
     @abstractmethod
     @action()
-    def click(self, by: str, selector: str):
-        """Click on a specified element"""
+    def click(self, by: str = None, selector: str = None, x: float = None, y: float = None):
+        """Click on a specified element or coordinates.
+        
+        Args:
+            by: Locator strategy (optional)
+            selector: Selector string (optional)
+            x: X coordinate (optional, used if by/selector not provided or fails)
+            y: Y coordinate (optional, used if by/selector not provided or fails)
+        """
         pass
 
     @abstractmethod
     @action(name="type")  # Custom name to match common JSON schema naming
-    def type_text(self, by: str, selector: str, text: str):
-        """Type text into a specified element"""
+    def type_text(self, text: str, by: str = None, selector: str = None, x: float = None, y: float = None):
+        """Type text into a specified element or at coordinates.
+        
+        Args:
+            text: Text to type
+            by: Locator strategy (optional)
+            selector: Selector string (optional)
+            x: X coordinate (optional, used if by/selector not provided or fails)
+            y: Y coordinate (optional, used if by/selector not provided or fails)
+        """
         pass
     
     @abstractmethod
     @action()
-    def scroll_to(self, by: str, selector: str):
-        """Scroll to a specified element"""
+    def scroll_to(self, by: str = None, selector: str = None, x: float = None, y: float = None):
+        """Scroll to a specified element or coordinates.
+        
+        Args:
+            by: Locator strategy (optional)
+            selector: Selector string (optional)
+            x: X coordinate (optional, used if by/selector not provided or fails)
+            y: Y coordinate (optional, used if by/selector not provided or fails)
+        """
         pass
     
     @abstractmethod
     @action()
-    def scroll(self, pixels: int, direction: str, by: str = None, selector: str = None):
+    def scroll(self, pixels: int, direction: str, by: str = None, selector: str = None, x: float = None, y: float = None):
         """Scroll a specified number of pixels in a specified direction.
         
         Args:
@@ -58,6 +86,8 @@ class BaseController(ABC, metaclass=ActionTriggerMeta):
             direction: Direction to scroll ("up" or "down")
             by: Locator strategy (optional)
             selector: Selector string (optional)
+            x: X coordinate (optional, used if by/selector not provided or fails)
+            y: Y coordinate (optional, used if by/selector not provided or fails)
         """
         pass
     
@@ -69,8 +99,15 @@ class BaseController(ABC, metaclass=ActionTriggerMeta):
 
     @abstractmethod
     @action()
-    def move(self, by: str, selector: str):
-        """Move to a specified element"""
+    def move(self, by: str = None, selector: str = None, x: float = None, y: float = None):
+        """Move to a specified element or coordinates.
+        
+        Args:
+            by: Locator strategy (optional)
+            selector: Selector string (optional)
+            x: X coordinate (optional, used if by/selector not provided or fails)
+            y: Y coordinate (optional, used if by/selector not provided or fails)
+        """
         pass
 
     def is_element_visible_in_viewpoint(self, element) -> bool:
@@ -129,4 +166,45 @@ class BaseController(ABC, metaclass=ActionTriggerMeta):
             return True
         except Exception:
             return False
+
+    
+    def get_element_coordinates(self, x, y, width, height, percentage=0.5):
+        """
+        Get the absolute screen coordinates for an element.
+        
+        Args:
+            element: Selenium WebElement
+            percentage: Horizontal offset percentage within the element (0.0 to 1.0)
+            
+        Returns:
+            tuple: (abs_x, abs_y) absolute screen coordinates
+        """
+        # Get element coordinates relative to the document
+        element_x = x
+        element_y = y
+
+        # Get current scroll position
+        scroll_x = self.driver.execute_cdp_cmd("Runtime.evaluate", {"expression": "window.pageXOffset || document.documentElement.scrollLeft", "returnByValue": True})["result"]["value"]
+        scroll_y = self.driver.execute_cdp_cmd("Runtime.evaluate", {"expression": "window.pageYOffset || document.documentElement.scrollTop", "returnByValue": True})["result"]["value"]
+
+        # Get browser window position and panel dimensions
+        panel_height = self.driver.execute_cdp_cmd("Runtime.evaluate", {"expression": "window.outerHeight - window.innerHeight", "returnByValue": True})["result"]["value"]
+        panel_width = self.driver.execute_cdp_cmd("Runtime.evaluate", {"expression": "window.outerWidth - window.innerWidth", "returnByValue": True})["result"]["value"]
+        
+        window_pos = self.driver.get_window_position()
+        window_x = window_pos['x']
+        window_y = window_pos['y']
+
+        # Calculate coordinates relative to the viewport (subtract scroll position)
+        viewport_x = element_x - scroll_x
+        viewport_y = element_y - scroll_y
+
+        # Calculate absolute screen coordinates (account for both horizontal and vertical panels)
+        abs_x = window_x + viewport_x + panel_width
+        abs_y = window_y + viewport_y + panel_height
+
+        abs_x += width * percentage
+        abs_y += height * 0.5
+        
+        return abs_x, abs_y
     

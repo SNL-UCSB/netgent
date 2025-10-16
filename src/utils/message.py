@@ -48,36 +48,14 @@ class Toolcall(Message):
             content_parts.append(f"error: {self.error}")
         content = "\n".join(content_parts)
         return f"<{self.name}>\n{content}\n</{self.name}>"
-    
-class Code(Message):
-    name: str
-    args: dict
-    element: Optional[Element] = None
-    error: Optional[str] = None
-    
-    def __str__(self):
-        args_str = "\n".join([f"{k}: {v}" for k, v in self.args.items() if k != "mmid"])
-        content_parts = [args_str] if args_str else []
-        if self.element and any(getattr(self.element, field) for field in self.element.__class__.model_fields):
-            content_parts.append(str(self.element))
-        if self.error:
-            content_parts.append(f"error: {self.error}")
-        content = "\n".join(content_parts)
-        return f"<{self.name}>\n{content}\n</{self.name}>"
-    
-    def to_code(self):
-        if self.name == "type":
-            text_value = self.args.get('text', '')
-            return f"type(by='css selector', selector='{self.element.enhanced_css_selector}', text='{text_value}', scroll_to=True, fallback_x={self.element.x}, fallback_y={self.element.y}, fallback_width={self.element.width}, fallback_height={self.element.height})"
-        elif self.name == "click":
-            button_value = self.args.get('button', 'left')
-            percentage = self.args.get('percentage', 0.5)
-            return f"click(by='css selector', selector='{self.element.enhanced_css_selector}', button='{button_value}', percentage={percentage}, scroll_to=True, fallback_x={self.element.x}, fallback_y={self.element.y}, fallback_width={self.element.width}, fallback_height={self.element.height})"
-        else:
-            args_str = ", ".join(f"{k}='{v}'" if isinstance(v, str) else f"{k}={v}" 
-                               for k, v in self.args.items() if k != "mmid")
-            return f"{self.name}({args_str})"
 
+class ActionOutput(Message):
+    action: str = Field(description="The name of the action to execute (e.g., 'click', 'type', 'navigate', 'scroll', 'press_key', 'wait', 'terminate')")
+    mmid: Optional[int] = Field(default=None, description="The MMID (unique identifier) of the element to interact with. Required for actions like click, type that interact with specific elements.")
+    params: dict = Field(default_factory=dict, description="Additional parameters for the action (e.g., text for type action, url for navigate, key for press_key, etc.)")
+    reasoning: str = Field(description="Brief explanation of why this action is being taken")
+    def __str__(self):
+        return f"<action_output>\naction: {self.action}\nmmid: {self.mmid}\nparams: {self.params}\nreasoning: {self.reasoning}\n</action_output>"
 
 class Decision(Message):
     action: str = Field(description="The action to be taken.")

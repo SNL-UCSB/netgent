@@ -1,77 +1,237 @@
-The actions you can take are:
+# Available Actions
 
-- "click(mmid, button, percentage)" - Click on the element with the given mmid
+## Actions with MMID (Element Interactions)
 
-  - mmid (int): The unique identifier of the DOM element to click on from the page's bounding boxes
-  - button (str): Which mouse button to use - "left", "right", or "middle" (most common is "left")
-  - percentage (float): Where within the element to click (0.0 = top-left, 0.5 = center, 1.0 = bottom-right)
-  - Example: click(123, "left", 0.5) # Click center of element with ID 123
+### **click** - Click on an element
 
-- "type(mmid, text)" - Type the given text into the element with the given mmid
+- **action**: "click"
+- **mmid** (int): The unique identifier of the DOM element to click on from the page's bounding boxes
+- **params** (dict): Empty dict `{}` (button and percentage are handled automatically by the system)
+- **Description**: Clicks on the specified element. The system will automatically determine the optimal click position (center of the element) and use the left mouse button by default.
+- **Example JSON**:
+  ```json
+  {
+    "action": "click",
+    "mmid": 123,
+    "params": {},
+    "reasoning": "Clicking the search button to submit the query"
+  }
+  ```
 
-  - mmid (int): The unique identifier of the input element (text field, textarea, etc.) to type into
-  - text (str): The actual text content to type into the element
-  - Example: type(456, "hello world") # Type "hello world" into element with ID 456
+### **type** - Type text into an element
 
-- "press_key(key)" - Press the given key
+- **action**: "type"
+- **mmid** (int): The unique identifier of the input element (text field, textarea, etc.) to type into
+- **params** (dict): `{"text": "the actual text content to type"}`
+- **Description**: Types the specified text into the input element. Use this for filling out forms, search boxes, or any text input fields.
+- **Example JSON**:
+  ```json
+  {
+    "action": "type",
+    "mmid": 456,
+    "params": { "text": "hello world" },
+    "reasoning": "Typing the search query into the search box"
+  }
+  ```
 
-  - key (str): The keyboard key to press (e.g., "enter", "tab")
-  - Here are some common keys:
-  - "enter" - Press Enter
-  - "tab" - Press Tab
-  - "down" - Press Down Arrow
-  - "up" - Press Up Arrow
-  - "left" - Press Left Arrow
-  - "right" - Press Right Arrow
-  - "space" - Press Space
-  - "backspace" - Press Backspace
-  - "esc" - Press Escape
-  - Example: press_key("enter") # Press the Enter key
+### **scroll** - Scroll within an element or the page
 
-- "navigate_to(url)" - Navigate to the given url
+- **action**: "scroll"
+- **mmid** (int or null): Element to scroll within; use `null` to scroll the entire page
+- **params** (dict): `{"direction": "up" or "down", "pixels": 10}`
+- **Description**: Scrolls the page or a specific scrollable element. Make sure to scroll gradually - you MUST scroll 10 pixels at a time for smooth scrolling.
+- **Example JSON (scroll entire page)**:
+  ```json
+  {
+    "action": "scroll",
+    "mmid": null,
+    "params": { "direction": "down", "pixels": 10 },
+    "reasoning": "Scrolling down to view more content on the page"
+  }
+  ```
+- **Example JSON (scroll within element)**:
+  ```json
+  {
+    "action": "scroll",
+    "mmid": 789,
+    "params": { "direction": "up", "pixels": 10 },
+    "reasoning": "Scrolling up within the dropdown menu to see earlier options"
+  }
+  ```
 
-  - url (str): The complete web address including protocol (e.g., "https://www.google.com")
-  - Example: navigate_to("https://www.google.com") # Navigate to Google
+## Actions without MMID (General Actions)
 
-- "wait(seconds)" - Wait for the given number of seconds
+### **press_key** - Press a keyboard key
 
-  - seconds (int): Number of seconds to pause (useful for page loads, ads, dynamic content)
-  - Example: wait(3) # Wait for 3 seconds
+- **action**: "press_key"
+- **mmid**: null
+- **params** (dict): `{"key": "enter"}`
+- **Description**: Presses a keyboard key. Useful for navigation, submitting forms, or interacting with keyboard shortcuts.
+- **Common keys**: "enter", "tab", "down", "up", "left", "right", "space", "backspace", "esc"
+- **Example JSON**:
+  ```json
+  {
+    "action": "press_key",
+    "mmid": null,
+    "params": { "key": "enter" },
+    "reasoning": "Pressing Enter to submit the search form"
+  }
+  ```
 
-- "scroll" (parameters: direction, scroll_amount, mmid) - Scroll the page in the given direction
+### **navigate** - Navigate to a URL
 
-  - direction (str): Which way to scroll - "up" or "down"
-  - scroll_amount (int): How much to scroll in pixels (default: 10)
-  - Make sure to scroll down gradually. You MUST SCROLL DOWN 10 PIXELS AT A TIME.
-  - mmid (int, optional): Element to scroll within; if None, scrolls the entire page
-  - Example: scroll("down", 10) # Scroll down 10 pixels on the entire page
-  - Example: scroll("up", 10, 789) # Scroll up 10 pixels within element with ID 789
+- **action**: "navigate"
+- **mmid**: null
+- **params** (dict): `{"url": "https://www.google.com"}`
+- **Description**: Navigates the browser to the specified URL. The URL must include the protocol (http:// or https://).
+- **Example JSON**:
+  ```json
+  {
+    "action": "navigate",
+    "mmid": null,
+    "params": { "url": "https://www.google.com" },
+    "reasoning": "Navigating to Google homepage to start the search"
+  }
+  ```
 
-- "terminate" (parameters: reason) - The task has been completed or cannot be completed
-  - reason (str): Descriptive explanation of why the task is being terminated
-  - Example: terminate("Task completed successfully") # Terminate with success message
+### **wait** - Wait for a specified number of seconds
 
-You MUST provide your response in the following format:
+- **action**: "wait"
+- **mmid**: null
+- **params** (dict): `{"seconds": 2}`
+- **Description**: Pauses execution for the specified number of seconds. Useful for waiting for page loads, ads to finish, or dynamic content to appear.
+- **Example JSON**:
+  ```json
+  {
+    "action": "wait",
+    "mmid": null,
+    "params": { "seconds": 3 },
+    "reasoning": "Waiting for the page to fully load before interacting"
+  }
+  ```
 
-```python
-action_name(parameters)
+### **terminate** - End the task
+
+- **action**: "terminate"
+- **mmid**: null
+- **params** (dict): `{"reason": "Descriptive explanation of why the task is being terminated"}`
+- **Description**: Signals that the task has been completed successfully or cannot be completed. Provide a clear reason explaining the outcome.
+- **Example JSON**:
+  ```json
+  {
+    "action": "terminate",
+    "mmid": null,
+    "params": { "reason": "Task completed successfully" },
+    "reasoning": "Successfully found and accessed the LangChain documentation as requested"
+  }
+  ```
+
+## Output Format
+
+You MUST respond with a JSON object following this exact schema:
+
+```json
+{
+  "action": "string (required) - The name of the action to execute",
+  "mmid": "number or null (optional) - The MMID of the element to interact with",
+  "params": "object (required) - Additional parameters for the action",
+  "reasoning": "string (required) - Brief explanation of why this action is being taken"
+}
 ```
 
-IMPORTANT NOTE: If you are see <empty/> in the element description, it means the element is empty. You can't interact with it. It is only to understand the structure of the page.
-IMPORTANT NOTE: Parameters are passed as a dictionary to the action. You can access the parameters using the parameters dictionary.
+## Complete Action Examples
 
-```python
-parameters['ADDRESS'] <str>
+### Example 1: Clicking an element
+
+```json
+{
+  "action": "click",
+  "mmid": 5,
+  "params": {},
+  "reasoning": "Clicking the search button to submit the query"
+}
 ```
 
-You can also combine the parameters with the action.
+### Example 2: Typing text
 
-```python
-type(1, parameters['ADDRESS'])
+```json
+{
+  "action": "type",
+  "mmid": 10,
+  "params": { "text": "LangChain documentation" },
+  "reasoning": "Typing the search query into the search box"
+}
 ```
 
-You can also use multiple parameters in the same action.
+### Example 3: Pressing a key
 
-```python
-type(1, parameters['ADDRESS'] + " " + parameters['CITY'] + " " + parameters['STATE'] + " " + parameters['ZIP'])
+```json
+{
+  "action": "press_key",
+  "mmid": null,
+  "params": { "key": "enter" },
+  "reasoning": "Pressing enter to submit the search"
+}
 ```
+
+### Example 4: Navigating to a URL
+
+```json
+{
+  "action": "navigate",
+  "mmid": null,
+  "params": { "url": "https://www.google.com" },
+  "reasoning": "Navigating to Google homepage to start search"
+}
+```
+
+### Example 5: Scrolling the page
+
+```json
+{
+  "action": "scroll",
+  "mmid": null,
+  "params": { "direction": "down", "pixels": 10 },
+  "reasoning": "Scrolling down to view more search results"
+}
+```
+
+### Example 6: Scrolling within an element
+
+```json
+{
+  "action": "scroll",
+  "mmid": 789,
+  "params": { "direction": "up", "pixels": 10 },
+  "reasoning": "Scrolling up within the dropdown menu"
+}
+```
+
+### Example 7: Waiting
+
+```json
+{
+  "action": "wait",
+  "mmid": null,
+  "params": { "seconds": 2 },
+  "reasoning": "Waiting for the page to fully load"
+}
+```
+
+### Example 8: Terminating
+
+```json
+{
+  "action": "terminate",
+  "mmid": null,
+  "params": { "reason": "Task completed successfully" },
+  "reasoning": "Successfully found and accessed the LangChain documentation"
+}
+```
+
+## IMPORTANT NOTES
+
+- If you see `<empty/>` in element description, you cannot interact with it
+- Scroll gradually: 10 pixels at a time when scrolling
+- Always provide reasoning for your action choice
+- ONLY output the JSON, no additional text before or after
