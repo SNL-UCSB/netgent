@@ -20,7 +20,7 @@
       {
         "type": "terminate",
         "params": {
-          "reason": "The task is complete. The agent has successfully navigated to https://www.google.com/."
+          "reason": "The user query asks to navigate to https://www.google.com/. The previous action was to navigate to https://www.google.com/. The current HTML state shows that the page has been successfully loaded. Therefore, the task is complete."
         }
       }
     ],
@@ -34,14 +34,61 @@
       {
         "type": "text",
         "params": {
+          "text": "About"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Store"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Gmail"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
           "text": "Images"
         }
       },
       {
-        "type": "element",
+        "type": "text",
         "params": {
-          "by": "css selector",
-          "selector": "a.gb_Z[aria-label*=\"Search for Images \"][href=\"https://www.google.com/imghp?hl=en&ogbl\"][target=\"_top\"]"
+          "text": "Advertising"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Business"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "How Search works"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Privacy"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Terms"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Settings"
         }
       }
     ],
@@ -65,7 +112,7 @@
       {
         "type": "terminate",
         "params": {
-          "reason": "The task is complete as per the user's instructions. The agent has typed 'SeleniumBase Python' into the Google search box and pressed Enter to initiate the search."
+          "reason": "The previous actions were to type 'SeleniumBase Python' into the search box and press Enter. The current HTML state shows the search results page for 'SeleniumBase Python'. The task is now complete as per the instructions."
         }
       }
     ],
@@ -83,9 +130,23 @@
         }
       },
       {
-        "type": "url",
+        "type": "text",
         "params": {
-          "url": "https://www.google.com/search?q=SeleniumBase+Python&sca_esv=9734a983a01cfe31&source=hp&ei=3lHwaJyJB9-ikPIP3bPN0Qo&iflsig=AOw8s4IAAAAAaPBf7vZJn8ac4thpQa3l0l5KaClZZK0Q&ved=0ahUKEwic8M3pz6eQAxVfEUQIHd1ZM6oQ4dUDCBA&uact=5&oq=SeleniumBase+Python&gs_lp=Egdnd3Mtd2l6GgIYAiITU2VsZW5pdW1CYXNlIFB5dGhvbjIFEAAYgAQyBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB5IvGJQ8ARYzjtwAXgAkAEAmAFuoAGPC6oBBDE4LjG4AQPIAQD4AQGYAhSgAuYLqAIKwgIKEAAYAxjqAhiPAcICChAuGAMY6gIYjwHCAgsQABiABBixAxiDAcICERAuGIAEGLEDGNEDGIMBGMcBwgIUEC4YgAQYsQMY0QMYgwEYxwEYigXCAgsQLhiABBjRAxjHAcICBRAuGIAEwgIOEC4YgAQYsQMY0QMYxwHCAgsQLhiABBixAxiDAcICCxAuGIAEGMcBGK8BwgIIEC4YgAQYsQPCAggQABiABBixA8ICCBAAGIAEGIsDwgIKEAAYgAQYChiLA5gDBvEFE6hWNV6VVWKSBwQxOS4xoAf1nwGyBwQxOC4xuAfgC8IHBjIuNS4xM8gHPg&sclient=gws-wiz&sei=_lHwaPHVJYie0PEPgKmYiAs"
+          "text": "SeleniumBase - Web Automation & Testing with Python"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "h3.LC20lb.MBeuO.DKV0Md"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "h3.LC20lb.MBeuO.DKV0Md"
         }
       }
     ],
@@ -102,328 +163,7 @@
       {
         "type": "terminate",
         "params": {
-          "reason": "The current HTML state shows the SeleniumBase Docs page. The user wanted to click on the first search result link to navigate to the SeleniumBase website, but we are already on the SeleniumBase website. Therefore, the task is complete."
-        }
-      }
-    ],
-    "end_state": "Action Completed",
-    "executed": [
-      {
-        "name": "Click on the first result",
-        "description": "On First Result Page",
-        "checks": [
-          {
-            "type": "text",
-            "params": {
-              "text": "SeleniumBase Docs"
-            }
-          },
-          {
-            "type": "text",
-            "params": {
-              "text": "SeleniumBase - Web Automation & Testing with Python"
-            }
-          },
-          {
-            "type": "url",
-            "params": {
-              "url": "https://www.google.com/search?q=SeleniumBase+Python&sca_esv=aa292efd2fdca36d&source=hp&ei=51LwaIiSIsnekPIPh5W36AY&iflsig=AOw8s4IAAAAAaPBg97cNppxqSfDRsXhxYbTnEQvq1Prn&ved=0ahUKEwjIoZfo0KeQAxVJL0QIHYfKDW0Q4dUDCBA&uact=5&oq=SeleniumBase+Python&gs_lp=Egdnd3Mtd2l6IhNTZWxlbml1bUJhc2UgUHl0aG9uMgUQABiABDIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHki2RVD1BFi_O3ABeACQAQCYAdQGoAGMFaoBDDE2LjEuNC0xLjAuMbgBA8gBAPgBAZgCFKAC6BWoAgrCAgoQABgDGOoCGI8BwgIQEC4YAxjHARjqAhiPARivAcICChAuGAMY6gIYjwHCAgsQABiABBixAxiDAcICERAuGIAEGLEDGNEDGIMBGMcBwgIUEC4YgAQYsQMY0QMYgwEYxwEYigXCAgsQLhiABBjRAxjHAcICBRAuGIAEwgIOEC4YgAQYsQMY0QMYxwHCAgsQLhiABBixAxiDAcICCxAuGIAEGMcBGK8BwgIIEC4YgAQYsQPCAggQABiABBixA8ICBxAAGIAEGAqYAwXxBU6DoXEU1TpakgcMMTcuMS40LTEuMC4xoAfFngGyBwwxNi4xLjQtMS4wLjG4B-MVwgcGMS41LjE0yAdA&sclient=gws-wiz&sei=9lLwaMSqIsWm0PEPoaeZsAw"
-            }
-          }
-        ],
-        "actions": [
-          {
-            "type": "click",
-            "params": {
-              "by": "css selector",
-              "selector": "div.CA5RN",
-              "x": 221.03125,
-              "y": 375.0
-            }
-          },
-          {
-            "type": "terminate",
-            "params": {
-              "reason": "Task completed successfully. We are already on the SeleniumBase Docs page, which is the result of clicking the first search result."
-            }
-          }
-        ],
-        "end_state": "Action Completed",
-        "executed": []
-      },
-      {
-        "name": "Click on the first result",
-        "description": "On First Result Page",
-        "checks": [
-          {
-            "type": "text",
-            "params": {
-              "text": "SeleniumBase Docs"
-            }
-          },
-          {
-            "type": "url",
-            "params": {
-              "url": "https://www.google.com/search?q=SeleniumBase+Python&sca_esv=aa292efd2fdca36d&source=hp&ei=VlPwaK30JdH9kPIPtsG1sAo&iflsig=AOw8s4IAAAAAaPBhZqgDwHynnnoPvftXcjSWvFyWU-6K&ved=0ahUKEwit95Gd0aeQAxXRPkQIHbZgDaYQ4dUDCBA&uact=5&oq=SeleniumBase+Python&gs_lp=Egdnd3Mtd2l6IhNTZWxlbml1bUJhc2UgUHl0aG9uMgUQABiABDIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHki_RlDzBFi9PHABeACQAQCYAcACoAGnDaoBCDE3LjEuMC4xuAEDyAEA-AEBmAIUoAL4DagCCsICDBAAGAMY6gIYChiPAcICChAuGAMY6gIYjwHCAgoQABgDGOoCGI8BwgILEAAYgAQYsQMYgwHCAhEQLhiABBixAxjRAxiDARjHAcICFBAuGIAEGLEDGNEDGIMBGMcBGIoFwgILEC4YgAQY0QMYxwHCAgUQLhiABMICDhAuGIAEGLEDGNEDGMcBwgILEC4YgAQYsQMYgwHCAgsQLhiABBjHARivAcICCBAuGIAEGLEDwgIIEAAYgAQYsQPCAgcQABiABBgKmAMI8QXRf3a1BbSkJ5IHCDE4LjEuMC4xoAfFngGyBwgxNy4xLjAuMbgH7w3CBwYxLjEwLjnIBzc&sclient=gws-wiz&sei=ZlPwaJWRBLG70PEP39y50AM"
-            }
-          }
-        ],
-        "actions": [
-          {
-            "type": "click",
-            "params": {
-              "by": "css selector",
-              "selector": "div.eqA2re.UnOTSe.Vwoesf",
-              "x": 132.0,
-              "y": 375.0
-            }
-          },
-          {
-            "type": "terminate",
-            "params": {
-              "reason": "Task completed."
-            }
-          }
-        ],
-        "end_state": "Action Completed",
-        "executed": []
-      },
-      {
-        "name": "Click on the first result",
-        "description": "On First Result Page",
-        "checks": [
-          {
-            "type": "text",
-            "params": {
-              "text": "SeleniumBase Docs"
-            }
-          },
-          {
-            "type": "text",
-            "params": {
-              "text": "SeleniumBase - Web Automation & Testing with Python"
-            }
-          },
-          {
-            "type": "url",
-            "params": {
-              "url": "https://www.google.com/search?q=SeleniumBase+Python&sca_esv=aa292efd2fdca36d&source=hp&ei=jFPwaOrXNrPLkPIPxOuPqQs&iflsig=AOw8s4IAAAAAaPBhnO-iIZZrBi7oJ5SGVa5Mw6vVErrU&ved=0ahUKEwjqzYK30aeQAxWzJUQIHcT1I7UQ4dUDCBA&uact=5&oq=SeleniumBase+Python&gs_lp=Egdnd3Mtd2l6IhNTZWxlbml1bUJhc2UgUHl0aG9uMgUQABiABDIGEAAYFhgeMgYQABgWGB5Iz0VQ8ARY3TtwAXgAkAEAmAFeoAGaC6oBAjE5uAEDyAEA-AEBmAIUoALVC6gCCsICChAAGAMY6gIYjwHCAhAQLhgDGMcBGOoCGI8BGK8BwgILEAAYgAQYsQMYgwHCAhEQLhiABBixAxjRAxiDARjHAcICFBAuGIAEGLEDGNEDGIMBGMcBGIoFwgIOEC4YgAQYsQMY0QMYxwHCAgsQLhiABBixAxiDAcICCxAuGIAEGMcBGK8BwgIIEAAYgAQYsQOYAwbxBaDltLrp7kVRkgcCMjCgB_g7sgcCMTm4B88LwgcGNS4xNC4xyAch&sclient=gws-wiz&sei=nFPwaPnXLKGl0PEPsc-R6Ao"
-            }
-          }
-        ],
-        "actions": [
-          {
-            "type": "click",
-            "params": {
-              "by": "css selector",
-              "selector": "div.CA5RN",
-              "x": 221.03125,
-              "y": 375.0
-            }
-          },
-          {
-            "type": "terminate",
-            "params": {
-              "reason": "Task completed successfully"
-            }
-          }
-        ],
-        "end_state": "Action Completed",
-        "executed": []
-      },
-      {
-        "name": "Click on the first result",
-        "description": "On First Result Page",
-        "checks": [
-          {
-            "type": "text",
-            "params": {
-              "text": "SeleniumBase Docs"
-            }
-          },
-          {
-            "type": "text",
-            "params": {
-              "text": "SeleniumBase - Web Automation & Testing with Python"
-            }
-          }
-        ],
-        "actions": [
-          {
-            "type": "click",
-            "params": {
-              "by": "css selector",
-              "selector": "div.CA5RN",
-              "x": 221.03125,
-              "y": 375.0
-            }
-          },
-          {
-            "type": "terminate",
-            "params": {
-              "reason": "Task completed successfully. Navigated to the SeleniumBase Docs page."
-            }
-          }
-        ],
-        "end_state": "Action Completed",
-        "executed": []
-      }
-    ]
-  },
-  {
-    "name": "Click on the first result",
-    "description": "On First Result Page",
-    "checks": [
-      {
-        "type": "text",
-        "params": {
-          "text": "SeleniumBase Docs"
-        }
-      },
-      {
-        "type": "text",
-        "params": {
-          "text": "SeleniumBase - Web Automation & Testing with Python"
-        }
-      },
-      {
-        "type": "url",
-        "params": {
-          "url": "https://www.google.com/search?q=SeleniumBase+Python&sca_esv=aa292efd2fdca36d&source=hp&ei=51LwaIiSIsnekPIPh5W36AY&iflsig=AOw8s4IAAAAAaPBg97cNppxqSfDRsXhxYbTnEQvq1Prn&ved=0ahUKEwjIoZfo0KeQAxVJL0QIHYfKDW0Q4dUDCBA&uact=5&oq=SeleniumBase+Python&gs_lp=Egdnd3Mtd2l6IhNTZWxlbml1bUJhc2UgUHl0aG9uMgUQABiABDIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHki2RVD1BFi_O3ABeACQAQCYAdQGoAGMFaoBDDE2LjEuNC0xLjAuMbgBA8gBAPgBAZgCFKAC6BWoAgrCAgoQABgDGOoCGI8BwgIQEC4YAxjHARjqAhiPARivAcICChAuGAMY6gIYjwHCAgsQABiABBixAxiDAcICERAuGIAEGLEDGNEDGIMBGMcBwgIUEC4YgAQYsQMY0QMYgwEYxwEYigXCAgsQLhiABBjRAxjHAcICBRAuGIAEwgIOEC4YgAQYsQMY0QMYxwHCAgsQLhiABBixAxiDAcICCxAuGIAEGMcBGK8BwgIIEC4YgAQYsQPCAggQABiABBixA8ICBxAAGIAEGAqYAwXxBU6DoXEU1TpakgcMMTcuMS40LTEuMC4xoAfFngGyBwwxNi4xLjQtMS4wLjG4B-MVwgcGMS41LjE0yAdA&sclient=gws-wiz&sei=9lLwaMSqIsWm0PEPoaeZsAw"
-        }
-      }
-    ],
-    "actions": [
-      {
-        "type": "click",
-        "params": {
-          "by": "css selector",
-          "selector": "div.CA5RN",
-          "x": 221.03125,
-          "y": 375.0
-        }
-      },
-      {
-        "type": "terminate",
-        "params": {
-          "reason": "Task completed successfully. We are already on the SeleniumBase Docs page, which is the result of clicking the first search result."
-        }
-      }
-    ],
-    "end_state": "Action Completed",
-    "executed": []
-  },
-  {
-    "name": "Click on the first result",
-    "description": "On First Result Page",
-    "checks": [
-      {
-        "type": "text",
-        "params": {
-          "text": "SeleniumBase Docs"
-        }
-      },
-      {
-        "type": "url",
-        "params": {
-          "url": "https://www.google.com/search?q=SeleniumBase+Python&sca_esv=aa292efd2fdca36d&source=hp&ei=VlPwaK30JdH9kPIPtsG1sAo&iflsig=AOw8s4IAAAAAaPBhZqgDwHynnnoPvftXcjSWvFyWU-6K&ved=0ahUKEwit95Gd0aeQAxXRPkQIHbZgDaYQ4dUDCBA&uact=5&oq=SeleniumBase+Python&gs_lp=Egdnd3Mtd2l6IhNTZWxlbml1bUJhc2UgUHl0aG9uMgUQABiABDIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHki_RlDzBFi9PHABeACQAQCYAcACoAGnDaoBCDE3LjEuMC4xuAEDyAEA-AEBmAIUoAL4DagCCsICDBAAGAMY6gIYChiPAcICChAuGAMY6gIYjwHCAgoQABgDGOoCGI8BwgILEAAYgAQYsQMYgwHCAhEQLhiABBixAxjRAxiDARjHAcICFBAuGIAEGLEDGNEDGIMBGMcBGIoFwgILEC4YgAQY0QMYxwHCAgUQLhiABMICDhAuGIAEGLEDGNEDGMcBwgILEC4YgAQYsQMYgwHCAgsQLhiABBjHARivAcICCBAuGIAEGLEDwgIIEAAYgAQYsQPCAgcQABiABBgKmAMI8QXRf3a1BbSkJ5IHCDE4LjEuMC4xoAfFngGyBwgxNy4xLjAuMbgH7w3CBwYxLjEwLjnIBzc&sclient=gws-wiz&sei=ZlPwaJWRBLG70PEP39y50AM"
-        }
-      }
-    ],
-    "actions": [
-      {
-        "type": "click",
-        "params": {
-          "by": "css selector",
-          "selector": "div.eqA2re.UnOTSe.Vwoesf",
-          "x": 132.0,
-          "y": 375.0
-        }
-      },
-      {
-        "type": "terminate",
-        "params": {
-          "reason": "Task completed."
-        }
-      }
-    ],
-    "end_state": "Action Completed",
-    "executed": []
-  },
-  {
-    "name": "Click on the first result",
-    "description": "On First Result Page",
-    "checks": [
-      {
-        "type": "text",
-        "params": {
-          "text": "SeleniumBase Docs"
-        }
-      },
-      {
-        "type": "text",
-        "params": {
-          "text": "SeleniumBase - Web Automation & Testing with Python"
-        }
-      },
-      {
-        "type": "url",
-        "params": {
-          "url": "https://www.google.com/search?q=SeleniumBase+Python&sca_esv=aa292efd2fdca36d&source=hp&ei=jFPwaOrXNrPLkPIPxOuPqQs&iflsig=AOw8s4IAAAAAaPBhnO-iIZZrBi7oJ5SGVa5Mw6vVErrU&ved=0ahUKEwjqzYK30aeQAxWzJUQIHcT1I7UQ4dUDCBA&uact=5&oq=SeleniumBase+Python&gs_lp=Egdnd3Mtd2l6IhNTZWxlbml1bUJhc2UgUHl0aG9uMgUQABiABDIGEAAYFhgeMgYQABgWGB5Iz0VQ8ARY3TtwAXgAkAEAmAFeoAGaC6oBAjE5uAEDyAEA-AEBmAIUoALVC6gCCsICChAAGAMY6gIYjwHCAhAQLhgDGMcBGOoCGI8BGK8BwgILEAAYgAQYsQMYgwHCAhEQLhiABBixAxjRAxiDARjHAcICFBAuGIAEGLEDGNEDGIMBGMcBGIoFwgIOEC4YgAQYsQMY0QMYxwHCAgsQLhiABBixAxiDAcICCxAuGIAEGMcBGK8BwgIIEAAYgAQYsQOYAwbxBaDltLrp7kVRkgcCMjCgB_g7sgcCMTm4B88LwgcGNS4xNC4xyAch&sclient=gws-wiz&sei=nFPwaPnXLKGl0PEPsc-R6Ao"
-        }
-      }
-    ],
-    "actions": [
-      {
-        "type": "click",
-        "params": {
-          "by": "css selector",
-          "selector": "div.CA5RN",
-          "x": 221.03125,
-          "y": 375.0
-        }
-      },
-      {
-        "type": "terminate",
-        "params": {
-          "reason": "Task completed successfully"
-        }
-      }
-    ],
-    "end_state": "Action Completed",
-    "executed": []
-  },
-  {
-    "name": "Click on the first result",
-    "description": "On First Result Page",
-    "checks": [
-      {
-        "type": "text",
-        "params": {
-          "text": "SeleniumBase Docs"
-        }
-      },
-      {
-        "type": "text",
-        "params": {
-          "text": "SeleniumBase - Web Automation & Testing with Python"
-        }
-      }
-    ],
-    "actions": [
-      {
-        "type": "click",
-        "params": {
-          "by": "css selector",
-          "selector": "div.CA5RN",
-          "x": 221.03125,
-          "y": 375.0
-        }
-      },
-      {
-        "type": "terminate",
-        "params": {
-          "reason": "Task completed successfully. Navigated to the SeleniumBase Docs page."
+          "reason": "The previous action was to click on the first search result link to navigate to the SeleniumBase Python website. The current HTML state shows that the page has been successfully loaded. Therefore, the task is complete."
         }
       }
     ],

@@ -27,8 +27,9 @@ class NetGentState(TypedDict):
     executed_states: Optional[list[dict[str, Any]]]
 
 class NetGent():
-    def __init__(self, driver: Driver = None, controller: BaseController = None, llm: BaseChatModel = None, config: Optional[dict] = None):
+    def __init__(self, driver: Driver = None, controller: BaseController = None, llm: BaseChatModel = None, config: Optional[dict] = None, llm_enabled: bool = True):
         self.llm = llm
+        self.llm_enabled = llm_enabled
         self.driver = driver
         if self.driver is None:
             self.driver = BrowserSession().driver
@@ -77,6 +78,11 @@ class NetGent():
 
     def _check_web_agent_end_state(self, state: NetGentState):
         """Check if the web agent generated state has an end_state"""
+        # Safety check: if LLM is disabled, this method shouldn't be called
+        if not self.llm_enabled:
+            print("LLM is disabled but web agent end state check was called - ending execution")
+            return END
+            
         synthesis_choice = state.get('synthesis_choice')
         
         # Check if synthesis choice has an end_state
@@ -97,10 +103,14 @@ class NetGent():
         
         passed_states = state.get('passed_states', [])
         
-        # If no states passed, route to state synthesis
+        # If no states passed, check LLM flag before routing
         if len(passed_states) == 0:
-            print("No states passed - routing to state synthesis agent")
-            return "state_synthesis"
+            if self.llm_enabled:
+                print("No states passed - routing to state synthesis agent")
+                return "state_synthesis"
+            else:
+                print("No states passed and LLM disabled - ending execution")
+                return END
         
         # If states passed, route to state executor
         return "state_executor"
