@@ -27,12 +27,12 @@ class NetGentState(TypedDict):
     executed_states: Optional[list[dict[str, Any]]]
 
 class NetGent():
-    def __init__(self, driver: Driver = None, controller: BaseController = None, llm: BaseChatModel = None, config: Optional[dict] = None, llm_enabled: bool = True):
+    def __init__(self, driver: Driver = None, controller: BaseController = None, llm: BaseChatModel = None, config: Optional[dict] = None, llm_enabled: bool = True, user_data_dir: Optional[str] = None):
         self.llm = llm
         self.llm_enabled = llm_enabled
         self.driver = driver
         if self.driver is None:
-            self.driver = BrowserSession().driver
+            self.driver = BrowserSession(user_data_dir=user_data_dir).driver
         self.controller = controller
         if self.controller is None:
             self.controller = PyAutoGUIController(self.driver)
