@@ -43,6 +43,8 @@ See individual subfolder `README.md` files for details on usage and implementati
 
 [^1]: Credit to Eugene Vuong for primary development.
 
+## Getting Started
+
 ### Using the CLI Tool
 
 NetGent provides a flexible command-line interface for automating workflows in two modes:
@@ -52,9 +54,9 @@ NetGent provides a flexible command-line interface for automating workflows in t
 - Runs a pre-generated workflow (concrete NFA) reproducibly in a browser.
 - Accepts an optional credentials input and browser cache for persistent sessions.
 
-**Examples:**
+**Example:**
 
-```
+```bash
 docker run --platform=linux/amd64 --rm -it \
   -p 6080:6080 \
   -v "$PWD/google_creds.json:/keys.json:ro" \
@@ -71,9 +73,9 @@ docker run --platform=linux/amd64 --rm -it \
 
 - Synthesizes workflows from high-level, natural language prompts using an LLM (requires prompts, credentials, API keys, and an output file).
 
-**Examples:**
+**Example:**
 
-````
+```bash
 docker run --platform=linux/amd64 --rm -it \
   -p 6080:6080 \
   -v "$PWD/google_creds.json:/keys.json:ro" \
@@ -83,22 +85,21 @@ docker run --platform=linux/amd64 --rm -it \
   netgent:amd64 \
   -g /keys.json '{}' /prompts/google_prompts.json \
   --user-data-dir /cache \
-  -o /out/state_repository.json```
+  -o /out/state_repository.json
+```
 
 - Use `-s` for screen monitoring, and `--user-data-dir` to specify a browser profile directory.
 - See all options with `netgent --help`.
 
-### Initalizing the Docker Container
+### Initializing the Docker Container
 
 A Dockerfile is provided to simplify environment setup and sandboxed execution.
 
 **Build the image:**
 
-````
-
+```bash
 docker build --platform linux/amd64 -t netgent .
-
-````
+```
 
 Once inside, use the CLI tool or Python as described above.
 
@@ -130,6 +131,6 @@ results = agent.run(state_prompts=prompts)
 # To replay an existing script
 agent = NetGent(llm=None, llm_enabled=False)
 results = agent.run(state_prompts=[], state_repository=your_saved_repo)
-````
+```
 
 See the example scripts and CLI source for more patterns, and customize credentials or cache directory as needed.
