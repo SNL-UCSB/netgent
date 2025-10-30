@@ -38,3 +38,7 @@ This workflow  illustrates the runtime loop which generates executable code from
 To better illustrate the **NetGent** architecture and its components, we provide a detailed diagram below.
 <br><br>
 ![architecture](docs/figures/architecture.png)
+
+## How to Use NetGent
+
+You can use NetGent through the Python package, the Docker image, or by cloning this repository and installing the required dependencies. NetGent can run in two modes: the full pipeline mode, which converts natural language prompts into executable code and runs them, and the execution mode, which runs the generated code (or uses examples from our library) without requiring API keys for the LLM or Agent components.
