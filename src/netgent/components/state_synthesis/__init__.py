@@ -18,7 +18,7 @@ Workflow:
 
 Usage:
     from netgent.components.state_synthesis import StateSynthesis
-    from utils.message import StatePrompt
+    from netgent.utils.message import StatePrompt
     
     synthesis = StateSynthesis(llm, browser_controller)
     result = synthesis.run(

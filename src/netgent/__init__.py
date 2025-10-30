@@ -23,7 +23,7 @@ Main Components:
 Usage:
     from netgent import NetGent
     from netgent.components import WebAgent, StateSynthesis
-    from utils.message import StatePrompt
+    from netgent.utils.message import StatePrompt
     
     # Initialize agent with LLM
     agent = NetGent(llm=your_llm)
@@ -44,7 +44,7 @@ Reference:
     Research Paper: https://arxiv.org/abs/2406.08392
     "NetGent: Agent-Based Automation of Network Application Workflows"
 """
-
+from .utils import StatePrompt, Message, Element, Toolcall, ActionOutput, Decision, Reflection, Metadata, ExecutedState, format_context, format_context_without_reflection, save_context_to_file, load_context_from_file
 from .agent import NetGent, NetGentState
 from .browser import BrowserSession, PyAutoGUIController, BaseController
 from .components import (
@@ -69,6 +69,20 @@ __all__ = [
     "StateSynthesis",
     "WebAgent",
     "WebAgentState",
+    # Utils
+    "StatePrompt",
+    "Message",
+    "Element",
+    "Toolcall",
+    "ActionOutput",
+    "Decision",
+    "Reflection",
+    "Metadata",
+    "ExecutedState",
+    "format_context",
+    "format_context_without_reflection",
+    "save_context_to_file",
+    "load_context_from_file",
 ]
 
 __version__ = "0.1.0"

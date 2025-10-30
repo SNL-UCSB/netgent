@@ -18,7 +18,7 @@ import os
 from pathlib import Path
 from typing import Dict, Any, Optional, List
 from netgent.agent import NetGent
-from utils.message import StatePrompt
+from netgent.utils.message import StatePrompt
 from langchain_google_vertexai import ChatVertexAI
 from langchain_google_genai import ChatGoogleGenerativeAI
 

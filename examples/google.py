@@ -1,6 +1,5 @@
 import json
-from netgent.agent import NetGent
-from utils.message import StatePrompt
+from netgent import NetGent, StatePrompt
 from langchain_google_vertexai import ChatVertexAI
 from langchain_google_genai import ChatGoogleGenerativeAI
 agent = NetGent(llm=ChatGoogleGenerativeAI(model="gemini-2.0-flash-exp", temperature=0.2, api_key="AIzaSyDN-JBFHXwJsZLgXwQxW_0j5IFcleUUzZM"), llm_enabled=False)

@@ -10,7 +10,7 @@ from langchain_core.language_models.chat_models import BaseChatModel
 from netgent.components.state_synthesis import StateSynthesis
 import time
 from netgent.components.web_agent import WebAgent
-from utils.message import StatePrompt
+from netgent.utils.message import StatePrompt
 load_dotenv()
 
 class NetGentState(TypedDict):

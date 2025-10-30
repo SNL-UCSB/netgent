@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 from ...browser.controller.base import BaseController
 from ...browser.registry import ActionRegistry
 from ...browser.utils import mark_page
-from utils.message import Message, format_context, Metadata, ActionOutput
+from netgent.utils.message import Message, format_context, Metadata, ActionOutput
 import time
 import os
 load_dotenv()
