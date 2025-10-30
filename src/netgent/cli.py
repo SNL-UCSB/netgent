@@ -15,13 +15,31 @@ import argparse
 import json
 import sys
 import os
-from pathlib import Path
 from typing import Dict, Any, Optional, List
 from netgent.agent import NetGent
 from netgent.utils.message import StatePrompt
 from langchain_google_vertexai import ChatVertexAI
 from langchain_google_genai import ChatGoogleGenerativeAI
 
+
+def _to_jsonable(obj: Any) -> Any:
+    """Recursively convert result to JSON-serializable structures.
+    - Pydantic models (e.g., StatePrompt) -> model_dump()
+    - dict/list/tuple -> recurse
+    - others -> return as-is
+    """
+    # Pydantic BaseModel (duck-typing to avoid direct import dependency)
+    if hasattr(obj, "model_dump") and callable(getattr(obj, "model_dump")):
+        try:
+            return _to_jsonable(obj.model_dump())
+        except Exception:
+            # Fallback to string if dumping fails
+            return str(obj)
+    if isinstance(obj, dict):
+        return {k: _to_jsonable(v) for k, v in obj.items()}
+    if isinstance(obj, (list, tuple)):
+        return [_to_jsonable(v) for v in obj]
+    return obj
 
 def load_api_keys(api_keys_file: str) -> Dict[str, str]:
     """Load API keys from JSON file."""
@@ -115,17 +133,7 @@ def create_llm(api_keys: Dict[str, str]) -> Any:
             api_key=api_keys['google_api_key']
         )
     
-    # Try Google Vertex AI
-    if 'google_vertex_project' in api_keys and 'google_vertex_location' in api_keys:
-        return ChatVertexAI(
-            model_name="gemini-2.0-flash-exp",
-            temperature=0.2,
-            project=api_keys['google_vertex_project'],
-            location=api_keys['google_vertex_location']
-        )
-    
-    print("Error: No valid API keys found. Please provide 'google_api_key' or 'google_vertex_project'/'google_vertex_location'.")
-    sys.exit(1)
+    return ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2)
 
 
 def setup_browser_cache(credentials: Dict[str, str]) -> Optional[str]:
@@ -149,8 +157,8 @@ def execution_mode(args):
     cache_file = None
     if hasattr(args, 'credentials') and args.credentials:
         credentials = load_credentials(args.credentials)
-        # Setup browser cache if provided
-        cache_file = setup_browser_cache(credentials)
+    # Setup browser cache if provided (CLI flag takes precedence over credentials)
+    cache_file = getattr(args, 'user_data_dir', None) or setup_browser_cache(credentials)
     
     # Initialize agent with LLM disabled (execution mode)
     # Pass cache directory to browser session if available
@@ -183,8 +191,8 @@ def generation_mode(args):
     # Load prompts
     prompts = load_prompts(args.prompts)
     
-    # Setup browser cache if provided
-    cache_file = setup_browser_cache(credentials)
+    # Setup browser cache if provided (CLI flag takes precedence over credentials)
+    cache_file = getattr(args, 'user_data_dir', None) or setup_browser_cache(credentials)
     
     # Create LLM instance
     llm = create_llm(api_keys)
@@ -260,9 +268,22 @@ Examples:
     )
     
     parser.add_argument(
+        '--user-data-dir',
+        dest='user_data_dir',
+        metavar='DIR',
+        default=None,
+        help='Browser user data directory (overrides credentials.browser_cache_file)'
+    )
+    parser.add_argument(
         '--version',
         action='version',
         version='NetGent 0.1.0'
+    )
+    
+    parser.add_argument(
+        '-o', '--output',
+        metavar='FILE',
+        help='Write resulting JSON (state repository / execution result) to FILE'
     )
     
     args = parser.parse_args()
@@ -285,6 +306,9 @@ Examples:
         if not args.prompts:
             print("Error: Prompts are required for generation mode.")
             sys.exit(1)
+        if not getattr(args, 'output', None):
+            print("Error: Output file is required for generation mode. Use -o/--output <FILE>.")
+            sys.exit(1)
     
     # Print mode and screen status
     mode = "Code Execution" if args.execute else "Code Generation"
@@ -299,8 +323,12 @@ Examples:
         
         # Save results if requested
         if hasattr(args, 'output') and args.output:
+            to_save = result
+            # In generation mode, persist only the state repository for reuse
+            if not args.execute and isinstance(result, dict) and 'state_repository' in result:
+                to_save = result['state_repository']
             with open(args.output, 'w') as f:
-                json.dump(result, f, indent=2)
+                json.dump(_to_jsonable(to_save), f, indent=2)
             print(f"Results saved to {args.output}")
             
     except KeyboardInterrupt:

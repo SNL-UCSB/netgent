@@ -30,6 +30,6 @@ By combining the flexibility of language-based agents with the reliability of co
 
 ![workflow](docs/figures/workflow.png)
 
-## NetGen Architecture
+## NetGent Architecture
 
 ![architecture](docs/figures/architecture.png)

@@ -2,7 +2,9 @@ import json
 from netgent import NetGent, StatePrompt
 from langchain_google_vertexai import ChatVertexAI
 from langchain_google_genai import ChatGoogleGenerativeAI
-agent = NetGent(llm=ChatGoogleGenerativeAI(model="gemini-2.0-flash-exp", temperature=0.2, api_key="AIzaSyDN-JBFHXwJsZLgXwQxW_0j5IFcleUUzZM"), llm_enabled=False)
+from dotenv import load_dotenv
+load_dotenv()
+agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2), llm_enabled=False, user_data_dir="examples/user_data")
 prompt = [
         StatePrompt(
             name="On Browser Home Page",
@@ -20,18 +22,21 @@ prompt = [
             name="Click on the first result",
             description="On First Result Page",
             triggers=["If On First Result Page (Find First Result Text for the Trigger)"],
-            actions=["[1] Click on the first result"],
+            actions=["[1] Click on the first result of the page!"],
             end_state="Action Completed"
         ),
     ]
 
+# with open("examples/prompts/google_prompts.json", "r") as f:
+#     prompt = [StatePrompt(**p) for p in json.load(f)]
+
 try:
     with open("examples/states/google_result.json", "r") as f:
-        result_json = json.load(f)
+        result = json.load(f)
 except FileNotFoundError:
-    result_json = []
+    result = []
 
-result = agent.run(state_prompts=prompt, state_repository=result_json)
+result = agent.run(state_prompts=prompt, state_repository=result)
 
 input("Press Enter to continue...")
 with open("examples/states/google_result.json", "w") as f:

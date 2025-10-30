@@ -244,12 +244,20 @@ class NetGent():
         }
 
     def run(self, state_prompts: list[StatePrompt] = [], state_repository: list[dict[str, Any]] = []):
-        for state_item in state_repository:
-            if "executed" not in state_item:
+        # Accept either a list of state dicts or a dict containing "state_repository"
+        if isinstance(state_repository, dict):
+            repo_list = state_repository.get("state_repository", [])
+        elif isinstance(state_repository, list):
+            repo_list = state_repository
+        else:
+            repo_list = []
+
+        for state_item in repo_list:
+            if isinstance(state_item, dict) and "executed" not in state_item:
                 state_item["executed"] = []
-        
+
         state: NetGentState = {
-            "state_repository": state_repository,
+            "state_repository": repo_list,
             "state_prompts": state_prompts,
             "passed_states": [],
             "recursion_count": 0,

@@ -20,7 +20,7 @@
       {
         "type": "terminate",
         "params": {
-          "reason": "The user query asks to navigate to https://www.google.com/. The previous action was to navigate to https://www.google.com/. The current HTML state shows that the page has been successfully loaded. Therefore, the task is complete."
+          "reason": "The task is complete. The agent has successfully navigated to https://www.google.com/."
         }
       }
     ],
@@ -32,63 +32,16 @@
     "description": "On Search Page",
     "checks": [
       {
-        "type": "text",
+        "type": "element",
         "params": {
-          "text": "About"
+          "by": "css selector",
+          "selector": "span"
         }
       },
       {
         "type": "text",
         "params": {
-          "text": "Store"
-        }
-      },
-      {
-        "type": "text",
-        "params": {
-          "text": "Gmail"
-        }
-      },
-      {
-        "type": "text",
-        "params": {
-          "text": "Images"
-        }
-      },
-      {
-        "type": "text",
-        "params": {
-          "text": "Advertising"
-        }
-      },
-      {
-        "type": "text",
-        "params": {
-          "text": "Business"
-        }
-      },
-      {
-        "type": "text",
-        "params": {
-          "text": "How Search works"
-        }
-      },
-      {
-        "type": "text",
-        "params": {
-          "text": "Privacy"
-        }
-      },
-      {
-        "type": "text",
-        "params": {
-          "text": "Terms"
-        }
-      },
-      {
-        "type": "text",
-        "params": {
-          "text": "Settings"
+          "text": "AI Mode"
         }
       }
     ],
@@ -99,7 +52,7 @@
           "text": "SeleniumBase Python",
           "by": "css selector",
           "selector": "textarea.gLFyf[title=\"Search\"][aria-label=\"Search\"][placeholder=\"\"][autocomplete=\"off\"][id=\"APjFqb\"][name=\"q\"][role=\"combobox\"]",
-          "x": 584.53125,
+          "x": 584.4296875,
           "y": 446.0
         }
       },
@@ -112,7 +65,7 @@
       {
         "type": "terminate",
         "params": {
-          "reason": "The previous actions were to type 'SeleniumBase Python' into the search box and press Enter. The current HTML state shows the search results page for 'SeleniumBase Python'. The task is now complete as per the instructions."
+          "reason": "The task is complete. The agent has successfully typed 'SeleniumBase Python' into the search box and pressed Enter to initiate the search."
         }
       }
     ],
@@ -126,13 +79,13 @@
       {
         "type": "text",
         "params": {
-          "text": "SeleniumBase Docs"
+          "text": "seleniumbase 1.15.3"
         }
       },
       {
         "type": "text",
         "params": {
-          "text": "SeleniumBase - Web Automation & Testing with Python"
+          "text": "SeleniumBase"
         }
       },
       {
@@ -155,15 +108,15 @@
         "type": "click",
         "params": {
           "by": "css selector",
-          "selector": "div.eqA2re.UnOTSe.Vwoesf",
-          "x": 132.0,
-          "y": 375.0
+          "selector": "h3.LC20lb.MBeuO.DKV0Md",
+          "x": 205.3828125,
+          "y": 302.5
         }
       },
       {
         "type": "terminate",
         "params": {
-          "reason": "The previous action was to click on the first search result link to navigate to the SeleniumBase Python website. The current HTML state shows that the page has been successfully loaded. Therefore, the task is complete."
+          "reason": "The task is complete. The agent has successfully clicked on the first search result link to navigate to the SeleniumBase Python documentation or project page."
         }
       }
     ],
