@@ -1,0 +1,137 @@
+{
+  "state_repository": [
+    {
+      "name": "On Browser Home Page",
+      "description": "Start the Process",
+      "checks": [
+        {
+          "type": "url",
+          "params": {
+            "url": "chrome://new-tab-page/"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "navigate",
+          "params": {
+            "url": "https://www.google.com/"
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is complete. The agent has successfully navigated to https://www.google.com/."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "Search for SeleniumBase Python",
+      "description": "On Search Page",
+      "checks": [
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "span"
+          }
+        },
+        {
+          "type": "text",
+          "params": {
+            "text": "AI Mode"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "SeleniumBase Python",
+            "by": "css selector",
+            "selector": "textarea.gLFyf[title=\"Search\"][aria-label=\"Search\"][placeholder=\"\"][autocomplete=\"off\"][id=\"APjFqb\"][name=\"q\"][role=\"combobox\"]",
+            "x": 584.4296875,
+            "y": 446.0
+          }
+        },
+        {
+          "type": "press_key",
+          "params": {
+            "key": "enter"
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is complete. The agent has successfully typed 'SeleniumBase Python' into the search box and pressed Enter to initiate the search."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "Click on the first result",
+      "description": "On First Result Page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "seleniumbase 1.15.3"
+          }
+        },
+        {
+          "type": "text",
+          "params": {
+            "text": "SeleniumBase"
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "h3.LC20lb.MBeuO.DKV0Md"
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "h3.LC20lb.MBeuO.DKV0Md"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "h3.LC20lb.MBeuO.DKV0Md",
+            "x": 205.3828125,
+            "y": 302.5
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is complete. The agent has successfully clicked on the first search result link to navigate to the SeleniumBase Python documentation or project page."
+          }
+        }
+      ],
+      "end_state": "Action Completed",
+      "executed": []
+    }
+  ],
+  "state_prompts": [],
+  "passed_states": [],
+  "recursion_count": 3,
+  "last_passed_state_name": null,
+  "state_timeout_start": null,
+  "synthesis_prompt": null,
+  "synthesis_choice": null,
+  "synthesis_triggers": null,
+  "executed_states": []
+}

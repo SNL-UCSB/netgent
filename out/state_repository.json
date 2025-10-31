@@ -1,0 +1,24 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "chrome://new-tab-page/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed. The current page is google.com"
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  }
+]
