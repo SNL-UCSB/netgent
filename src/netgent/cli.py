@@ -172,10 +172,18 @@ def execution_mode(args):
     print("Starting execution...")
     
     # Run the agent
-    result = agent.run(state_prompts=[], state_repository=executable_code)
-    
-    print("Execution completed!")
-    return result
+    try:
+        result = agent.run(state_prompts=[], state_repository=executable_code)
+        print("Execution completed!")
+        return result
+    finally:
+        # Cleanup: close browser session when done
+        if agent.controller and agent.controller.driver:
+            try:
+                agent.controller.quit()
+                print("Browser session closed.")
+            except Exception as e:
+                print(f"Warning: Error closing browser: {e}")
 
 
 def generation_mode(args):
@@ -207,10 +215,18 @@ def generation_mode(args):
     print("Starting code generation...")
     
     # Run the agent
-    result = agent.run(state_prompts=prompts, state_repository=[])
-    
-    print("Code generation completed!")
-    return result
+    try:
+        result = agent.run(state_prompts=prompts, state_repository=[])
+        print("Code generation completed!")
+        return result
+    finally:
+        # Cleanup: close browser session when done
+        if agent.controller and agent.controller.driver:
+            try:
+                agent.controller.quit()
+                print("Browser session closed.")
+            except Exception as e:
+                print(f"Warning: Error closing browser: {e}")
 
 
 def main():
@@ -264,7 +280,7 @@ Examples:
     parser.add_argument(
         '-s', '--screen',
         action='store_true',
-        help='Connect to screen for live verification/observation'
+        help='Enable VNC/noVNC for live screen viewing and monitoring'
     )
     
     parser.add_argument(
@@ -312,7 +328,7 @@ Examples:
     
     # Print mode and screen status
     mode = "Code Execution" if args.execute else "Code Generation"
-    screen_status = "with screen monitoring" if args.screen else "without screen monitoring"
+    screen_status = "with VNC enabled" if args.screen else "without VNC"
     print(f"Mode: {mode} ({screen_status})")
     
     try:
@@ -330,6 +346,10 @@ Examples:
             with open(args.output, 'w') as f:
                 json.dump(_to_jsonable(to_save), f, indent=2)
             print(f"Results saved to {args.output}")
+        
+        # Exit cleanly when done
+        print("Task completed. Container will exit.")
+        sys.exit(0)
             
     except KeyboardInterrupt:
         print("\nExecution interrupted by user.")

@@ -1,6 +1,7 @@
 seleniumbase>=4.42.5,<5.0.0
 selenium>=4.36.0,<5.0.0
 pyautogui>=0.9.54,<0.10.0
+# Note: python3-xlib is required for pyautogui on Linux/X11 (installed via apt-get in Dockerfile)
 langgraph>=0.5.0,<0.6.0
 langchain>=0.3.26,<0.4.0
 langchain-google-genai>=2.1.6,<3.0.0

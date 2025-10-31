@@ -57,17 +57,18 @@ NetGent provides a flexible command-line interface for automating workflows in t
 **Example:**
 
 ```bash
-docker run --platform=linux/amd64 --rm -it \
-  -p 6080:6080 \
-  -v "$PWD/google_creds.json:/keys.json:ro" \
+docker run --platform=linux/amd64 --rm -d \
+  -p 8080:8080 \
   -v "$PWD/examples/states/google_result.json:/executable_code.json:ro" \
   -v "$PWD/out:/out" \
-  -v "$PWD/.browser-cache:/cache" \
   netgent:amd64 \
-  -e /executable_code.json /keys.json \
-  --user-data-dir /cache \
-  -o /out/execution_result.json
+  -e /executable_code.json \
+  --user-data-dir /tmp/browser-cache \
+  -o /out/execution_result.json \
+  -s
 ```
+
+Note: With `-s` enabled, you can view the browser automation at http://localhost:8080 in view-only mode. The container will automatically exit when the task completes.
 
 **2. Code Generation Mode (`-g`)**
 
@@ -76,19 +77,22 @@ docker run --platform=linux/amd64 --rm -it \
 **Example:**
 
 ```bash
-docker run --platform=linux/amd64 --rm -it \
-  -p 6080:6080 \
+docker run --platform=linux/amd64 --rm -d \
+  -p 8080:8080 \
   -v "$PWD/google_creds.json:/keys.json:ro" \
-  -v "$PWD/examples/prompts:/prompts:ro" \
+  -v "$PWD/examples/prompts/google_prompts.json:/prompts.json:ro" \
   -v "$PWD/out:/out" \
-  -v "$PWD/.browser-cache:/cache" \
   netgent:amd64 \
-  -g /keys.json '{}' /prompts/google_prompts.json \
-  --user-data-dir /cache \
-  -o /out/state_repository.json
+  -g /keys.json '{}' /prompts.json \
+  --user-data-dir /tmp/browser-cache \
+  -o /out/state_repository.json \
+  -s
 ```
 
-- Use `-s` for screen monitoring, and `--user-data-dir` to specify a browser profile directory.
+Note: With `-s` enabled, you can view the browser automation at http://localhost:8080 in view-only mode. The container will automatically exit when the task completes.
+
+- Use `-s` or `--screen` to enable VNC/noVNC for live screen viewing in **view-only mode** (read-only access - you can watch but not control). Access at http://localhost:8080 when running in Docker with `-p 8080:8080`. The container will automatically exit when the task completes.
+- Use `--user-data-dir` to specify a browser profile directory.
 - See all options with `netgent --help`.
 
 ### Initializing the Docker Container

@@ -31,7 +31,13 @@ RUN wget -O /tmp/chrome.deb https://dl.google.com/linux/direct/google-chrome-sta
 # Install noVNC + Websockify
 RUN git clone https://github.com/novnc/noVNC.git /opt/noVNC \
   && git clone https://github.com/novnc/websockify /opt/noVNC/utils/websockify \
+  && pip install websockify \
   && ln -s /opt/noVNC/vnc.html /opt/noVNC/index.html
+
+# Copy configuration script
+COPY scripts/configure_novnc.sh /usr/local/bin/configure_novnc.sh
+RUN chmod +x /usr/local/bin/configure_novnc.sh \
+  && /usr/local/bin/configure_novnc.sh
 
 # Python Dependencies First for Better Layer Caching
 COPY requirements.txt .
@@ -42,8 +48,8 @@ RUN pip install -r requirements.txt \
 COPY src/netgent/ src/netgent/
 COPY src/utils/ src/utils/
 
-# Startup script to bring up Xvfb and window manager, then run app
-RUN printf '#!/usr/bin/env bash\nset -e\nXvfb :99 -screen 0 ${RESOLUTION} &\n# give Xvfb a moment\nsleep 1\nfluxbox &\nexec python src/netgent/cli.py "$@"\n' > /usr/local/bin/start-netgent \
-  && chmod +x /usr/local/bin/start-netgent
+# Copy and use the startup script
+COPY scripts/start.sh /usr/local/bin/start-netgent
+RUN chmod +x /usr/local/bin/start-netgent
 
 ENTRYPOINT ["/usr/local/bin/start-netgent"]
