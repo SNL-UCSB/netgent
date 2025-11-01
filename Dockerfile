@@ -7,7 +7,8 @@ ENV DISPLAY=:99 \
     RESOLUTION=1920x1080x24 \
     DBUS_SESSION_BUS_ADDRESS=/dev/null \
     PIP_NO_CACHE_DIR=1 \
-    PIP_DISABLE_PIP_VERSION_CHECK=1
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PYTHONPATH=/home/agent/app/src
 
 WORKDIR /home/agent/app
 
@@ -30,7 +31,13 @@ RUN wget -O /tmp/chrome.deb https://dl.google.com/linux/direct/google-chrome-sta
 # Install noVNC + Websockify
 RUN git clone https://github.com/novnc/noVNC.git /opt/noVNC \
   && git clone https://github.com/novnc/websockify /opt/noVNC/utils/websockify \
+  && pip install websockify \
   && ln -s /opt/noVNC/vnc.html /opt/noVNC/index.html
+
+# Copy configuration script
+COPY scripts/configure_novnc.sh /usr/local/bin/configure_novnc.sh
+RUN chmod +x /usr/local/bin/configure_novnc.sh \
+  && /usr/local/bin/configure_novnc.sh
 
 # Python Dependencies First for Better Layer Caching
 COPY requirements.txt .
@@ -38,18 +45,11 @@ RUN pip install -r requirements.txt \
   && seleniumbase get chromedriver --path
 
 # Copy Application
-COPY state_agent/ state_agent/
-COPY run.py .
+COPY src/netgent/ src/netgent/
+COPY src/utils/ src/utils/
 
-# Prepare SSH (Optional)
-RUN mkdir -p /run/sshd /root/.ssh
+# Copy and use the startup script
+COPY scripts/start.sh /usr/local/bin/start-netgent
+RUN chmod +x /usr/local/bin/start-netgent
 
-# Startup script
-COPY scripts/start.sh /usr/local/bin/start.sh
-RUN chmod +x /usr/local/bin/start.sh
-
-# Expose noVNC (web) and SSH. Raw VNC (5900) intentionally not exposed.
-EXPOSE 8080
-
-ENTRYPOINT ["/usr/local/bin/start.sh"]
-CMD []
+ENTRYPOINT ["/usr/local/bin/start-netgent"]

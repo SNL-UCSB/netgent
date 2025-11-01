@@ -7,7 +7,7 @@ from langchain_core.language_models.chat_models import BaseChatModel
 from netgent.browser.controller.base import BaseController
 from netgent.browser.utils import find_trigger
 from netgent.browser.registry import TriggerRegistry
-from utils.message import StatePrompt
+from netgent.utils.message import StatePrompt
 from .prompt import get_prompt
 import re
 load_dotenv()

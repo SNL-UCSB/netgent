@@ -10,7 +10,7 @@ from langchain_core.language_models.chat_models import BaseChatModel
 from netgent.components.state_synthesis import StateSynthesis
 import time
 from netgent.components.web_agent import WebAgent
-from utils.message import StatePrompt
+from netgent.utils.message import StatePrompt
 load_dotenv()
 
 class NetGentState(TypedDict):
@@ -27,11 +27,12 @@ class NetGentState(TypedDict):
     executed_states: Optional[list[dict[str, Any]]]
 
 class NetGent():
-    def __init__(self, driver: Driver = None, controller: BaseController = None, llm: BaseChatModel = None, config: Optional[dict] = None):
+    def __init__(self, driver: Driver = None, controller: BaseController = None, llm: BaseChatModel = None, config: Optional[dict] = None, llm_enabled: bool = True, user_data_dir: Optional[str] = None):
         self.llm = llm
+        self.llm_enabled = llm_enabled
         self.driver = driver
         if self.driver is None:
-            self.driver = BrowserSession().driver
+            self.driver = BrowserSession(user_data_dir=user_data_dir).driver
         self.controller = controller
         if self.controller is None:
             self.controller = PyAutoGUIController(self.driver)
@@ -77,6 +78,11 @@ class NetGent():
 
     def _check_web_agent_end_state(self, state: NetGentState):
         """Check if the web agent generated state has an end_state"""
+        # Safety check: if LLM is disabled, this method shouldn't be called
+        if not self.llm_enabled:
+            print("LLM is disabled but web agent end state check was called - ending execution")
+            return END
+            
         synthesis_choice = state.get('synthesis_choice')
         
         # Check if synthesis choice has an end_state
@@ -97,10 +103,14 @@ class NetGent():
         
         passed_states = state.get('passed_states', [])
         
-        # If no states passed, route to state synthesis
+        # If no states passed, check LLM flag before routing
         if len(passed_states) == 0:
-            print("No states passed - routing to state synthesis agent")
-            return "state_synthesis"
+            if self.llm_enabled:
+                print("No states passed - routing to state synthesis agent")
+                return "state_synthesis"
+            else:
+                print("No states passed and LLM disabled - ending execution")
+                return END
         
         # If states passed, route to state executor
         return "state_executor"
@@ -234,12 +244,20 @@ class NetGent():
         }
 
     def run(self, state_prompts: list[StatePrompt] = [], state_repository: list[dict[str, Any]] = []):
-        for state_item in state_repository:
-            if "executed" not in state_item:
+        # Accept either a list of state dicts or a dict containing "state_repository"
+        if isinstance(state_repository, dict):
+            repo_list = state_repository.get("state_repository", [])
+        elif isinstance(state_repository, list):
+            repo_list = state_repository
+        else:
+            repo_list = []
+
+        for state_item in repo_list:
+            if isinstance(state_item, dict) and "executed" not in state_item:
                 state_item["executed"] = []
-        
+
         state: NetGentState = {
-            "state_repository": state_repository,
+            "state_repository": repo_list,
             "state_prompts": state_prompts,
             "passed_states": [],
             "recursion_count": 0,

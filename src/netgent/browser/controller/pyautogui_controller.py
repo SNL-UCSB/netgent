@@ -29,7 +29,7 @@ class PyAutoGUIController(BaseController):
     def __init__(self, driver: Driver):
         super().__init__(driver)
 
-    def click(self, by: str = None, selector: str = None, x: float = None, y: float = None):
+    def click(self, by: str = None, selector: str = None, x: float = None, y: float = None, percentage: float = 0.5):
         """Click on a specified element or coordinates"""
         click_x, click_y = None, None
         
@@ -43,7 +43,8 @@ class PyAutoGUIController(BaseController):
                     element.location['x'], 
                     element.location['y'], 
                     element.size['width'], 
-                    element.size['height']
+                    element.size['height'],
+                    percentage
                 )
             except Exception as e:
                 logger.warning(f"Could not find element with by={by}, selector={selector}: {e}")
@@ -75,7 +76,7 @@ class PyAutoGUIController(BaseController):
             pyautogui.typewrite(char, interval=interval)
             pyautogui.keyUp('fn')
 
-    def move(self, by: str = None, selector: str = None, x: float = None, y: float = None):
+    def move(self, by: str = None, selector: str = None, x: float = None, y: float = None, percentage: float = 0.5):
         """Move to a specified element or coordinates"""
         move_x, move_y = None, None
         
@@ -89,7 +90,8 @@ class PyAutoGUIController(BaseController):
                     element.location['x'], 
                     element.location['y'], 
                     element.size['width'], 
-                    element.size['height']
+                    element.size['height'],
+                    percentage
                 )
             except Exception as e:
                 logger.warning(f"Could not find element with by={by}, selector={selector}: {e}")

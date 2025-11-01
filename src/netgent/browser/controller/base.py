@@ -38,7 +38,7 @@ class BaseController(ABC, metaclass=ActionTriggerMeta):
     # -- Actions Methods --
     @abstractmethod
     @action()
-    def click(self, by: str = None, selector: str = None, x: float = None, y: float = None):
+    def click(self, by: str = None, selector: str = None, x: float = None, y: float = None, percentage: float = 0.5):
         """Click on a specified element or coordinates.
         
         Args:
@@ -46,6 +46,7 @@ class BaseController(ABC, metaclass=ActionTriggerMeta):
             selector: Selector string (optional)
             x: X coordinate (optional, used if by/selector not provided or fails)
             y: Y coordinate (optional, used if by/selector not provided or fails)
+            percentage: Percentage of the element to click (0.0 to 1.0) for the x coordinate
         """
         pass
 
@@ -99,7 +100,7 @@ class BaseController(ABC, metaclass=ActionTriggerMeta):
 
     @abstractmethod
     @action()
-    def move(self, by: str = None, selector: str = None, x: float = None, y: float = None):
+    def move(self, by: str = None, selector: str = None, x: float = None, y: float = None, percentage: float = 0.5):
         """Move to a specified element or coordinates.
         
         Args:
@@ -107,6 +108,7 @@ class BaseController(ABC, metaclass=ActionTriggerMeta):
             selector: Selector string (optional)
             x: X coordinate (optional, used if by/selector not provided or fails)
             y: Y coordinate (optional, used if by/selector not provided or fails)
+            percentage: Percentage of the element to move to (0.0 to 1.0) for the x coordinate
         """
         pass
 
