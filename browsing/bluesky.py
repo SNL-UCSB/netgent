@@ -1,10 +1,11 @@
 import json
+import os
 from netgent import NetGent, StatePrompt
 from langchain_google_vertexai import ChatVertexAI
 from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 load_dotenv()
-agent = NetGent(llm=ChatGoogleGenerativeAI(model="gemini-2.0-flash-exp", temperature=0.2, api_key="AIzaSyB9vuU3ZZ30criAM4I8CI11VZMLaSjsoe0"), llm_enabled=True)
+agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2), llm_enabled=True)
     
 
 prompt = [
@@ -32,5 +33,7 @@ except FileNotFoundError:
 result = agent.run(state_prompts=prompt, state_repository=result)
 
 input("Press Enter to continue...")
+# Create directory if it doesn't exist
+os.makedirs("browsing/bluesky/results", exist_ok=True)
 with open("browsing/bluesky/results/bluesky_result.json", "w") as f:
     json.dump(result["state_repository"], f, indent=2)

@@ -23,7 +23,7 @@ prompt = [
         StatePrompt(
             name="On X Home Page",
             description="On X Home Page",
-            triggers=["If On X Home Page (Find Home Text for the Trigger)"],
+            triggers=["If it is on the current condition of the page! (Create trigger based on current page)"],
             actions=["Browse X as a human (scroll down for around 6 times with the scroll amount being 20. press on the like button which is the heart icon)"],
             end_state="Action Completed"
         ),
@@ -41,5 +41,7 @@ result = []
 result = agent.run(state_prompts=prompt, state_repository=result)
 
 input("Press Enter to continue...")
+# Create directory if it doesn't exist
+os.makedirs("browsing/X/results", exist_ok=True)
 with open("browsing/X/results/X_result.json", "w") as f:
     json.dump(result["state_repository"], f, indent=2)
