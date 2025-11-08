@@ -1,3 +1,5 @@
+"""This example instructs NetGent on starting a Talky room. It opens the service, provides a placeholder room name, and describes how to join and manage audio/video controls.
+"""
 import json
 import os
 from netgent import NetGent, StatePrompt
@@ -19,7 +21,7 @@ prompt = [
             name="On Talky Home Page",
             description="On Talky Home Page",
             triggers=["If it is on the Talky Home Page"],
-            actions=["[1] Type 'helloworld12345' for the meeting code and press 'Start Meeting'"],
+            actions=["[1] Type '' for the meeting code and press 'Start Meeting'"],
         ),
         StatePrompt(
             name="On Talky Video Conference Screen",

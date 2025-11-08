@@ -1,3 +1,5 @@
+"""This example captures a YouTube visit scripted with NetGent. It opens the platform, spotlights login placeholders, and documents the steps for browsing without signing in.
+"""
 import json
 import os
 from netgent import NetGent, StatePrompt

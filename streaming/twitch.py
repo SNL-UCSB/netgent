@@ -1,3 +1,5 @@
+"""This example records NetGent launching Twitch and sampling a live stream. It navigates the home page, opens featured content, and pauses/resumes playback to mimic viewer activity.
+"""
 import json
 import os
 from netgent import NetGent, StatePrompt

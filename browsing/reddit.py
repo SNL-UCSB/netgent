@@ -1,3 +1,5 @@
+"""This example has NetGent launch Reddit and scroll through the aggregated feed. It highlights how to model lightweight browsing without storing credentials or making account changes.
+"""
 import json
 import os
 from netgent import NetGent, StatePrompt

@@ -1,3 +1,5 @@
+"""This example guides NetGent through the X (Twitter) login flow and home timeline. It documents the credential prompt and then scrolls and interacts with posts as an anonymized user.
+"""
 import json
 from netgent import NetGent, StatePrompt
 from langchain_google_vertexai import ChatVertexAI
@@ -18,7 +20,7 @@ prompt = [
             name="If on X Login Page",
             description="If on X Login Page",
             triggers=["If on X Login Page"],
-            actions=["[1] Type the Email is snlclient1@gmail.com", "[2] Type the password 'SNL.12345' (MAKE SURE YOU DO THIS BEFORE PRESSING THE BUTTON 'Log In')", "[3] press the button 'Log In'"]
+            actions=["[1] Type the Email is ", "[2] Type the password '' (MAKE SURE YOU DO THIS BEFORE PRESSING THE BUTTON 'Log In')", "[3] press the button 'Log In'"]
         ),
         StatePrompt(
             name="On X Home Page",

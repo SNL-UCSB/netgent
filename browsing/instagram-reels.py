@@ -1,3 +1,5 @@
+"""This example drives NetGent through Instagram's reels surface. It opens the site, handles the login prompt, and steps through several reels to emulate a short viewing session.
+"""
 import json
 import os
 from netgent import NetGent, StatePrompt
@@ -18,7 +20,7 @@ prompt = [
             name="Login to Account",
             description="On Login",
             triggers=["If On Login Page (Find Login Text for the Trigger)"],
-            actions=["[1] Type the Email is snlclient1@gmail.com", "[2] Type the password 'SNL.12345' (MAKE SURE YOU DO THIS BEFORE PRESSING THE BUTTON 'Log In')", "[3] press the button 'Log In'"],
+            actions=["[1] Type the Email is ", "[2] Type the password '' (MAKE SURE YOU DO THIS BEFORE PRESSING THE BUTTON 'Log In')", "[3] press the button 'Log In'"],
         ),
         StatePrompt(
             name="Save Information",

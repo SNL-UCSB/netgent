@@ -1,3 +1,5 @@
+"""This example demonstrates a Disney+ (ESPN hub) session captured by NetGent. It highlights the login flow, profile selection, and the actions that would occur when authenticated playback is available.
+"""
 import json
 import os
 from netgent import NetGent, StatePrompt
@@ -25,13 +27,13 @@ prompt = [
             name="Login to Account",
             description="On Login",
             triggers=["If On Login Page (Find Login Text for the Trigger)"],
-            actions=["[1] Type the Email is snlclient1@gmail.com", "[2] Pressing the button 'Continue'", "[3] Type the password 'SNL.12345' (MAKE SURE YOU DO THIS BEFORE PRESSING THE BUTTON 'Log In')", "[4] press the button 'Log In'"],
+            actions=["[1] Type the Email is ", "[2] Pressing the button 'Continue'", "[3] Type the password '' (MAKE SURE YOU DO THIS BEFORE PRESSING THE BUTTON 'Log In')", "[4] press the button 'Log In'"]
         ),
         StatePrompt(
             name="On Select Profile",
             description="On Select Profile",
             triggers=["If 'Who's watching?' is on the page"],
-            actions=["Select the Profile 'snlclient'"],
+            actions=["Select the Profile ''"]
         ),
         StatePrompt(
             name="On the One Time Code Page",
@@ -44,13 +46,13 @@ prompt = [
             name="On the Profile PIN Page",
             description="On the Profile PIN Page",
             triggers=["If it is on the Profile PIN Page", "Don't use URL as a Trigger"],
-            actions=["Type the PIN '1234' and press 'Enter'"],
+            actions=["Type the PIN '' and press 'Enter'"]
         ),
         StatePrompt(
             name="On the Disney Plus Home Page (When Logged In)",
-            description="Go to the ESPN Channel After Logging In In the Home Page",
+            description="Go to the Show After Logging In In the Home Page",
             triggers=["If it is on the Home Page ONLY CHECK BY URL"],
-            actions=["Press on the ESPN Channel"],
+            actions=["Go to "]
         ),
         StatePrompt(    
             name="On ESPN Channel",

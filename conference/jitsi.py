@@ -1,3 +1,5 @@
+"""This example illustrates accessing a Jitsi Meet room via NetGent. It highlights entering the meeting name, toggling media controls, and observing the conference interface.
+"""
 import json
 import os
 from netgent import NetGent, StatePrompt
@@ -19,7 +21,7 @@ prompt = [
             name="On Jitsi Join Page",
             description="On Jitsi Join Page",
             triggers=["If it is on the Jitsi Join Page"],
-            actions=["First, Join the meeting as FamilyBenchmarksBrushReportedly", "Next, in the meeting, click the Camera and Microphone icon"],
+            actions=["First, Join the meeting as ", "Next, in the meeting, click the Camera and Microphone icon"],
             end_state="Jitsi Video Conference Screen"
         ),
     ]

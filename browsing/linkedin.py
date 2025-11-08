@@ -1,3 +1,5 @@
+"""This example shows NetGent exploring LinkedIn's homepage. It navigates to the login screen, acknowledges protected actions, and scrolls the feed to gather publicly visible content.
+"""
 import json
 import os
 from netgent import NetGent, StatePrompt
@@ -19,7 +21,7 @@ prompt = [
             name="If on LinkedIn Login Page",
             description="If on LinkedIn Login Page",
             triggers=["If on LinkedIn Login Page"],
-            actions=["[1] Type the Email is snlclient1@gmail.com", "[2] Type the password 'SNL.12345' (MAKE SURE YOU DO THIS BEFORE PRESSING THE BUTTON 'Log In')", "[3] press the button 'Log In'"]
+            actions=["[1] Type the Email is ", "[2] Type the password '' (MAKE SURE YOU DO THIS BEFORE PRESSING THE BUTTON 'Log In')", "[3] press the button 'Log In'"]
         ),
         StatePrompt(
             name="On LinkedIn Home Page",

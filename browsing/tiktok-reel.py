@@ -1,3 +1,5 @@
+"""This example walks NetGent through TikTok's web experience. It arrives at the login page, records the need for credentials, and outlines the actions required to browse the For You feed responsibly.
+"""
 import json
 import os
 from netgent import NetGent, StatePrompt
@@ -19,7 +21,7 @@ prompt = [
             name="If on TikTok Login Page",
             description="If on TikTok Login Page",
             triggers=["If on TikTok Login Page"],
-            actions=["[1] Type the Email is snlclient1@gmail.com", "[2] Type the password 'SNL.12345' (MAKE SURE YOU DO THIS BEFORE PRESSING THE BUTTON 'Log In')", "[3] press the button 'Log In'"]
+            actions=["[1] Type the Email is ", "[2] Type the password '' (MAKE SURE YOU DO THIS BEFORE PRESSING THE BUTTON 'Log In')", "[3] press the button 'Log In'"]
         ),
         StatePrompt(
             name="If on TikTok Interest Page",

@@ -1,3 +1,5 @@
+"""This example uses NetGent to explore a Whereby meeting setup. It opens the landing page, references the room join flow, and shows the interactions needed inside the conference view.
+"""
 import json
 import os
 from netgent import NetGent, StatePrompt
@@ -13,7 +15,7 @@ prompt = [
             name="On Browser Home Page",
             description="Start the Process",
             triggers=["If it is on the current condition of the page! (Create trigger based on current page)"],
-            actions=["Go to https://whereby.com/snlclient1"]
+            actions=["Go to https://whereby.com/"]
         ),
         StatePrompt(
             name="On Whereby Join Page",

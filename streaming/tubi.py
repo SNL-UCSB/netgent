@@ -1,3 +1,5 @@
+"""This example lets NetGent explore Tubi's on-demand library. It shows the search-and-play sequence for a sample title while keeping credential fields empty.
+"""
 import json
 import os
 from netgent import NetGent, StatePrompt

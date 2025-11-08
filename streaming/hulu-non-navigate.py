@@ -1,3 +1,5 @@
+"""This example showcases NetGent visiting Hulu's web experience. It covers the welcome screen, login transition, and the playback flow while flagging credential-protected actions.
+"""
 import json
 import os
 from netgent import NetGent, StatePrompt
@@ -25,19 +27,19 @@ prompt = [
             name="Login to Account",
             description="On Login",
             triggers=["If On Login Page (Find Login Text for the Trigger)"],
-            actions=["[1] Type the Email is snlclient1@gmail.com", "[2] Pressing the button 'Continue'", "[3] Type the password 'SNL.12345' (MAKE SURE YOU DO THIS BEFORE PRESSING THE BUTTON 'Log In')", "[4] press the button 'Log In'", "TERMINATE"],
+            actions=["[1] Type the Email is ", "[2] Pressing the button 'Continue'", "[3] Type the password '' (MAKE SURE YOU DO THIS BEFORE PRESSING THE BUTTON 'Log In')", "[4] press the button 'Log In'", "TERMINATE"],
         ),
         StatePrompt(
             name="On Select Profile",
             description="On Select Profile",
             triggers=["If 'Who's watching?' is on the page"],
-            actions=["Select the Profile 'snlclient' (Ex: 'snlclient')", "TERMINATE"],
+            actions=["Select the Profile ''", "TERMINATE"],
         ),
         StatePrompt(
             name="On the Hulu Home Page (When Logged In)",
             description="Go to the Show After Logging In In the Home Page",
             triggers=["If it is on the Home Page (Showing Recommended For You) And On 'https://www.hulu.com/hub/home'"],
-            actions=["Go to https://www.hulu.com/series/91de62df-0394-4e17-85a8-e843bd730ede", "TERMINATE"],
+            actions=["Go to ", "TERMINATE"],
         ),
         StatePrompt(
             name="On the Movie/Show Page",

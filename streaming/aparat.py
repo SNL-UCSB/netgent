@@ -1,3 +1,5 @@
+"""This example has NetGent interact with the Aparat streaming portal. It covers the login screen, records credential placeholders, and shows the sequence for selecting live channels.
+"""
 import json
 import os
 from netgent import NetGent, StatePrompt

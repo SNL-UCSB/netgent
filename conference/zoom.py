@@ -1,3 +1,5 @@
+"""This example documents NetGent automating the Zoom web client. It opens the join page, records the meeting credential placeholders, and shows how the agent toggles camera and microphone on entry.
+"""
 import json
 import os
 from netgent import NetGent, StatePrompt
@@ -19,7 +21,7 @@ prompt = [
             name="On Zoom Home Page",
             description="On Zoom Home Page",
             triggers=["If 'Zoom' is on the page"],
-            actions=["Press 'Join a Meeting' and then type the Meeting ID '964 911 6513' and password is '1nUkh1', name is 'SNL' and press 'Join'"],
+            actions=["Press 'Join a Meeting' and then type the Meeting ID '', password '', name '', and press 'Join'"]
         ),
         StatePrompt(
             name="Error",

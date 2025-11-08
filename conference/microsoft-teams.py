@@ -1,3 +1,5 @@
+"""This example guides NetGent through Microsoft Teams on the web. It shows the login prompt, identifies where meeting credentials would be supplied, and navigates to the Teams home interface.
+"""
 import json
 import os
 from netgent import NetGent, StatePrompt
@@ -19,13 +21,13 @@ prompt = [
             name="On Microsoft Login",
             description="Login to Microsoft",
             triggers=["If it is on the Microsoft Login Page. Get elements and text from the page"],
-            actions=["Type 'snlclient1@gmail.com' in the email field and password is 'SNL.12345'. Transverse to find these information and make sure it is on the stay sign in option"],
+            actions=["Type '' in the email field and password is ''. Transverse to find these information and make sure it is on the stay sign in option"],
         ),
         StatePrompt(
             name="On Microsoft Teams Home Page",
             description="On Microsoft Teams Home Page",
             triggers=["If 'Microsoft Teams' is on the page"],
-            actions=["Press 'Meet' on the Sidebar, 'Join a Meeting ID' and then type the Meeting ID '9362664981417' and password is 'kGRIkO3HhILAigRFwG', and press 'Join meeting'"],
+            actions=["Press 'Meet' on the Sidebar, 'Join a Meeting ID' and then type the Meeting ID '' and password '', and press 'Join meeting'"],
         ),
         StatePrompt(
             name="Error",

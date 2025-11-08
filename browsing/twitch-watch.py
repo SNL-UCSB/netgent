@@ -1,3 +1,5 @@
+"""This example directs NetGent to Twitch's homepage and featured streams. It illustrates navigating to live content, pausing briefly, and resuming playback to mimic a viewer session.
+"""
 import json
 import os
 from netgent import NetGent, StatePrompt

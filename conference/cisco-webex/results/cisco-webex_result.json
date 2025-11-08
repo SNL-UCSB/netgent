@@ -1,0 +1,214 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "chrome://new-tab-page/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://www.google.com"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user has already navigated to the specified URL. The task is complete."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": [
+      {
+        "name": "On Browser Home Page",
+        "description": "Start the Process",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://www.google.com/"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "navigate",
+            "params": {
+              "url": "https://web.webex.com/dashboard"
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is complete. The user has navigated to the specified URL and the next step is to terminate."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.google.com/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://web.webex.com/dashboard"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete. The user has navigated to the specified URL and the next step is to terminate."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On Cisco Webex Sign In Page",
+    "description": "On Webex Sign In Page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Webex"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://web.webex.com/sign-in"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "mdc-button.md-button-pill-wrapper.auth-start-sign-in-button[aria-label*=\"Sign in\"][role=\"button\"][type=\"button\"]"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "mdc-button.md-button-pill-wrapper[role=\"button\"][type=\"button\"]",
+          "x": 613.921875,
+          "y": 1342.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "mdc-button.md-button-pill-wrapper.auth-start-join-meeting-button[aria-label*=\"Join a meeting\"][role=\"button\"][type=\"button\"]",
+          "x": 620.0,
+          "y": 485.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "mdc-button.md-button-pill-wrapper.jyQq2SjqmwgqYMzEDXYw[aria-label*=\"Join as a guest\"][role=\"button\"][type=\"submit\"]",
+          "x": 619.984375,
+          "y": 598.421875
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "2556 628 1310",
+          "by": "css selector",
+          "selector": "input[id=\"enter-meeting-number-label\"][type=\"text\"][aria-labelledby=\"react-aria1079771587-9\"]",
+          "x": 603.984375,
+          "y": 549.421875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "mdc-button.md-button-pill-wrapper.jyQq2SjqmwgqYMzEDXYw[aria-label*=\"Join as a guest\"][role=\"button\"][type=\"submit\"]",
+          "x": 619.984375,
+          "y": 598.421875
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 2
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "",
+          "by": "css selector",
+          "selector": "input[type=\"text\"][autocomplete=\"name\"][id=\"react-aria1079771587-12\"][aria-labelledby=\"react-aria1079771587-13\"]",
+          "x": 956.0,
+          "y": 681.5
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "mdc-button.md-button-pill-wrapper.SmbOUdT__JcDkT9szVMh.CflRKnllyBcHFi1PawDo.mmkCJYXrTTgu9c6rEi_F[aria-label*=\"Join meeting Client Client's Personal Room\"][aria-labelledby*=\"join-button join-spinner\"][id=\"join-button\"][role=\"button\"][type=\"button\"]",
+          "x": 972.0,
+          "y": 827.5
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The previous actions involved navigating to the Webex website, entering the meeting ID, entering the name, clicking the 'Join meeting' button, and waiting for the meeting to start. The current HTML state shows that the meeting is connecting. The next step is to wait for the meeting to start. The task is now complete."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On Cisco Webex Meeting Conference Screen",
+    "description": "On the Cisco Webex Meeting Conference Screen",
+    "checks": [],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete. The user has joined the meeting and is waiting for the host to start the meeting."
+        }
+      }
+    ],
+    "end_state": "Cisco Webex Meeting Conference Screen",
+    "executed": []
+  }
+]

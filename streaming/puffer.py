@@ -1,3 +1,5 @@
+"""This example walks NetGent through the Puffer TV login and channel selection flow. It captures where credentials would be supplied and documents the basic viewer interactions once signed in.
+"""
 import json
 import os
 from netgent import NetGent, StatePrompt
@@ -19,7 +21,7 @@ prompt = [
             name="On Puffer Login Page",
             description="Start the Process",
             triggers=["If it is on the current condition of the page! (Create trigger based on current page)"],
-            actions=["On login page, Username: 'snlclient1' and Password: 'SNL.12345', click the checkbox and press 'Login'"]
+            actions=["On login page, Username: '' and Password: '', click the checkbox and press 'Login'"]
         ),
         StatePrompt(
             name="On Puffer Channel Page",

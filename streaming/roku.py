@@ -1,3 +1,5 @@
+"""This example demonstrates NetGent navigating the Roku Channel web portal. It outlines the discovery experience, notes authentication prompts, and highlights how playback controls would be exercised.
+"""
 import json
 import os
 from netgent import NetGent, StatePrompt

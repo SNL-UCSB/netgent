@@ -1,0 +1,196 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "chrome://new-tab-page/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "RingCentral meeting join",
+          "by": "css selector",
+          "selector": "input.truncate[id=\"input\"][type=\"search\"][autocomplete=\"off\"][role=\"combobox\"][placeholder*=\"Search Google or type a URL\"]",
+          "x": 620.0,
+          "y": 479.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "cr-searchbox-match[role=\"option\"]",
+          "x": 620.0,
+          "y": 525.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.eqA2re.NjwKYd.Vwoesf",
+          "x": 84.5,
+          "y": 378.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The RingCentral meeting join page has been successfully loaded."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On RingCentral Join Page",
+    "description": "On RingCentral Join Page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://meetings.ringcentral.com/join"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Join a meeting"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "h1.join-block__title"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "",
+          "by": "css selector",
+          "selector": "input.join-block__input[type=\"text\"][name=\"meetingId\"][aria-label*=\"Meeting ID or Personal Link Name\"][aria-describedby=\"meeting-id-error\"]",
+          "x": 535.0,
+          "y": 681.796875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.join-block__btn[title=\"Join\"]",
+          "x": 810.0,
+          "y": 681.296875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On RingCentral Video Conference Screen",
+    "description": "On RingCentral Video Conference Screen",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Welcome to RingCentral Video"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://v.ringcentral.com/download/"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "h3.welcome-text"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.onetrust-close-btn-handler.onetrust-close-btn-ui.banner-close-button.ot-close-icon[aria-label*=\"Close banner\"]",
+          "x": 704.0,
+          "y": 1184.328125
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "test",
+          "by": "css selector",
+          "selector": "input.TextField__input.TextField__input--material[type=\"text\"][placeholder*=\" \"][autocomplete=\"off\"]",
+          "x": 620.0,
+          "y": 364.96875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.Button.Button--round.Button--contained",
+          "x": 620.0,
+          "y": 429.96875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.Button.Button--contained.button-join",
+          "x": 722.5,
+          "y": 922.9921875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.MenuButton.MenuButton--normal.MenuButton--svg-inner-icon.MenuButton--toolbar[aria-label*=\"Mute microphone\"]",
+          "x": 324.0,
+          "y": 1338.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.MenuButton.MenuButton--active.MenuButton--normal.MenuButton--muted.MenuButton--svg-inner-icon.MenuButton--toolbar[aria-label*=\"Turn on camera\"]",
+          "x": 399.0,
+          "y": 1338.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "RingCentral Video Conference Screen",
+    "executed": []
+  }
+]

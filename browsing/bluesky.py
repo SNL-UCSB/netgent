@@ -1,3 +1,5 @@
+"""This example uses NetGent to open Bluesky's web experience. It focuses on loading the public feed and scrolling through posts to simulate casual browsing.
+"""
 import json
 import os
 from netgent import NetGent, StatePrompt

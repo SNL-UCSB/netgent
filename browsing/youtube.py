@@ -1,3 +1,5 @@
+"""This example demonstrates a YouTube search-and-watch workflow with NetGent. It opens the homepage, searches for a music stream, and plays the first result while recording simple interactions.
+"""
 import json
 import os
 from netgent import NetGent, StatePrompt

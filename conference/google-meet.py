@@ -1,3 +1,5 @@
+"""This example captures the Google Meet join experience using NetGent. It documents the join form fields, notes credential placeholders, and walks through the steps leading to the waiting room.
+"""
 import json
 import os
 from netgent import NetGent, StatePrompt
@@ -19,7 +21,7 @@ prompt = [
             name="On Google Meet Home Page",
             description="On Google Meet Home Page",
             triggers=["If 'Google Meet' is on the page"],
-            actions=["Press 'Join a Meeting' and then type the Meeting ID 'iok-fmsv-uyd', then press 'tab' key and 'enter' key, the name is 'SNL Client' and press 'Join'", "Wait for Host to Approve You to Join the Meeting"],
+            actions=["Press 'Join a Meeting' and then type the Meeting ID '', then press 'tab' key and 'enter' key, the name is '' and press 'Join'", "Wait for Host to Approve You to Join the Meeting"],
         ),
         StatePrompt(
             name="Error",

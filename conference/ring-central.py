@@ -1,3 +1,5 @@
+"""This example demonstrates joining a RingCentral video session with NetGent. It visits the join page, points out the meeting code and name fields, and documents actions once the conference loads.
+"""
 import json
 import os
 from netgent import NetGent, StatePrompt
@@ -19,7 +21,7 @@ prompt = [
             name="On RingCentral Join Page",
             description="On RingCentral Join Page",
             triggers=["If it is on the RingCentral Join Page"],
-            actions=["[1] Type '114715853207' for the meeting code and press 'Join'", 'Then, set the name to "SNL Client" to join the meeting'],
+            actions=["[1] Type '' for the meeting code and press 'Join'", 'Then, set the name to "" to join the meeting'],
         ),
         StatePrompt(
             name="On RingCentral Video Conference Screen",

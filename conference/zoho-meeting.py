@@ -1,3 +1,5 @@
+"""This example demonstrates joining a Zoho Meeting session with NetGent. It highlights the meeting URL and attendee name fields, then walks through the waiting room and conference stages.
+"""
 import json
 import os
 from netgent import NetGent, StatePrompt
@@ -19,7 +21,7 @@ prompt = [
             name="On Webex Join Page",
             description="On Webex Join Page",
             triggers=["If it is on the Webex Join Page"],
-            actions=["Type Put the meeting link in the 'https://meeting.zoho.com/pkxn-yip-jip' field and 'SNL' in the 'Name' field, and press 'Join'. Tranverse the UI as a proper human"],
+            actions=["Type Put the meeting link in the '' field and '' in the 'Name' field, and press 'Join'. Tranverse the UI as a proper human"],
         ),
         StatePrompt(
             name="Error",

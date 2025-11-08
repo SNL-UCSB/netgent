@@ -1,3 +1,5 @@
+"""This example details browsing the National Geographic hub on Disney+ with NetGent. It documents the authentication prompts, profile access, and the steps needed to reach title playback.
+"""
 import json
 import os
 from netgent import NetGent, StatePrompt
@@ -19,25 +21,38 @@ prompt = [
             name="On Disney Plus Home Page",
             description="On Disney Plus Home Page",
             triggers=["If 'Endless entertainment for all.' is on the page"],
-            actions=["Press the Login Button"],
+            actions=["Close Modal If There Is One", "Press the Login Button"],
         ),
         StatePrompt(
             name="Login to Account",
             description="On Login",
             triggers=["If On Login Page (Find Login Text for the Trigger)"],
-            actions=["[1] Type the Email is snlclient1@gmail.com", "[2] Pressing the button 'Continue'", "[3] Type the password 'password' (MAKE SURE YOU DO THIS BEFORE PRESSING THE BUTTON 'Log In')", "[4] press the button 'Log In'"],
+            actions=["[1] Type the Email is ", "[2] Pressing the button 'Continue'", "[3] Type the password '' (MAKE SURE YOU DO THIS BEFORE PRESSING THE BUTTON 'Log In')", "[4] press the button 'Log In'"]
         ),
         StatePrompt(
             name="On Select Profile",
             description="On Select Profile",
             triggers=["If 'Who's watching?' is on the page"],
-            actions=["Select the Profile 'snlclient'"],
+            actions=["Select the Profile ''"]
         ),
         StatePrompt(
+            name="On the One Time Code Page",
+            description="On the One Time Code Page After Logging In",
+            triggers=["If it is on the One Time Code Page", "Don't use URL as a Trigger"],
+            actions=["Do Nothing. JUST Terminate"],
+            end_state="One Time Code Needed"
+         ),
+        StatePrompt(
+            name="On the Profile PIN Page",
+            description="On the Profile PIN Page",
+            triggers=["If it is on the Profile PIN Page", "Don't use URL as a Trigger"],
+            actions=["Type the PIN '' and press 'Enter'"]
+         ),
+        StatePrompt(
             name="On the Disney Plus Home Page (When Logged In)",
-            description="Go to the National Geographic Channel After Logging In In the Home Page",
+            description="Go to the Show After Logging In In the Home Page",
             triggers=["If it is on the Home Page ONLY CHECK BY URL"],
-            actions=["Press on the National Geographic Channel"],
+            actions=["Go to "]
         ),
         StatePrompt(
             name="On National Geographic Channel",

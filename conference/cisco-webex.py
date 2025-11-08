@@ -1,3 +1,5 @@
+"""This example models joining a Cisco Webex conference with NetGent. It opens the join portal, records where meeting details belong, and shows the minimal interaction required to wait for host admission.
+"""
 import json
 import os
 from netgent import NetGent, StatePrompt
@@ -19,7 +21,7 @@ prompt = [
             name="On Cisco Webex Sign In Page",
             description="On Webex Sign In Page",
             triggers=["If 'Webex Sign In' is on the page"],
-            actions=['Accept the cookies', "Press 'Join a Meeting' and then type the Meeting ID '2556 628 1310', name is 'SNL Client' and press 'Join'", "And wait for the meeting to start"],
+            actions=['Accept the cookies', "Press 'Join a Meeting' and then type the Meeting ID '', name '' and press 'Join'", "And wait for the meeting to start"],
         ),
         StatePrompt(
             name="Error",

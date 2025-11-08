@@ -1,0 +1,177 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "chrome://new-tab-page/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "Google Meet",
+          "by": "css selector",
+          "selector": "input.truncate[id=\"input\"][type=\"search\"][autocomplete=\"off\"][role=\"combobox\"][placeholder*=\"Search Google or type a URL\"]",
+          "x": 620.0,
+          "y": 479.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "cr-searchbox-match[role=\"option\"]",
+          "x": 620.0,
+          "y": 525.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.eqA2re.NjwKYd.Vwoesf",
+          "x": 84.5,
+          "y": 378.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The navigation to the Google Meet website is complete."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On Google Meet Home Page",
+    "description": "On Google Meet Home Page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://workspace.google.com/products/meet/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Video calls with anyone, anywhere"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "h1._heading_1ae03_2.heading"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.trigger[aria-label*=\"Open Tooltip: Join a meeting now using the unique code at the end of your meeting link. It'll look something like this: abc-defg-hjk\"]",
+          "x": 414.5,
+          "y": 751.0
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "",
+          "by": "css selector",
+          "selector": "button.button.hide.showButton",
+          "x": 348.859375,
+          "y": 750.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "tab"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "",
+          "by": "css selector",
+          "selector": "input.qdOxv-fmcmS-wGMbrd[type=\"text\"][id=\"c9\"][aria-describedby=\"c9-a11y-counter-text-id\"][aria-label*=\"Your name\"][placeholder*=\"Your name\"][autocomplete=\"name\"]",
+          "x": 980.0,
+          "y": 757.3563232421875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.UywwFc-LgbsSe.UywwFc-LgbsSe-OWXEXe-SfQLQb-suEOdc.UywwFc-LgbsSe-OWXEXe-dgl2Hf.UywwFc-StrnGf-YYd4I-VtOx3e.tusd3.IyLmn.QJgqC[aria-describedby=\"tt-c16\"]",
+          "x": 980.0,
+          "y": 826.5
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user is in the meeting, as indicated by the presence of the 'Turn off microphone', 'Turn off camera', 'More options', and 'Leave call' buttons. The task is complete."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On Google Meet Meeting Conference Screen",
+    "description": "On the Google Meet Meeting Conference Screen",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://meet.google.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "6:39"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "PM"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Terminating the current action as instructed."
+        }
+      }
+    ],
+    "end_state": "Google Meet Meeting Conference Screen",
+    "executed": []
+  }
+]

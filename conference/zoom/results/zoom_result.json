@@ -1,0 +1,121 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "chrome://new-tab-page/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://app.zoom.us/wc"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is to navigate to the Zoom web client login page and then terminate. The navigation is complete, so terminating the task."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On Zoom Home Page",
+    "description": "On Zoom Home Page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Join Meeting"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "button.button.button-size-40.button-normal.btn-index-join.btn.btn-primary[type=\"button\"]"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://app.zoom.us/wc"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.button.button-size-40.button-normal.btn-index-join.btn.btn-primary[type=\"button\"]",
+          "x": 620.0,
+          "y": 589.0
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "",
+          "by": "css selector",
+          "selector": "input.join-meetingId[type=\"text\"][placeholder*=\"Meeting ID or Personal Link Name\"]",
+          "x": 620.0,
+          "y": 473.0
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 2
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.btn-join.btn.btn-primary[type=\"button\"]",
+          "x": 798.8203125,
+          "y": 549.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The current HTML state shows 'Joining Meeting...'. According to the global plan, the next step is TERMINATION."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On Zoom Meeting Conference Screen",
+    "description": "On the Zoom Meeting Conference Screen",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://app.zoom.us/wc/9649116513/join?fromPWA=1"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user has indicated that the process should be terminated."
+        }
+      }
+    ],
+    "end_state": "Zoom Meeting Conference Screen",
+    "executed": []
+  }
+]
