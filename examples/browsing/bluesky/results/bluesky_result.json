@@ -1,0 +1,387 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "chrome://new-tab-page/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://www.google.com"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query instructs to navigate to a specified URL and then terminate. The previous action was to navigate to google.com, which appears to have been successful as the current HTML state shows the Google search page. The next step is to terminate the task as per the user's instructions."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": [
+      {
+        "name": "On Browser Home Page",
+        "description": "Start the Process",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://www.google.com/"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "About"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "a.MV3Tnb[href=\"https://about.google/?fg=1&utm_source=google-US&utm_medium=referral&utm_campaign=hp-header\"]"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Store"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "a.MV3Tnb[href=\"https://store.google.com/US?utm_source=hp_header&utm_medium=google_ooo&utm_campaign=GS100042&hl=en-US\"]"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Gmail"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "a.gb_Z[aria-label*=\"Gmail \"][href=\"https://mail.google.com/mail/&ogbl\"][target=\"_top\"]"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Images"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "a.gb_Z[aria-label*=\"Search for Images \"][href=\"https://www.google.com/imghp?hl=en&ogbl\"][target=\"_top\"]"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "AI Mode"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "span"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Advertising"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "a.pHiOh[href=\"https://www.google.com/intl/en_us/ads/?subid=ww-ww-et-g-awa-a-g_hpafoot1_1!o2&utm_source=google.com&utm_medium=referral&utm_campaign=google_hpafooter&fg=1\"]"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Business"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "a.pHiOh[href=\"https://www.google.com/services/?subid=ww-ww-et-g-awa-a-g_hpbfoot1_1!o2&utm_source=google.com&utm_medium=referral&utm_campaign=google_hpbfooter&fg=1\"]"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "How Search works"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "a.pHiOh[href=\"https://google.com/search/howsearchworks/?fg=1\"]"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Applying AI towards science and the environment"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "span.ktLKi"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Privacy"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "a.pHiOh[href=\"https://policies.google.com/privacy?hl=en&fg=1\"]"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Terms"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "a.pHiOh[href=\"https://policies.google.com/terms?hl=en&fg=1\"]"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Settings"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "div.ayzqOc.pHiOh"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The user query instructs to navigate to a specified URL and then terminate. The previous action was to navigate to google.com, which appears to have been successful as the current HTML state shows the Google search page. The next step is to terminate the task as per the user's instructions."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.google.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "About"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.MV3Tnb[href=\"https://about.google/?fg=1&utm_source=google-US&utm_medium=referral&utm_campaign=hp-header\"]"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Store"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.MV3Tnb[href=\"https://store.google.com/US?utm_source=hp_header&utm_medium=google_ooo&utm_campaign=GS100042&hl=en-US\"]"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Gmail"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.gb_Z[aria-label*=\"Gmail \"][href=\"https://mail.google.com/mail/&ogbl\"][target=\"_top\"]"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Images"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.gb_Z[aria-label*=\"Search for Images \"][href=\"https://www.google.com/imghp?hl=en&ogbl\"][target=\"_top\"]"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "AI Mode"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "span"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Advertising"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.pHiOh[href=\"https://www.google.com/intl/en_us/ads/?subid=ww-ww-et-g-awa-a-g_hpafoot1_1!o2&utm_source=google.com&utm_medium=referral&utm_campaign=google_hpafooter&fg=1\"]"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Business"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.pHiOh[href=\"https://www.google.com/services/?subid=ww-ww-et-g-awa-a-g_hpbfoot1_1!o2&utm_source=google.com&utm_medium=referral&utm_campaign=google_hpbfooter&fg=1\"]"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "How Search works"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.pHiOh[href=\"https://google.com/search/howsearchworks/?fg=1\"]"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Applying AI towards science and the environment"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "span.ktLKi"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Privacy"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.pHiOh[href=\"https://policies.google.com/privacy?hl=en&fg=1\"]"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Terms"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.pHiOh[href=\"https://policies.google.com/terms?hl=en&fg=1\"]"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Settings"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "div.ayzqOc.pHiOh"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query instructs to navigate to a specified URL and then terminate. The previous action was to navigate to google.com, which appears to have been successful as the current HTML state shows the Google search page. The next step is to terminate the task as per the user's instructions."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  }
+]

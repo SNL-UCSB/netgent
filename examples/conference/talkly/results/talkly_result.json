@@ -1,0 +1,70 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "chrome://new-tab-page/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://talky.io/"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.create-room-form-button.button.button-default.button-undefined[type=\"submit\"]",
+          "x": 861.0546875,
+          "y": 592.5
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.sc-AxjAm.sc-fznWqX.jypyMW",
+          "x": 874.9921875,
+          "y": 843.875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The page is attempting to join a room, which means the video call initiation is in progress. The instructions specify to terminate immediately after completing the task, and the task is to initiate a video call. Therefore, the task is considered complete."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On Talky Home Page",
+    "description": "On Talky Home Page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://talky.io/beside-a-wispy-shadow"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The previous action trajectory shows that the agent has already clicked on the 'Start a chat' button and 'Join Call' button. Therefore, the meeting has already started and the user is already in the meeting. The current HTML state shows elements related to video conferencing, such as 'Invite', 'Lock', 'Leave', 'Screen Share', and 'Chat'. It also shows an input field for 'Your name (click to edit)'. Since there is no meeting code input field or 'Start Meeting' button, I will assume that these elements will appear after clicking on the 'Video conferencing plan' link. Since the previous action trajectory shows that the agent has already clicked on the 'Start a chat' button and 'Join Call' button, I will assume that the meeting has already started and the user is already in the meeting. Therefore, I will terminate the task immediately."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  }
+]

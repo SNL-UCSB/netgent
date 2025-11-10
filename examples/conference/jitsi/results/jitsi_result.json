@@ -1,0 +1,141 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "chrome://new-tab-page/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "Jitsi Meet",
+          "by": "css selector",
+          "selector": "input.truncate[id=\"input\"][type=\"search\"][autocomplete=\"off\"][role=\"combobox\"][placeholder*=\"Search Google or type a URL\"]",
+          "x": 620.0,
+          "y": 479.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "cr-searchbox-match[role=\"option\"]",
+          "x": 620.0,
+          "y": 525.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.eqA2re.UnOTSe.Vwoesf",
+          "x": 84.5,
+          "y": 518.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The navigation to the Jitsi Meet website is complete, and the task is to terminate immediately after."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On Jitsi Join Page",
+    "description": "On Jitsi Join Page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://jitsi.org/jitsi-meet/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Free Video Conferencing Solutions"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Go ahead, video chat with the whole team. In fact, invite everyone you know. Jitsi Meet is a fully e..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a.btn-github[href=\"https://meet.jit.si\"]",
+          "x": 133.921875,
+          "y": 1194.0
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "",
+          "by": "css selector",
+          "selector": "input.enter-room-input.focus-visible[aria-label*=\"Meeting name input\"][id=\"enter_room_field\"][placeholder=\"Prec\"][type=\"text\"]",
+          "x": 548.6484375,
+          "y": 496.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.welcome-page-button[aria-label*=\"Start meeting\"][id=\"enter_room_button\"][type=\"button\"]",
+          "x": 786.6484375,
+          "y": 496.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.css-thld0a-actionButton.primary[aria-label*=\"Join meeting\"][data-testid=\"prejoin.joinMeeting\"][role=\"button\"]",
+          "x": 220.0,
+          "y": 803.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.toolbox-button[aria-label*=\"Mute microphone\"][role=\"button\"]",
+          "x": 80.0,
+          "y": 871.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.toolbox-button[aria-label*=\"Stop camera\"][role=\"button\"]",
+          "x": 136.0,
+          "y": 951.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The meeting has been started, the microphone is unmuted, and the camera is started. The task is now complete."
+        }
+      }
+    ],
+    "end_state": "Jitsi Video Conference Screen",
+    "executed": []
+  }
+]

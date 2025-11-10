@@ -1,0 +1,255 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "chrome://new-tab-page/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "Microsoft Teams",
+          "by": "css selector",
+          "selector": "input.truncate[id=\"input\"][type=\"search\"][autocomplete=\"off\"][role=\"combobox\"][placeholder*=\"Search Google or type a URL\"]",
+          "x": 620.0,
+          "y": 479.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "cr-searchbox-match[role=\"option\"]",
+          "x": 620.0,
+          "y": 525.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.eqA2re.NjwKYd.Vwoesf",
+          "x": 84.5,
+          "y": 378.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user has successfully navigated to the Microsoft Teams website."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On Microsoft Login",
+    "description": "Login to Microsoft",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.microsoft.com/en-us/microsoft-teams/group-chat-software"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Teams"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "span"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Get ready for the future of work with Microsoft Teams"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a.c-uhf-nav-link[id=\"c-shellmenu_custom_button_outline_newtab_signin_bhvr100_right\"][href=\"https://go.microsoft.com/fwlink/p/?linkid=873020\"][target=\"_blank\"]",
+          "x": 1108.1796875,
+          "y": 219.5
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a.c-uhf-nav-link[id=\"c-shellmenu_custom_button_outline_newtab_signin_bhvr100_right\"][href=\"https://go.microsoft.com/fwlink/p/?linkid=873020\"][target=\"_blank\"]",
+          "x": 1108.1796875,
+          "y": 219.5
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a.c-uhf-nav-link[id=\"c-shellmenu_custom_button_outline_newtab_signin_bhvr100_right\"][href=\"https://go.microsoft.com/fwlink/p/?linkid=873020\"][target=\"_blank\"]",
+          "x": 1108.1796875,
+          "y": 219.5
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a.c-uhf-nav-link[id=\"c-shellmenu_custom_button_outline_newtab_signin_bhvr100_right\"][href=\"https://go.microsoft.com/fwlink/p/?linkid=873020\"][target=\"_blank\"]",
+          "x": 1108.1796875,
+          "y": 219.5
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a.c-uhf-nav-link[id=\"c-shellmenu_custom_button_outline_newtab_signin_bhvr100_right\"][href=\"https://go.microsoft.com/fwlink/p/?linkid=873020\"][target=\"_blank\"]",
+          "x": 1108.1796875,
+          "y": 219.5
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a.c-uhf-nav-link[id=\"c-shellmenu_custom_button_outline_newtab_signin_bhvr100_right\"][href=\"https://go.microsoft.com/fwlink/p/?linkid=873020\"][target=\"_blank\"]",
+          "x": 1108.1796875,
+          "y": 219.5
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a.c-uhf-nav-link[id=\"c-shellmenu_custom_button_outline_newtab_signin_bhvr100_right\"][href=\"https://go.microsoft.com/fwlink/p/?linkid=873020\"][target=\"_blank\"]",
+          "x": 1108.1796875,
+          "y": 179.5
+        }
+      },
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://www.google.com/search?q=Microsoft+Teams+login"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.eqA2re.NjwKYd.Vwoesf",
+          "x": 84.5,
+          "y": 378.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a.btn[role=\"button\"][target=\"_blank\"][id=\"action-oc21be\"][href=\"https://go.microsoft.com/fwlink/?linkid=873020&clcid=0x409&culture=en-us&country=us\"][aria-label*=\"Sign in to Microsoft Teams\"]",
+          "x": 175.5390625,
+          "y": 672.0666809082031
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The current HTML state does not show the email input field. Therefore, I cannot enter the email address. I will terminate the task."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": [
+      {
+        "name": "On Microsoft Login",
+        "description": "Login to Microsoft",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://www.microsoft.com/en-us/microsoft-teams/log-in"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Microsoft Teams Login"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "a.btn[role=\"button\"][target=\"_blank\"][id=\"action-oc21be\"][href=\"https://go.microsoft.com/fwlink/?linkid=873020&clcid=0x409&culture=en-us&country=us\"][aria-label*=\"Sign in to Microsoft Teams\"]",
+              "x": 175.5390625,
+              "y": 647.0
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The current HTML state does not show the email input field. Therefore, I cannot enter the email address. I will terminate the task."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "On Microsoft Login",
+    "description": "Login to Microsoft",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.microsoft.com/en-us/microsoft-teams/log-in"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Microsoft Teams Login"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a.btn[role=\"button\"][target=\"_blank\"][id=\"action-oc21be\"][href=\"https://go.microsoft.com/fwlink/?linkid=873020&clcid=0x409&culture=en-us&country=us\"][aria-label*=\"Sign in to Microsoft Teams\"]",
+          "x": 175.5390625,
+          "y": 647.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The current HTML state does not show the email input field. Therefore, I cannot enter the email address. I will terminate the task."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  }
+]

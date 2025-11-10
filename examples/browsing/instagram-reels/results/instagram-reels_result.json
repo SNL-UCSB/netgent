@@ -1,0 +1,238 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "chrome://new-tab-page/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "Instagram",
+          "by": "css selector",
+          "selector": "input.truncate[id=\"input\"][type=\"search\"][autocomplete=\"off\"][role=\"combobox\"][placeholder*=\"Search Google or type a URL\"]",
+          "x": 620.0,
+          "y": 479.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "cr-searchbox-match[role=\"option\"]",
+          "x": 620.0,
+          "y": 525.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.eqA2re.UnOTSe.Vwoesf",
+          "x": 84.5,
+          "y": 378.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The navigation to the Instagram website is complete."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "Login to Account",
+    "description": "On Login",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "or"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Log in with Facebook"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Forgot password?"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Don't have an account?"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "",
+          "by": "css selector",
+          "selector": "input._aa4b._add6._ac4d._ap35[aria-label*=\"Phone number, username, or email\"][type=\"text\"][name=\"username\"]",
+          "x": 901.0,
+          "y": 620.5
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "",
+          "by": "css selector",
+          "selector": "input._aa4b._add6._ac4d._ap35[aria-label=\"Password\"][type=\"password\"][name=\"password\"]",
+          "x": 901.0,
+          "y": 664.5
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button._aswp._aswr._aswu._asw_._asx2[type=\"submit\"]",
+          "x": 905.0,
+          "y": 713.5
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query specifies to terminate immediately after completing the previous steps, which involved typing the email and password and clicking the 'Log In' button. Therefore, no further actions are needed."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "Save Information",
+    "description": "On Save Information Page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Save your login info?"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "h1.x1lliihq.x1plvlek.xryxfnj.x1n2onr6.xyejjpt.x15dsfln.x193iq5w.xeuugli.x1fj9vlw.x13faqbe.x1vvkbs.x1s928wv.xhkezso.x1gmr53x.x1cpjm7i.x1fgarty.x1943h6x.x1i0vuye.xvs91rp.x1s688f.x5n08af.x1tu3fi.x3x7a5m.x10wh9bi.xpm28yp.x8viiok.x1o7cslx"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.x1i10hfl.xjqpnuy.xc5r6h4.xqeqjp1.x1phubyo.xdl72j9.x2lah0s.x3ct3a4.xdj266r.x14z9mp.xat24cr.x1lziwak.x2lwn1j.xeuugli.x1hl2dhg.xggy1nq.x1ja2u2z.x1t137rt.x1q0g3np.x1a2a7pz.x6s0dn4.xjyslct.x1ejq31n.x18oe1m7.x1sy0etr.xstzfhl.x9f619.x1ypdohk.x1f6kntn.xl56j7k.x17ydfre.x2b8uid.xlyipyv.x87ps6o.x14atkfc.x5c86q.x18br7mf.x1i0vuye.xl0gqc1.xr5sc7.xlal1re.x14jxsvd.xt0b8zv.xjbqb8w.xr9e8f9.x1e4oeot.x1ui04y5.x6en5u8.x972fbf.x10w94by.x1qhh985.x14e42zd.xt0psk2.xt7dq6l.xexx8yu.xyri2b.x18d9i69.x1c1uobl.x1n2onr6.x1n5bzlp[role=\"button\"]",
+          "x": 648.5,
+          "y": 839.5
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.x1i10hfl.xjqpnuy.xc5r6h4.xqeqjp1.x1phubyo.x972fbf.x10w94by.x1qhh985.x14e42zd.xdl72j9.x2lah0s.x3ct3a4.xdj266r.x14z9mp.xat24cr.x1lziwak.x2lwn1j.xeuugli.xexx8yu.x18d9i69.x1hl2dhg.xggy1nq.x1ja2u2z.x1t137rt.x1q0g3np.x1lku1pv.x6s0dn4.xjyslct.x1ejq31n.x18oe1m7.x1sy0etr.xstzfhl.x9f619.x9bdzbf.x1ypdohk.x1f6kntn.xwhw2v2.xl56j7k.x17ydfre.x1n2onr6.x2b8uid.xlyipyv.x87ps6o.x5c86q.x18br7mf.x1i0vuye.xh8yej3.x6nl9eh.x1a5l9x9.x7vuprf.x1mg3h75.xn3w4p2.x106a9eq.x1xnnf8n.x18cabeq.x158me93.xk4oym4.x1uugd1q.x3nfvp2.x18bame2.x1a2a7pz.xvetz19[role=\"button\"]",
+          "x": 612.5,
+          "y": 888.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query instructs to click the 'No Right Now' button to finalize the process and terminate the action. However, there is no 'No Right Now' button visible in the current HTML. The previous action was to click the 'OK' button. The current HTML state shows the main Instagram feed. Since the user query is to finalize the process, and there is no 'No Right Now' button, I will terminate the action."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On Instagram Home Page",
+    "description": "On Instagram Home Page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.instagram.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Suggested for you"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Suggested for you"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://www.instagram.com/reels/"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete."
+        }
+      }
+    ],
+    "end_state": "Action Completed",
+    "executed": []
+  }
+]

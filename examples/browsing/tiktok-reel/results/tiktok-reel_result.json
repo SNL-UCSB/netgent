@@ -1,0 +1,102 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "chrome://new-tab-page/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://www.tiktok.com/login/phone-or-email/email"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user has instructed to terminate the task immediately."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "If on TikTok Login Page",
+    "description": "If on TikTok Login Page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.tiktok.com/login/phone-or-email/email"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Log in"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Email or username"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "",
+          "by": "css selector",
+          "selector": "input.tiktok-14kebau-InputContainer.etcs7ny1[type=\"text\"][placeholder*=\"Email or username\"][autocomplete=\"webauthn\"][name=\"username\"]",
+          "x": 620.0,
+          "y": 430.5
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "",
+          "by": "css selector",
+          "selector": "input.tiktok-10jukfs-InputContainer.etcs7ny1[type=\"password\"][placeholder=\"Password\"][autocomplete=\"new-password\"]",
+          "x": 620.0,
+          "y": 483.5
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.e1w6iovg0.tiktok-bkil98-Button-StyledButton.ehk74z00[type=\"submit\"]",
+          "x": 620.0,
+          "y": 579.5
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.tiktok-1komt3e-DivBack.e1lgic6i0[role=\"link\"]",
+          "x": 620.0,
+          "y": 653.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user has instructed to terminate the task immediately."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  }
+]

@@ -1,0 +1,66 @@
+"""This example showcases NetGent visiting Hulu's web experience. It covers the welcome screen, login transition, and the playback flow while flagging credential-protected actions.
+"""
+import json
+import os
+from netgent import NetGent, StatePrompt
+from langchain_google_vertexai import ChatVertexAI
+from langchain_google_genai import ChatGoogleGenerativeAI
+from dotenv import load_dotenv
+load_dotenv()
+agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2), llm_enabled=True, user_data_dir="examples/user_data")
+
+
+prompt = [
+        StatePrompt(
+            name="On Browser Home Page",
+            description="Start the Process",
+            triggers=["If it is on the current condition and there is no actions that are already executed, run the action"],
+            actions=["Go to https://www.hulu.com", "TERMINATE"]
+        ),
+        StatePrompt(
+            name="On the Welcome Page",
+            description="On the Welcome Page",
+            triggers=["If 'Welcome to Hulu' is on the page. (GET THE TEXT: 'Get Hulu, Disney+, and ESPN+, all with ads, for $16.99/mo.')"],
+            actions=["Press Tab and Press Enter to Go in the Login Page", "TERMINATE"],
+        ),
+        StatePrompt(
+            name="Login to Account",
+            description="On Login",
+            triggers=["If On Login Page (Find Login Text for the Trigger)"],
+            actions=["[1] Type the Email is ", "[2] Pressing the button 'Continue'", "[3] Type the password '' (MAKE SURE YOU DO THIS BEFORE PRESSING THE BUTTON 'Log In')", "[4] press the button 'Log In'", "TERMINATE"],
+        ),
+        StatePrompt(
+            name="On Select Profile",
+            description="On Select Profile",
+            triggers=["If 'Who's watching?' is on the page"],
+            actions=["Select the Profile ''", "TERMINATE"],
+        ),
+        StatePrompt(
+            name="On the Hulu Home Page (When Logged In)",
+            description="Go to the Show After Logging In In the Home Page",
+            triggers=["If it is on the Home Page (Showing Recommended For You) And On 'https://www.hulu.com/hub/home'"],
+            actions=["Go to ", "TERMINATE"],
+        ),
+        StatePrompt(
+            name="On the Movie/Show Page",
+            description="Press the Play Button on the Movie Page",
+            triggers=["If it is on the Movie/Show Page (See If There is the Key Word 'Suggested' and 'Details' as a Trigger)", "Don't use URL as a Trigger"],
+            actions=["Press Tab THREE Times and Press Enter to Go in the Video Player", "WAIT FOR THE ADS TO END", "Click on 0.2 of the Slider", "Wait 5 Seconds", "Click on 0.4 of the Slider", "Wait 5 Seconds", "Click on 0.6 of the Slider", "Wait 5 Seconds", "TERMINATE"],
+            end_state="Action Completed"
+        ),
+    ]
+
+
+try:
+    with open("streaming/hulu-non-navigate/results/hulu-non-navigate_result.json", "r") as f:
+        result = json.load(f)
+except FileNotFoundError:
+    result = []
+
+result = agent.run(state_prompts=prompt, state_repository=result)
+
+input("Press Enter to continue...")
+# Create directory if it doesn't exist
+os.makedirs("streaming/hulu-non-navigate/results", exist_ok=True)
+with open("streaming/hulu-non-navigate/results/hulu-non-navigate_result.json", "w") as f:
+    json.dump(result["state_repository"], f, indent=2)

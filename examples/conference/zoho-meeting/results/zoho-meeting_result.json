@@ -1,0 +1,194 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "chrome://new-tab-page/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://www.example.com"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query instructs to navigate to the specified URL and then terminate. The previous action was to navigate to the specified URL, and the current HTML state confirms that the navigation was successful as the page content is now visible. Therefore, the next step is to terminate the task."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": [
+      {
+        "name": "On Browser Home Page",
+        "description": "Start the Process",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://www.example.com/"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Example Domain"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "h1"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "navigate",
+            "params": {
+              "url": "https://www.zoho.com/meeting/join/"
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The user query instructs to navigate to the specified URL and then terminate. The previous action was to navigate to the specified URL, and the current HTML state confirms that the navigation was successful as the page content is now visible. Therefore, the next step is to terminate the task."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.example.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Example Domain"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "h1"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://www.zoho.com/meeting/join/"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query instructs to navigate to the specified URL and then terminate. The previous action was to navigate to the specified URL, and the current HTML state confirms that the navigation was successful as the page content is now visible. Therefore, the next step is to terminate the task."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On Webex Join Page",
+    "description": "On Webex Join Page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.zoho.com/meeting/join/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Join a meeting"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Enter the meeting key you received on the invite to join your session."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "https://",
+          "by": "css selector",
+          "selector": "input[id=\"meeting_key\"][name=\"key\"][placeholder*=\"Type Meeting Key or Meeting Link\"][type=\"text\"]",
+          "x": 612.5,
+          "y": 630.765625
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.act-btn.btn-pri[id=\"join\"][name=\"joinMeeting\"][type=\"submit\"]",
+          "x": 610.734375,
+          "y": 695.765625
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The current HTML state shows an error page indicating that the page requested was not found. The user query instructs to terminate immediately after completing the task, and the task has resulted in an error. Therefore, the next step is to terminate."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "Error",
+    "description": "Error",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Sorry, the page you have requested was not found."
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Please check the URL for proper spelling and capitalization. If you're having trouble finding a loca..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The current HTML state shows an error page indicating that the page requested was not found. The user query instructs to terminate immediately after completing the task, and the task has resulted in an error. Therefore, the next step is to terminate."
+        }
+      }
+    ],
+    "end_state": "Error",
+    "executed": []
+  }
+]

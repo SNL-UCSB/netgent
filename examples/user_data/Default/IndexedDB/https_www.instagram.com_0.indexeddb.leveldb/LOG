@@ -1,0 +1,6 @@
+2025/11/06-17:54:03.446 15e44e1 Creating DB /Users/sumedhaerram/netgent/examples/user_data/Default/IndexedDB/https_www.instagram.com_0.indexeddb.leveldb since it was missing.
+2025/11/06-17:54:03.452 15e44e1 Reusing MANIFEST /Users/sumedhaerram/netgent/examples/user_data/Default/IndexedDB/https_www.instagram.com_0.indexeddb.leveldb/MANIFEST-000001
+2025/11/06-17:54:04.211 15e44ed Level-0 table #5: started
+2025/11/06-17:54:04.213 15e44ed Level-0 table #5: 15577 bytes OK
+2025/11/06-17:54:04.214 15e44ed Delete type=0 #3
+2025/11/06-17:54:04.215 15e44ed Manual compaction at level-0 from '\x00\x07\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x08\x00\x00\x00' @ 0 : 0; will stop at (end)

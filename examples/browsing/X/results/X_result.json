@@ -1,0 +1,567 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "chrome://new-tab-page/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://www.google.com"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query instructs to navigate to a specified URL and then terminate. The previous action was to navigate to google.com. The current HTML state confirms that the navigation was successful, as the page content is that of Google's homepage. Since the user query does not specify a URL, I will terminate the task here."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": [
+      {
+        "name": "On Browser Home Page",
+        "description": "Start the Process",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://www.google.com/"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "About"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "a.MV3Tnb[href=\"https://about.google/?fg=1&utm_source=google-US&utm_medium=referral&utm_campaign=hp-header\"]"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Store"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "a.MV3Tnb[href=\"https://store.google.com/US?utm_source=hp_header&utm_medium=google_ooo&utm_campaign=GS100042&hl=en-US\"]"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Gmail"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "a.gb_Z[aria-label*=\"Gmail \"][href=\"https://mail.google.com/mail/&ogbl\"][target=\"_top\"]"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Images"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "a.gb_Z[aria-label*=\"Search for Images \"][href=\"https://www.google.com/imghp?hl=en&ogbl\"][target=\"_top\"]"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "AI Mode"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "span"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Advertising"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "a.pHiOh[href=\"https://www.google.com/intl/en_us/ads/?subid=ww-ww-et-g-awa-a-g_hpafoot1_1!o2&utm_source=google.com&utm_medium=referral&utm_campaign=google_hpafooter&fg=1\"]"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Business"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "a.pHiOh[href=\"https://www.google.com/services/?subid=ww-ww-et-g-awa-a-g_hpbfoot1_1!o2&utm_source=google.com&utm_medium=referral&utm_campaign=google_hpbfooter&fg=1\"]"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "How Search works"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "a.pHiOh[href=\"https://google.com/search/howsearchworks/?fg=1\"]"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Applying AI towards science and the environment"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "span.ktLKi"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Privacy"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "a.pHiOh[href=\"https://policies.google.com/privacy?hl=en&fg=1\"]"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Terms"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "a.pHiOh[href=\"https://policies.google.com/terms?hl=en&fg=1\"]"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Settings"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "div.ayzqOc.pHiOh"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "navigate",
+            "params": {
+              "url": "https://x.com/login"
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The user query instructs to navigate to https://x.com/login and then terminate. The current HTML state confirms that the navigation was successful, as the page content is that of X's login page. Therefore, the next step is to terminate the task."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.google.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "About"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.MV3Tnb[href=\"https://about.google/?fg=1&utm_source=google-US&utm_medium=referral&utm_campaign=hp-header\"]"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Store"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.MV3Tnb[href=\"https://store.google.com/US?utm_source=hp_header&utm_medium=google_ooo&utm_campaign=GS100042&hl=en-US\"]"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Gmail"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.gb_Z[aria-label*=\"Gmail \"][href=\"https://mail.google.com/mail/&ogbl\"][target=\"_top\"]"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Images"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.gb_Z[aria-label*=\"Search for Images \"][href=\"https://www.google.com/imghp?hl=en&ogbl\"][target=\"_top\"]"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "AI Mode"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "span"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Advertising"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.pHiOh[href=\"https://www.google.com/intl/en_us/ads/?subid=ww-ww-et-g-awa-a-g_hpafoot1_1!o2&utm_source=google.com&utm_medium=referral&utm_campaign=google_hpafooter&fg=1\"]"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Business"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.pHiOh[href=\"https://www.google.com/services/?subid=ww-ww-et-g-awa-a-g_hpbfoot1_1!o2&utm_source=google.com&utm_medium=referral&utm_campaign=google_hpbfooter&fg=1\"]"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "How Search works"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.pHiOh[href=\"https://google.com/search/howsearchworks/?fg=1\"]"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Applying AI towards science and the environment"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "span.ktLKi"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Privacy"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.pHiOh[href=\"https://policies.google.com/privacy?hl=en&fg=1\"]"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Terms"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.pHiOh[href=\"https://policies.google.com/terms?hl=en&fg=1\"]"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Settings"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "div.ayzqOc.pHiOh"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://x.com/login"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query instructs to navigate to https://x.com/login and then terminate. The current HTML state confirms that the navigation was successful, as the page content is that of X's login page. Therefore, the next step is to terminate the task."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "If on X Login Page",
+    "description": "If on X Login Page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://x.com/i/flow/login"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Sign in to X"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "span.css-1jxf684.r-bcqeeo.r-1ttztb7.r-qvutc0.r-poiln3"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "",
+          "by": "css selector",
+          "selector": "input.r-30o5oe.r-1dz5y72.r-13qz1uu.r-1niwhzg.r-17gur6a.r-1yadl64.r-deolkf.r-homxoj.r-poiln3.r-7cikom.r-1ny4l3l.r-t60dpp.r-fdjqy7[autocomplete=\"username\"][name=\"text\"][type=\"text\"]",
+          "x": 620.0,
+          "y": 782.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.css-175oi2r.r-sdzlij.r-1phboty.r-rs99b7.r-lrvibr.r-ywje51.r-184id4b.r-13qz1uu.r-2yi16.r-1qi8awa.r-3pj75a.r-1loqt21.r-o7ynqc.r-6416eg.r-1ny4l3l[role=\"button\"][type=\"button\"]",
+          "x": 620.0,
+          "y": 847.0
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "",
+          "by": "css selector",
+          "selector": "input.r-30o5oe.r-1dz5y72.r-13qz1uu.r-1niwhzg.r-17gur6a.r-1yadl64.r-deolkf.r-homxoj.r-poiln3.r-7cikom.r-1ny4l3l.r-t60dpp.r-fdjqy7[autocomplete=\"current-password\"][name=\"password\"][type=\"password\"]",
+          "x": 606.0,
+          "y": 722.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.css-175oi2r.r-sdzlij.r-1phboty.r-rs99b7.r-lrvibr.r-19yznuf.r-64el8z.r-1fkl15p.r-1loqt21.r-o7ynqc.r-6416eg.r-1ny4l3l[role=\"button\"][data-testid=\"LoginForm_Login_Button\"][type=\"button\"]",
+          "x": 620.0,
+          "y": 1010.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The previous actions were to type the email, click next, type the password, and click the login button. The current HTML state shows a loading screen. The next step is to terminate the task."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On X Home Page",
+    "description": "On X Home Page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://x.com/home"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "You\u2019re in control"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "span.css-1jxf684.r-bcqeeo.r-1ttztb7.r-qvutc0.r-poiln3"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 20
+        }
+      },
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 20
+        }
+      },
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 20
+        }
+      },
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 20
+        }
+      },
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 20
+        }
+      },
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 20
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.css-146c3p1.r-bcqeeo.r-qvutc0.r-37j5jr.r-q4m81j.r-a023e6.r-rjixqe.r-b88u0q.r-1awozwy.r-6koalj.r-18u37iz.r-16y2uox.r-1777fci",
+          "x": 620.0,
+          "y": 871.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.css-175oi2r.r-1777fci.r-bt1l66.r-bztko3.r-lrvibr.r-1loqt21.r-1ny4l3l[aria-label*=\"2131 Likes. Like\"][role=\"button\"][data-testid=\"like\"][type=\"button\"]",
+          "x": 486.1484375,
+          "y": 1199.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query instructs to click the like button, which is represented by a heart icon, and then terminate. The previous actions were to scroll down the page six times by 20 pixels each time, then click on the 'Turn on personalized ads' button, and then click on the like button for the post 'Hulu@hulu Every girl needs a good lawyer. Or three. All's Fair is now streaming on @hulu and with Hulu on Disney+. 0:14All's Fair Now Streaming 2172802.1K12M'. The current HTML state shows that the like button has been clicked, as the text on the button is now '2135 Likes. Liked, Aria Label: 2135 Likes. Liked'. The next step is to terminate the task."
+        }
+      }
+    ],
+    "end_state": "Action Completed",
+    "executed": []
+  }
+]

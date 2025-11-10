@@ -1,0 +1,523 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "chrome://new-tab-page/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://www.google.com"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user wants to terminate the session."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": [
+      {
+        "name": "On Browser Home Page",
+        "description": "Start the Process",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://www.google.com/"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "About"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "a.MV3Tnb[href=\"https://about.google/?fg=1&utm_source=google-US&utm_medium=referral&utm_campaign=hp-header\"]"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Store"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "a.MV3Tnb[href=\"https://store.google.com/US?utm_source=hp_header&utm_medium=google_ooo&utm_campaign=GS100042&hl=en-US\"]"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Gmail"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "a.gb_Z[aria-label*=\"Gmail \"][href=\"https://mail.google.com/mail/&ogbl\"][target=\"_top\"]"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Images"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "a.gb_Z[aria-label*=\"Search for Images \"][href=\"https://www.google.com/imghp?hl=en&ogbl\"][target=\"_top\"]"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "AI Mode"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "span"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Advertising"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "a.pHiOh[href=\"https://www.google.com/intl/en_us/ads/?subid=ww-ww-et-g-awa-a-g_hpafoot1_1!o2&utm_source=google.com&utm_medium=referral&utm_campaign=google_hpafooter&fg=1\"]"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Business"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "a.pHiOh[href=\"https://www.google.com/services/?subid=ww-ww-et-g-awa-a-g_hpbfoot1_1!o2&utm_source=google.com&utm_medium=referral&utm_campaign=google_hpbfooter&fg=1\"]"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "How Search works"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "a.pHiOh[href=\"https://google.com/search/howsearchworks/?fg=1\"]"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Applying AI towards science and the environment"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "span.ktLKi"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Privacy"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "a.pHiOh[href=\"https://policies.google.com/privacy?hl=en&fg=1\"]"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Terms"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "a.pHiOh[href=\"https://policies.google.com/terms?hl=en&fg=1\"]"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Settings"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "div.ayzqOc.pHiOh"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "navigate",
+            "params": {
+              "url": "https://whereby.com/"
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed. The page has been navigated to and the task requires termination."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.google.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "About"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.MV3Tnb[href=\"https://about.google/?fg=1&utm_source=google-US&utm_medium=referral&utm_campaign=hp-header\"]"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Store"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.MV3Tnb[href=\"https://store.google.com/US?utm_source=hp_header&utm_medium=google_ooo&utm_campaign=GS100042&hl=en-US\"]"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Gmail"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.gb_Z[aria-label*=\"Gmail \"][href=\"https://mail.google.com/mail/&ogbl\"][target=\"_top\"]"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Images"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.gb_Z[aria-label*=\"Search for Images \"][href=\"https://www.google.com/imghp?hl=en&ogbl\"][target=\"_top\"]"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "AI Mode"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "span"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Advertising"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.pHiOh[href=\"https://www.google.com/intl/en_us/ads/?subid=ww-ww-et-g-awa-a-g_hpafoot1_1!o2&utm_source=google.com&utm_medium=referral&utm_campaign=google_hpafooter&fg=1\"]"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Business"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.pHiOh[href=\"https://www.google.com/services/?subid=ww-ww-et-g-awa-a-g_hpbfoot1_1!o2&utm_source=google.com&utm_medium=referral&utm_campaign=google_hpbfooter&fg=1\"]"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "How Search works"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.pHiOh[href=\"https://google.com/search/howsearchworks/?fg=1\"]"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Applying AI towards science and the environment"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "span.ktLKi"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Privacy"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.pHiOh[href=\"https://policies.google.com/privacy?hl=en&fg=1\"]"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Terms"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.pHiOh[href=\"https://policies.google.com/terms?hl=en&fg=1\"]"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Settings"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "div.ayzqOc.pHiOh"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://whereby.com/"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed. The page has been navigated to and the task requires termination."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On Whereby Join Page",
+    "description": "On Whereby Join Page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://whereby.com/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "test",
+          "by": "css selector",
+          "selector": "input.input-Yhce[autocomplete=\"username\"][name=\"nickname\"][placeholder*=\"Enter your name\"]",
+          "x": 620.0,
+          "y": 582.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.jstest-nameprompt-continue.Button-R21c.Button--full-YbYZ.Button--small-P3Az.Button--primary-AScz.Button--filled-Mequ",
+          "x": 620.0,
+          "y": 1093.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.jstest-join-room-button.Button-R21c.Button--full-YbYZ.Button--small-P3Az.Button--primary-AScz.Button--filled-Mequ",
+          "x": 620.0,
+          "y": 1093.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.Button-R21c.Button--link-jABq[type=\"button\"][data-testid=\"login-button\"]",
+          "x": 475.75,
+          "y": 906.03125
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "test@test.com",
+          "by": "css selector",
+          "selector": "input.input-Yhce.jstest-login-email-input[name=\"emailField\"][type=\"email\"][placeholder=\"name@email.com\"][autocomplete=\"email\"][required=\"\"][data-testid=\"login-email-input\"]",
+          "x": 1028.5,
+          "y": 746.546875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.jstest-login-submit.Button-R21c.Button--full-YbYZ.Button--small-P3Az.Button--primary-AScz.Button--filled-Mequ[type=\"submit\"][data-testid=\"login-submit\"]",
+          "x": 1028.5,
+          "y": 875.546875
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "000000",
+          "by": "css selector",
+          "selector": "input.input-Yhce.codeInput-mmJj.jstest-login-verification-input[autocomplete=\"one-time-code\"][placeholder=\"000000\"][required=\"\"][data-testid=\"login-verification-input\"]",
+          "x": 1028.5,
+          "y": 659.265625
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.submitButton-7s1C.jstest-login-submit.Button-R21c.Button--full-YbYZ.Button--small-P3Az.Button--primary-AScz.Button--filled-Mequ[type=\"submit\"][data-testid=\"login-submit\"]",
+          "x": 1028.5,
+          "y": 840.265625
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.backButton-kc6m.Button-R21c.Button--invisible-FBeL.Button--extraSmall--57F.Button--full-YbYZ.Button--primary-AScz[type=\"button\"]",
+          "x": 1028.5,
+          "y": 996.265625
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.ButtonSocial-l0dR.google-Xzep.Button-R21c.Button--outlined-cIF7.Button--full-YbYZ.Button--small-P3Az.Button--primary-AScz[type=\"button\"]",
+          "x": 1028.5,
+          "y": 545.0859375
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.ButtonSocial-l0dR.Button-R21c.Button--outlined-cIF7.Button--full-YbYZ.Button--small-P3Az.Button--primary-AScz[type=\"button\"]",
+          "x": 1028.5,
+          "y": 610.7265625
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user has been unable to join the meeting due to the room owner not being present and login attempts failing. Since the user cannot proceed further without the room owner, the user should terminate the task."
+        }
+      }
+    ],
+    "end_state": "Whereby Video Conference Screen",
+    "executed": []
+  }
+]

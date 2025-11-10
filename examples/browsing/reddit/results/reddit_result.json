@@ -1,0 +1,128 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "chrome://new-tab-page/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "reddit.com",
+          "by": "css selector",
+          "selector": "input.truncate[id=\"input\"][type=\"search\"][autocomplete=\"off\"][role=\"combobox\"][placeholder*=\"Search Google or type a URL\"]",
+          "x": 620.0,
+          "y": 479.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "cr-searchbox-match[role=\"option\"]",
+          "x": 620.0,
+          "y": 525.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a[href=\"https://www.reddit.com\"]",
+          "x": 42.0,
+          "y": 220.5
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user has successfully navigated to the Reddit website."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On Reddit Home Page",
+    "description": "On Reddit Home Page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.reddit.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Get App"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Log In"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 20
+        }
+      },
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 20
+        }
+      },
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 20
+        }
+      },
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 20
+        }
+      },
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 20
+        }
+      },
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 20
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query asks to terminate the task immediately after completing the scrolling. Since the scrolling is now complete, I need to terminate the task."
+        }
+      }
+    ],
+    "end_state": "Action Completed",
+    "executed": []
+  }
+]
