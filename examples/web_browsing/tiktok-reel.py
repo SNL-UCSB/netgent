@@ -1,33 +1,16 @@
-import sys
-import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from state_agent.state_agent.agent import StateAgent
-from state_agent.state_agent.agent import StatePrompt
-from langchain_google_vertexai import ChatVertexAI
-from state_agent.actions.browser_manager import BrowserManager
-import vertexai
+"""This example walks NetGent through TikTok's web experience. It arrives at the login page, records the need for credentials, and outlines the actions required to browse the For You feed responsibly.
+"""
 import json
+import os
+from netgent import NetGent, StatePrompt
+from langchain_google_vertexai import ChatVertexAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 load_dotenv()
-
-# vertexai.init(project="crypto-hallway-464121-j6", location="us-central1")
-
-# os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "../google_creds.json"
+agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2), llm_enabled=True, user_data_dir="examples/user_data")
 
 
-if __name__ == "__main__": 
-    browser_manager = BrowserManager(human_movement=True, shake=False)
-    judge_llm = ChatVertexAI(model="gemini-2.5-flash", temperature=0, thinking_budget=0, cache=False)
-    browser_llm = ChatVertexAI(model="gemini-2.5-flash", temperature=0, thinking_budget=0, cache=False)
-    state_agent = StateAgent(judge_llm, browser_llm, browser_manager, {"allow_multiple_states": False, "transition_period": 5, "no_states_timeout": 10, "action_period": 2})
-    try:
-        with open("browsing/states/tiktok-reel.json", "r") as f:
-            states = json.load(f)
-    except:
-        states = []
-    
-    prompt = [
+prompt = [
         StatePrompt(
             name="On Browser Home Page",
             description="Start the Process",
@@ -38,7 +21,7 @@ if __name__ == "__main__":
             name="If on TikTok Login Page",
             description="If on TikTok Login Page",
             triggers=["If on TikTok Login Page"],
-            actions=["[1] Type the Email is snlclient1@gmail.com", "[2] Type the password 'SNL.12345' (MAKE SURE YOU DO THIS BEFORE PRESSING THE BUTTON 'Log In')", "[3] press the button 'Log In'"]
+            actions=["[1] Type the Email is ", "[2] Type the password '' (MAKE SURE YOU DO THIS BEFORE PRESSING THE BUTTON 'Log In')", "[3] press the button 'Log In'"]
         ),
         StatePrompt(
             name="If on TikTok Interest Page",
@@ -55,17 +38,17 @@ if __name__ == "__main__":
         ),
     ]
 
-    parameters = {
-        
-    }
-    result = state_agent.run(prompt, states, parameters, use_llm=True)
 
-    if input("Save the states? (y/n): ") == "y":
-        with open("browsing/states/twitch-watch-stream.json", "w") as f:
-            json.dump(result["states"], f)
+try:
+    with open("browsing/tiktok-reel/results/tiktok-reel_result.json", "r") as f:
+        result = json.load(f)
+except FileNotFoundError:
+    result = []
 
-    print("Executed:", result["executed"])
-    print("Success:", result["success"])
-    print("Error:", result["error"])
-    print("Message:", result["message"])
-    print("States:", result["states"])
+result = agent.run(state_prompts=prompt, state_repository=result)
+
+input("Press Enter to continue...")
+# Create directory if it doesn't exist
+os.makedirs("browsing/tiktok-reel/results", exist_ok=True)
+with open("browsing/tiktok-reel/results/tiktok-reel_result.json", "w") as f:
+    json.dump(result["state_repository"], f, indent=2)

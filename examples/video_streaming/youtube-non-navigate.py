@@ -1,29 +1,16 @@
-import sys
-import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from state_agent.state_agent.agent import StateAgent
-from state_agent.state_agent.agent import StatePrompt
-from langchain_google_vertexai import ChatVertexAI
-from state_agent.actions.browser_manager import BrowserManager
+"""This example captures a YouTube visit scripted with NetGent. It opens the platform, spotlights login placeholders, and documents the steps for browsing without signing in.
+"""
 import json
+import os
+from netgent import NetGent, StatePrompt
+from langchain_google_vertexai import ChatVertexAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 load_dotenv()
+agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2), llm_enabled=True, user_data_dir="examples/user_data")
 
 
-if __name__ == "__main__": 
-    browser_manager = BrowserManager(human_movement=True, shake=True, user_data_dir="./streaming/hulu-non-navigate-profile/")
-    judge_llm = ChatVertexAI(model="gemini-2.5-flash", temperature=0.2, thinking_budget=0, cache=False)
-    browser_llm = ChatVertexAI(model="gemini-2.5-flash", temperature=0.2, thinking_budget=0, cache=False)
-    state_agent = StateAgent(judge_llm, browser_llm, browser_manager, {"allow_multiple_states": False, "transition_period": 5, "no_states_timeout": 8, "action_period": 2})
-    try:
-        with open("streaming/states/youtube.json", "r") as f:
-            raise Exception("Test")
-            states = json.load(f)
-    except:
-        states = []
-    
-    prompt = [
+prompt = [
         StatePrompt(
             name="On Browser Home Page",
             description="Start the Process",
@@ -39,21 +26,17 @@ if __name__ == "__main__":
         ),
     ]
 
-    parameters = {
-        
-    }
-    import time
-    start_time = time.time()
-    result = state_agent.run(prompt, states, parameters, use_llm=True)
-    end_time = time.time()
-    print(f"Execution time: {end_time - start_time:.2f} seconds")
 
-    if input("Save the states? (y/n): ") == "y":
-        with open("streaming/states/youtube.json", "w") as f:
-            json.dump(result["states"], f)
+try:
+    with open("streaming/youtube-non-navigate/results/youtube-non-navigate_result.json", "r") as f:
+        result = json.load(f)
+except FileNotFoundError:
+    result = []
 
-    print("Executed:", result["executed"])
-    print("Success:", result["success"])
-    print("Error:", result["error"])
-    print("Message:", result["message"])
-    print("States:", result["states"])
+result = agent.run(state_prompts=prompt, state_repository=result)
+
+input("Press Enter to continue...")
+# Create directory if it doesn't exist
+os.makedirs("streaming/youtube-non-navigate/results", exist_ok=True)
+with open("streaming/youtube-non-navigate/results/youtube-non-navigate_result.json", "w") as f:
+    json.dump(result["state_repository"], f, indent=2)

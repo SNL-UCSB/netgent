@@ -1,33 +1,15 @@
-import sys
-import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from state_agent.state_agent.agent import StateAgent
-from state_agent.state_agent.agent import StatePrompt
-from langchain_google_vertexai import ChatVertexAI
-from state_agent.actions.browser_manager import BrowserManager
-import vertexai
+"""This example drives NetGent through Instagram's reels surface. It opens the site, handles the login prompt, and steps through several reels to emulate a short viewing session.
+"""
 import json
+import os
+from netgent import NetGent, StatePrompt
+from langchain_google_vertexai import ChatVertexAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 load_dotenv()
+agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2), llm_enabled=True)
 
-# vertexai.init(project="crypto-hallway-464121-j6", location="us-central1")
-
-# os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "../google_creds.json"
-
-
-if __name__ == "__main__": 
-    browser_manager = BrowserManager(human_movement=True, shake=False)
-    judge_llm = ChatVertexAI(model="gemini-2.5-flash", temperature=0.2, thinking_budget=0, cache=False)
-    browser_llm = ChatVertexAI(model="gemini-2.5-flash", temperature=0.2, thinking_budget=0, cache=False)
-    state_agent = StateAgent(judge_llm, browser_llm, browser_manager, {"allow_multiple_states": False, "transition_period": 5, "no_states_timeout": 10, "action_period": 2})
-    try:
-        with open("browsing/states/instagram-reels.json", "r") as f:
-            states = json.load(f)
-    except:
-        states = []
-    
-    prompt = [
+prompt = [
         StatePrompt(
             name="On Browser Home Page",
             description="Start the Process",
@@ -38,7 +20,7 @@ if __name__ == "__main__":
             name="Login to Account",
             description="On Login",
             triggers=["If On Login Page (Find Login Text for the Trigger)"],
-            actions=["[1] Type the Email is snlclient1@gmail.com", "[2] Type the password 'SNL.12345' (MAKE SURE YOU DO THIS BEFORE PRESSING THE BUTTON 'Log In')", "[3] press the button 'Log In'"],
+            actions=["[1] Type the Email is ", "[2] Type the password '' (MAKE SURE YOU DO THIS BEFORE PRESSING THE BUTTON 'Log In')", "[3] press the button 'Log In'"],
         ),
         StatePrompt(
             name="Save Information",
@@ -55,17 +37,16 @@ if __name__ == "__main__":
         ),
     ]
 
-    parameters = {
-        
-    }
-    result = state_agent.run(prompt, states, parameters, use_llm=True)
+try:
+    with open("browsing/instagram-reels/results/instagram-reels_result.json", "r") as f:
+        result = json.load(f)
+except FileNotFoundError:
+    result = []
 
-    if input("Save the states? (y/n): ") == "y":
-        with open("browsing/states/instagram-reels.json", "w") as f:
-            json.dump(result["states"], f)
+result = agent.run(state_prompts=prompt, state_repository=result)
 
-    print("Executed:", result["executed"])
-    print("Success:", result["success"])
-    print("Error:", result["error"])
-    print("Message:", result["message"])
-    print("States:", result["states"])
+input("Press Enter to continue...")
+# Create directory if it doesn't exist
+os.makedirs("browsing/instagram-reels/results", exist_ok=True)
+with open("browsing/instagram-reels/results/instagram-reels_result.json", "w") as f:
+    json.dump(result["state_repository"], f, indent=2)

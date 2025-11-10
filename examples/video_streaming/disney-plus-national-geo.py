@@ -1,31 +1,16 @@
-import sys
-import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from state_agent.state_agent.agent import StateAgent
-from state_agent.state_agent.agent import StatePrompt
-from langchain_google_vertexai import ChatVertexAI
-from state_agent.actions.browser_manager import BrowserManager
-import vertexai
+"""This example details browsing the National Geographic hub on Disney+ with NetGent. It documents the authentication prompts, profile access, and the steps needed to reach title playback.
+"""
 import json
+import os
+from netgent import NetGent, StatePrompt
+from langchain_google_vertexai import ChatVertexAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 load_dotenv()
-
-# vertexai.init(project="crypto-hallway-464121-j6", location="us-central1")
-
-# os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "../google_creds.json"
+agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2), llm_enabled=True, user_data_dir="examples/user_data")
 
 
-if __name__ == "__main__": 
-    browser_manager = BrowserManager(human_movement=True, shake=True, user_data_dir="./streaming/hulu-non-navigate-profile/")
-    judge_llm = ChatVertexAI(model="gemini-2.5-flash", temperature=0, thinking_budget=0, cache=False)
-    browser_llm = ChatVertexAI(model="gemini-2.5-flash", temperature=0, thinking_budget=0, cache=False)
-    state_agent = StateAgent(judge_llm, browser_llm, browser_manager, {"allow_multiple_states": False, "transition_period": 5, "no_states_timeout": 20, "action_period": 2})
-    with open("streaming/states/disney-plus-national-geo.json", "r") as f:
-        states = json.load(f)
-    
-    # states = []
-    prompt = [
+prompt = [
         StatePrompt(
             name="On Browser Home Page",
             description="Start the Process",
@@ -36,25 +21,38 @@ if __name__ == "__main__":
             name="On Disney Plus Home Page",
             description="On Disney Plus Home Page",
             triggers=["If 'Endless entertainment for all.' is on the page"],
-            actions=["Press the Login Button"],
+            actions=["Close Modal If There Is One", "Press the Login Button"],
         ),
         StatePrompt(
             name="Login to Account",
             description="On Login",
             triggers=["If On Login Page (Find Login Text for the Trigger)"],
-            actions=["[1] Type the Email is snlclient1@gmail.com", "[2] Pressing the button 'Continue'", "[3] Type the password 'password' (MAKE SURE YOU DO THIS BEFORE PRESSING THE BUTTON 'Log In')", "[4] press the button 'Log In'"],
+            actions=["[1] Type the Email is ", "[2] Pressing the button 'Continue'", "[3] Type the password '' (MAKE SURE YOU DO THIS BEFORE PRESSING THE BUTTON 'Log In')", "[4] press the button 'Log In'"]
         ),
         StatePrompt(
             name="On Select Profile",
             description="On Select Profile",
             triggers=["If 'Who's watching?' is on the page"],
-            actions=["Select the Profile 'snlclient'"],
+            actions=["Select the Profile ''"]
         ),
         StatePrompt(
+            name="On the One Time Code Page",
+            description="On the One Time Code Page After Logging In",
+            triggers=["If it is on the One Time Code Page", "Don't use URL as a Trigger"],
+            actions=["Do Nothing. JUST Terminate"],
+            end_state="One Time Code Needed"
+         ),
+        StatePrompt(
+            name="On the Profile PIN Page",
+            description="On the Profile PIN Page",
+            triggers=["If it is on the Profile PIN Page", "Don't use URL as a Trigger"],
+            actions=["Type the PIN '' and press 'Enter'"]
+         ),
+        StatePrompt(
             name="On the Disney Plus Home Page (When Logged In)",
-            description="Go to the National Geographic Channel After Logging In In the Home Page",
+            description="Go to the Show After Logging In In the Home Page",
             triggers=["If it is on the Home Page ONLY CHECK BY URL"],
-            actions=["Press on the National Geographic Channel"],
+            actions=["Go to "]
         ),
         StatePrompt(
             name="On National Geographic Channel",
@@ -70,18 +68,16 @@ if __name__ == "__main__":
             end_state="Action Completed"
         ),
     ]
+try:
+    with open("streaming/disney-plus-national-geo/results/disney-plus-national-geo_result.json", "r") as f:
+        result = json.load(f)
+except FileNotFoundError:
+    result = []
 
-    parameters = {
-        
-    }
-    result = state_agent.run(prompt, states, parameters, use_llm=True)
+result = agent.run(state_prompts=prompt, state_repository=result)
 
-    if input("Save the states? (y/n): ") == "y":
-        with open("streaming/states/disney-plus-national-geo.json", "w") as f:
-            json.dump(result["states"], f)
-
-    print("Executed:", result["executed"])
-    print("Success:", result["success"])
-    print("Error:", result["error"])
-    print("Message:", result["message"])
-    print("States:", result["states"])
+input("Press Enter to continue...")
+# Create directory if it doesn't exist
+os.makedirs("streaming/disney-plus-national-geo/results", exist_ok=True)
+with open("streaming/disney-plus-national-geo/results/disney-plus-national-geo_result.json", "w") as f:
+    json.dump(result["state_repository"], f, indent=2)
