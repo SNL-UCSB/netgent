@@ -22,7 +22,7 @@ Key features:
   - Social media
   - Web scraping
 
-By combining the flexibility of language-based agents with the reliability of compiled execution, NetGent provides a scalable foundation for generating diverse and repeatable datasets to advance ML in networking. [^1]
+By combining the flexibility of language-based agents with the reliability of compiled execution, NetGent provides a scalable foundation for generating diverse and repeatable datasets to advance ML in networking.
 
 ## Repository Structure
 
@@ -40,8 +40,6 @@ See individual subfolder `README.md` files for details on usage and implementati
 ## NetGent Architecture
 
 ![architecture](docs/figures/architecture.png)
-
-[^1]: Credit to Eugene Vuong for primary development.
 
 ## Getting Started
 
