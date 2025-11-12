@@ -1,0 +1,289 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "chrome://new-tab-page/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "https://www.disneyplus.com/",
+          "by": "css selector",
+          "selector": "input.truncate[id=\"input\"][type=\"search\"][autocomplete=\"off\"][role=\"combobox\"][placeholder*=\"Search Google or type a URL\"]",
+          "x": 620.0,
+          "y": 479.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.xjtg3l0[data-testid=\"modal_close\"][aria-label*=\"Close Modal\"][type=\"button\"]",
+          "x": 970.0,
+          "y": 435.9921875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On Disney Plus Home Page",
+    "description": "On Disney Plus Home Page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Endless entertainment for all."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a.ngw6jp1.ngw6jp0.ngw6jp7.ngw6jp6.ngw6jp3.ngw6jp2[href=\"/identity/login\"][data-testid=\"log_in\"]",
+          "x": 1117.1640625,
+          "y": 350.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "Login to Account",
+    "description": "On Login",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Enter your email to continue"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.disneyplus.com/identity/login/enter-email"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "span.leading-lg.text-lg.font-semibold.overflow-hidden.text-ellipsis.whitespace-nowrap"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "",
+          "by": "css selector",
+          "selector": "input.flex-auto.h-full.pt-26.px-16.pb-10.text-form_field_input_text.leading-lg.border-0.bg-transparent.outline-none[id=\"email\"][name=\"email\"][type=\"email\"]",
+          "x": 620.0,
+          "y": 575.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.flex.items-center.justify-center.w-full.h-52.py-14.px-24.rounded-xl.border-2.border-solid.cursor-pointer.outline-0.select-none.transition-colors.text-button_primary_default_text.bg-button_primary_default.border-button_primary_default_border[data-testid=\"continue-btn\"][type=\"submit\"]",
+          "x": 620.0,
+          "y": 655.0
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "",
+          "by": "css selector",
+          "selector": "input.flex-auto.h-full.pt-26.px-16.pb-10.text-form_field_input_text.leading-lg.border-0.bg-transparent.outline-none[aria-describedby=\"password-prompt\"][id=\"password\"][name=\"password\"][type=\"password\"]",
+          "x": 592.0,
+          "y": 575.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.flex.items-center.justify-center.w-full.h-52.py-14.px-24.rounded-xl.border-2.border-solid.cursor-pointer.outline-0.select-none.transition-colors.text-button_primary_default_text.bg-button_primary_default.border-button_primary_default_border[type=\"submit\"]",
+          "x": 620.0,
+          "y": 679.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The previous actions were to input the email address, click the continue button, input the password, and click the login button. The current HTML state shows a loading screen. This indicates that the previous actions were successful in submitting the login form. The next step is to terminate the task as per the instructions."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On Select Profile",
+    "description": "On Select Profile",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Who's watching?"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "h2.padding--bottom-6.text-color--primary"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.sc-fgfRvd.sc-iIHSe.hxutkq[aria-label*=\"profile\"][data-testid=\"profile-avatar-0\"][data-testid=\"profile-avatar-0\"][role=\"button\"]",
+          "x": 444.0,
+          "y": 568.4921875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The previous action was to click on the the profile profile. The current HTML state shows a loading screen. This indicates that the previous action was successful in selecting the profile. The next step is to terminate the task as per the instructions."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On the Disney Plus Home Page (When Logged In)",
+    "description": "Go to the Show After Logging In In the Home Page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.disneyplus.com/home"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://www.disneyplus.com/browse/entity-fa6973b9-e7cf-49fb-81a2-d4908e4bf694"
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 2
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The previous action was to navigate to the specified Disney+ browse page. The current HTML state shows that the page has loaded successfully and displays information about the show 'Bluey'. The next step is to terminate the task as per the instructions."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On the Movie/Show Page",
+    "description": "Press the Play Button on the Movie Page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "SUGGESTED"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "DETAILS"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "press_key",
+        "params": {
+          "key": "tab"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "tab"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The current HTML state shows the Disney+ homepage. The previous actions were to press tab twice and then enter twice. The instruction requires focusing on the video player. However, the current HTML state does not show a video player. Therefore, the previous actions were not successful in focusing on the video player. The instruction requires focusing on the video player by pressing Tab and then Enter twice. Since the previous attempts to focus on the video player were unsuccessful, I will terminate the task."
+        }
+      }
+    ],
+    "end_state": "Action Completed",
+    "executed": []
+  }
+]

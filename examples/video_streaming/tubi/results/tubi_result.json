@@ -1,0 +1,226 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "chrome://new-tab-page/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "https://tubitv.com/?",
+          "by": "css selector",
+          "selector": "input.truncate[id=\"input\"][type=\"search\"][autocomplete=\"off\"][role=\"combobox\"][placeholder*=\"Search Google or type a URL\"]",
+          "x": 620.0,
+          "y": 479.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.eqA2re.UnOTSe.Vwoesf",
+          "x": 84.5,
+          "y": 417.0
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On Tubi Home Page",
+    "description": "On Tubi Home Page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://tubitv.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Browse"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.W2l7v[required=\"\"][type=\"search\"][placeholder*=\"Find movies, TV shows and more\"]",
+          "x": 909.140625,
+          "y": 229.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.W2l7v[required=\"\"][type=\"search\"][placeholder*=\"Find movies, TV shows and more\"]",
+          "x": 785.046875,
+          "y": 229.0
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "Lego",
+          "by": "css selector",
+          "selector": "input.W2l7v[required=\"\"][type=\"search\"][placeholder*=\"Find movies, TV shows and more\"]",
+          "x": 785.046875,
+          "y": 229.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.web-content-tile",
+          "x": 186.5,
+          "y": 649.640625
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On the Movie/Show Page",
+    "description": "Press the Play Button on the Movie Page",
+    "checks": [
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "h1.c1jX9"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "span.web-attributes__year-duration"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "div.Xx95I"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.web-button.etFQQ.web-button--primary.web-button--has-icon",
+          "x": 178.5,
+          "y": 584.96875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.web-iconButton-container[aria-label=\"Play\"]",
+          "x": 147.3828125,
+          "y": 819.671875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.SIG6O",
+          "x": 620.0,
+          "y": 771.296875
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.dOUbG.EA4QM",
+          "x": 505.765625,
+          "y": 696.90625
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.dOUbG.EA4QM",
+          "x": 505.765625,
+          "y": 696.90625
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "Action Completed",
+    "executed": []
+  }
+]

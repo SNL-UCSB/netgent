@@ -36,13 +36,13 @@
           "by": "css selector",
           "selector": "div.eqA2re.UnOTSe.Vwoesf",
           "x": 84.5,
-          "y": 978.0
+          "y": 972.109375
         }
       },
       {
         "type": "terminate",
         "params": {
-          "reason": "The Disney Plus website has been successfully loaded, completing the task."
+          "reason": "The Disney Plus website has been successfully loaded."
         }
       }
     ],
@@ -67,7 +67,7 @@
           "by": "css selector",
           "selector": "button.xjtg3l0[data-testid=\"modal_close\"][aria-label*=\"Close Modal\"][type=\"button\"]",
           "x": 970.0,
-          "y": 552.6171875
+          "y": 549.6171875
         }
       },
       {
@@ -82,7 +82,7 @@
       {
         "type": "terminate",
         "params": {
-          "reason": "The task is to terminate after clicking the Log In button, which has been done."
+          "reason": "The task is to terminate immediately after pressing the Log In button. The current HTML state shows a loading screen, indicating that the Log In button has been pressed. Therefore, I should terminate the task."
         }
       }
     ],
@@ -155,7 +155,7 @@
       {
         "type": "terminate",
         "params": {
-          "reason": "The task instruction is to terminate after clicking the 'Log In' button. The previous action was to click the 'Log In' button. The current HTML state shows a loading screen, which indicates that the 'Log In' button click was successful. Therefore, I should terminate the task."
+          "reason": "The current HTML state shows a loading screen. The previous actions were to enter the email, click continue, enter the password, and click the 'Log In' button. According to step 5, I need to terminate immediately."
         }
       }
     ],
@@ -193,7 +193,7 @@
       {
         "type": "terminate",
         "params": {
-          "reason": "The task instruction is to terminate after selecting the profile the profile. The previous action was to click on the the profile profile. The current HTML state shows the Disney+ home page, which indicates that the profile selection was successful. Therefore, I should terminate the task."
+          "reason": "The task is to terminate immediately after selecting the profile the profile. The current HTML state shows the Disney+ home page, indicating that the the profile profile has been successfully selected. Therefore, I should terminate the task."
         }
       }
     ],
@@ -216,8 +216,8 @@
         "type": "click",
         "params": {
           "by": "css selector",
-          "selector": "a._180kkgi1.stueet1._180kkgi0.r3t2ihki.r3t2ihp6.r3t2ihtu.r3t2ihyi.r3t2ih23c.r3t2ih8h.r3t2ih9g.t62z114.t62z111[data-testid=\"set-item\"][aria-label=\"ESPN\"][href=\"/browse/espn\"]",
-          "x": 1079.2421875,
+          "selector": "a._180kkgi1.stueet1._180kkgi0.r3t2ihki.r3t2ihp6.r3t2ihtu.r3t2ihyi.r3t2ih23c.r3t2ih8h.r3t2ih9g.t62z114.t62z111[data-testid=\"set-item\"][aria-label*=\"National Geographic\"][href=\"/browse/national-geographic\"]",
+          "x": 768.0859375,
           "y": 950.25
         }
       },
@@ -230,7 +230,7 @@
       {
         "type": "terminate",
         "params": {
-          "reason": "The task is complete. The ESPN brand page on Disney Plus has been loaded, and the agent has waited for 5 seconds. The task is to terminate."
+          "reason": "The task is to terminate after waiting 5 seconds on the National Geographic page. The wait is complete, so I am terminating the task."
         }
       }
     ],
@@ -238,58 +238,39 @@
     "executed": []
   },
   {
-    "name": "On ESPN Channel",
-    "description": "On ESPN Channel, Go to the First Movie/Show on the 'Studio Show' Section",
+    "name": "On National Geographic Channel",
+    "description": "On National Geographic Channel, Go to the First Movie/Show",
     "checks": [
       {
-        "type": "url",
+        "type": "text",
         "params": {
-          "url": "https://www.disneyplus.com/browse/espn"
+          "text": "Featured"
         }
       }
     ],
     "actions": [
       {
-        "type": "scroll",
+        "type": "click",
         "params": {
-          "direction": "down",
-          "pixels": 10
-        }
-      },
-      {
-        "type": "scroll",
-        "params": {
-          "direction": "down",
-          "pixels": 10
-        }
-      },
-      {
-        "type": "scroll",
-        "params": {
-          "direction": "down",
-          "pixels": 10
-        }
-      },
-      {
-        "type": "scroll",
-        "params": {
-          "direction": "down",
-          "pixels": 10
+          "by": "css selector",
+          "selector": "a._180kkgi1.stueet1._180kkgi0.r3t2ihki.r3t2ihp6.r3t2ihtu.r3t2ihyi.r3t2ih23c.r3t2ih8h.r3t2ih9g[data-testid=\"set-item\"][aria-label*=\"Love+War Select for details on this title.\"][href=\"/browse/entity-87eceaf0-6614-495f-9b08-4b57520641c0\"]",
+          "x": 204.125,
+          "y": 759.9453125
         }
       },
       {
         "type": "click",
         "params": {
           "by": "css selector",
-          "selector": "a._180kkgi1.stueet1._180kkgi0.r3t2ihki.r3t2ihp6.r3t2ihtu.r3t2ihyi.r3t2ih23c.r3t2ih8h.r3t2ih9g[data-testid=\"set-item\"][aria-label*=\"The Rich Eisen Show Disney+ with Badge Released 2025. Talk & Interview, Sports genre. Select for details on this title.\"][href=\"/browse/entity-7f7b2a52-503d-4fb2-aae4-d04b6fedbc07\"]",
-          "x": 204.125,
-          "y": 672.3671875
+          "selector": "a._14aj777c._14aj7771._14aj7770.r3t2ih21c.r3t2ih23u.r3t2ih24o.r3t2ih9i.r3t2ih9l.r3t2ih10.r3t2ih9g.r3t2ih8i._1055dze3.r3t2ih8r.r3t2ih98._14aj777h._14aj777k._14aj777d._14aj7775._14aj7773._14aj7772.r3t2ihrc.r3t2ihw0._14aj7774.r3t2ih60.r3t2ih3y._1mp1hfw3._1mp1hfw1.r3t2ih10c.fl2b6o4._1mp1hfw2.r3t2ih1do.r3t2ih1ek[aria-label=\"PLAY\"][data-testid=\"playback-action-button\"][href=\"/play/87eceaf0-6614-495f-9b08-4b57520641c0\"]",
+          "x": 140.6171875,
+          "y": 686.5
         }
       },
       {
         "type": "terminate",
         "params": {
-          "reason": "The user query requires termination after clicking the first video within the 'Studio Show' section. The previous action was to click on the first video within the 'Studio Show' section. The current HTML state shows the page for 'The Rich Eisen Show'. Therefore, the previous action was successful, and I should terminate the task."
+          "reason": "The task is to terminate immediately after clicking on the first movie/show displayed on the National Geographic page to view it. The video is now playing, so I am terminating the task."
         }
       }
     ],
@@ -303,32 +284,18 @@
       {
         "type": "text",
         "params": {
-          "text": "SUGGESTED"
+          "text": "Love+War"
         }
       },
       {
-        "type": "text",
+        "type": "element",
         "params": {
-          "text": "DETAILS"
+          "by": "css selector",
+          "selector": "span"
         }
       }
     ],
     "actions": [
-      {
-        "type": "click",
-        "params": {
-          "by": "css selector",
-          "selector": "a._14aj777c._14aj7771._14aj7770.r3t2ih21c.r3t2ih23u.r3t2ih24o.r3t2ih9i.r3t2ih9l.r3t2ih10.r3t2ih9g.r3t2ih8i._1055dze3.r3t2ih8r.r3t2ih98._14aj777h._14aj777k._14aj777d._14aj7775._14aj7773._14aj7772.r3t2ihrc.r3t2ihw0._14aj7774.r3t2ih60.r3t2ih3y._1mp1hfw3._1mp1hfw1.r3t2ih10c.fl2b6o4._1mp1hfw2.r3t2ih1do.r3t2ih1ek[aria-label=\"CONTINUE\"][data-testid=\"playback-action-button\"][href=\"/play/de0dd79a-3aa8-49b0-a32d-4f713cc69b06\"]",
-          "x": 164.6484375,
-          "y": 841.0
-        }
-      },
-      {
-        "type": "wait",
-        "params": {
-          "seconds": 5
-        }
-      },
       {
         "type": "press_key",
         "params": {
@@ -348,18 +315,30 @@
         }
       },
       {
-        "type": "press_key",
+        "type": "click",
         "params": {
-          "key": "space"
+          "by": "css selector",
+          "selector": "a._14aj777c._14aj7771._14aj7770.r3t2ih21c.r3t2ih23u.r3t2ih24o.r3t2ih9i.r3t2ih9l.r3t2ih10.r3t2ih9g.r3t2ih8i._1055dze3.r3t2ih8r.r3t2ih98._14aj777h._14aj777k._14aj777d._14aj7775._14aj7773._14aj7772.r3t2ihrc.r3t2ihw0._14aj7774.r3t2ih60.r3t2ih3y._1mp1hfw3._1mp1hfw1.r3t2ih10c.fl2b6o4._1mp1hfw2.r3t2ih1do.r3t2ih1ek[aria-label=\"PLAY\"][data-testid=\"playback-action-button\"][href=\"/play/87eceaf0-6614-495f-9b08-4b57520641c0\"]",
+          "x": 140.6171875,
+          "y": 686.5
         }
       },
       {
         "type": "click",
         "params": {
           "by": "css selector",
-          "selector": "a._180kkgi1.stueet1._180kkgi0.r3t2ihki.r3t2ihp6.r3t2ihtu.r3t2ihyi.r3t2ih23c.r3t2ih8h.r3t2ih9g[data-testid=\"set-item\"][aria-label*=\"ESPN+ Fri, 11/7 - The Rich Eisen Show Woody Harrelson, NFL Insider Tom Pelissero, ESPN MLB Insider Jeff Passan, plus \u2018What\u2019s More Likely.' Select to watch this. 3 percent complete\"][href=\"/play/de0dd79a-3aa8-49b0-a32d-4f713cc69b06\"]",
-          "x": 249.5,
-          "y": 438.90625
+          "selector": "div.button-container[role=\"button\"][aria-label=\"Pause\"]",
+          "x": 646.0,
+          "y": 1263.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.restart-playback.control",
+          "x": 542.0,
+          "y": 1263.0
         }
       },
       {
@@ -372,9 +351,9 @@
         "type": "click",
         "params": {
           "by": "css selector",
-          "selector": "div.progress-bar__container.progress-bar__no-pointer-events.progress-bar__vod",
-          "x": 595.328125,
-          "y": 1299.0
+          "selector": "button.quick-rw.control",
+          "x": 594.0,
+          "y": 1263.0
         }
       },
       {
@@ -387,15 +366,9 @@
         "type": "click",
         "params": {
           "by": "css selector",
-          "selector": "div.progress-bar__container.progress-bar__no-pointer-events.progress-bar__vod",
-          "x": 595.328125,
-          "y": 1299.0
-        }
-      },
-      {
-        "type": "wait",
-        "params": {
-          "seconds": 5
+          "selector": "button.play-button.control",
+          "x": 646.0,
+          "y": 1263.0
         }
       },
       {
@@ -407,7 +380,7 @@
       {
         "type": "terminate",
         "params": {
-          "reason": "The task is complete. The video has been advanced to approximately the 0.6 mark, and the agent has waited for 5 seconds. The task is to terminate."
+          "reason": "The previous actions were to click on the slider at the 0.6 mark to further advance the video and then wait for 5 seconds. According to step 8, I need to terminate the task."
         }
       }
     ],

@@ -7,7 +7,7 @@ from langchain_google_vertexai import ChatVertexAI
 from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 load_dotenv()
-agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2), llm_enabled=True, user_data_dir="examples/user_data")
+agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2), llm_enabled=True)
 
 
 prompt = [
@@ -15,7 +15,7 @@ prompt = [
             name="On Browser Home Page",
             description="Start the Process",
             triggers=["If it is on the current condition of the page! (Create trigger based on current page)"],
-            actions=["Go to https://www.disneyplus.com/"]
+            actions=["[1] Press Ctrl+L (or Command+L on macOS) to focus the browser address bar", "[2] Type 'https://www.disneyplus.com/' into the address bar", "[3] Press Enter to navigate to the site", "[4] Wait 5 seconds for the page to load"]
         ),
         StatePrompt(
             name="On Disney Plus Home Page",
@@ -52,7 +52,7 @@ prompt = [
             name="On the Disney Plus Home Page (When Logged In)",
             description="Go to the Show After Logging In In the Home Page",
             triggers=["If it is on the Home Page ONLY CHECK BY URL"],
-            actions=["Go to "]
+            actions=["Go to https://www.disneyplus.com/browse/entity-fa6973b9-e7cf-49fb-81a2-d4908e4bf694"]
         ),
         StatePrompt(
             name="On the Movie/Show Page",
@@ -65,7 +65,7 @@ prompt = [
 
 
 try:
-    with open("streaming/disney-plus-non-navigate/results/disney-plus-non-navigate_result.json", "r") as f:
+    with open("examples/streaming/disney-plus-non-navigate/results/disney-plus-non-navigate_result.json", "r") as f:
         result = json.load(f)
 except FileNotFoundError:
     result = []
@@ -74,6 +74,6 @@ result = agent.run(state_prompts=prompt, state_repository=result)
 
 input("Press Enter to continue...")
 # Create directory if it doesn't exist
-os.makedirs("streaming/disney-plus-non-navigate/results", exist_ok=True)
-with open("streaming/disney-plus-non-navigate/results/disney-plus-non-navigate_result.json", "w") as f:
+os.makedirs("examples/streaming/disney-plus-non-navigate/results", exist_ok=True)
+with open("examples/streaming/disney-plus-non-navigate/results/disney-plus-non-navigate_result.json", "w") as f:
     json.dump(result["state_repository"], f, indent=2)

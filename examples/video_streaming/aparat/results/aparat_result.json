@@ -12,25 +12,15 @@
     ],
     "actions": [
       {
-        "type": "type",
+        "type": "navigate",
         "params": {
-          "text": "https://www.aparat.com/aparat",
-          "by": "css selector",
-          "selector": "input.truncate[id=\"input\"][type=\"search\"][autocomplete=\"off\"][role=\"combobox\"][placeholder*=\"Search Google or type a URL\"]",
-          "x": 620.0,
-          "y": 479.0
-        }
-      },
-      {
-        "type": "press_key",
-        "params": {
-          "key": "enter"
+          "url": "https://www.aparat.com/aparat"
         }
       },
       {
         "type": "terminate",
         "params": {
-          "reason": "The user has instructed to terminate the task immediately after completing the first step, which is to navigate to the website 'https://www.aparat.com/aparat'. This step has been completed."
+          "reason": "The task is complete. The instruction requires termination."
         }
       }
     ],
@@ -41,12 +31,6 @@
     "name": "On Aparat Home Page",
     "description": "On Aparat Home Page",
     "checks": [
-      {
-        "type": "text",
-        "params": {
-          "text": "\u0622\u067e\u0627\u0631\u0627\u062a"
-        }
-      },
       {
         "type": "text",
         "params": {
@@ -92,7 +76,7 @@
       {
         "type": "terminate",
         "params": {
-          "reason": "The task is to search for 'Seal' and click on the first search result, then terminate. The search for 'Seal' has been completed. However, the HTML does not show any specific search results to click on. Therefore, I will terminate the task."
+          "reason": "The task is to terminate immediately after clicking on the first search result. Since the HTML does not provide enough information to identify the first search result, I will terminate the task."
         }
       }
     ],
@@ -121,7 +105,7 @@
       {
         "type": "terminate",
         "params": {
-          "reason": "The task is to click on the slider at 0.2, 0.4, and 0.6, waiting 5 seconds between each click, and then terminate. The HTML does not contain a slider element, so I will terminate the task."
+          "reason": "The task is to terminate immediately. There is no slider element visible in the current HTML."
         }
       }
     ],
