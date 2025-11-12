@@ -1,0 +1,390 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "chrome://new-tab-page/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "Disney Plus",
+          "by": "css selector",
+          "selector": "input.truncate[id=\"input\"][type=\"search\"][autocomplete=\"off\"][role=\"combobox\"][placeholder*=\"Search Google or type a URL\"]",
+          "x": 620.0,
+          "y": 479.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "cr-searchbox-match[role=\"option\"]",
+          "x": 620.0,
+          "y": 525.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.eqA2re.UnOTSe.Vwoesf",
+          "x": 84.5,
+          "y": 972.109375
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The Disney Plus website has been successfully loaded."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On Disney Plus Home Page",
+    "description": "On Disney Plus Home Page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "NEW: Get a bundle with Disney+, Hulu, ESPN Unlimited and NFL+ Premium"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.xjtg3l0[data-testid=\"modal_close\"][aria-label*=\"Close Modal\"][type=\"button\"]",
+          "x": 970.0,
+          "y": 549.6171875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a.ngw6jp1.ngw6jp0.ngw6jp7.ngw6jp6.ngw6jp3.ngw6jp2[href=\"/identity/login\"][data-testid=\"log_in\"]",
+          "x": 1117.1640625,
+          "y": 342.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is to terminate immediately after pressing the Log In button. The current HTML state shows a loading screen, indicating that the Log In button has been pressed. Therefore, I should terminate the task."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "Login to Account",
+    "description": "On Login",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Enter your email to continue"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.disneyplus.com/identity/login/enter-email"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "span.leading-lg.text-lg.font-semibold.overflow-hidden.text-ellipsis.whitespace-nowrap"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "",
+          "by": "css selector",
+          "selector": "input.flex-auto.h-full.pt-26.px-16.pb-10.text-form_field_input_text.leading-lg.border-0.bg-transparent.outline-none[id=\"email\"][name=\"email\"][type=\"email\"]",
+          "x": 620.0,
+          "y": 575.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.flex.items-center.justify-center.w-full.h-52.py-14.px-24.rounded-xl.border-2.border-solid.cursor-pointer.outline-0.select-none.transition-colors.text-button_primary_default_text.bg-button_primary_default.border-button_primary_default_border[data-testid=\"continue-btn\"][type=\"submit\"]",
+          "x": 620.0,
+          "y": 655.0
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "",
+          "by": "css selector",
+          "selector": "input.flex-auto.h-full.pt-26.px-16.pb-10.text-form_field_input_text.leading-lg.border-0.bg-transparent.outline-none[aria-describedby=\"password-prompt\"][id=\"password\"][name=\"password\"][type=\"password\"]",
+          "x": 592.0,
+          "y": 575.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.flex.items-center.justify-center.w-full.h-52.py-14.px-24.rounded-xl.border-2.border-solid.cursor-pointer.outline-0.select-none.transition-colors.text-button_primary_default_text.bg-button_primary_default.border-button_primary_default_border[type=\"submit\"]",
+          "x": 620.0,
+          "y": 679.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The current HTML state shows a loading screen. The previous actions were to enter the email, click continue, enter the password, and click the 'Log In' button. According to step 5, I need to terminate immediately."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On Select Profile",
+    "description": "On Select Profile",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Who's watching?"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "h2.padding--bottom-6.text-color--primary"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.sc-fgfRvd.sc-iIHSe.hxutkq[aria-label*=\"profile\"][data-testid=\"profile-avatar-0\"][data-testid=\"profile-avatar-0\"][role=\"button\"]",
+          "x": 444.0,
+          "y": 568.4921875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is to terminate immediately after selecting the profile the profile. The current HTML state shows the Disney+ home page, indicating that the the profile profile has been successfully selected. Therefore, I should terminate the task."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On the Disney Plus Home Page (When Logged In)",
+    "description": "Go to the Show After Logging In In the Home Page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.disneyplus.com/home"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a._180kkgi1.stueet1._180kkgi0.r3t2ihki.r3t2ihp6.r3t2ihtu.r3t2ihyi.r3t2ih23c.r3t2ih8h.r3t2ih9g.t62z114.t62z111[data-testid=\"set-item\"][aria-label*=\"National Geographic\"][href=\"/browse/national-geographic\"]",
+          "x": 768.0859375,
+          "y": 950.25
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is to terminate after waiting 5 seconds on the National Geographic page. The wait is complete, so I am terminating the task."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On National Geographic Channel",
+    "description": "On National Geographic Channel, Go to the First Movie/Show",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Featured"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a._180kkgi1.stueet1._180kkgi0.r3t2ihki.r3t2ihp6.r3t2ihtu.r3t2ihyi.r3t2ih23c.r3t2ih8h.r3t2ih9g[data-testid=\"set-item\"][aria-label*=\"Love+War Select for details on this title.\"][href=\"/browse/entity-87eceaf0-6614-495f-9b08-4b57520641c0\"]",
+          "x": 204.125,
+          "y": 759.9453125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a._14aj777c._14aj7771._14aj7770.r3t2ih21c.r3t2ih23u.r3t2ih24o.r3t2ih9i.r3t2ih9l.r3t2ih10.r3t2ih9g.r3t2ih8i._1055dze3.r3t2ih8r.r3t2ih98._14aj777h._14aj777k._14aj777d._14aj7775._14aj7773._14aj7772.r3t2ihrc.r3t2ihw0._14aj7774.r3t2ih60.r3t2ih3y._1mp1hfw3._1mp1hfw1.r3t2ih10c.fl2b6o4._1mp1hfw2.r3t2ih1do.r3t2ih1ek[aria-label=\"PLAY\"][data-testid=\"playback-action-button\"][href=\"/play/87eceaf0-6614-495f-9b08-4b57520641c0\"]",
+          "x": 140.6171875,
+          "y": 686.5
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is to terminate immediately after clicking on the first movie/show displayed on the National Geographic page to view it. The video is now playing, so I am terminating the task."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On the Movie/Show Page",
+    "description": "Press the Play Button on the Movie Page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Love+War"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "span"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "press_key",
+        "params": {
+          "key": "tab"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a._14aj777c._14aj7771._14aj7770.r3t2ih21c.r3t2ih23u.r3t2ih24o.r3t2ih9i.r3t2ih9l.r3t2ih10.r3t2ih9g.r3t2ih8i._1055dze3.r3t2ih8r.r3t2ih98._14aj777h._14aj777k._14aj777d._14aj7775._14aj7773._14aj7772.r3t2ihrc.r3t2ihw0._14aj7774.r3t2ih60.r3t2ih3y._1mp1hfw3._1mp1hfw1.r3t2ih10c.fl2b6o4._1mp1hfw2.r3t2ih1do.r3t2ih1ek[aria-label=\"PLAY\"][data-testid=\"playback-action-button\"][href=\"/play/87eceaf0-6614-495f-9b08-4b57520641c0\"]",
+          "x": 140.6171875,
+          "y": 686.5
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.button-container[role=\"button\"][aria-label=\"Pause\"]",
+          "x": 646.0,
+          "y": 1263.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.restart-playback.control",
+          "x": 542.0,
+          "y": 1263.0
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.quick-rw.control",
+          "x": 594.0,
+          "y": 1263.0
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.play-button.control",
+          "x": 646.0,
+          "y": 1263.0
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The previous actions were to click on the slider at the 0.6 mark to further advance the video and then wait for 5 seconds. According to step 8, I need to terminate the task."
+        }
+      }
+    ],
+    "end_state": "Action Completed",
+    "executed": []
+  }
+]

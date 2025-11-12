@@ -1,0 +1,196 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "chrome://new-tab-page/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "https://puffer.stanford.edu/accounts/login",
+          "by": "css selector",
+          "selector": "input.truncate[id=\"input\"][type=\"search\"][autocomplete=\"off\"][role=\"combobox\"][placeholder*=\"Search Google or type a URL\"]",
+          "x": 620.0,
+          "y": 479.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete. I have navigated to the login page and waited 5 seconds."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On Puffer Login Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Log in"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://puffer.stanford.edu/accounts/login/"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "button.btn.btn-primary.btn-lg[type=\"submit\"]"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "",
+          "by": "css selector",
+          "selector": "input.form-control[type=\"text\"][placeholder=\"Username\"][name=\"username\"][required=\"\"]",
+          "x": 620.0,
+          "y": 436.0
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "",
+          "by": "css selector",
+          "selector": "input.form-control[type=\"password\"][placeholder=\"Password\"][name=\"password\"][required=\"\"]",
+          "x": 620.0,
+          "y": 490.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "label.custom-control-label[for=\"location\"]",
+          "x": 631.9921875,
+          "y": 537.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.btn.btn-primary.btn-lg[type=\"submit\"]",
+          "x": 620.0,
+          "y": 597.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete. The user has successfully logged in."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On Puffer Channel Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://puffer.stanford.edu/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Stream live TV in your browser. There's no charge.\n           You can watch U.S. TV stations affilia..."
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Watch TV"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.btn.btn-primary.btn-lg[role=\"button\"][href=\"/player/\"]"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a.btn.btn-primary.btn-lg[role=\"button\"][href=\"/player/\"]",
+          "x": 620.0,
+          "y": 754.0
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.list-group-item.list-group-item-action[type=\"button\"][name=\"fox\"]",
+          "x": 1095.0,
+          "y": 544.0
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete. The user has successfully watched the Fox channel."
+        }
+      }
+    ],
+    "end_state": "Puffer Channel Page",
+    "executed": []
+  }
+]

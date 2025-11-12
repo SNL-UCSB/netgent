@@ -1,0 +1,254 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "chrome://new-tab-page/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "https://therokuchannel.roku.com/",
+          "by": "css selector",
+          "selector": "input.truncate[id=\"input\"][type=\"search\"][autocomplete=\"off\"][role=\"combobox\"][placeholder*=\"Search Google or type a URL\"]",
+          "x": 620.0,
+          "y": 479.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete as per the instructions. The Roku Channel website has been loaded and the wait time has elapsed."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On Roku Home Page",
+    "description": "On Roku Home Page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://therokuchannel.roku.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Free Roku Originals, live TV, and all your favorite TV and movies. Sign in to The Roku Channel now!"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a.roku-button.create-account-button.no-underline[href=\"https://my.roku.com/signup?next=https%3A%2F%2Ftherokuchannel.roku.com%2F&source=watch&immediateNext=true\"][aria-label*=\"Create a free account\"]",
+          "x": 607.5,
+          "y": 952.296875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is to terminate after clicking the create account button. The current HTML shows the account creation page. The instructions state to terminate immediately after completing the task."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": [
+      {
+        "name": "On Roku Home Page",
+        "description": "On Roku Home Page",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Create your Roku account"
+            }
+          },
+          {
+            "type": "url",
+            "params": {
+              "url": "https://my.roku.com/signup?next=https%3A%2F%2Ftherokuchannel.roku.com%2F&source=watch&immediateNext=true"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "h2.MuiTypography-root.MuiTypography-h2.css-qvphtw[data-cy=\"signup-title\"]"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "navigate",
+            "params": {
+              "url": "https://therokuchannel.roku.com/"
+            }
+          },
+          {
+            "type": "wait",
+            "params": {
+              "seconds": 5
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "Mafia",
+              "by": "css selector",
+              "selector": "input.MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputAdornedStart.MuiInputBase-inputAdornedEnd.css-7ya9nc[autocomplete=\"off\"][placeholder=\"Search\"][type=\"text\"]",
+              "x": 974.140625,
+              "y": 225.0
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "a[title*=\"Mafia's Greatest Hits\"][href=\"/details/1fdbbae9f63d563499998dcaff07d9ce/mafias-greatest-hits\"]",
+              "x": 173.5,
+              "y": 464.140625
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is complete. The user has navigated to the Roku Channel website, searched for 'Mafia', clicked on the first search result ('Mafia's Greatest Hits'), and now the task is terminated as per the instructions."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "On Roku Home Page",
+    "description": "On Roku Home Page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Create your Roku account"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://my.roku.com/signup?next=https%3A%2F%2Ftherokuchannel.roku.com%2F&source=watch&immediateNext=true"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "h2.MuiTypography-root.MuiTypography-h2.css-qvphtw[data-cy=\"signup-title\"]"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://therokuchannel.roku.com/"
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "Mafia",
+          "by": "css selector",
+          "selector": "input.MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputAdornedStart.MuiInputBase-inputAdornedEnd.css-7ya9nc[autocomplete=\"off\"][placeholder=\"Search\"][type=\"text\"]",
+          "x": 974.140625,
+          "y": 225.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a[title*=\"Mafia's Greatest Hits\"][href=\"/details/1fdbbae9f63d563499998dcaff07d9ce/mafias-greatest-hits\"]",
+          "x": 173.5,
+          "y": 464.140625
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete. The user has navigated to the Roku Channel website, searched for 'Mafia', clicked on the first search result ('Mafia's Greatest Hits'), and now the task is terminated as per the instructions."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On the Movie/Show Page",
+    "description": "Press the Play Button on the Movie Page",
+    "checks": [
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "h1.MuiTypography-root.MuiTypography-h1.font-family-bold.css-o5j0s7"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a.roku-button.padded.icon-play[aria-label*=\"Play Mafia's Greatest Hits\"][href=\"/watch/ce1b0693fbe756388d85a222370f9b9a\"]",
+          "x": 155.828125,
+          "y": 474.7734375
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The HTML state is empty after clicking the play button. Unable to proceed with the task."
+        }
+      }
+    ],
+    "end_state": "Action Completed",
+    "executed": []
+  }
+]

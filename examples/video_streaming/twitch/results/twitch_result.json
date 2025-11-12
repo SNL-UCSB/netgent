@@ -1,0 +1,129 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "chrome://new-tab-page/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "https://www.twitch.tv/",
+          "by": "css selector",
+          "selector": "input.truncate[id=\"input\"][type=\"search\"][autocomplete=\"off\"][role=\"combobox\"][placeholder*=\"Search Google or type a URL\"]",
+          "x": 620.0,
+          "y": 479.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The previous steps successfully navigated to the Twitch website and waited for it to load. The current HTML state shows the Twitch homepage. The task is now complete, so the process should be terminated."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On Twitch Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.twitch.tv/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Cookies and Advertising Choices"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "p.CoreText-sc-1txzju1-0.ScTitleText-sc-d9mj2s-0.bqyYtA.lbYztg.tw-title"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a.ScCoreLink-sc-16kq0mq-0.jUiaVy.tw-link[href=\"/directory/all\"]",
+          "x": 341.609375,
+          "y": 798.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a.ScCoreLink-sc-16kq0mq-0.fytYW.preview-card-channel-link.tw-link[aria-label*=\"hasanabi (Verified) streaming \ud83d\udea8 CHINA DAY3 \ud83d\udea8 HIGH SPEED RAIL STREAM POG BEIJING \u27a1\ufe0f SHANGHAI  w/ @WillNeff @CarolineKwan @AustinShow @Lychee @Marche @StellaChuu\"][href=\"/hasanabi\"]",
+          "x": 454.1640625,
+          "y": 904.015625
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.ScCoreButton-sc-ocjdkq-0.iPkwTD.ScButtonIcon-sc-9yap0r-0.dcNXJO[aria-label*=\"Pause (space/k)\"]",
+          "x": 284.0,
+          "y": 739.75
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.ScCoreButton-sc-ocjdkq-0.iPkwTD.ScButtonIcon-sc-9yap0r-0.dcNXJO[aria-label*=\"Play (space/k)\"]",
+          "x": 284.0,
+          "y": 739.75
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The previous actions successfully navigated to the Twitch website, started playing the HasanAbi stream, paused the video, waited 5 seconds, and unpaused the video. The current HTML state shows the video is playing. The task is now complete, so the process should be terminated."
+        }
+      }
+    ],
+    "end_state": "Twitch Home Page",
+    "executed": []
+  }
+]

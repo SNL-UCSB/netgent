@@ -1,0 +1,417 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "chrome://new-tab-page/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "Disney Plus",
+          "by": "css selector",
+          "selector": "input.truncate[id=\"input\"][type=\"search\"][autocomplete=\"off\"][role=\"combobox\"][placeholder*=\"Search Google or type a URL\"]",
+          "x": 620.0,
+          "y": 479.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "cr-searchbox-match[role=\"option\"]",
+          "x": 620.0,
+          "y": 525.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.eqA2re.UnOTSe.Vwoesf",
+          "x": 84.5,
+          "y": 978.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The Disney Plus website has been successfully loaded, completing the task."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On Disney Plus Home Page",
+    "description": "On Disney Plus Home Page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "NEW: Get a bundle with Disney+, Hulu, ESPN Unlimited and NFL+ Premium"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.xjtg3l0[data-testid=\"modal_close\"][aria-label*=\"Close Modal\"][type=\"button\"]",
+          "x": 970.0,
+          "y": 552.6171875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a.ngw6jp1.ngw6jp0.ngw6jp7.ngw6jp6.ngw6jp3.ngw6jp2[href=\"/identity/login\"][data-testid=\"log_in\"]",
+          "x": 1117.1640625,
+          "y": 342.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is to terminate after clicking the Log In button, which has been done."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "Login to Account",
+    "description": "On Login",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Enter your email to continue"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.disneyplus.com/identity/login/enter-email"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "span.leading-lg.text-lg.font-semibold.overflow-hidden.text-ellipsis.whitespace-nowrap"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "",
+          "by": "css selector",
+          "selector": "input.flex-auto.h-full.pt-26.px-16.pb-10.text-form_field_input_text.leading-lg.border-0.bg-transparent.outline-none[id=\"email\"][name=\"email\"][type=\"email\"]",
+          "x": 620.0,
+          "y": 575.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.flex.items-center.justify-center.w-full.h-52.py-14.px-24.rounded-xl.border-2.border-solid.cursor-pointer.outline-0.select-none.transition-colors.text-button_primary_default_text.bg-button_primary_default.border-button_primary_default_border[data-testid=\"continue-btn\"][type=\"submit\"]",
+          "x": 620.0,
+          "y": 655.0
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "",
+          "by": "css selector",
+          "selector": "input.flex-auto.h-full.pt-26.px-16.pb-10.text-form_field_input_text.leading-lg.border-0.bg-transparent.outline-none[aria-describedby=\"password-prompt\"][id=\"password\"][name=\"password\"][type=\"password\"]",
+          "x": 592.0,
+          "y": 575.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.flex.items-center.justify-center.w-full.h-52.py-14.px-24.rounded-xl.border-2.border-solid.cursor-pointer.outline-0.select-none.transition-colors.text-button_primary_default_text.bg-button_primary_default.border-button_primary_default_border[type=\"submit\"]",
+          "x": 620.0,
+          "y": 679.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task instruction is to terminate after clicking the 'Log In' button. The previous action was to click the 'Log In' button. The current HTML state shows a loading screen, which indicates that the 'Log In' button click was successful. Therefore, I should terminate the task."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On Select Profile",
+    "description": "On Select Profile",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Who's watching?"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "h2.padding--bottom-6.text-color--primary"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.sc-fgfRvd.sc-iIHSe.hxutkq[aria-label*=\"profile\"][data-testid=\"profile-avatar-0\"][data-testid=\"profile-avatar-0\"][role=\"button\"]",
+          "x": 444.0,
+          "y": 568.4921875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task instruction is to terminate after selecting the profile the profile. The previous action was to click on the the profile profile. The current HTML state shows the Disney+ home page, which indicates that the profile selection was successful. Therefore, I should terminate the task."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On the Disney Plus Home Page (When Logged In)",
+    "description": "Go to the Show After Logging In In the Home Page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.disneyplus.com/home"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a._180kkgi1.stueet1._180kkgi0.r3t2ihki.r3t2ihp6.r3t2ihtu.r3t2ihyi.r3t2ih23c.r3t2ih8h.r3t2ih9g.t62z114.t62z111[data-testid=\"set-item\"][aria-label=\"ESPN\"][href=\"/browse/espn\"]",
+          "x": 1079.2421875,
+          "y": 950.25
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete. The ESPN brand page on Disney Plus has been loaded, and the agent has waited for 5 seconds. The task is to terminate."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On ESPN Channel",
+    "description": "On ESPN Channel, Go to the First Movie/Show on the 'Studio Show' Section",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.disneyplus.com/browse/espn"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a._180kkgi1.stueet1._180kkgi0.r3t2ihki.r3t2ihp6.r3t2ihtu.r3t2ihyi.r3t2ih23c.r3t2ih8h.r3t2ih9g[data-testid=\"set-item\"][aria-label*=\"The Rich Eisen Show Disney+ with Badge Released 2025. Talk & Interview, Sports genre. Select for details on this title.\"][href=\"/browse/entity-7f7b2a52-503d-4fb2-aae4-d04b6fedbc07\"]",
+          "x": 204.125,
+          "y": 672.3671875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query requires termination after clicking the first video within the 'Studio Show' section. The previous action was to click on the first video within the 'Studio Show' section. The current HTML state shows the page for 'The Rich Eisen Show'. Therefore, the previous action was successful, and I should terminate the task."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On the Movie/Show Page",
+    "description": "Press the Play Button on the Movie Page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "SUGGESTED"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "DETAILS"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a._14aj777c._14aj7771._14aj7770.r3t2ih21c.r3t2ih23u.r3t2ih24o.r3t2ih9i.r3t2ih9l.r3t2ih10.r3t2ih9g.r3t2ih8i._1055dze3.r3t2ih8r.r3t2ih98._14aj777h._14aj777k._14aj777d._14aj7775._14aj7773._14aj7772.r3t2ihrc.r3t2ihw0._14aj7774.r3t2ih60.r3t2ih3y._1mp1hfw3._1mp1hfw1.r3t2ih10c.fl2b6o4._1mp1hfw2.r3t2ih1do.r3t2ih1ek[aria-label=\"CONTINUE\"][data-testid=\"playback-action-button\"][href=\"/play/de0dd79a-3aa8-49b0-a32d-4f713cc69b06\"]",
+          "x": 164.6484375,
+          "y": 841.0
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "tab"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "space"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a._180kkgi1.stueet1._180kkgi0.r3t2ihki.r3t2ihp6.r3t2ihtu.r3t2ihyi.r3t2ih23c.r3t2ih8h.r3t2ih9g[data-testid=\"set-item\"][aria-label*=\"ESPN+ Fri, 11/7 - The Rich Eisen Show Woody Harrelson, NFL Insider Tom Pelissero, ESPN MLB Insider Jeff Passan, plus \u2018What\u2019s More Likely.' Select to watch this. 3 percent complete\"][href=\"/play/de0dd79a-3aa8-49b0-a32d-4f713cc69b06\"]",
+          "x": 249.5,
+          "y": 438.90625
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.progress-bar__container.progress-bar__no-pointer-events.progress-bar__vod",
+          "x": 595.328125,
+          "y": 1299.0
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.progress-bar__container.progress-bar__no-pointer-events.progress-bar__vod",
+          "x": 595.328125,
+          "y": 1299.0
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete. The video has been advanced to approximately the 0.6 mark, and the agent has waited for 5 seconds. The task is to terminate."
+        }
+      }
+    ],
+    "end_state": "Action Completed",
+    "executed": []
+  }
+]

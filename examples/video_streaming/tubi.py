@@ -1,0 +1,47 @@
+"""This example lets NetGent explore Tubi's on-demand library. It shows the search-and-play sequence for a sample title while keeping credential fields empty.
+"""
+import json
+import os
+from netgent import NetGent, StatePrompt
+from langchain_google_vertexai import ChatVertexAI
+from langchain_google_genai import ChatGoogleGenerativeAI
+from dotenv import load_dotenv
+load_dotenv()
+agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2), llm_enabled=True)
+
+
+prompt = [
+        StatePrompt(
+            name="On Browser Home Page",
+            description="Start the Process",
+            triggers=["If it is on the current condition of the page! (Create trigger based on current page)"],
+            actions=["[1] Press Ctrl+L (or Command+L on macOS) to focus the browser address bar", "[2] Type 'https://tubitv.com/?' into the address bar", "[3] Press Enter to navigate to the site", "[4] Wait 5 seconds for the page to load"]
+        ),
+        StatePrompt(
+            name="On Tubi Home Page",
+            description="On Tubi Home Page",
+            triggers=["If on the home page"],
+            actions=["[1] Click the magnifying-glass search icon in the top navigation to open the Tubi search overlay", "[2] Click inside the search textbox that shows the placeholder 'Search Tubi'", "[3] Type 'Lego' into the Tubi search textbox", "[4] Press Enter to run the search on Tubi", "[5] Wait 5 seconds for the Tubi results grid to appear", "[6] Click the first title card in the Tubi results list"],
+        ),
+        StatePrompt(
+            name="On the Movie/Show Page",
+            description="Press the Play Button on the Movie Page",
+            triggers=["If it is on the Movie/Show Page", "ONLY USE THE ELEMENTS AS A TRIGGER", "Don't use URL as a Trigger"],
+            actions=["wait for the video to load and then click on the play button", "Click on 0.2 of the Slider", "Wait 5 Seconds", "Click on 0.4 of the Slider", "Wait 5 Seconds", "Click on 0.6 of the Slider", "Wait 5 Seconds"],
+            end_state="Action Completed"
+        ),
+    ]
+
+try:
+    with open("examples/streaming/tubi/results/tubi_result.json", "r") as f:
+        result = json.load(f)
+except FileNotFoundError:
+    result = []
+
+result = agent.run(state_prompts=prompt, state_repository=result)
+
+input("Press Enter to continue...")
+# Create directory if it doesn't exist
+os.makedirs("examples/streaming/tubi/results", exist_ok=True)
+with open("examples/streaming/tubi/results/tubi_result.json", "w") as f:
+    json.dump(result["state_repository"], f, indent=2)

@@ -1,0 +1,113 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "chrome://new-tab-page/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "press_key",
+        "params": {
+          "key": "ctrl+l"
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "https://www.youtube.com/watch?v=3BFUm3m3kyE",
+          "by": "css selector",
+          "selector": "input.truncate[id=\"input\"][type=\"search\"][autocomplete=\"off\"][role=\"combobox\"][placeholder*=\"Search Google or type a URL\"]",
+          "x": 620.0,
+          "y": 479.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On the Video Player",
+    "description": "Press the Play Button on the Video Player",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.youtube.com/watch?v=3BFUm3m3kyE"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.ytp-progress-bar[role=\"slider\"][aria-label*=\"Seek slider\"]",
+          "x": 399.5,
+          "y": 613.9375
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.ytp-progress-bar[role=\"slider\"][aria-label*=\"Seek slider\"]",
+          "x": 399.5,
+          "y": 613.9375
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.ytp-progress-bar[role=\"slider\"][aria-label*=\"Seek slider\"]",
+          "x": 399.5,
+          "y": 613.9375
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "Action Completed",
+    "executed": []
+  }
+]
