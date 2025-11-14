@@ -7,7 +7,6 @@
 ### Agent-Based Automation of Network Application Workflows
 
 NetGent is an AI-agent framework for automating complex application workflows to generate realistic network traffic datasets.
-
 Developing generalizable ML models for networking requires data collection from environments with traffic produced by diverse real-world web applications. Existing browser automation tools that aim for diversity, repeatability, realism, and efficiency are often fragile and costly. NetGent addresses this challenge by allowing users to specify workflows as natural-language rules that define state-dependent actions. These specifications are compiled into nondeterministic finite automata (NFAs), which a state synthesis component translates into reusable, executable code.
 
 Key features:
@@ -22,7 +21,7 @@ Key features:
   - Social media
   - Web scraping
 
-By combining the flexibility of language-based agents with the reliability of compiled execution, NetGent provides a scalable foundation for generating diverse and repeatable datasets to advance ML in networking. [^1]
+By combining the flexibility of language-based agents with the reliability of compiled execution, NetGent provides a scalable foundation for generating diverse and repeatable datasets to advance ML in networking.
 
 ## Repository Structure
 
@@ -34,6 +33,9 @@ By combining the flexibility of language-based agents with the reliability of co
 See individual subfolder `README.md` files for details on usage and implementation.
 
 ## NetGent Workflow
+This workflow  illustrates the runtime loop which generates executable code from user prompts.
+<br><br>
+
 
 ![workflow](docs/figures/workflow.png)
 
@@ -41,7 +43,6 @@ See individual subfolder `README.md` files for details on usage and implementati
 
 ![architecture](docs/figures/architecture.png)
 
-[^1]: Credit to Eugene Vuong for primary development.
 
 ## Getting Started
 
