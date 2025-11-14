@@ -27,7 +27,7 @@ prompt = [
     ]
 
 try:
-    with open("browsing/bluesky/results/bluesky_result.json", "r") as f:
+    with open("examples/web_browsing/bluesky/results/bluesky_result.json", "r") as f:
         result = json.load(f)
 except FileNotFoundError:
     result = []
@@ -36,6 +36,6 @@ result = agent.run(state_prompts=prompt, state_repository=result)
 
 input("Press Enter to continue...")
 # Create directory if it doesn't exist
-os.makedirs("browsing/bluesky/results", exist_ok=True)
-with open("browsing/bluesky/results/bluesky_result.json", "w") as f:
+os.makedirs("examples/web_browsing/bluesky/results", exist_ok=True)
+with open("examples/web_browsing/bluesky/results/bluesky_result.json", "w") as f:
     json.dump(result["state_repository"], f, indent=2)

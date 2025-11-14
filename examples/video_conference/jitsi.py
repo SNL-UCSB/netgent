@@ -27,7 +27,7 @@ prompt = [
     ]
 
 try:
-    with open("conference/jitsi/results/jitsi_result.json", "r") as f:
+    with open("examples/video_conference/jitsi/results/jitsi_result.json", "r") as f:
         result = json.load(f)
 except FileNotFoundError:
     result = []
@@ -36,6 +36,6 @@ result = agent.run(state_prompts=prompt, state_repository=result)
 
 input("Press Enter to continue...")
 # Create directory if it doesn't exist
-os.makedirs("conference/jitsi/results", exist_ok=True)
-with open("conference/jitsi/results/jitsi_result.json", "w") as f:
+os.makedirs("examples/video_conference/jitsi/results", exist_ok=True)
+with open("examples/video_conference/jitsi/results/jitsi_result.json", "w") as f:
     json.dump(result["state_repository"], f, indent=2)
