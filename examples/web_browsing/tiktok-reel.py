@@ -40,7 +40,7 @@ prompt = [
 
 
 try:
-    with open("browsing/tiktok-reel/results/tiktok-reel_result.json", "r") as f:
+    with open("examples/web_browsing/tiktok-reel/results/tiktok-reel_result.json", "r") as f:
         result = json.load(f)
 except FileNotFoundError:
     result = []
@@ -49,6 +49,6 @@ result = agent.run(state_prompts=prompt, state_repository=result)
 
 input("Press Enter to continue...")
 # Create directory if it doesn't exist
-os.makedirs("browsing/tiktok-reel/results", exist_ok=True)
-with open("browsing/tiktok-reel/results/tiktok-reel_result.json", "w") as f:
+os.makedirs("examples/web_browsing/tiktok-reel/results", exist_ok=True)
+with open("examples/web_browsing/tiktok-reel/results/tiktok-reel_result.json", "w") as f:
     json.dump(result["state_repository"], f, indent=2)
