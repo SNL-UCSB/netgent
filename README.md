@@ -7,6 +7,7 @@
 ### Agent-Based Automation of Network Application Workflows
 
 NetGent is an AI-agent framework for automating complex application workflows to generate realistic network traffic datasets.
+
 Developing generalizable ML models for networking requires data collection from environments with traffic produced by diverse real-world web applications. Existing browser automation tools that aim for diversity, repeatability, realism, and efficiency are often fragile and costly. NetGent addresses this challenge by allowing users to specify workflows as natural-language rules that define state-dependent actions. These specifications are compiled into nondeterministic finite automata (NFAs), which a state synthesis component translates into reusable, executable code.
 
 Key features:
@@ -33,9 +34,6 @@ By combining the flexibility of language-based agents with the reliability of co
 See individual subfolder `README.md` files for details on usage and implementation.
 
 ## NetGent Workflow
-This workflow  illustrates the runtime loop which generates executable code from user prompts.
-<br><br>
-
 
 ![workflow](docs/figures/workflow.png)
 
@@ -43,8 +41,13 @@ This workflow  illustrates the runtime loop which generates executable code from
 
 ![architecture](docs/figures/architecture.png)
 
-
 ## Getting Started
+
+### API Keys Configuration
+
+NetGent requires API keys for LLM access when running in **Code Generation Mode**. Supported providers include Google Generative AI (Gemini) and Google Vertex AI.
+
+**📖 For detailed instructions on obtaining and configuring API keys, see [API_KEYS.md](API_KEYS.md).**
 
 ### Using the CLI Tool
 
@@ -74,13 +77,14 @@ Note: With `-s` enabled, you can view the browser automation at http://localhost
 **2. Code Generation Mode (`-g`)**
 
 - Synthesizes workflows from high-level, natural language prompts using an LLM (requires prompts, credentials, API keys, and an output file).
+- **API Keys Required**: See [API_KEYS.md](API_KEYS.md) for detailed instructions on obtaining and configuring API keys.
 
 **Example:**
 
 ```bash
 docker run --platform=linux/amd64 --rm -d \
   -p 8080:8080 \
-  -v "$PWD/google_creds.json:/keys.json:ro" \
+  -v "$PWD/api_keys.json:/keys.json:ro" \
   -v "$PWD/examples/prompts/google_prompts.json:/prompts.json:ro" \
   -v "$PWD/out:/out" \
   netgent:amd64 \
@@ -129,6 +133,7 @@ prompts = [
 ]
 
 # To generate a new workflow from prompts
+# See API_KEYS.md for LLM setup instructions
 llm = ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2)
 agent = NetGent(llm=llm, llm_enabled=True)
 results = agent.run(state_prompts=prompts)
@@ -139,3 +144,5 @@ results = agent.run(state_prompts=[], state_repository=your_saved_repo)
 ```
 
 See the example scripts and CLI source for more patterns, and customize credentials or cache directory as needed.
+
+For API key configuration details, refer to [API_KEYS.md](API_KEYS.md).
