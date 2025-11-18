@@ -65,7 +65,7 @@ prompt = [
 
 
 try:
-    with open("examples/streaming/disney-plus-non-navigate/results/disney-plus-non-navigate_result.json", "r") as f:
+    with open("examples/video_streaming/disney-plus-non-navigate/results/disney-plus-non-navigate_result.json", "r") as f:
         result = json.load(f)
 except FileNotFoundError:
     result = []
@@ -74,6 +74,6 @@ result = agent.run(state_prompts=prompt, state_repository=result)
 
 input("Press Enter to continue...")
 # Create directory if it doesn't exist
-os.makedirs("examples/streaming/disney-plus-non-navigate/results", exist_ok=True)
-with open("examples/streaming/disney-plus-non-navigate/results/disney-plus-non-navigate_result.json", "w") as f:
+os.makedirs("examples/video_streaming/disney-plus-non-navigate/results", exist_ok=True)
+with open("examples/video_streaming/disney-plus-non-navigate/results/disney-plus-non-navigate_result.json", "w") as f:
     json.dump(result["state_repository"], f, indent=2)
