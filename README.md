@@ -59,11 +59,13 @@ NetGent provides a flexible command-line interface for automating workflows in t
 - Accepts an optional credentials input and browser cache for persistent sessions.
 
 **Example:**
-
+```bash
+docker build --platform linux/amd64 -t netgent .
+```
 ```bash
 docker run --platform=linux/amd64 --rm -d \
   -p 8080:8080 \
-  -v "$PWD/examples/states/google_result.json:/executable_code.json:ro" \
+  -v "$PWD/examples/basic_example/google_result.json:/executable_code.json:ro" \
   -v "$PWD/out:/out" \
   netgent:amd64 \
   -e /executable_code.json \
