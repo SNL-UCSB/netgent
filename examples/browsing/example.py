@@ -4,7 +4,7 @@ from langchain_google_vertexai import ChatVertexAI
 from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 load_dotenv()
-agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2), llm_enabled=True)
+agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2, vertexai=True, api_key="AQ.Ab8RN6LLLUAcOK2HebZTMs8cmjK9FI11GyC2QDjog0SN236yVA"), llm_enabled=True)
 prompt = [
         StatePrompt(
             name="On Browser Home Page",
@@ -16,7 +16,7 @@ prompt = [
             name="Search for SeleniumBase Python",
             description="On Search Page",
             triggers=["If On Search Page (Find Search Text for the Trigger / Don't Use the URL as a Trigger)"],
-            actions=["[1] Type the 'SeleniumBase Python' into the search box", "[2] Press Enter to search"],
+            actions=["[1] Type the `%search_query%` into the search box", "[2] Press Enter to search"],
         ),
         StatePrompt(
             name="Click on the first result",
@@ -27,13 +27,13 @@ prompt = [
         ),
     ]
 try:
-    with open("examples/states/google_result.json", "r") as f:
+    with open("examples/browsing/results/google_result.json", "r") as f:
         result = json.load(f)
 except FileNotFoundError:
     result = []
 
-result = agent.run(state_prompts=prompt, state_repository=result)
+result = agent.run(state_prompts=prompt, state_repository=result, variables={"search_query": "Eugene is Awesome"})
 
 input("Press Enter to continue...")
-with open("examples/states/google_result.json", "w") as f:
+with open("examples/browsing/results/google_result.json", "w") as f:
     json.dump(result["state_repository"], f, indent=2)

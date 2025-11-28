@@ -20,7 +20,7 @@ class NetGentState(TypedDict):
     recursion_count: Optional[int]
     last_passed_state_name: Optional[str]
     state_timeout_start: Optional[float]
-
+    variables: Optional[dict[str, Any]]
     synthesis_prompt: Optional[str]
     synthesis_choice: Optional[StatePrompt]
     synthesis_triggers: Optional[list[str]]
@@ -180,7 +180,7 @@ class NetGent():
         
     def _state_executor(self, state: NetGentState):
         passed_states = state.get('passed_states', [])
-        self.state_executor.run(passed_states[0])
+        self.state_executor.run(passed_states[0], state.get('variables', {}))
         return {**state}
 
     def _state_synthesis(self, state: NetGentState):
@@ -196,7 +196,7 @@ class NetGent():
         synthesis_state = {"prompt": state.get('synthesis_prompt', '')}
         web_agent_state = self.web_agent.run(user_query="ONLY FOLLOW THE FOLLOWING INSTRUCTION(S):\n"
             + synthesis_state["prompt"]
-            + "\nONCE YOU COMPLETE THE TASK, YOU TERMINATE INMEDIATLY. DO NOT DO ANYTHING ELSE NO MATTER THE RESULT OF THE TASK. THERE WILL BE OTHER STATES TO HANDLE THE RESULT OF THE TASK.")
+            + "\nONCE YOU COMPLETE THE TASK, YOU TERMINATE INMEDIATLY. DO NOT DO ANYTHING ELSE NO MATTER THE RESULT OF THE TASK. THERE WILL BE OTHER STATES TO HANDLE THE RESULT OF THE TASK.", variables=state.get('variables', {}))
         print(web_agent_state)
         
         # Extract actions from web agent output
@@ -243,7 +243,7 @@ class NetGent():
             "messages": web_agent_state.get('messages')
         }
 
-    def run(self, state_prompts: list[StatePrompt] = [], state_repository: list[dict[str, Any]] = []):
+    def run(self, state_prompts: list[StatePrompt] = [], state_repository: list[dict[str, Any]] = [], variables: dict[str, Any] = {}):
         # Accept either a list of state dicts or a dict containing "state_repository"
         if isinstance(state_repository, dict):
             repo_list = state_repository.get("state_repository", [])
@@ -267,6 +267,7 @@ class NetGent():
             "synthesis_choice": None,
             "synthesis_triggers": None,
             "executed_states": [],
+            "variables": variables,
         }
         return self.graph.invoke(state, {"recursion_limit": 100000})
     

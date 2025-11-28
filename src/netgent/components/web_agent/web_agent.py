@@ -9,6 +9,9 @@ from dotenv import load_dotenv
 from ...browser.controller.base import BaseController
 from ...browser.registry import ActionRegistry
 from ...browser.utils import mark_page
+from typing import Any
+import re
+import json
 from netgent.utils.message import Message, format_context, Metadata, ActionOutput
 import time
 import os
@@ -21,7 +24,8 @@ class WebAgentState(TypedDict):
     global_plan: str
     timestep: int
     actions: List[dict]
-
+    variables: dict[str, Any]
+    pending_action: Optional[dict]
 
 class WebAgent():
     def __init__(self, llm: BaseChatModel, controller: BaseController):
@@ -100,9 +104,17 @@ class WebAgent():
         }
 
 
-    def run(self, user_query: str, messages: List[Message] = [], wait_period: float = 0.5):
+    def run(self, user_query: str, messages: List[Message] = [], wait_period: float = 0.5, variables: dict[str, Any] = {}):
         self.wait_period = wait_period
-        state = WebAgentState(user_query=user_query, messages=messages, global_plan="", timestep=0, actions=[])
+        state = WebAgentState(
+            user_query=user_query,
+            messages=messages,
+            global_plan="",
+            timestep=0,
+            actions=[],
+            variables=variables,
+            pending_action=None
+        )
         state = self.graph.invoke(state, { "recursion_limit": 100})
         return state
     
@@ -150,25 +162,56 @@ class WebAgent():
         ])
         print(self.prompt)
         return { **state, "global_plan": response.content }
+
     
-    def _execute(self, state: WebAgentState):
-        # Create the system message with action instructions
+    def _generate(self, state: WebAgentState):
+        # Build the prompt that instructs the LLM to propose the next action
+        variables = state.get("variables", {}) or {}
         system_content = (
             self._get_prompt("RULES_PROMPT") + "\n\n" +
             self._get_prompt("EXECUTE_PROMPT").format(
-                intent=state['user_query'], 
+                intent=state['user_query'],
                 global_plan=state['global_plan']
             ) + "\n\n" +
             self._get_prompt("ACTION_PROMPT")
         )
 
+        if variables:
+            placeholder_examples = "\n".join(
+                [
+                    f"  - `%{key}%` (current value preview: {value})"
+                    for key, value in variables.items()
+                ]
+            )
+            variable_context = (
+                "## Variable Reference\n"
+                "- ALWAYS use the `%variable_name%` placeholder when referencing a value from the table below.\n"
+                "- Never leak literal values from the table; refer to them via their placeholders.\n"
+                "- If no variable applies, then and only then provide a literal value.\n\n"
+                "### Available Variables\n"
+                f"{json.dumps(variables, indent=2)}\n\n"
+                "### How to reference them\n"
+                f"{placeholder_examples}\n\n"
+                "### Example actions\n"
+                "- `type` action text should look like `%search_query%` rather than the literal string.\n"
+                "- `navigate` action URL can be `https://example.com/results?query=%search_query%`.\n"
+                "- If you must compose multiple variables: `\"%username%:%password%\"`."
+            )
+        else:
+            variable_context = (
+                "## Variable Reference\n"
+                "- There are no user-provided variables for this turn.\n"
+                "- Provide literal values directly."
+            )
+
         prompt = ChatPromptTemplate.from_messages([
             SystemMessage(content=system_content),
+            HumanMessage(content=variable_context),
             HumanMessage(content=f"## Previous Action Trajectory:\n{format_context(state['messages'])}\n## Current HTML: {self.prompt}"),
             HumanMessage(content=[
                 {
                     "type": "text",
-                    "text": f"""Screenshot of the Current Page"""
+                    "text": "Screenshot of the Current Page"
                 },
                 {
                     "type": "image",
@@ -179,23 +222,63 @@ class WebAgent():
             ])
         ])
 
-
-
         chain = prompt | self.llm | self.action_parser
         response = chain.invoke({})
 
         state["messages"] += [ActionOutput(**response)]
-        
+
         replayable_action = self._convert_action_to_json(response)
         print(replayable_action)
         state["actions"] = state["actions"] + [replayable_action]
-            
-        # Execute the action using the action registry
-        action_name = replayable_action["type"]
-        action_params = replayable_action["params"]
-        
-        result = self.action_registry.execute(action_name, action_params)
-               
+        state["pending_action"] = replayable_action
+
+        return { **state }
+
+    def _render_variables(self, state: WebAgentState):
+        pending_action = state.get("pending_action")
+        if not pending_action:
+            raise ValueError("No pending action to render. Ensure _generate ran before _render_variables.")
+
+        variables = state.get("variables", {}) or {}
+
+        rendered_action = {
+            "type": pending_action["type"],
+            "params": self._render_value(pending_action["params"], variables)
+        }
+
+        state["pending_action"] = rendered_action
+        return { **state }
+
+    def _render_value(self, value, variables: dict):
+        if isinstance(value, str):
+            pattern = re.compile(r"%([^%]+)%")
+
+            def replace(match):
+                key = match.group(1)
+                if key in variables:
+                    return str(variables[key])
+                return match.group(0)
+
+            return pattern.sub(replace, value)
+        if isinstance(value, dict):
+            return {k: self._render_value(v, variables) for k, v in value.items()}
+        if isinstance(value, list):
+            return [self._render_value(item, variables) for item in value]
+        if isinstance(value, tuple):
+            return tuple(self._render_value(item, variables) for item in value)
+        return value
+
+    def _execute(self, state: WebAgentState):
+        pending_action = state.get("pending_action")
+        if not pending_action:
+            raise ValueError("No pending action to execute. Ensure _render_variables ran before _execute.")
+
+        action_name = pending_action["type"]
+        action_params = pending_action["params"]
+
+        self.action_registry.execute(action_name, action_params)
+
+        state["pending_action"] = None
         state["timestep"] += 1
         return { **state }
     
@@ -218,9 +301,13 @@ class WebAgent():
         workflow = StateGraph(WebAgentState)
         workflow.add_node("annotate", self._annotate)
         workflow.add_node("plan", self._plan)
+        workflow.add_node("generate", self._generate)
+        workflow.add_node("render_variables", self._render_variables)
         workflow.add_node("execute", self._execute)
         workflow.add_edge(START, "annotate")
         workflow.add_edge("annotate", "plan")
-        workflow.add_edge("plan", "execute")
+        workflow.add_edge("plan", "generate")
+        workflow.add_edge("generate", "render_variables")
+        workflow.add_edge("render_variables", "execute")
         workflow.add_conditional_edges("execute", self._should_continue)
         return workflow
