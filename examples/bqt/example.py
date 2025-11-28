@@ -77,7 +77,7 @@ try:
 except FileNotFoundError:
     result = []
 
-result = agent.run(state_prompts=prompts, state_repository=result, variables={"address": "3698 Rollingside Dr, San Jose, CA 95148"})
+result = agent.run(state_prompts=prompts, state_repository=result, variables={"address": "123 Main St, Anytown, USA"})
 
 input("Press Enter to continue...")
 with open("examples/bqt/results/123net_result.json", "w") as f:

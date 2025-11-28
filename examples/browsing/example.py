@@ -32,7 +32,7 @@ try:
 except FileNotFoundError:
     result = []
 
-result = agent.run(state_prompts=prompt, state_repository=result, variables={"search_query": "Eugene is Awesome"})
+result = agent.run(state_prompts=prompt, state_repository=result, variables={"search_query": "NetGent is Awesome"})
 
 input("Press Enter to continue...")
 with open("examples/browsing/results/google_result.json", "w") as f:

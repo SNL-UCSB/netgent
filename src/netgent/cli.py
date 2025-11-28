@@ -123,6 +123,26 @@ def load_prompts(prompts_input: str) -> List[StatePrompt]:
     return prompts
 
 
+def load_variables(variables_input: Optional[str]) -> Dict[str, Any]:
+    """Load variables from a JSON file path or inline JSON string."""
+    if not variables_input:
+        return {}
+
+    if os.path.isfile(variables_input):
+        try:
+            with open(variables_input, 'r') as f:
+                return json.load(f)
+        except json.JSONDecodeError:
+            print(f"Error: Invalid JSON format in variables file '{variables_input}'.")
+            sys.exit(1)
+
+    try:
+        return json.loads(variables_input)
+    except json.JSONDecodeError:
+        print("Error: Invalid JSON format in variables string.")
+        sys.exit(1)
+
+
 def create_llm(api_keys: Dict[str, str]) -> Any:
     """Create LLM instance based on available API keys."""
     # Try Google Generative AI first
@@ -171,9 +191,12 @@ def execution_mode(args):
         print("No browser cache specified - using fresh browser session")
     print("Starting execution...")
     
+    # Load variables (optional)
+    variables = load_variables(getattr(args, 'variables', None))
+
     # Run the agent
     try:
-        result = agent.run(state_prompts=[], state_repository=executable_code)
+        result = agent.run(state_prompts=[], state_repository=executable_code, variables=variables)
         print("Execution completed!")
         return result
     finally:
@@ -205,6 +228,9 @@ def generation_mode(args):
     # Create LLM instance
     llm = create_llm(api_keys)
     
+    # Load variables (optional)
+    variables = load_variables(getattr(args, 'variables', None))
+
     # Initialize agent with LLM enabled (generation mode)
     # Pass cache directory to browser session if available
     agent = NetGent(llm=llm, llm_enabled=True, user_data_dir=cache_file)
@@ -216,7 +242,7 @@ def generation_mode(args):
     
     # Run the agent
     try:
-        result = agent.run(state_prompts=prompts, state_repository=[])
+        result = agent.run(state_prompts=prompts, state_repository=[], variables=variables)
         print("Code generation completed!")
         return result
     finally:
@@ -239,10 +265,11 @@ Examples:
   # Code Execution Mode (credentials optional)
   netgent -e executable_code.json
   netgent -e executable_code.json credentials.json
+  netgent -e executable_code.json credentials.json --variables '{"search_query": "widgets"}'
   netgent -e executable_code.json '{"browser_cache_file": "/path/to/cache"}' -s
   
   # Code Generation Mode (credentials required)
-  netgent -g api_keys.json credentials.json prompts.json
+  netgent -g api_keys.json credentials.json prompts.json --variables '{"search_query": "widgets"}'
   netgent -g api_keys.json credentials.json '{"name": "test", "triggers": [], "actions": []}' -s
         """
     )
@@ -289,6 +316,13 @@ Examples:
         metavar='DIR',
         default=None,
         help='Browser user data directory (overrides credentials.browser_cache_file)'
+    )
+    parser.add_argument(
+        '--variables',
+        dest='variables',
+        metavar='VARS',
+        default=None,
+        help='Variables JSON (file path or inline string) for use as %variable_name%'
     )
     parser.add_argument(
         '--version',
