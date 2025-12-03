@@ -177,6 +177,23 @@ class PyAutoGUIController(BaseController):
         # If coordinates are provided but not by/selector, use coordinates
         elif x is not None and y is not None:
             pyautogui.moveTo(x, y, duration=0.2)
+        else:
+            # If no element and no coordinates, move to right side of window
+            try:
+                viewport_width = self.driver.execute_cdp_cmd("Runtime.evaluate", {"expression": "window.innerWidth", "returnByValue": True})["result"]["value"]
+                viewport_height = self.driver.execute_cdp_cmd("Runtime.evaluate", {"expression": "window.innerHeight", "returnByValue": True})["result"]["value"]
+                
+                # Target coordinates: 75% width (right side), 50% height
+                scroll_x_val = self.driver.execute_cdp_cmd("Runtime.evaluate", {"expression": "window.pageXOffset || document.documentElement.scrollLeft", "returnByValue": True})["result"]["value"]
+                scroll_y_val = self.driver.execute_cdp_cmd("Runtime.evaluate", {"expression": "window.pageYOffset || document.documentElement.scrollTop", "returnByValue": True})["result"]["value"]
+                
+                target_doc_x = (viewport_width * 0.95) + scroll_x_val
+                target_doc_y = (viewport_height * 0.5) + scroll_y_val
+                
+                screen_x, screen_y = self.get_element_coordinates(target_doc_x, target_doc_y, 0, 0, percentage=0)
+                pyautogui.moveTo(screen_x, screen_y, duration=0.2)
+            except Exception as e:
+                logger.warning(f"Could not move to right side of window: {e}")
         
         if direction == "up":
             pyautogui.scroll(pixels)

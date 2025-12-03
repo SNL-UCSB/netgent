@@ -1,0 +1,212 @@
+[
+  {
+    "name": "Navigate To Michigan Broadband Service Website",
+    "description": "Navigated to the Michigan Broadband Service Website",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "about:blank"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://michbbs.com/internet#block-bfe9ac9d035e8cd1ff08"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. The page has been navigated to and the user has instructed to terminate."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "Popup",
+    "description": "Internet is not avaliable for this address",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Join MBS mailing list."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a.sqs-popup-overlay-close[role=\"button\"][aria-label=\"Close\"]",
+          "x": 909.3828125,
+          "y": 399.796875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. The popup has been closed and the user has instructed to terminate."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "Search for Address in Michigan Broadband Service Website",
+    "description": "Searched for the address on the Michigan Broadband Service Website",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Search Your Address"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.cf-input.cf-large.street.ui-autocomplete-input[autocomplete=\"none\"][id=\"locate_address\"][name=\"locate[address]\"][placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"]",
+          "x": 333.984375,
+          "y": 294.84375
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%zip_code%",
+          "by": "css selector",
+          "selector": "input.cf-input.cf-large.zip[id=\"locate_zip\"][name=\"locate[zip]\"][placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"]",
+          "x": 768.7890625,
+          "y": 294.84375
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "tab"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "r"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a[href=\"/front_end\"][alt*=\"Enter a new address\"]",
+          "x": 618.4375,
+          "y": 743.703125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The current HTML state shows that the 'Search For Your Address' field is no longer visible. The next step is TERMINATION."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "If it has `*If you would like to update the location of your address please drag and drop the blue pin to the rooftop of your service address.`",
+    "description": "If it has `If you would like to update the location of your address please drag and drop the blue pin to the rooftop of your service address.`",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "+"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+          "x": 1100.8984375,
+          "y": 869.0703125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. The previous actions were to scroll down the page and click the 'Next' button. The current HTML state shows that the 'Next' button has been clicked and the page has been updated. The next step is TERMINATION."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "Internet Avaliable in Address on the Michigan Broadband Service Website",
+    "description": "Internet is avaliable for this address",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Great News!"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. The previous actions were to input the address and zip code, press tab and 'r' keys, press enter, click the 'Next' button, and scroll down the page. The current HTML state shows that the page has been updated. The next step is TERMINATION."
+        }
+      }
+    ],
+    "end_state": "Address is Avaliable",
+    "executed": []
+  },
+  {
+    "name": "Internet Is Not Avaliable in Address on the Michigan Broadband Service Website",
+    "description": "Internet is not avaliable for this address",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Service is not currently available in your area."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Terminating as instructed."
+        }
+      }
+    ],
+    "end_state": "Address is Not Avaliable",
+    "executed": []
+  }
+]

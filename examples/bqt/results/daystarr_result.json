@@ -1,0 +1,136 @@
+[
+  {
+    "name": "Navigate To Daystarr",
+    "description": "Navigated to the Daystarr Website",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "about:blank"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://daystarr.net/search-address/"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is to terminate after navigating to the specified URL."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "Search for Address in Daystarr Website",
+    "description": "Searched for the address on the Daystarr Website",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://daystarr.net/search-address/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.ui-autocomplete-input[id=\"myInput\"][type=\"text\"][name=\"myAddress\"][placeholder*=\"Your Address\"][autocomplete=\"off\"]",
+          "x": 620.0,
+          "y": 634.03125
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input[id=\"myAnonymous\"][type=\"checkbox\"]",
+          "x": 237.5,
+          "y": 694.03125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input[type=\"button\"]",
+          "x": 619.9921875,
+          "y": 799.03125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "Internet Avaliable in Address on the Daystarr Website",
+    "description": "Internet is avaliable for this address",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Select Your Speed"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "Address is Avaliable",
+    "executed": []
+  },
+  {
+    "name": "Internet Is Not Avaliable in Address on the Daystarr Website",
+    "description": "Internet is not avaliable for this address",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Check Another Address"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete as per the instructions."
+        }
+      }
+    ],
+    "end_state": "Address is Not Avaliable",
+    "executed": []
+  }
+]

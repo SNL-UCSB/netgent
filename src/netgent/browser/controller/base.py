@@ -114,25 +114,39 @@ class BaseController(ABC, metaclass=ActionTriggerMeta):
 
     def is_element_visible_in_viewpoint(self, element) -> bool:
         return self.driver.execute_script("""
-    const elem = arguments[0];
-    const style = window.getComputedStyle(elem);
-    const rect = elem.getBoundingClientRect();
-
-    const isVisible = (
-        style.display !== 'none' &&
-        style.visibility !== 'hidden' &&
-        style.opacity !== '0'
-    );
-
-    const isInViewport = (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-
-    return isVisible && isInViewport;
-""", element)
+            const elem = arguments[0];
+            const rect = elem.getBoundingClientRect();
+            const style = window.getComputedStyle(elem);
+            
+            // Check 1: CSS Visibility
+            if (style.display === 'none' || style.visibility === 'hidden' || style.opacity === '0') {
+                return false;
+            }
+            
+            // Check 2: Dimensions
+            if (rect.width === 0 || rect.height === 0) {
+                return false;
+            }
+            
+            // Check 3: Center point in viewport
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            if (
+                centerX < 0 || 
+                centerY < 0 || 
+                centerX > (window.innerWidth || document.documentElement.clientWidth) || 
+                centerY > (window.innerHeight || document.documentElement.clientHeight)
+            ) {
+                return false;
+            }
+            
+            // Check 4: Occlusion (is it the top element?)
+            const elementAtPoint = document.elementFromPoint(centerX, centerY);
+            if (!elementAtPoint) return false;
+            
+            return elem.contains(elementAtPoint) || elementAtPoint === elem;
+        """, element)
 
     # -- Trigger Methods --
     @trigger(name="element")

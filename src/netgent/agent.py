@@ -11,7 +11,10 @@ from netgent.components.state_synthesis import StateSynthesis
 import time
 from netgent.components.web_agent import WebAgent
 from netgent.utils.message import StatePrompt
+from netgent.errors import NetGentError, NetGentExecutionError
 load_dotenv()
+
+
 
 class NetGentState(TypedDict):
     state_repository: Optional[list[dict[str, Any]]]
@@ -19,6 +22,7 @@ class NetGentState(TypedDict):
     passed_states: Optional[list[dict[str, Any]]]
     recursion_count: Optional[int]
     last_passed_state_name: Optional[str]
+    consecutive_state_count: Optional[int]
     state_timeout_start: Optional[float]
     variables: Optional[dict[str, Any]]
     synthesis_prompt: Optional[str]
@@ -27,12 +31,12 @@ class NetGentState(TypedDict):
     executed_states: Optional[list[dict[str, Any]]]
 
 class NetGent():
-    def __init__(self, driver: Driver = None, controller: BaseController = None, llm: BaseChatModel = None, config: Optional[dict] = None, llm_enabled: bool = True, user_data_dir: Optional[str] = None):
+    def __init__(self, driver: Driver = None, controller: BaseController = None, llm: BaseChatModel = None, config: Optional[dict] = None, llm_enabled: bool = True, user_data_dir: Optional[str] = None, proxy: Optional[str] = None):
         self.llm = llm
         self.llm_enabled = llm_enabled
         self.driver = driver
         if self.driver is None:
-            self.driver = BrowserSession(user_data_dir=user_data_dir).driver
+            self.driver = BrowserSession(user_data_dir=user_data_dir, proxy=proxy).driver
         self.controller = controller
         if self.controller is None:
             self.controller = PyAutoGUIController(self.driver)
@@ -44,6 +48,7 @@ class NetGent():
             "recursion_limit": 100,
             "allow_multiple_states": False,
             "state_timeout": 30,
+            "max_consecutive_repeats": 3,
         }
         self.config = {**default_config, **(config or {})}
         
@@ -53,6 +58,26 @@ class NetGent():
         self.state_synthesis = StateSynthesis(self.llm, self.controller)
         self.workflow = StateGraph(NetGentState)
         self.graph = self.compile()
+
+    def set_action_wait_time(self, seconds: float):
+        """
+        Set the wait time between actions in seconds.
+        
+        Args:
+            seconds (float): The time to wait between actions.
+        """
+        self.config["action_period"] = seconds
+        if hasattr(self, "state_executor"):
+            self.state_executor.config["action_period"] = seconds
+
+    def set_state_wait_time(self, seconds: float):
+        """
+        Set the wait time between state checks (transition period) in seconds.
+        
+        Args:
+            seconds (float): The time to wait between state checks.
+        """
+        self.config["transition_period"] = seconds
     
     def compile(self):
         self.workflow.add_node("program_controller", self._program_controller)
@@ -99,7 +124,14 @@ class NetGent():
         recursion_count = state.get('recursion_count', 0)
         if recursion_count >= self.config["recursion_limit"]:
             print(f"Recursion limit of {self.config['recursion_limit']} reached")
-            return END
+            raise NetGentExecutionError("RecursionLimitExceeded", f"Recursion limit of {self.config['recursion_limit']} reached")
+            
+        # Check consecutive repeats limit
+        consecutive_state_count = state.get('consecutive_state_count', 0)
+        max_repeats = self.config.get("max_consecutive_repeats")
+        if max_repeats and consecutive_state_count > max_repeats:
+            print(f"Max consecutive repeats of {max_repeats} reached for state '{state.get('last_passed_state_name')}'")
+            raise NetGentExecutionError("MaxConsecutiveRepeatsExceeded", f"Max consecutive repeats of {max_repeats} reached for state '{state.get('last_passed_state_name')}'")
         
         passed_states = state.get('passed_states', [])
         
@@ -110,7 +142,7 @@ class NetGent():
                 return "state_synthesis"
             else:
                 print("No states passed and LLM disabled - ending execution")
-                return END
+                raise NetGentExecutionError("NoStatesPassed", "No states passed and LLM disabled")
         
         # If states passed, route to state executor
         return "state_executor"
@@ -135,7 +167,7 @@ class NetGent():
                     elapsed_time = time.time() - state_timeout_start
                     if elapsed_time > self.config["state_timeout"]:
                         print(f"State '{current_state.get('name')}' timeout of {self.config['state_timeout']} seconds exceeded")
-                        return END
+                        raise NetGentExecutionError("StateTimeoutExceeded", f"State '{current_state.get('name')}' timeout of {self.config['state_timeout']} seconds exceeded")
                     print(f"State '{current_state.get('name')}' repeated - timer running: {elapsed_time:.2f}s")
         
         return "program_controller"
@@ -149,18 +181,21 @@ class NetGent():
         # Update recursion count
         recursion_count = state.get('recursion_count', 0) + 1
         
-        # Update timeout tracking
+        # Update timeout tracking and consecutive count
         last_passed_state_name = state.get('last_passed_state_name')
         state_timeout_start = state.get('state_timeout_start')
+        consecutive_state_count = state.get('consecutive_state_count', 0)
         
         if len(passed_states) == 0:
             # Reset state timeout when no states pass
             state_timeout_start = None
             last_passed_state_name = None
+            consecutive_state_count = 0
         else:
             # Track state timeout
             current_state_name = passed_states[0].get('name')
             if last_passed_state_name == current_state_name:
+                consecutive_state_count += 1
                 is_continuous = passed_states[0].get('config', {}).get('continuous', False)
                 if not is_continuous:
                     if state_timeout_start is None:
@@ -169,6 +204,7 @@ class NetGent():
             else:
                 state_timeout_start = None
                 last_passed_state_name = current_state_name
+                consecutive_state_count = 1
         
         return {
             **state,
@@ -176,6 +212,7 @@ class NetGent():
             "recursion_count": recursion_count,
             "last_passed_state_name": last_passed_state_name,
             "state_timeout_start": state_timeout_start,
+            "consecutive_state_count": consecutive_state_count,
         }
         
     def _state_executor(self, state: NetGentState):
@@ -269,6 +306,9 @@ class NetGent():
             "executed_states": [],
             "variables": variables,
         }
-        return self.graph.invoke(state, {"recursion_limit": 100000})
+        try:
+            return self.graph.invoke(state, {"recursion_limit": 100000})
+        except NetGentExecutionError as e:
+            raise NetGentError(name=e.name, message=e.message) from e
     
 

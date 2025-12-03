@@ -1,10 +1,11 @@
 import json
+import os
 from netgent import NetGent, StatePrompt
 from langchain_google_vertexai import ChatVertexAI
 from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 load_dotenv()
-agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2, vertexai=True, api_key="AQ.Ab8RN6LLLUAcOK2HebZTMs8cmjK9FI11GyC2QDjog0SN236yVA"), llm_enabled=True)
+agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2, vertexai=True, api_key=os.getenv("GOOGLE_API_KEY")), llm_enabled=True)
 prompt = [
         StatePrompt(
             name="On Browser Home Page",

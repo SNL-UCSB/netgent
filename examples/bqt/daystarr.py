@@ -1,0 +1,179 @@
+import json
+import os
+import sys
+import pandas as pd
+from netgent.errors import NetGentError
+
+from bqtdb.main import BQTDatabase
+
+from netgent import NetGent, StatePrompt
+from langchain_google_vertexai import ChatVertexAI
+from langchain_google_genai import ChatGoogleGenerativeAI
+from dotenv import load_dotenv
+load_dotenv()
+prompts = [
+        StatePrompt(
+            name="Navigate To Daystarr",
+            description="Navigated to the Daystarr Website",
+            triggers=["If it is on the chrome incognito mode"],
+            actions=["Go to https://daystarr.net/search-address/", "TERMINATE AT THIS POINT"],
+        ),
+        StatePrompt(
+            name="Asking fo Residental Address or Business Address",
+            description="Asking for the residental address or business address",
+            triggers=["Asking for the residental address or business address"],
+            actions=["Choose the residental address", "TERMINATE AT THIS POINT"],
+        ),
+        StatePrompt(
+            name="Search for Address in Daystarr Website",
+            description="Searched for the address on the Daystarr Website",
+            triggers=["If on the website"],
+            actions=["FOLLOW THESE INSTRUCTIONS CLOSELY", "Click the address bar", "Type `%address%` into input field", "press down key", "press enter key", "Press 'I'd like to remain anonymous' button", "press the Check Button", "TERMINATE AT THIS POINT"],
+        ),
+        StatePrompt(
+            name="Internet Avaliable in Address on the Daystarr Website",
+            description="Internet is avaliable for this address",
+            triggers=["ONLY GET THE TEXT 'Select Your Speed' ONLY. NOTHING ELSE"],
+            actions=["TERMINATE AT THIS POINT"],
+            end_state="Address is Avaliable"
+        ),
+        StatePrompt(
+            name="Internet Is Not Avaliable in Address on the Daystarr Website",
+            description="Internet is not avaliable for this address",
+            triggers=["ONLY GET THE 'Check Another Address' TEXT ONLY"],
+            actions=["TERMINATE AT THIS POINT"],
+            end_state="Address is Not Avaliable"
+        ),
+    ]
+
+
+# Connect to DB and fetch addresses
+print("Fetching addresses from database...")
+addresses = []
+with BQTDatabase() as db:
+    # Fetching 5 addresses for demonstration
+    rows = db.query("SELECT * FROM bqtplus.daystarr_addresses LIMIT 1000")
+    for row in rows:
+        # Construct address string
+        # Clean up Zip code (remove .0 if present)
+        zip_code = str(row['PropertyZip'])
+        if zip_code.endswith('.0'):
+            zip_code = zip_code[:-2]
+            
+        full_address = f"{row['PropertyFullStreetAddress']}, {row['PropertyCity']}, {row['PropertyState']}, {zip_code}"
+        addresses.append(full_address)
+
+    # Fetching addresses from michigan_addresses
+    print("Fetching addresses from bqtplus.michigan_addresses...")
+    rows_mi = db.query("SELECT * FROM bqtplus.michigan_addresses LIMIT 1000")
+    for row in rows_mi:
+        # Construct address string
+        # Clean up Zip code (remove .0 if present)
+        zip_code = str(row['PropertyZip'])
+        if zip_code.endswith('.0'):
+            zip_code = zip_code[:-2]
+            
+        full_address = f"{row['PropertyFullStreetAddress']}, {row['PropertyCity']}, {row['PropertyState']}, {zip_code}"
+        addresses.append(full_address)
+
+print(f"Found {len(addresses)} addresses to process.")
+
+# Initialize CSV file
+evals_dir = "examples/bqt/evals"
+os.makedirs(evals_dir, exist_ok=True)
+csv_path = os.path.join(evals_dir, "daystarr_2_results.csv")
+
+if not os.path.exists(csv_path):
+    df = pd.DataFrame(columns=['address', 'error', 'service_available'])
+    df.to_csv(csv_path, index=False)
+
+for i, address in enumerate(addresses):
+    print(f"\nProcessing address {i+1}/{len(addresses)}: {address}")
+    
+    try:
+        with open("examples/bqt/results/daystarr_result.json", "r") as f:
+            existing_data = json.load(f)
+            # Ensure it's a list
+            if isinstance(existing_data, dict):
+                 state_repository = existing_data.get("state_repository", [])
+            else:
+                state_repository = existing_data
+    except (FileNotFoundError, json.JSONDecodeError):
+        state_repository = []
+    
+    # Initialize the agent
+    agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2, vertexai=True, api_key=os.getenv("GOOGLE_API_KEY"), project=os.getenv("GOOGLE_CLOUD_PROJECT")), proxy=os.getenv("PROXY_URL"), llm_enabled=False)
+    
+    # Initialize variables for logging
+    error_msg = None
+    service_available = "Unknown"
+    
+    try:
+        # Run the agent
+        result = agent.run(
+            state_prompts=prompts, 
+            state_repository=state_repository, 
+            variables={"address": address}
+        )
+
+        agent.set_state_wait_time(5)
+
+        
+        # Update repository for next iteration
+        state_repository = result["state_repository"]
+        
+        # Extract end state
+        passed_states = result.get("passed_states", [])
+        if passed_states and passed_states[0].get("end_state"):
+            service_available = passed_states[0].get("end_state")
+        
+    except NetGentError as e:
+        print(f"Error processing address: {e}")
+        error_msg = str(e)
+        # Save screenshot on error
+        if agent and agent.driver:
+            try:
+                errors_dir = "examples/bqt/evals/errors/daystarr_2"
+                os.makedirs(errors_dir, exist_ok=True)
+                safe_address = address.replace(" ", "_")
+                screenshot_path = os.path.join(errors_dir, f"{safe_address}.png")
+                agent.driver.save_screenshot(screenshot_path)
+                print(f"Saved screenshot to {screenshot_path}")
+            except Exception as screenshot_err:
+                print(f"Failed to save screenshot: {screenshot_err}")
+        pass
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        error_msg = str(e)
+        # Save screenshot on error
+        if agent and agent.driver:
+            try:
+                errors_dir = "examples/bqt/evals/errors"
+                os.makedirs(errors_dir, exist_ok=True)
+                safe_address = address.replace(" ", "_")
+                screenshot_path = os.path.join(errors_dir, f"{safe_address}.png")
+                agent.driver.save_screenshot(screenshot_path)
+                print(f"Saved screenshot to {screenshot_path}")
+            except Exception as screenshot_err:
+                print(f"Failed to save screenshot: {screenshot_err}")
+    finally:
+        # Close the browser
+        if agent and agent.driver:
+            agent.driver.quit()
+        
+        # Log to CSV
+        new_row = {
+            'address': address,
+            'error': error_msg,
+            'service_available': service_available
+        }
+        df_row = pd.DataFrame([new_row])
+        df_row.to_csv(csv_path, mode='a', header=False, index=False)
+        print(f"Logged result for {address}")
+    
+    # Save intermediate results
+    with open("examples/bqt/results/daystarr_result.json", "w") as f:
+       json.dump(state_repository, f, indent=2)
+
+print("\nAll addresses processed.")
+# input("Press Enter to continue...")

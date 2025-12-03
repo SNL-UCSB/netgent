@@ -1,0 +1,431 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "chrome://new-tab-page/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://www.google.com/"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query asks to navigate to https://www.google.com/. The previous action was to navigate to the same URL. The current HTML state shows that the page has loaded successfully. Therefore, the task is complete."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "Search for SeleniumBase Python",
+    "description": "On Search Page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "About"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Store"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Gmail"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Images"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "AI Mode"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Breeze through Black Friday with the Google Shopping deals hub"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Advertising"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Business"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "How Search works"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Applying AI towards science and the environment"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Privacy"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Terms"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Settings"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.MV3Tnb[href=\"https://about.google/?fg=1&utm_source=google-US&utm_medium=referral&utm_campaign=hp-header\"]"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.MV3Tnb[href=\"https://store.google.com/US?utm_source=hp_header&utm_medium=google_ooo&utm_campaign=GS100042&hl=en-US\"]"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.gb_Z[aria-label*=\"Gmail \"][href=\"https://mail.google.com/mail/&ogbl\"][target=\"_top\"]"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.gb_Z[aria-label*=\"Search for Images \"][href=\"https://www.google.com/imghp?hl=en&ogbl\"][target=\"_top\"]"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "span"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.m5Qfy[role=\"link\"]"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.pHiOh[href=\"https://www.google.com/intl/en_us/ads/?subid=ww-ww-et-g-awa-a-g_hpafoot1_1!o2&utm_source=google.com&utm_medium=referral&utm_campaign=google_hpafooter&fg=1\"]"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.pHiOh[href=\"https://www.google.com/services/?subid=ww-ww-et-g-awa-a-g_hpbfoot1_1!o2&utm_source=google.com&utm_medium=referral&utm_campaign=google_hpbfooter&fg=1\"]"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.pHiOh[href=\"https://google.com/search/howsearchworks/?fg=1\"]"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "span.ktLKi"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.pHiOh[href=\"https://policies.google.com/privacy?hl=en&fg=1\"]"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.pHiOh[href=\"https://policies.google.com/terms?hl=en&fg=1\"]"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "div.ayzqOc.pHiOh"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%search_query%",
+          "by": "css selector",
+          "selector": "textarea.gLFyf[title=\"Search\"][aria-label=\"Search\"][placeholder=\"\"][autocomplete=\"off\"][id=\"APjFqb\"][name=\"q\"][role=\"combobox\"]",
+          "x": 546.4296875,
+          "y": 510.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The previous steps were to type '%search_query%' into the search box and press Enter. The current HTML state shows the search results page for \"Eugene is Awesome\". The task is now complete as per the user's instructions."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "Click on the first result",
+    "description": "On First Result Page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Do you all think Eugene is a good character?"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "h3.LC20lb.MBeuO.DKV0Md[id=\"_h34paYP-K8G6kPIP6t3L4Qg_46\"]"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Reddit\u00a0\u00b7\u00a0r/thewalkingdead"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "span.VuuXrf"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a.zReHs[href=\"https://www.reddit.com/r/thewalkingdead/comments/xb84ht/do_you_all_think_eugene_is_a_good_character/\"]",
+          "x": 276.2421875,
+          "y": 395.78125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query asks to click on the first search result on the Google Search results page for \"Eugene is Awesome\". The previous action was to click on the first search result on Google, which was a Reddit link with the text \"Do you all think Eugene is a good character?\". The current HTML state shows the page for that Reddit link. Since the goal was to click the first search result and we are now on that page, the task is complete."
+        }
+      }
+    ],
+    "end_state": "Action Completed",
+    "executed": [
+      {
+        "name": "Click on the first result",
+        "description": "On First Result Page",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Do you all think Eugene is a good character?"
+            }
+          },
+          {
+            "type": "url",
+            "params": {
+              "url": "https://www.google.com/search?q=Eugene+is+Awesome&sca_esv=e5171c9a1aba7a5e&source=hp&ei=xX8paZjKNZ_WkPIPg-ioyA8&iflsig=AOw8s4IAAAAAaSmN1T-Y9oULZ7_7wMANKSD4BrvX2y_S&ved=0ahUKEwjYwKTP15SRAxUfK0QIHQM0CvkQ4dUDCBA&uact=5&oq=Eugene+is+Awesome&gs_lp=Egdnd3Mtd2l6IhFFdWdlbmUgaXMgQXdlc29tZTIFECEYoAEyBRAhGKABMgUQIRigAUjtQVDwBFjsN3ABeACQAQCYAXOgAc0LqgEEMTMuNLgBA8gBAPgBAZgCEqACoAyoAgrCAgoQABgDGOoCGI8BwgIKEC4YAxjqAhiPAcICCxAAGIAEGLEDGIMBwgIREC4YgAQYsQMY0QMYgwEYxwHCAggQLhiABBixA8ICFBAuGIAEGLEDGNEDGIMBGMcBGIoFwgILEC4YgAQY0QMYxwHCAgsQLhiABBixAxiDAcICCBAAGIAEGLEDwgIOEC4YgAQYsQMY0QMYxwHCAgUQABiABMICBRAuGIAEwgIIEC4YgAQY1ALCAgsQLhiABBjHARivAcICBxAuGIAEGArCAgsQABiABBiGAxiKBcICBhAAGBYYHpgDA_EFnRwjkiZmuvuSBwQxNC40oAetuAGyBwQxMy40uAedDMIHBTIuOS43yAc2&sclient=gws-wiz&sei=1H8paZP2Ee-S0PEP07uIqAY"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "a.zReHs[href=\"https://www.reddit.com/r/thewalkingdead/comments/xb84ht/do_you_all_think_eugene_is_a_good_character/\"]",
+              "x": 276.09375,
+              "y": 395.78125
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "Action Completed",
+        "executed": []
+      },
+      {
+        "name": "Click on the first result",
+        "description": "On First Result Page",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Do you all think Eugene is a good character?"
+            }
+          },
+          {
+            "type": "url",
+            "params": {
+              "url": "https://www.google.com/search?q=Eugene+is+Awesome&sca_esv=e5171c9a1aba7a5e&source=hp&ei=_X8pabejOd7pkPIPwpjpqAE&iflsig=AOw8s4IAAAAAaSmODU6DkUmljDkIhnEPpYdVn5Per4kL&ved=0ahUKEwj3lYLq15SRAxXeNEQIHUJMGhUQ4dUDCBA&uact=5&oq=Eugene+is+Awesome&gs_lp=Egdnd3Mtd2l6IhFFdWdlbmUgaXMgQXdlc29tZTIFECEYoAEyBRAhGKABMgUQIRigAUi-QVD7BFixN3ABeACQAQCYAWWgAecLqgEEMTMuNLgBA8gBAPgBAZgCEqACxAyoAgrCAgoQABgDGOoCGI8BwgINEC4YAxjUAhjqAhiPAcICCxAAGIAEGLEDGIMBwgIREC4YgAQYsQMY0QMYgwEYxwHCAhEQLhiABBixAxiDARiKBRiNBsICCBAuGIAEGLEDwgIUEC4YgAQYsQMY0QMYgwEYxwEYigXCAgsQLhiABBjRAxjHAcICERAAGIAEGLEDGIMBGIoFGI0GwgILEC4YgAQYsQMYgwHCAggQABiABBixA8ICDhAuGIAEGLEDGNEDGMcBwgIFEAAYgATCAgUQLhiABMICCBAuGIAEGNQCwgILEC4YgAQYxwEYrwHCAgcQLhiABBgKwgILEAAYgAQYhgMYigXCAgYQABgWGB6YAwPxBY20xHCRf8N1kgcEMTEuN6AHi7cBsgcEMTAuN7gHwQzCBwYyLjYuMTDIBzw&sclient=gws-wiz&sei=DIApaZK8NOiq0PEPtpDbyQI"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "div.eqA2re.UnOTSe.Vwoesf",
+              "x": 92.0,
+              "y": 381.0
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "Action Completed",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "Click on the first result",
+    "description": "On First Result Page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Do you all think Eugene is a good character?"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.google.com/search?q=Eugene+is+Awesome&sca_esv=e5171c9a1aba7a5e&source=hp&ei=xX8paZjKNZ_WkPIPg-ioyA8&iflsig=AOw8s4IAAAAAaSmN1T-Y9oULZ7_7wMANKSD4BrvX2y_S&ved=0ahUKEwjYwKTP15SRAxUfK0QIHQM0CvkQ4dUDCBA&uact=5&oq=Eugene+is+Awesome&gs_lp=Egdnd3Mtd2l6IhFFdWdlbmUgaXMgQXdlc29tZTIFECEYoAEyBRAhGKABMgUQIRigAUjtQVDwBFjsN3ABeACQAQCYAXOgAc0LqgEEMTMuNLgBA8gBAPgBAZgCEqACoAyoAgrCAgoQABgDGOoCGI8BwgIKEC4YAxjqAhiPAcICCxAAGIAEGLEDGIMBwgIREC4YgAQYsQMY0QMYgwEYxwHCAggQLhiABBixA8ICFBAuGIAEGLEDGNEDGIMBGMcBGIoFwgILEC4YgAQY0QMYxwHCAgsQLhiABBixAxiDAcICCBAAGIAEGLEDwgIOEC4YgAQYsQMY0QMYxwHCAgUQABiABMICBRAuGIAEwgIIEC4YgAQY1ALCAgsQLhiABBjHARivAcICBxAuGIAEGArCAgsQABiABBiGAxiKBcICBhAAGBYYHpgDA_EFnRwjkiZmuvuSBwQxNC40oAetuAGyBwQxMy40uAedDMIHBTIuOS43yAc2&sclient=gws-wiz&sei=1H8paZP2Ee-S0PEP07uIqAY"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a.zReHs[href=\"https://www.reddit.com/r/thewalkingdead/comments/xb84ht/do_you_all_think_eugene_is_a_good_character/\"]",
+          "x": 276.09375,
+          "y": 395.78125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "Action Completed",
+    "executed": []
+  },
+  {
+    "name": "Click on the first result",
+    "description": "On First Result Page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Do you all think Eugene is a good character?"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.google.com/search?q=Eugene+is+Awesome&sca_esv=e5171c9a1aba7a5e&source=hp&ei=_X8pabejOd7pkPIPwpjpqAE&iflsig=AOw8s4IAAAAAaSmODU6DkUmljDkIhnEPpYdVn5Per4kL&ved=0ahUKEwj3lYLq15SRAxXeNEQIHUJMGhUQ4dUDCBA&uact=5&oq=Eugene+is+Awesome&gs_lp=Egdnd3Mtd2l6IhFFdWdlbmUgaXMgQXdlc29tZTIFECEYoAEyBRAhGKABMgUQIRigAUi-QVD7BFixN3ABeACQAQCYAWWgAecLqgEEMTMuNLgBA8gBAPgBAZgCEqACxAyoAgrCAgoQABgDGOoCGI8BwgINEC4YAxjUAhjqAhiPAcICCxAAGIAEGLEDGIMBwgIREC4YgAQYsQMY0QMYgwEYxwHCAhEQLhiABBixAxiDARiKBRiNBsICCBAuGIAEGLEDwgIUEC4YgAQYsQMY0QMYgwEYxwEYigXCAgsQLhiABBjRAxjHAcICERAAGIAEGLEDGIMBGIoFGI0GwgILEC4YgAQYsQMYgwHCAggQABiABBixA8ICDhAuGIAEGLEDGNEDGMcBwgIFEAAYgATCAgUQLhiABMICCBAuGIAEGNQCwgILEC4YgAQYxwEYrwHCAgcQLhiABBgKwgILEAAYgAQYhgMYigXCAgYQABgWGB6YAwPxBY20xHCRf8N1kgcEMTEuN6AHi7cBsgcEMTAuN7gHwQzCBwYyLjYuMTDIBzw&sclient=gws-wiz&sei=DIApaZK8NOiq0PEPtpDbyQI"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.eqA2re.UnOTSe.Vwoesf",
+          "x": 92.0,
+          "y": 381.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "Action Completed",
+    "executed": []
+  }
+]

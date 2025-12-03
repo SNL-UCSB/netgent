@@ -44,6 +44,9 @@ class StateSynthesis():
         """
         Include the History of Action, Current Website State, and the Available States
         """
+        # Capture Screenshot
+        screenshot = self.controller.driver.get_screenshot_as_base64()
+        
         messages = [
             SystemMessage(content=get_prompt("CHOOSE_STATE_PROMPT").format(
                 STATES='\n'.join(str(prompt) for prompt in state['prompts']) + '\n'
@@ -58,6 +61,10 @@ class StateSynthesis():
     URL: {self.controller.driver.current_url}
     Title: {self.controller.driver.title}
     """
+                },
+                {
+                    "type": "image_url",
+                    "image_url": {"url": f"data:image/png;base64,{screenshot}"}
                 }
             ])
         ]
@@ -155,6 +162,9 @@ class StateSynthesis():
         return { **state, "triggers": triggers }
     
     def _prompt_action(self, state: StateSynthesisState):
+        # Capture Screenshot
+        screenshot = self.controller.driver.get_screenshot_as_base64()
+
         messages = [
             SystemMessage(content=get_prompt("PROMPT_ACTION_PROMPT")),
             HumanMessage(content=[
@@ -169,6 +179,10 @@ class StateSynthesis():
     Title: {self.controller.driver.title}
     """
                 },
+                {
+                    "type": "image_url",
+                    "image_url": {"url": f"data:image/png;base64,{screenshot}"}
+                }
             ])
         ]
 
