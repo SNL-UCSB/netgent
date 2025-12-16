@@ -280,7 +280,7 @@ class NetGent():
             "messages": web_agent_state.get('messages')
         }
 
-    def run(self, state_prompts: list[StatePrompt] = [], state_repository: list[dict[str, Any]] = [], variables: dict[str, Any] = {}):
+    def run(self, state_prompts: list[StatePrompt] = [], state_repository: list[dict[str, Any]] = [], variables: dict[str, Any] = {}, end_state_files: str = ""):
         # Accept either a list of state dicts or a dict containing "state_repository"
         if isinstance(state_repository, dict):
             repo_list = state_repository.get("state_repository", [])
@@ -307,7 +307,14 @@ class NetGent():
             "variables": variables,
         }
         try:
-            return self.graph.invoke(state, {"recursion_limit": 100000})
+            result = self.graph.invoke(state, {"recursion_limit": 100000})
+            
+            if end_state_files:
+                html = self.driver.page_source
+                with open(end_state_files, "w") as f:
+                    f.write(html)
+            
+            return result
         except NetGentExecutionError as e:
             raise NetGentError(name=e.name, message=e.message) from e
     
