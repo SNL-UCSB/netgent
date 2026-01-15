@@ -1,0 +1,154 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to Hunter Fiber address search page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "about:blank"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://hunterfiber.com/address-search/"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully as per the instructions."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "your residential address"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.form-control.ui-autocomplete-input[type=\"text\"][id=\"user_address\"][name=\"user_address\"][placeholder*=\"Home Address\"][autocomplete=\"off\"]",
+          "x": 443.328125,
+          "y": 615.921875
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.form-control.ui-autocomplete-input[type=\"text\"][id=\"user_address\"][name=\"user_address\"][placeholder*=\"Home Address\"][autocomplete=\"off\"]",
+          "x": 443.328125,
+          "y": 615.921875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.btn.btn-primary[type=\"submit\"]",
+          "x": 973.3203125,
+          "y": 615.7734375
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Our service isn\u2019t available at your address yet. Please fill out this form and we will contact you w..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": [
+      {
+        "name": "NO_SERVICE",
+        "description": "Service not available",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Our service isn\u2019t available at your address yet. Please fill out this form and we will contact you w..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully as per instructions."
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Our service isn\u2019t available at your address yet. Please fill out this form and we will contact you w..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully as per instructions."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  }
+]

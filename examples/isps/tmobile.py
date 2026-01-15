@@ -1,0 +1,130 @@
+import json
+import os
+import sys
+from netgent.errors import NetGentError
+
+from bqtdb.main import BQTDatabase
+
+from netgent import NetGent, StatePrompt
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_google_vertexai import ChatVertexAI
+from dotenv import load_dotenv
+load_dotenv()
+prompts = [
+        StatePrompt(
+            name="START",
+            description="Navigate to the T-Mobile Home Internet page",
+            triggers=["If it is on the chrome homescreen"],
+            actions=["Go to https://www.t-mobile.com/home-internet word for word", "TERMINATE AT THIS POINT"],
+        ),
+        StatePrompt(
+            name="ACCEPT_COOKIES",
+            description="Accept cookies dialog",
+            triggers=["If you see 'We use a tool to capture how users interact'"],
+            actions=["Click the 'Accept' button (second occurrence)", "TERMINATE AT THIS POINT"],
+        ),
+        StatePrompt(
+            name="LANDING_PAGE",
+            description="Landing page with Check availability button",
+            triggers=["If you see 'We're going to' and 'be fast friends'"],
+            actions=["Click the 'Check availability' button (second occurrence)", "TERMINATE AT THIS POINT"],
+        ),
+        StatePrompt(
+            name="ENTER_ADDRESS",
+            description="Enter address to see available plans",
+            triggers=["If you see 'See what T-Mobile Home Internet plans are' and 'available at your address'"],
+            actions=["FOLLOW THESE INSTRUCTIONS CLOSELY", "Click on the 'Enter your address' input field", "Type `%address%` into the address input field", "Press down key to select the first suggestion", "Press enter key to confirm selection", "Click the 'See available plans' button", "TERMINATE AT THIS POINT"],
+        ),
+        StatePrompt(
+            name="AVAILABLE",
+            description="5G Home Internet is available",
+            triggers=["If you see '5G Home Internet is available'"],
+            actions=["TERMINATE AT THIS POINT"],
+            end_state="serviceable_with_plans"
+        ),
+        StatePrompt(
+            name="NO_SERVICE",
+            description="No service - join waitlist for 5G",
+            triggers=["If you see 'our waitlist for 5G'"],
+            actions=["TERMINATE AT THIS POINT"],
+            end_state="no_service"
+        ),
+        StatePrompt(
+            name="NO_UNIT",
+            description="Please enter unit number",
+            triggers=["If you see 'Please enter unit'"],
+            actions=["TERMINATE AT THIS POINT"],
+            end_state="unknown_address"
+        ),
+        StatePrompt(
+            name="BAD_ADDRESS",
+            description="Please choose an address from the list",
+            triggers=["If you see 'Please choose an address from the list'"],
+            actions=["TERMINATE AT THIS POINT"],
+            end_state="unknown_address"
+        ),
+        StatePrompt(
+            name="BUSINESS",
+            description="Business address detected",
+            triggers=["If you see 'This appears to be a business address'"],
+            actions=["TERMINATE AT THIS POINT"],
+            end_state="business_address"
+        ),
+        StatePrompt(
+            name="ACCESS_DENIED",
+            description="Access denied error",
+            triggers=["If you see 'Access Denied'"],
+            actions=["TERMINATE AT THIS POINT"],
+            end_state="access_error"
+        ),
+    ]
+
+addresses = []
+with BQTDatabase() as db:
+    # Fetching addresses for T-Mobile service area
+    rows = db.query("SELECT * FROM bqtplus.tmobile_addresses LIMIT 1000")
+    for row in rows:
+        # Construct address string
+        # Clean up Zip code (remove .0 if present)
+        prop_zip = str(row['PropertyZip'])
+        if prop_zip.endswith('.0'):
+            prop_zip = prop_zip[:-2]
+            
+        full_address = f"{row['PropertyFullStreetAddress']}, {row['PropertyCity']}, {row['PropertyState']}, {prop_zip}"
+        city = row['PropertyCity']
+        state = row['PropertyState']
+        addresses.append({
+            'address': full_address,
+            'city': city,
+            'state': state,
+            'zip_code': prop_zip
+        })
+
+agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2, vertexai=True, api_key=os.getenv("GOOGLE_API_KEY"), project=os.getenv("GOOGLE_CLOUD_PROJECT")), proxy=os.getenv("PROXY_URL"), llm_enabled=True)
+
+try:
+    with open("examples/isps/results/tmobile_result.json", "r") as f:
+        state_repository = json.load(f)
+except FileNotFoundError:
+    state_repository = []
+
+row_data = addresses[0]
+address = row_data['address']
+city = row_data['city']
+zip_code = row_data['zip_code']
+
+print(f"Address: {address}, City: {city}, Zip: {zip_code}")
+    
+result = agent.run(
+    state_prompts=prompts, 
+    state_repository=state_repository, 
+    variables={"address": address, "city": city, "state": row_data['state'], "zip_code": zip_code}
+)
+
+agent.set_state_wait_time(5)
+
+
+input("Press Enter to continue...")
+os.makedirs("examples/isps/results", exist_ok=True)
+with open("examples/isps/results/tmobile_result.json", "w") as f:
+    json.dump(result["state_repository"], f, indent=2)

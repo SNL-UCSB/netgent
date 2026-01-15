@@ -1,0 +1,609 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to T-Mobile Fiber check address page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "data:,"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://fiber.t-mobile.com/check-address"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address",
+    "checks": [
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "h2[id=\"onetrust-policy-title\"]"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "T-Mobile Notice"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "We use a tool to capture how users interact with our websites so we can analyze and improve the user..."
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Accept"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Reject"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button[id=\"onetrust-reject-all-handler\"]",
+          "x": 223.5,
+          "y": 880.21875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.fpe-fiber-input.tmo-t-input-text[name=\"Address*\"][data-testid=\"fpe-fiber-input\"][autocomplete=\"off\"][type=\"search\"][id=\"address\"][aria-labelledby=\"label-89fca84b-bff8-44d5-87c1-55f3750495e9\"][aria-describedby=\"label-89fca84b-bff8-44d5-87c1-55f3750495e9\"]",
+          "x": 401.5,
+          "y": 451.1875
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.fpe-fiber-input.tmo-t-input-text[name=\"Address*\"][data-testid=\"fpe-fiber-input\"][autocomplete=\"off\"][type=\"search\"][id=\"address\"][aria-labelledby=\"label-89fca84b-bff8-44d5-87c1-55f3750495e9\"][aria-describedby=\"label-89fca84b-bff8-44d5-87c1-55f3750495e9\"]",
+          "x": 401.5,
+          "y": 451.1875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.suggestion-item.tmo-t-input-text[id=\"address-dropdown-suggestion-1\"][role=\"option\"][data-testid=\"suggestion-item\"]",
+          "x": 401.5,
+          "y": 570.796875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.fiber-button-base.primary.large.mobile-full-width[type=\"submit\"][data-testid=\"fca-btn\"]",
+          "x": 185.5,
+          "y": 538.1875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": [
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address",
+        "checks": [
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "h2[id=\"onetrust-policy-title\"]"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "T-Mobile Notice"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "We use a tool to capture how users interact with our websites so we can analyze and improve the user..."
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Accept"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Reject"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button[id=\"onetrust-reject-all-handler\"]",
+              "x": 223.5,
+              "y": 880.21875
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.fpe-fiber-input.tmo-t-input-text[name=\"Address*\"][data-testid=\"fpe-fiber-input\"][autocomplete=\"off\"][type=\"search\"][id=\"address\"][aria-labelledby=\"label-3dc3648e-a1a4-45f2-a79f-39c63143135c\"][aria-describedby=\"label-3dc3648e-a1a4-45f2-a79f-39c63143135c\"]",
+              "x": 401.5,
+              "y": 451.1875
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.fpe-fiber-input.tmo-t-input-text[name=\"Address*\"][data-testid=\"fpe-fiber-input\"][autocomplete=\"off\"][type=\"search\"][id=\"address\"][aria-labelledby=\"label-3dc3648e-a1a4-45f2-a79f-39c63143135c\"][aria-describedby=\"label-3dc3648e-a1a4-45f2-a79f-39c63143135c\"]",
+              "x": 401.5,
+              "y": 451.1875
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "div.suggestion-item.tmo-t-input-text.suggestion-item-active[id=\"address-dropdown-suggestion-0\"][role=\"option\"][data-testid=\"suggestion-item\"]",
+              "x": 401.5,
+              "y": 518.390625
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.fiber-button-base.primary.large.mobile-full-width[type=\"submit\"][data-testid=\"fca-btn\"]",
+              "x": 185.5,
+              "y": 538.1875
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The address is already associated with an account, and the task is to terminate as instructed in Step 6."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address",
+        "checks": [
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "h2[id=\"onetrust-policy-title\"]"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "T-Mobile Notice"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "We use a tool to capture how users interact with our websites so we can analyze and improve the user..."
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Accept"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Reject"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button[id=\"onetrust-reject-all-handler\"]",
+              "x": 223.5,
+              "y": 880.21875
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.fpe-fiber-input.tmo-t-input-text[name=\"Address*\"][data-testid=\"fpe-fiber-input\"][autocomplete=\"off\"][type=\"search\"][id=\"address\"][aria-labelledby=\"label-60d88cb2-89ef-4939-b8bd-8487aad89495\"][aria-describedby=\"label-60d88cb2-89ef-4939-b8bd-8487aad89495\"]",
+              "x": 401.5,
+              "y": 451.1875
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.fpe-fiber-input.tmo-t-input-text[name=\"Address*\"][data-testid=\"fpe-fiber-input\"][autocomplete=\"off\"][type=\"search\"][id=\"address\"][aria-labelledby=\"label-60d88cb2-89ef-4939-b8bd-8487aad89495\"][aria-describedby=\"label-60d88cb2-89ef-4939-b8bd-8487aad89495\"]",
+              "x": 401.5,
+              "y": 451.1875
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "div.suggestion-item.tmo-t-input-text.suggestion-item-active[id=\"address-dropdown-suggestion-0\"][role=\"option\"][data-testid=\"suggestion-item\"]",
+              "x": 401.5,
+              "y": 518.390625
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.fiber-button-base.primary.large.mobile-full-width[type=\"submit\"][data-testid=\"fca-btn\"]",
+              "x": 185.5,
+              "y": 538.1875
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.fiber-button-base.primary.large.full-width[type=\"button\"][data-testid=\"single-btn-modal-cta\"]",
+              "x": 620.0,
+              "y": 673.484375
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available, waitlist",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Join our waitlist."
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://fiber.t-mobile.com/waitlist"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address",
+    "checks": [
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "h2[id=\"onetrust-policy-title\"]"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "T-Mobile Notice"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "We use a tool to capture how users interact with our websites so we can analyze and improve the user..."
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Accept"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Reject"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button[id=\"onetrust-reject-all-handler\"]",
+          "x": 223.5,
+          "y": 880.21875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.fpe-fiber-input.tmo-t-input-text[name=\"Address*\"][data-testid=\"fpe-fiber-input\"][autocomplete=\"off\"][type=\"search\"][id=\"address\"][aria-labelledby=\"label-3dc3648e-a1a4-45f2-a79f-39c63143135c\"][aria-describedby=\"label-3dc3648e-a1a4-45f2-a79f-39c63143135c\"]",
+          "x": 401.5,
+          "y": 451.1875
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.fpe-fiber-input.tmo-t-input-text[name=\"Address*\"][data-testid=\"fpe-fiber-input\"][autocomplete=\"off\"][type=\"search\"][id=\"address\"][aria-labelledby=\"label-3dc3648e-a1a4-45f2-a79f-39c63143135c\"][aria-describedby=\"label-3dc3648e-a1a4-45f2-a79f-39c63143135c\"]",
+          "x": 401.5,
+          "y": 451.1875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.suggestion-item.tmo-t-input-text.suggestion-item-active[id=\"address-dropdown-suggestion-0\"][role=\"option\"][data-testid=\"suggestion-item\"]",
+          "x": 401.5,
+          "y": 518.390625
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.fiber-button-base.primary.large.mobile-full-width[type=\"submit\"][data-testid=\"fca-btn\"]",
+          "x": 185.5,
+          "y": 538.1875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The address is already associated with an account, and the task is to terminate as instructed in Step 6."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "EXISTING_SERVICE2",
+    "description": "Existing service login required",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Please log in"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Terminating the task as instructed in Step 1."
+        }
+      }
+    ],
+    "end_state": "existing_service",
+    "executed": [
+      {
+        "name": "EXISTING_SERVICE2",
+        "description": "Existing service login required",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Please log in"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "existing_service",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address",
+    "checks": [
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "h2[id=\"onetrust-policy-title\"]"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "T-Mobile Notice"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "We use a tool to capture how users interact with our websites so we can analyze and improve the user..."
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Accept"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Reject"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button[id=\"onetrust-reject-all-handler\"]",
+          "x": 223.5,
+          "y": 880.21875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.fpe-fiber-input.tmo-t-input-text[name=\"Address*\"][data-testid=\"fpe-fiber-input\"][autocomplete=\"off\"][type=\"search\"][id=\"address\"][aria-labelledby=\"label-60d88cb2-89ef-4939-b8bd-8487aad89495\"][aria-describedby=\"label-60d88cb2-89ef-4939-b8bd-8487aad89495\"]",
+          "x": 401.5,
+          "y": 451.1875
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.fpe-fiber-input.tmo-t-input-text[name=\"Address*\"][data-testid=\"fpe-fiber-input\"][autocomplete=\"off\"][type=\"search\"][id=\"address\"][aria-labelledby=\"label-60d88cb2-89ef-4939-b8bd-8487aad89495\"][aria-describedby=\"label-60d88cb2-89ef-4939-b8bd-8487aad89495\"]",
+          "x": 401.5,
+          "y": 451.1875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.suggestion-item.tmo-t-input-text.suggestion-item-active[id=\"address-dropdown-suggestion-0\"][role=\"option\"][data-testid=\"suggestion-item\"]",
+          "x": 401.5,
+          "y": 518.390625
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.fiber-button-base.primary.large.mobile-full-width[type=\"submit\"][data-testid=\"fca-btn\"]",
+          "x": 185.5,
+          "y": 538.1875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.fiber-button-base.primary.large.full-width[type=\"button\"][data-testid=\"single-btn-modal-cta\"]",
+          "x": 620.0,
+          "y": 673.484375
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "EXISTING_SERVICE2",
+    "description": "Existing service login required",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Please log in"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "existing_service",
+    "executed": []
+  }
+]

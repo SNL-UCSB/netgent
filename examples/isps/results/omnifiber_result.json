@@ -1,0 +1,617 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to Omni Fiber Shop page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "about:blank"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://shop.omnifiber.com/?_gl=1*15inj4m*_gcl_au*NzEzNDI2Njk5LjE3Njc5OTIwOTM.#/order/1"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as the page has loaded successfully and the next step is to terminate."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Explore Omni Fiber services in your area"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input[aria-label*=\"Enter your address\"][id=\"input-319\"][placeholder*=\"Enter your address\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 592.0,
+          "y": 658.828125
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input[aria-label*=\"Enter your address\"][id=\"input-319\"][placeholder*=\"Enter your address\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 592.0,
+          "y": 658.828125
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.v-btn--rounded.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+          "x": 619.9921875,
+          "y": 830.828125
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 2
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The current HTML state shows that 'Omni Fiber is not currently available in your state.' The task is to terminate immediately after completing the steps, regardless of the result."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": [
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Explore Omni Fiber services in your area"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input[aria-label*=\"Enter your address\"][id=\"input-319\"][placeholder*=\"Enter your address\"][type=\"text\"][autocomplete=\"off\"]",
+              "x": 592.0,
+              "y": 658.828125
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input[aria-label*=\"Enter your address\"][id=\"input-319\"][placeholder*=\"Enter your address\"][type=\"text\"][autocomplete=\"off\"]",
+              "x": 592.0,
+              "y": 658.828125
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.v-btn--rounded.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+              "x": 619.9921875,
+              "y": 830.828125
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The previous actions involved entering an address, selecting it from suggestions, and confirming the selection, followed by clicking the 'CONTINUE' button. The current HTML state shows a pop-up with the Omni Fiber logo and a message about leaving already. This indicates that the previous actions were not successful in navigating to the next step, and the user is now presented with a prompt. Since the goal is to complete the initial task, and the current state is an unexpected pop-up, the best course of action is to terminate the task."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Explore Omni Fiber services in your area"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input[aria-label*=\"Enter your address\"][id=\"input-319\"][placeholder*=\"Enter your address\"][type=\"text\"][autocomplete=\"off\"]",
+              "x": 592.0,
+              "y": 658.828125
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input[aria-label*=\"Enter your address\"][id=\"input-319\"][placeholder*=\"Enter your address\"][type=\"text\"][autocomplete=\"off\"]",
+              "x": 592.0,
+              "y": 658.828125
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.v-btn--rounded.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+              "x": 619.9921875,
+              "y": 830.828125
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed according to the user query, which specifies to terminate immediately after clicking the 'CONTINUE' button."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Explore Omni Fiber services in your area"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input[aria-label*=\"Enter your address\"][id=\"input-319\"][placeholder*=\"Enter your address\"][type=\"text\"][autocomplete=\"off\"]",
+              "x": 592.0,
+              "y": 658.828125
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input[aria-label*=\"Enter your address\"][id=\"input-319\"][placeholder*=\"Enter your address\"][type=\"text\"][autocomplete=\"off\"]",
+              "x": 592.0,
+              "y": 658.828125
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.v-btn--rounded.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+              "x": 619.9921875,
+              "y": 830.828125
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The address entered is not serviceable, as indicated by the 'Unserviceable State | Omni Fiber' page. The task is complete."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Explore Omni Fiber services in your area"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input[aria-label*=\"Enter your address\"][id=\"input-319\"][placeholder*=\"Enter your address\"][type=\"text\"][autocomplete=\"off\"]",
+              "x": 592.0,
+              "y": 658.828125
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input[aria-label*=\"Enter your address\"][id=\"input-319\"][placeholder*=\"Enter your address\"][type=\"text\"][autocomplete=\"off\"]",
+              "x": 592.0,
+              "y": 658.828125
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.v-btn--rounded.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+              "x": 619.9921875,
+              "y": 830.828125
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The address is not serviceable according to the current HTML state."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Omni Fiber is not currently"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is to terminate immediately. The current HTML shows the page after entering an address and finding that Omni Fiber is not available in the state."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Explore Omni Fiber services in your area"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input[aria-label*=\"Enter your address\"][id=\"input-319\"][placeholder*=\"Enter your address\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 592.0,
+          "y": 658.828125
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input[aria-label*=\"Enter your address\"][id=\"input-319\"][placeholder*=\"Enter your address\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 592.0,
+          "y": 658.828125
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.v-btn--rounded.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+          "x": 619.9921875,
+          "y": 830.828125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The previous actions involved entering an address, selecting it from suggestions, and confirming the selection, followed by clicking the 'CONTINUE' button. The current HTML state shows a pop-up with the Omni Fiber logo and a message about leaving already. This indicates that the previous actions were not successful in navigating to the next step, and the user is now presented with a prompt. Since the goal is to complete the initial task, and the current state is an unexpected pop-up, the best course of action is to terminate the task."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Explore Omni Fiber services in your area"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input[aria-label*=\"Enter your address\"][id=\"input-319\"][placeholder*=\"Enter your address\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 592.0,
+          "y": 658.828125
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input[aria-label*=\"Enter your address\"][id=\"input-319\"][placeholder*=\"Enter your address\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 592.0,
+          "y": 658.828125
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.v-btn--rounded.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+          "x": 619.9921875,
+          "y": 830.828125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed according to the user query, which specifies to terminate immediately after clicking the 'CONTINUE' button."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Explore Omni Fiber services in your area"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input[aria-label*=\"Enter your address\"][id=\"input-319\"][placeholder*=\"Enter your address\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 592.0,
+          "y": 658.828125
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input[aria-label*=\"Enter your address\"][id=\"input-319\"][placeholder*=\"Enter your address\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 592.0,
+          "y": 658.828125
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.v-btn--rounded.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+          "x": 619.9921875,
+          "y": 830.828125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The address entered is not serviceable, as indicated by the 'Unserviceable State | Omni Fiber' page. The task is complete."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Explore Omni Fiber services in your area"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input[aria-label*=\"Enter your address\"][id=\"input-319\"][placeholder*=\"Enter your address\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 592.0,
+          "y": 658.828125
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input[aria-label*=\"Enter your address\"][id=\"input-319\"][placeholder*=\"Enter your address\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 592.0,
+          "y": 658.828125
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.v-btn--rounded.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+          "x": 619.9921875,
+          "y": 830.828125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The address is not serviceable according to the current HTML state."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  }
+]

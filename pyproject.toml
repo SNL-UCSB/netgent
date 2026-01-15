@@ -36,18 +36,19 @@ dependencies = [
     "seleniumbase (>=4.42.5,<5.0.0)",
     "selenium (>=4.36.0,<5.0.0)",
     "pyautogui (>=0.9.54,<0.10.0)",
-    "langgraph (>=0.5.0,<0.6.0)",
-    "langchain (>=0.3.26,<0.4.0)",
+    "langgraph (>=0.6.0)",
+    "langchain (>=1.0.0)",
     "langchain-google-genai (>=2.1.6,<3.0.0)",
     "langchain-google-vertexai (>=2.0.27,<3.0.0)",
-    "langchain-core (>=0.3.67,<0.4.0)",
-    "langchain-community (>=0.3.26,<0.4.0)",
+    "langchain-core (>=1.0.0)",
+    "langchain-community (>=0.4.0)",
     "python-dotenv (>=1.1.1,<2.0.0)",
     "pydantic (>=2.11.7,<3.0.0)",
     "psycopg2-binary (>=2.9.0,<3.0.0)",
     "pulumi (>=3.5.1,<4.0.0)",
     "pulumi-aws (>=7.0.0,<8.0.0)",
-    "pandas (>=2.3.3,<3.0.0)"
+    "pandas (>=2.3.3,<3.0.0)",
+    "faker>=40.1.0",
 ]
 
 [tool.poetry]
@@ -55,6 +56,11 @@ packages = [{include = "netgent", from = "src"}, {include = "utils", from = "src
 
 [tool.poetry.scripts]
 netgent = "netgent.cli:main"
+
+[tool.uv.workspace]
+members = [
+    "bqt_plus",
+]
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

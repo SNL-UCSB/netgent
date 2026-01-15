@@ -1,0 +1,405 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to Frontier buy page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "data:,"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://frontier.com/buy/"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. The page has been navigated to and the next step is termination."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": [
+      {
+        "name": "START",
+        "description": "Navigate to Frontier buy page",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://frontier.com/buy/unserviceable-soft/"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "We're Here to Help You Get Connected!"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "h2[data-testid=\"unserviceable-soft\"]"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Enter your address to view plans and exclusive offers."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input[autocomplete=\"off\"][id=\"street-address\"][type=\"text\"]",
+          "x": 308.0,
+          "y": 413.1875
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input[autocomplete=\"off\"][id=\"street-address\"][type=\"text\"]",
+          "x": 308.0,
+          "y": 413.1875
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.ButtonStyled-sc-nyrb95-0.iKxqfV.address-form__button.address-form__button__tablet-up.btn[type=\"submit\"][data-testid=\"btn-check-address\"]",
+          "x": 856.0,
+          "y": 413.1875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The current HTML state is a blank page, which indicates that the previous action of clicking the 'CHECK AVAILABILITY' button did not lead to the expected result. The user query specifies that the next step is to terminate."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "UNKNOWN_SERVICE",
+    "description": "Unknown service help",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "We're Here to Help You Get Connected!"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. The next step is termination."
+        }
+      }
+    ],
+    "end_state": "unknown_address",
+    "executed": [
+      {
+        "name": "UNKNOWN_SERVICE",
+        "description": "Unknown service help",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "We're Here to Help You Get Connected!"
+            }
+          },
+          {
+            "type": "url",
+            "params": {
+              "url": "https://frontier.com/buy/unserviceable-soft/"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "h2[data-testid=\"unserviceable-soft\"]"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Terminating the task as per the instruction."
+            }
+          }
+        ],
+        "end_state": "unknown_address",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "UNKNOWN_SERVICE",
+    "description": "Unknown service help",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "We're Here to Help You Get Connected!"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://frontier.com/buy/unserviceable-soft/"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "h2[data-testid=\"unserviceable-soft\"]"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Terminating the task as per the instruction."
+        }
+      }
+    ],
+    "end_state": "unknown_address",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "We're Here to Help You Get Connected!"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": [
+      {
+        "name": "NO_SERVICE",
+        "description": "Service not available",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "We're Here to Help You Get Connected!"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully."
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "executed": []
+      },
+      {
+        "name": "NO_SERVICE",
+        "description": "Service not available",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "We're Here to Help You Get Connected!"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "executed": []
+      },
+      {
+        "name": "NO_SERVICE",
+        "description": "Service not available",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "We're Here to Help You Get Connected!"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "We're Here to Help You Get Connected!"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  },
+  {
+    "name": "START",
+    "description": "Navigate to Frontier buy page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://frontier.com/buy/unserviceable-soft/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "We're Here to Help You Get Connected!"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "h2[data-testid=\"unserviceable-soft\"]"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "We're Here to Help You Get Connected!"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "We're Here to Help You Get Connected!"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  }
+]

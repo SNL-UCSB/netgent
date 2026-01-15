@@ -1,0 +1,119 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to Allpoints Broadband signup page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "data:,"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://signup.allpointsbroadband.com"
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 2
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The website has loaded successfully and is displaying a form to check service availability. The task is complete."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Tell us where you want your services."
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "h1.sc-dAlyuH.ilEQPm"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.sc-isRoRg.fVrUAB[type=\"search\"][placeholder*=\"Enter full address\"]",
+          "x": 644.0,
+          "y": 503.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.sc-gFqAkR.cOuTVj.sc-ahr735-11.jiJWOB[type=\"submit\"]",
+          "x": 349.7578125,
+          "y": 719.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "SERVICEABLE - If you see 'Choose the internet plan that works best for you.' screen",
+    "description": "Choose internet plan",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Choose the internet plan that works best for you."
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "h2.sc-jlZhew.iXMOvb.sc-1se7jdx-6.joKQlN"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user has provided the instruction to terminate the task immediately."
+        }
+      }
+    ],
+    "end_state": "serviceable_with_plans",
+    "executed": []
+  }
+]

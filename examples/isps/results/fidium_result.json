@@ -1,0 +1,148 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to Fidium Fiber internet page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "data:,"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://www.fidiumfiber.com/fiber-internet"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as the user requested to navigate to the website and then terminate."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "FREE flexible home installs \u2014 now including same-day & early-morning options \u2014 plus evening and week..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.button.contained.size-medium.text-center.rounded-md.whitespace-nowrap.font-medium.text-base[id=\"accept-cookies\"][type=\"button\"]",
+          "x": 994.7109375,
+          "y": 861.859375
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.MuiInputBase-input.MuiOutlinedInput-input.css-1x5jdmq[placeholder*=\"Type your address and select from the dropdown\"][type=\"text\"]",
+          "x": 670.0,
+          "y": 825.46875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.CaFormHero-module-scss-module__1oiCvG__dropdownItem[type=\"button\"]",
+          "x": 620.0,
+          "y": 912.515625
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.button.contained.size-medium.CaFormHero-module-scss-module__1oiCvG__button[id=\"ca-form-hero__Button\"][type=\"submit\"]",
+          "x": 1028.4453125,
+          "y": 825.46875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The previous actions were to click the 'Accept cookies' button, type '%address%' into the address input field, click the first text element that contains '%address%' from the list of suggestions, and click the 'Check availability' button. The current HTML state is empty. The next step is to terminate the task as requested."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "AVAILABLE_INTERNET",
+    "description": "Service available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Good News! Fidium Fiber is available to you."
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://order.fidiumfiber.com/type?unitId=SUBPREMISE_D6CA20E141944A440DF02BC6CDFAF566&cartId=3d15bd9a-08c5-411b-9597-cb4ac338826e&dbId=CAL"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeLarge.MuiButton-containedSizeLarge.MuiButton-colorPrimary.MuiButton-disableElevation.MuiButton-fullWidth.undefined.text-m-medium.css-pztur8[type=\"button\"][id*=\"Order for home\"][data-testid=\"plan-type-button-order-for-home\"]",
+          "x": 421.5,
+          "y": 753.921875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The previous action was to click the 'Order for home' button. The current HTML state shows the page after clicking the 'Order for home' button. The next step is to terminate the task as requested."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "FIBER_PLANS",
+    "description": "Fiber plans page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Choose your fiber internet plan"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as the user requested to terminate the task immediately."
+        }
+      }
+    ],
+    "end_state": "serviceable_with_plans",
+    "executed": []
+  }
+]

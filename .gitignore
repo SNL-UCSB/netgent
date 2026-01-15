@@ -152,3 +152,6 @@ downloaded_files/
 ./downloaded_files/
 
 google_creds.json
+
+# User Data
+examples/user_data

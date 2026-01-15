@@ -1,0 +1,114 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to the Zito Media service contact page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "data:,"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://www.zitomedia.net/service-contact/"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query requires me to terminate the task immediately after completing the first step."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "CHECK AVAILABILITY"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.pac-target-input[type=\"text\"][id=\"inputSearchAvailability\"][placeholder*=\"STREET ADDRESS\"][autocomplete=\"off\"]",
+          "x": 660.39453125,
+          "y": 480.0
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.pac-target-input[type=\"text\"][id=\"inputSearchAvailability\"][placeholder*=\"STREET ADDRESS\"][autocomplete=\"off\"]",
+          "x": 660.39453125,
+          "y": 480.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.site-section-btn.isAvailable-btn",
+          "x": 660.3984375,
+          "y": 672.375
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The current HTML state shows an input field with the text 'First Name' and aria-label 'First Name*'. The previous actions were successful in typing the address into the input field and pressing the down and enter keys. However, there is no 'CONTINUE' button visible in the current HTML. The task is not possible to complete with the current HTML state. The user query requires me to terminate the task immediately after completing the first step."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "MAYBE_SERVICE",
+    "description": "Zito may provide service at your address",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "We may provide service at your address."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query requires immediate termination."
+        }
+      }
+    ],
+    "end_state": "maybe_serviceable",
+    "executed": []
+  }
+]

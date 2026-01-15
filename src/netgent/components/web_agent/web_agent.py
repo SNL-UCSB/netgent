@@ -153,10 +153,8 @@ class WebAgent():
                     "text": f"""## Previous Action Trajectory:\n{format_context(state['messages'])}\n## Current HTML: {self.prompt}"""
                 },
                 {
-                    "type": "image",
-                    "source_type": "base64",
-                    "data": self.screenshot,
-                    "mime_type": "image/png"
+                    "type": "image_url",
+                    "image_url": {"url": f"data:image/png;base64,{self.screenshot}"}
                 }
             ])
         ])
@@ -214,10 +212,8 @@ class WebAgent():
                     "text": "Screenshot of the Current Page"
                 },
                 {
-                    "type": "image",
-                    "source_type": "base64",
-                    "data": self.screenshot,
-                    "mime_type": "image/png"
+                    "type": "image_url",
+                    "image_url": {"url": f"data:image/png;base64,{self.screenshot}"}
                 }
             ])
         ])

@@ -1,0 +1,276 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to the Sonic availability page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "about:blank"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://www.sonic.com/availability"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the user's instructions."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address and zip code to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Check Your Internet Availability by Address"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.form-control.pac-target-input[id=\"street\"][name=\"street\"][placeholder*=\"Street Address\"][required=\"\"][title*=\"Address (e.g., '123 Main St, Anytown, CA')\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 660.0,
+          "y": 436.203125
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.form-control.pac-target-input[id=\"street\"][name=\"street\"][placeholder*=\"Street Address\"][required=\"\"][title*=\"Address (e.g., '123 Main St, Anytown, CA')\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 660.0,
+          "y": 436.203125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "span.pac-item-query",
+          "x": 179.4765625,
+          "y": 479.0
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%zip_code%",
+          "by": "css selector",
+          "selector": "input.form-control[id=\"zipcode\"][name=\"zipcode\"][placeholder*=\"Zip Code\"][required=\"\"][title*=\"Zip Code (e.g., 12345 or 12345-6789)\"][type=\"text\"]",
+          "x": 379.5,
+          "y": 525.203125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "label.btn.btn-sm.radio-button[for=\"address_type-0\"]",
+          "x": 152.23828125,
+          "y": 607.703125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.btn.btn-lg.sonic-form-button[name=\"startSubmit\"][type=\"submit\"]",
+          "x": 659.99609375,
+          "y": 668.203125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the user's instructions."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "SERVICABLE",
+    "description": "Service options available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "We found: ,\n            Residential ( )"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "div.address"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Change\u00a0Address"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a[href=\"/availability\"]"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the user's instructions."
+        }
+      }
+    ],
+    "end_state": "serviceable_with_plans",
+    "executed": [
+      {
+        "name": "SERVICABLE",
+        "description": "Service options available",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "You\u2019re getting the fastest internet in your neighborhood!"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "div.result"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "serviceable_with_plans",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "SERVICABLE",
+    "description": "Service options available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "You\u2019re getting the fastest internet in your neighborhood!"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "div.result"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "serviceable_with_plans",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "No service available yet",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "We're Sorry, No Service is Available - Yet!"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": [
+      {
+        "name": "NO_SERVICE",
+        "description": "No service available yet",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "We're Sorry, No Service is Available - Yet!"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "No service available yet",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "We're Sorry, No Service is Available - Yet!"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  }
+]

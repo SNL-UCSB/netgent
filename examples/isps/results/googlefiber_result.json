@@ -1,0 +1,704 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to Google Fiber page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "about:blank"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://fiber.google.com"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as instructed in Step 2."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "The most awarded internet. Now reinvented."
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://fiber.google.com/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.MuiInputBase-input.styles_addressInput__5n4Xk.css-j73zfz.pac-target-input[name=\"street_address\"][placeholder*=\"Enter your address\"][required=\"\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 470.015625,
+          "y": 569.0
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.MuiInputBase-input.styles_addressInput__5n4Xk.css-j73zfz.pac-target-input[name=\"street_address\"][placeholder*=\"Enter your address\"][required=\"\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 470.015625,
+          "y": 569.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.MuiButton-disableElevation.styles_submit__dNtUy.css-8qzx7[type=\"submit\"]",
+          "x": 842.015625,
+          "y": 569.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as instructed in Step 7."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": [
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "The most awarded internet. Now reinvented."
+            }
+          },
+          {
+            "type": "url",
+            "params": {
+              "url": "https://fiber.google.com/"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.MuiInputBase-input.styles_addressInput__5n4Xk.css-j73zfz.pac-target-input[name=\"street_address\"][placeholder*=\"Enter your address\"][required=\"\"][type=\"text\"][autocomplete=\"off\"]",
+              "x": 470.015625,
+              "y": 569.0
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.MuiInputBase-input.styles_addressInput__5n4Xk.css-j73zfz.pac-target-input[name=\"street_address\"][placeholder*=\"Enter your address\"][required=\"\"][type=\"text\"][autocomplete=\"off\"]",
+              "x": 470.015625,
+              "y": 569.0
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.MuiButton-disableElevation.styles_submit__dNtUy.css-8qzx7[type=\"submit\"]",
+              "x": 842.015625,
+              "y": 569.0
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://fiber.google.com/"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "The most awarded internet. Now reinvented."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.MuiInputBase-input.styles_addressInput__5n4Xk.css-j73zfz.pac-target-input[name=\"street_address\"][placeholder*=\"Enter your address\"][required=\"\"][type=\"text\"][autocomplete=\"off\"]",
+              "x": 470.015625,
+              "y": 569.0
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.MuiInputBase-input.styles_addressInput__5n4Xk.css-j73zfz.pac-target-input[name=\"street_address\"][placeholder*=\"Enter your address\"][required=\"\"][type=\"text\"][autocomplete=\"off\"]",
+              "x": 470.015625,
+              "y": 569.0
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.MuiButton-disableElevation.styles_submit__dNtUy.css-8qzx7[type=\"submit\"]",
+              "x": 842.015625,
+              "y": 569.0
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The user has completed all the steps."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "SELECT_INTERNET",
+    "description": "Eligible for service",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Nice! You're eligible to get Google Fiber Internet."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.Button-module_button__18Bed.Button-module_PRIMARY__DKvTl.Button-module_BASE__pL-vu.Button_btn___t8GZ.Button_primaryType__dyw_2.buttons_footerButton__EwSNN[data-testid=\"button-PRIMARY\"]",
+          "x": 620.0,
+          "y": 910.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user has instructed to terminate the task immediately after completing the first step."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": [
+      {
+        "name": "SELECT_INTERNET",
+        "description": "Eligible for service",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Nice! You're eligible to get Google Fiber Internet."
+            }
+          },
+          {
+            "type": "url",
+            "params": {
+              "url": "https://fiber.google.com/a/signup/preconfig_step?global_addr_id=b5a6bd9e-112f-4326-990a-56528b5384a5&utm_source=%28direct%29&utm_campaign=%28direct%29&utm_medium=%28none%29&_gl=1*bccjvs*_gcl_au*MjMzNDkzNDA2LjE3NjgxMDAyMDQ.&mid=2bee0f3a-0328-4076-9707-18ef84ec5d1c"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.Button-module_button__18Bed.Button-module_PRIMARY__DKvTl.Button-module_BASE__pL-vu.Button_btn___t8GZ.Button_primaryType__dyw_2.buttons_footerButton__EwSNN[data-testid=\"button-PRIMARY\"]",
+              "x": 620.0,
+              "y": 910.0
+            }
+          },
+          {
+            "type": "wait",
+            "params": {
+              "seconds": 2
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "SELECT_INTERNET",
+        "description": "Eligible for service",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Nice! You're eligible to get Google Fiber Internet."
+            }
+          },
+          {
+            "type": "url",
+            "params": {
+              "url": "https://fiber.google.com/a/signup/preconfig_step?global_addr_id=b5a6bd9e-112f-4326-990a-56528b5384a5&utm_source=%28direct%29&utm_campaign=%28direct%29&utm_medium=%28none%29&_gl=1*fplyj0*_gcl_au*NDQyMzAwNDU0LjE3NjgxMDA5NDk.&mid=e2ce779b-babb-4250-9f51-16ab54b03618"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.Button-module_button__18Bed.Button-module_PRIMARY__DKvTl.Button-module_BASE__pL-vu.Button_btn___t8GZ.Button_primaryType__dyw_2.buttons_footerButton__EwSNN[data-testid=\"button-PRIMARY\"]",
+              "x": 620.0,
+              "y": 910.0
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The user query asks to terminate the task immediately after clicking the 'Get started' button."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "SERVICEABLE_PLANS",
+    "description": "Service available with plans",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Choose your internet"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://fiber.google.com/a/signup/internet_plan_step?global_addr_id=b5a6bd9e-112f-4326-990a-56528b5384a5&utm_source=%28direct%29&utm_campaign=%28direct%29&utm_medium=%28none%29&_gl=1*1klnbwu*_gcl_au*MTE1Nzc2MTc0Mi4xNzY4MDk5ODgx&mid=e51fada0-ed30-4ef4-8594-39d3632f05d6"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as instructed in Step 1."
+        }
+      }
+    ],
+    "end_state": "serviceable_with_plans",
+    "executed": [
+      {
+        "name": "SERVICEABLE_PLANS",
+        "description": "Service available with plans",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Choose your internet"
+            }
+          },
+          {
+            "type": "url",
+            "params": {
+              "url": "https://fiber.google.com/a/signup/internet_plan_step?global_addr_id=b5a6bd9e-112f-4326-990a-56528b5384a5&utm_source=%28direct%29&utm_campaign=%28direct%29&utm_medium=%28none%29&_gl=1*bccjvs*_gcl_au*MjMzNDkzNDA2LjE3NjgxMDAyMDQ.&mid=2bee0f3a-0328-4076-9707-18ef84ec5d1c"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "serviceable_with_plans",
+        "executed": []
+      },
+      {
+        "name": "SERVICEABLE_PLANS",
+        "description": "Service available with plans",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Choose your internet"
+            }
+          },
+          {
+            "type": "url",
+            "params": {
+              "url": "https://fiber.google.com/a/signup/internet_plan_step?global_addr_id=b5a6bd9e-112f-4326-990a-56528b5384a5&utm_source=%28direct%29&utm_campaign=%28direct%29&utm_medium=%28none%29&_gl=1*fplyj0*_gcl_au*NDQyMzAwNDU0LjE3NjgxMDA5NDk.&mid=e2ce779b-babb-4250-9f51-16ab54b03618"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The user query instructs to terminate the task immediately."
+            }
+          }
+        ],
+        "end_state": "serviceable_with_plans",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "The most awarded internet. Now reinvented."
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://fiber.google.com/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.MuiInputBase-input.styles_addressInput__5n4Xk.css-j73zfz.pac-target-input[name=\"street_address\"][placeholder*=\"Enter your address\"][required=\"\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 470.015625,
+          "y": 569.0
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.MuiInputBase-input.styles_addressInput__5n4Xk.css-j73zfz.pac-target-input[name=\"street_address\"][placeholder*=\"Enter your address\"][required=\"\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 470.015625,
+          "y": 569.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.MuiButton-disableElevation.styles_submit__dNtUy.css-8qzx7[type=\"submit\"]",
+          "x": 842.015625,
+          "y": 569.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "SELECT_INTERNET",
+    "description": "Eligible for service",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Nice! You're eligible to get Google Fiber Internet."
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://fiber.google.com/a/signup/preconfig_step?global_addr_id=b5a6bd9e-112f-4326-990a-56528b5384a5&utm_source=%28direct%29&utm_campaign=%28direct%29&utm_medium=%28none%29&_gl=1*bccjvs*_gcl_au*MjMzNDkzNDA2LjE3NjgxMDAyMDQ.&mid=2bee0f3a-0328-4076-9707-18ef84ec5d1c"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.Button-module_button__18Bed.Button-module_PRIMARY__DKvTl.Button-module_BASE__pL-vu.Button_btn___t8GZ.Button_primaryType__dyw_2.buttons_footerButton__EwSNN[data-testid=\"button-PRIMARY\"]",
+          "x": 620.0,
+          "y": 910.0
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 2
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "SERVICEABLE_PLANS",
+    "description": "Service available with plans",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Choose your internet"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://fiber.google.com/a/signup/internet_plan_step?global_addr_id=b5a6bd9e-112f-4326-990a-56528b5384a5&utm_source=%28direct%29&utm_campaign=%28direct%29&utm_medium=%28none%29&_gl=1*bccjvs*_gcl_au*MjMzNDkzNDA2LjE3NjgxMDAyMDQ.&mid=2bee0f3a-0328-4076-9707-18ef84ec5d1c"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "serviceable_with_plans",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://fiber.google.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "The most awarded internet. Now reinvented."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.MuiInputBase-input.styles_addressInput__5n4Xk.css-j73zfz.pac-target-input[name=\"street_address\"][placeholder*=\"Enter your address\"][required=\"\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 470.015625,
+          "y": 569.0
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.MuiInputBase-input.styles_addressInput__5n4Xk.css-j73zfz.pac-target-input[name=\"street_address\"][placeholder*=\"Enter your address\"][required=\"\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 470.015625,
+          "y": 569.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.MuiButton-disableElevation.styles_submit__dNtUy.css-8qzx7[type=\"submit\"]",
+          "x": 842.015625,
+          "y": 569.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user has completed all the steps."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "SELECT_INTERNET",
+    "description": "Eligible for service",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Nice! You're eligible to get Google Fiber Internet."
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://fiber.google.com/a/signup/preconfig_step?global_addr_id=b5a6bd9e-112f-4326-990a-56528b5384a5&utm_source=%28direct%29&utm_campaign=%28direct%29&utm_medium=%28none%29&_gl=1*fplyj0*_gcl_au*NDQyMzAwNDU0LjE3NjgxMDA5NDk.&mid=e2ce779b-babb-4250-9f51-16ab54b03618"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.Button-module_button__18Bed.Button-module_PRIMARY__DKvTl.Button-module_BASE__pL-vu.Button_btn___t8GZ.Button_primaryType__dyw_2.buttons_footerButton__EwSNN[data-testid=\"button-PRIMARY\"]",
+          "x": 620.0,
+          "y": 910.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query asks to terminate the task immediately after clicking the 'Get started' button."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "SERVICEABLE_PLANS",
+    "description": "Service available with plans",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Choose your internet"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://fiber.google.com/a/signup/internet_plan_step?global_addr_id=b5a6bd9e-112f-4326-990a-56528b5384a5&utm_source=%28direct%29&utm_campaign=%28direct%29&utm_medium=%28none%29&_gl=1*fplyj0*_gcl_au*NDQyMzAwNDU0LjE3NjgxMDA5NDk.&mid=e2ce779b-babb-4250-9f51-16ab54b03618"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query instructs to terminate the task immediately."
+        }
+      }
+    ],
+    "end_state": "serviceable_with_plans",
+    "executed": []
+  }
+]

@@ -1,0 +1,231 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to Daystarr search address page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "about:blank"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://daystarr.net/search-address/"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": [
+      {
+        "name": "START",
+        "description": "Navigate to Daystarr search address page",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "data:,"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "navigate",
+            "params": {
+              "url": "https://daystarr.net/search-address/"
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully as requested."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Where Connectivity Meets Community!"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.ui-autocomplete-input[id=\"myInput\"][type=\"text\"][name=\"myAddress\"][placeholder*=\"Your Address\"][autocomplete=\"off\"]",
+          "x": 620.0,
+          "y": 582.03125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.ui-autocomplete-input[id=\"myInput\"][type=\"text\"][name=\"myAddress\"][placeholder*=\"Your Address\"][autocomplete=\"off\"]",
+          "x": 620.0,
+          "y": 582.03125
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.ui-autocomplete-input[id=\"myInput\"][type=\"text\"][name=\"myAddress\"][placeholder*=\"Your Address\"][autocomplete=\"off\"]",
+          "x": 620.0,
+          "y": 582.03125
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input[type=\"button\"]",
+          "x": 619.9921875,
+          "y": 938.03125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "SERVICEABLE",
+    "description": "Service available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Select Your Speed"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://daystarr.net/service-available/?sa_id=99333&PromoCode=none"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions."
+        }
+      }
+    ],
+    "end_state": "serviceable_with_plans",
+    "executed": [
+      {
+        "name": "SERVICEABLE",
+        "description": "Service available",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Select Your Speed"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully."
+            }
+          }
+        ],
+        "end_state": "serviceable_with_plans",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "SERVICEABLE",
+    "description": "Service available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Select Your Speed"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully."
+        }
+      }
+    ],
+    "end_state": "serviceable_with_plans",
+    "executed": []
+  },
+  {
+    "name": "START",
+    "description": "Navigate to Daystarr search address page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "data:,"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://daystarr.net/search-address/"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully as requested."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  }
+]

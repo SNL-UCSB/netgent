@@ -1,0 +1,339 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to the Yondoo order now page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "data:,"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://support.yondoobb.com/order-now.dna"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "SELECT_RESIDENTIAL",
+    "description": "Select residential service type",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "What type of service are you interested in?"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://support.yondoobb.com/order-now.dna"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.btn-primary.mr10.pull-left[type=\"submit\"][name=\"serviceType\"]",
+          "x": 877.1640625,
+          "y": 679.109375
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Street Address:"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "City"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "ZIP"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "label.field-label.text-muted.fs18.mb10[for=\"street\"]"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "label.field-label.text-muted.fs18.mb10[for=\"city\"]"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "label.field-label.text-muted.fs18.mb10[for=\"zip\"]"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.gui-input[type=\"text\"][name=\"street\"][id=\"street\"][placeholder*=\"Enter address (required)\"]",
+          "x": 660.5,
+          "y": 458.15625
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.gui-input[type=\"text\"][name=\"street\"][id=\"street\"][placeholder*=\"Enter address (required)\"]",
+          "x": 660.5,
+          "y": 458.15625
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%city%",
+          "by": "css selector",
+          "selector": "input.gui-input[type=\"text\"][name=\"city\"][id=\"city\"][placeholder*=\"Enter city (required)\"]",
+          "x": 518.0,
+          "y": 554.3125
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%zip_code%",
+          "by": "css selector",
+          "selector": "input.gui-input.zip[type=\"text\"][name=\"zip\"][id=\"zip\"][placeholder*=\"Enter zip (required)\"]",
+          "x": 803.0,
+          "y": 554.3125
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.button.btn-primary.mr10.pull-right[type=\"submit\"]",
+          "x": 894.24609375,
+          "y": 725.8203125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.button.btn-primary.mr10.pull-right[type=\"submit\"]",
+          "x": 894.24609375,
+          "y": 644.453125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.button.btn-primary.mr10.pull-right[type=\"submit\"]",
+          "x": 894.24609375,
+          "y": 658.453125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.button.btn-primary.mr10.pull-right[type=\"submit\"]",
+          "x": 894.24609375,
+          "y": 658.453125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.button.btn-primary.mr10.pull-right[type=\"submit\"]",
+          "x": 894.24609375,
+          "y": 658.453125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.button.btn-primary.mr10.pull-right[type=\"submit\"]",
+          "x": 894.24609375,
+          "y": 658.453125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.button.btn-primary.mr10.pull-right[type=\"submit\"]",
+          "x": 894.24609375,
+          "y": 658.453125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "label.block.mt15.option.option-primary[for=\"1056\"]",
+          "x": 653.0,
+          "y": 562.953125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.button.btn-primary.mr10.pull-right[type=\"submit\"]",
+          "x": 894.24609375,
+          "y": 658.453125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.button.btn-primary.mr10.pull-right",
+          "x": 894.24609375,
+          "y": 614.1328125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a[href=\"/order-now.dna?service=1071&action=shop_ybb&SESSION_ID=176793446845894&next=premium_ybb&step=package\"]",
+          "x": 652.74609375,
+          "y": 489.5859375
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "Internet Available at Address on Yondoo",
+    "description": "Internet service is available at this address",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Step 3 of 9: Premium Channels"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions."
+        }
+      }
+    ],
+    "end_state": "Service Available",
+    "executed": [
+      {
+        "name": "Internet Available at Address on Yondoo",
+        "description": "Internet service is available at this address",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Step 3 of 9: Premium Channels"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "Service Available",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "Internet Available at Address on Yondoo",
+    "description": "Internet service is available at this address",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Step 3 of 9: Premium Channels"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "Service Available",
+    "executed": []
+  }
+]

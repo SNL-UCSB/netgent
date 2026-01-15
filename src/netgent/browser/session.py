@@ -53,7 +53,7 @@ class BrowserSession:
             logger.warning(f"Could not setup Xlib display for pyautogui: {e}")
         
         # Don't use xvfb=True since we're managing Xvfb ourselves in the startup script
-        self._driver = Driver(proxy=self.proxy, user_data_dir=self.user_data_dir)
+        self._driver = Driver(proxy=self.proxy, user_data_dir=self.user_data_dir, enable_3d_apis=True, chromium_arg=self._args)
 
     def quit(self):
         if self._driver is None:
