@@ -76,7 +76,7 @@ class Metadata(Message):
     timestamp: Optional[int] = Field(description="The timestamp iteration of the current page.")
     elements: Optional[dict] = Field(description="The elements on the current page.")
     element_description: str = Field(description="A description of the elements on the current page.")
-    screenshot: str = Field(description="A screenshot of the current page.")
+    screenshot: Optional[str] = Field(default=None, description="A screenshot of the current page.")
     dom: str = Field(description="The DOM of the current page.")
     url: str = Field(description="The URL of the current page.")
     title: str = Field(description="The title of the current page.")

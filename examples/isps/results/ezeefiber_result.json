@@ -1,0 +1,181 @@
+{
+  "state_repository": [
+    {
+      "name": "START",
+      "description": "Navigate to Ezee Fiber page",
+      "checks": [
+        {
+          "type": "url",
+          "params": {
+            "url": "data:,"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "navigate",
+          "params": {
+            "url": "https://shop.ezeefiber.com/#/order/1"
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input[aria-label*=\"Enter your address\u2026\"][id=\"input-319\"][placeholder*=\"Enter your address\u2026\"][type=\"text\"][autocomplete=\"off\"]",
+            "x": 632.0,
+            "y": 461.84375
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+            "x": 660.0,
+            "y": 615.84375
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is to navigate to the URL and terminate. The navigation was successful, so terminating the task."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available (e.g. 'Ezee Fiber is working hard to expand our services. Lets keep in touch and you will be the first to know when we get to your area.')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Ezee Fiber is working hard to expand our services. Lets keep in touch and you will be the first to k..."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is to terminate immediately."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": []
+    }
+  ],
+  "state_prompts": [
+    "## State: START\n- **Description:** Navigate to Ezee Fiber page\n- **Triggers:**\n\t1. If it is on the chrome homescreen\n- **Actions:**\n\t1. Go to https://shop.ezeefiber.com/#/order/1 word for word\n\t2. TERMINATE AT THIS POINT",
+    "## State: ADDRESS_BAR\n- **Description:** If on the Ezee Fiber page\n- **Triggers:**\n\t1. If you see 'Please enter your address below'\n- **Actions:**\n\t1. FOLLOW THESE INSTRUCTIONS CLOSELY\n\t2. Type `%address%` into the input field\n\t3. Click submit to confirm selection\n\t4. TERMINATE AT THIS POINT",
+    "## State: CONFIRM_ADDRESS\n- **Description:** Confirm address location\n- **Triggers:**\n\t1. If you see 'Verify that the marker below is the correct location for your address'\n- **Actions:**\n\t1. Scroll down\n\t2. press tab and enter\n\t3. Click the 'Next' button\n\t4. TERMINATE AT THIS POINT",
+    "## State: INTERNET_AVAILABLE\n- **Description:** Service available - enter contact info\n- **Triggers:**\n\t1. If you see 'Ezee Fiber is in your neighborhood. Order now!'\n- **Actions:**\n\t1. Scroll to put this contact information in the form\n\t2. Click the 'Next' button\n\t3. TERMINATE AT THIS POINT",
+    "## State: SERVICEABLE\n- **Description:** Build your bundle\n- **Triggers:**\n\t1. If you see 'Build your bundle'\n- **Actions:**\n\t1. TERMINATE AT THIS POINT\n- **End State:** serviceable_with_plans",
+    "## State: NO_SERVICE\n- **Description:** Service not available (e.g. 'Ezee Fiber is working hard to expand our services. Lets keep in touch and you will be the first to know when we get to your area.')\n- **Triggers:**\n\t1. Get the Text from the page like 'Ezee Fiber is working hard to expand our services. Lets keep in touch and you will be the first to know when we get to your area.'\n- **Actions:**\n\t1. TERMINATE AT THIS POINT\n- **End State:** no_service"
+  ],
+  "passed_states": [],
+  "recursion_count": 2,
+  "last_passed_state_name": null,
+  "consecutive_state_count": 0,
+  "state_timeout_start": null,
+  "variables": {
+    "address": "17th St, Oakland, CA",
+    "zip_code": "94612"
+  },
+  "synthesis_prompt": "```\n## Step 1\nStep: TERMINATION\n```",
+  "synthesis_choice": {
+    "name": "NO_SERVICE",
+    "description": "Service not available (e.g. 'Ezee Fiber is working hard to expand our services. Lets keep in touch and you will be the first to know when we get to your area.')",
+    "triggers": [
+      "Get the Text from the page like 'Ezee Fiber is working hard to expand our services. Lets keep in touch and you will be the first to know when we get to your area.'"
+    ],
+    "actions": [
+      "TERMINATE AT THIS POINT"
+    ],
+    "end_state": "no_service"
+  },
+  "synthesis_triggers": [
+    {
+      "type": "text",
+      "params": {
+        "text": "Ezee Fiber is working hard to expand our services. Lets keep in touch and you will be the first to k..."
+      }
+    }
+  ],
+  "executed_states": [
+    {
+      "name": "START",
+      "description": "Navigate to Ezee Fiber page",
+      "checks": [
+        {
+          "type": "url",
+          "params": {
+            "url": "data:,"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "navigate",
+          "params": {
+            "url": "https://shop.ezeefiber.com/#/order/1"
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input[aria-label*=\"Enter your address\u2026\"][id=\"input-319\"][placeholder*=\"Enter your address\u2026\"][type=\"text\"][autocomplete=\"off\"]",
+            "x": 632.0,
+            "y": 461.84375
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+            "x": 660.0,
+            "y": 615.84375
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is to navigate to the URL and terminate. The navigation was successful, so terminating the task."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available (e.g. 'Ezee Fiber is working hard to expand our services. Lets keep in touch and you will be the first to know when we get to your area.')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Ezee Fiber is working hard to expand our services. Lets keep in touch and you will be the first to k..."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is to terminate immediately."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": []
+    }
+  ]
+}

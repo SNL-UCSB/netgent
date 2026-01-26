@@ -1,0 +1,1573 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to White River Connect page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "data:,"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://whiteriver.crowdfiber.com/front_end/zones"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "If on the White River Connect page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Enter your address below to express interest or see if our internet services are available at your l..."
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://whiteriver.crowdfiber.com/front_end/zones"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.is-active.button[href=\"/front_end/zones\"]"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+          "x": 311.3828125,
+          "y": 650.0078125
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%zip_code%",
+          "by": "css selector",
+          "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+          "x": 835.2578125,
+          "y": 650.0078125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "select[id=\"\"][name=\"locate[service_class]\"][required=\"\"]",
+          "x": 1041.0078125,
+          "y": 649.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+          "x": 1199.12890625,
+          "y": 649.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": [
+      {
+        "name": "ADDRESS_BAR",
+        "description": "If on the White River Connect page",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Enter your address below to express interest or see if our internet services are available at your l..."
+            }
+          },
+          {
+            "type": "url",
+            "params": {
+              "url": "https://whiteriver.crowdfiber.com/front_end/zones"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "a.is-active.button[href=\"/front_end/zones\"]"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+              "x": 311.3828125,
+              "y": 650.0078125
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%zip_code%",
+              "by": "css selector",
+              "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+              "x": 835.2578125,
+              "y": 650.0078125
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "select[id=\"\"][name=\"locate[service_class]\"][required=\"\"]",
+              "x": 1041.0078125,
+              "y": 649.0
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+              "x": 1199.12890625,
+              "y": 649.0
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is complete. The address and zip code have been entered, the service type has been selected, and the 'GO' button has been clicked."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "If on the White River Connect page",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Enter your address below to express interest or see if our internet services are available at your l..."
+            }
+          },
+          {
+            "type": "url",
+            "params": {
+              "url": "https://whiteriver.crowdfiber.com/front_end/zones"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "a.is-active.button[href=\"/front_end/zones\"]"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+              "x": 311.3828125,
+              "y": 650.0078125
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%zip_code%",
+              "by": "css selector",
+              "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+              "x": 835.2578125,
+              "y": 650.0078125
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "select[id=\"\"][name=\"locate[service_class]\"][required=\"\"]",
+              "x": 1041.0078125,
+              "y": 649.0
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+              "x": 1199.12890625,
+              "y": 649.0
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed successfully."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "If on the White River Connect page",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Enter your address below to express interest or see if our internet services are available at your l..."
+            }
+          },
+          {
+            "type": "url",
+            "params": {
+              "url": "https://whiteriver.crowdfiber.com/front_end/zones"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "a.is-active.button[href=\"/front_end/zones\"]"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+              "x": 311.3828125,
+              "y": 650.0078125
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%zip_code%",
+              "by": "css selector",
+              "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+              "x": 835.2578125,
+              "y": 650.0078125
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "select[id=\"\"][name=\"locate[service_class]\"][required=\"\"]",
+              "x": 1041.0078125,
+              "y": 649.0
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+              "x": 1199.12890625,
+              "y": 649.0
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as the address and zip code have been entered, the service type has been selected, and the 'GO' button has been clicked. The map is displayed with the address."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "If on the White River Connect page",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Enter your address below to express interest or see if our internet services are available at your l..."
+            }
+          },
+          {
+            "type": "url",
+            "params": {
+              "url": "https://whiteriver.crowdfiber.com/front_end/zones"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "a.is-active.button[href=\"/front_end/zones\"]"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+              "x": 311.3828125,
+              "y": 650.0078125
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%zip_code%",
+              "by": "css selector",
+              "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+              "x": 835.2578125,
+              "y": 650.0078125
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "select[id=\"\"][name=\"locate[service_class]\"][required=\"\"]",
+              "x": 1041.0078125,
+              "y": 649.0
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+              "x": 1199.12890625,
+              "y": 649.0
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as all the steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "CONFIRM_ADDRESS",
+    "description": "Confirm address location",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "15802 N 62nd St in Scottsdale AZ 85254"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "div.subtitle.is-4"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+          "x": 1140.90234375,
+          "y": 710.9921875
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "test@example.com",
+          "by": "css selector",
+          "selector": "input.input.is-medium[placeholder*=\"Email Address\"][type=\"email\"][name=\"[user][email]\"][id=\"user_email\"][required=\"true\"]",
+          "x": 653.0,
+          "y": 865.703125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The current HTML state shows that the email address \\\"test@example.com\\\" has been typed into the 'Email Address' input field. The previous actions included scrolling down, clicking the 'Next' button, and typing the email address. The next step is to proceed to the next stage of the process. Since the current HTML only shows the email input field, and no 'Next' button, we should terminate."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": [
+      {
+        "name": "CONFIRM_ADDRESS",
+        "description": "Confirm address location",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Click the Next button to see if services are available\u00a0at"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "span"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "scroll",
+            "params": {
+              "direction": "down",
+              "pixels": 10
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+              "x": 1140.90234375,
+              "y": 710.9921875
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "test@example.com",
+              "by": "css selector",
+              "selector": "input.input.is-medium[placeholder*=\"Email Address\"][type=\"email\"][name=\"[user][email]\"][id=\"user_email\"][required=\"true\"]",
+              "x": 653.0,
+              "y": 865.703125
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The current HTML state shows an input field labeled 'Email Address' which is already populated with 'test@example.com'. The previous actions were to scroll down, click the 'Next' button, and then type 'test@example.com' into the email field. Since the email field is already populated, the scroll and click 'Next' actions were successful. The next step is to terminate the task as instructed."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "CONFIRM_ADDRESS",
+        "description": "Confirm address location",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Click the Next button to see if services are available\u00a0at"
+            }
+          },
+          {
+            "type": "url",
+            "params": {
+              "url": "https://whiteriver.crowdfiber.com/front_end/cart/e38e02fe-3b77-4479-8691-f3bd0c8ab300"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "scroll",
+            "params": {
+              "direction": "down",
+              "pixels": 10
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+              "x": 1140.90234375,
+              "y": 710.9921875
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "test@example.com",
+              "by": "css selector",
+              "selector": "input.input.is-medium[placeholder*=\"Email Address\"][type=\"email\"][name=\"[user][email]\"][id=\"user_email\"][required=\"true\"]",
+              "x": 653.0,
+              "y": 865.703125
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The 'Next' button is not visible in the current HTML. Terminating the task as per Step 1 of the Global Plan."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "CONFIRM_ADDRESS",
+        "description": "Confirm address location",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Click the Next button to see if services are available\u00a0at"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "span"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "scroll",
+            "params": {
+              "direction": "down",
+              "pixels": 10
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+              "x": 1140.90234375,
+              "y": 710.9921875
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "test@example.com",
+              "by": "css selector",
+              "selector": "input.input.is-medium[placeholder*=\"Email Address\"][type=\"email\"][name=\"[user][email]\"][id=\"user_email\"][required=\"true\"]",
+              "x": 653.0,
+              "y": 865.703125
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The email address 'test@example.com' is already populated in the input field with id 3. The previous action was to type 'test@example.com' into this field. The next step is to terminate the task as per the instructions."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "CONFIRM_ADDRESS",
+        "description": "Confirm address location",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Click the Next button to see if services are available\u00a0at"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "span"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "scroll",
+            "params": {
+              "direction": "down",
+              "pixels": 10
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+              "x": 1140.90234375,
+              "y": 710.9921875
+            }
+          },
+          {
+            "type": "scroll",
+            "params": {
+              "direction": "down",
+              "pixels": 10
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+              "x": 1140.90234375,
+              "y": 719.15625
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+              "x": 1140.90234375,
+              "y": 785.15625
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as all the steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available (e.g. 'Make It Possible!')",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Make It Possible!"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "While your address is not in an area that we have plans to serve at this time, if we receive enough ..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Terminating the task as per the instruction."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": [
+      {
+        "name": "NO_SERVICE",
+        "description": "Service not available (e.g. 'Make It Possible!')",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Make It Possible!"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "While your address is not in an area that we have plans to serve at this time, if we receive enough ..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is to terminate. The email field is already populated, indicating that the previous steps were successful. The next step is to terminate the task as instructed."
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "executed": []
+      },
+      {
+        "name": "NO_SERVICE",
+        "description": "Service not available (e.g. 'Make It Possible!')",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Make It Possible!"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "While your address is not in an area that we have plans to serve at this time, if we receive enough ..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed."
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "executed": []
+      },
+      {
+        "name": "NO_SERVICE",
+        "description": "Service not available (e.g. 'Make It Possible!')",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Make It Possible!"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "While your address is not in an area that we have plans to serve at this time, if we receive enough ..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The email address 'test@example.com' is already populated in the input field with id 3. The task is complete. Terminating as per instructions."
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "executed": []
+      },
+      {
+        "name": "NO_SERVICE",
+        "description": "Service not available (e.g. 'Make It Possible!')",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Make It Possible!"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "While your address is not in an area that we have plans to serve at this time, if we receive enough ..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as all the steps are done."
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "If on the White River Connect page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Enter your address below to express interest or see if our internet services are available at your l..."
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://whiteriver.crowdfiber.com/front_end/zones"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.is-active.button[href=\"/front_end/zones\"]"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+          "x": 311.3828125,
+          "y": 650.0078125
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%zip_code%",
+          "by": "css selector",
+          "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+          "x": 835.2578125,
+          "y": 650.0078125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "select[id=\"\"][name=\"locate[service_class]\"][required=\"\"]",
+          "x": 1041.0078125,
+          "y": 649.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+          "x": 1199.12890625,
+          "y": 649.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete. The address and zip code have been entered, the service type has been selected, and the 'GO' button has been clicked."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "CONFIRM_ADDRESS",
+    "description": "Confirm address location",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Click the Next button to see if services are available\u00a0at"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "span"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+          "x": 1140.90234375,
+          "y": 710.9921875
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "test@example.com",
+          "by": "css selector",
+          "selector": "input.input.is-medium[placeholder*=\"Email Address\"][type=\"email\"][name=\"[user][email]\"][id=\"user_email\"][required=\"true\"]",
+          "x": 653.0,
+          "y": 865.703125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The current HTML state shows an input field labeled 'Email Address' which is already populated with 'test@example.com'. The previous actions were to scroll down, click the 'Next' button, and then type 'test@example.com' into the email field. Since the email field is already populated, the scroll and click 'Next' actions were successful. The next step is to terminate the task as instructed."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available (e.g. 'Make It Possible!')",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Make It Possible!"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "While your address is not in an area that we have plans to serve at this time, if we receive enough ..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is to terminate. The email field is already populated, indicating that the previous steps were successful. The next step is to terminate the task as instructed."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "If on the White River Connect page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Enter your address below to express interest or see if our internet services are available at your l..."
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://whiteriver.crowdfiber.com/front_end/zones"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.is-active.button[href=\"/front_end/zones\"]"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+          "x": 311.3828125,
+          "y": 650.0078125
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%zip_code%",
+          "by": "css selector",
+          "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+          "x": 835.2578125,
+          "y": 650.0078125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "select[id=\"\"][name=\"locate[service_class]\"][required=\"\"]",
+          "x": 1041.0078125,
+          "y": 649.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+          "x": 1199.12890625,
+          "y": 649.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed successfully."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "CONFIRM_ADDRESS",
+    "description": "Confirm address location",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Click the Next button to see if services are available\u00a0at"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://whiteriver.crowdfiber.com/front_end/cart/e38e02fe-3b77-4479-8691-f3bd0c8ab300"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+          "x": 1140.90234375,
+          "y": 710.9921875
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "test@example.com",
+          "by": "css selector",
+          "selector": "input.input.is-medium[placeholder*=\"Email Address\"][type=\"email\"][name=\"[user][email]\"][id=\"user_email\"][required=\"true\"]",
+          "x": 653.0,
+          "y": 865.703125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The 'Next' button is not visible in the current HTML. Terminating the task as per Step 1 of the Global Plan."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available (e.g. 'Make It Possible!')",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Make It Possible!"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "While your address is not in an area that we have plans to serve at this time, if we receive enough ..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "If on the White River Connect page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Enter your address below to express interest or see if our internet services are available at your l..."
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://whiteriver.crowdfiber.com/front_end/zones"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.is-active.button[href=\"/front_end/zones\"]"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+          "x": 311.3828125,
+          "y": 650.0078125
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%zip_code%",
+          "by": "css selector",
+          "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+          "x": 835.2578125,
+          "y": 650.0078125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "select[id=\"\"][name=\"locate[service_class]\"][required=\"\"]",
+          "x": 1041.0078125,
+          "y": 649.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+          "x": 1199.12890625,
+          "y": 649.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as the address and zip code have been entered, the service type has been selected, and the 'GO' button has been clicked. The map is displayed with the address."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "CONFIRM_ADDRESS",
+    "description": "Confirm address location",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Click the Next button to see if services are available\u00a0at"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "span"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+          "x": 1140.90234375,
+          "y": 710.9921875
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "test@example.com",
+          "by": "css selector",
+          "selector": "input.input.is-medium[placeholder*=\"Email Address\"][type=\"email\"][name=\"[user][email]\"][id=\"user_email\"][required=\"true\"]",
+          "x": 653.0,
+          "y": 865.703125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The email address 'test@example.com' is already populated in the input field with id 3. The previous action was to type 'test@example.com' into this field. The next step is to terminate the task as per the instructions."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available (e.g. 'Make It Possible!')",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Make It Possible!"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "While your address is not in an area that we have plans to serve at this time, if we receive enough ..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The email address 'test@example.com' is already populated in the input field with id 3. The task is complete. Terminating as per instructions."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "If on the White River Connect page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Enter your address below to express interest or see if our internet services are available at your l..."
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://whiteriver.crowdfiber.com/front_end/zones"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "a.is-active.button[href=\"/front_end/zones\"]"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+          "x": 311.3828125,
+          "y": 650.0078125
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%zip_code%",
+          "by": "css selector",
+          "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+          "x": 835.2578125,
+          "y": 650.0078125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "select[id=\"\"][name=\"locate[service_class]\"][required=\"\"]",
+          "x": 1041.0078125,
+          "y": 649.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+          "x": 1199.12890625,
+          "y": 649.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as all the steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "CONFIRM_ADDRESS",
+    "description": "Confirm address location",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Click the Next button to see if services are available\u00a0at"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "span"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+          "x": 1140.90234375,
+          "y": 710.9921875
+        }
+      },
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+          "x": 1140.90234375,
+          "y": 719.15625
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+          "x": 1140.90234375,
+          "y": 785.15625
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as all the steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available (e.g. 'Make It Possible!')",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Make It Possible!"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "While your address is not in an area that we have plans to serve at this time, if we receive enough ..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as all the steps are done."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  }
+]

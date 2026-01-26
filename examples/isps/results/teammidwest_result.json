@@ -1,0 +1,380 @@
+{
+  "state_repository": [
+    {
+      "name": "START",
+      "description": "Navigate to Team Midwest CrowdFiber page",
+      "checks": [
+        {
+          "type": "url",
+          "params": {
+            "url": "data:,"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "navigate",
+          "params": {
+            "url": "https://internet.teammidwest.com/front_end/"
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "Task completed successfully as per the instructions."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the Team Midwest page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Looking for our FCC Broadband Labels? They are visible once you enter your address and are in an act..."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "button.termly-styles-module-root-aecb0e.termly-styles-module-primary-c223ae.termly-styles-module-solid-aab01d.termly-styles-button-a4543c.t-acceptAllButton",
+            "x": 1169.94140625,
+            "y": 774.4140625
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+            "x": 421.875,
+            "y": 517.0859375
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%zip_code%",
+            "by": "css selector",
+            "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+            "x": 945.75,
+            "y": 517.0859375
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+            "x": 1088.62109375,
+            "y": 516.078125
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "Task completed successfully"
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "We found this address:"
+          }
+        },
+        {
+          "type": "text",
+          "params": {
+            "text": "200 Frank H Ogawa Plz, Oakland CA 94612"
+          }
+        },
+        {
+          "type": "text",
+          "params": {
+            "text": "(search for a different address)"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1140.90234375,
+            "y": 710.7421875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "Task completed successfully"
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'If you see internet is not available at your address')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Maybe In The Future"
+          }
+        },
+        {
+          "type": "text",
+          "params": {
+            "text": "We are not in your area. However, we are actively expanding and evaluating new places to extend serv..."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The instruction is to terminate the task immediately."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": []
+    }
+  ],
+  "state_prompts": [
+    "## State: START\n- **Description:** Navigate to Team Midwest CrowdFiber page\n- **Triggers:**\n\t1. If it is on the chrome homescreen\n- **Actions:**\n\t1. Go to https://internet.teammidwest.com/front_end/ word for word\n\t2. TERMINATE AT THIS POINT",
+    "## State: ADDRESS_BAR\n- **Description:** If on the Team Midwest page\n- **Triggers:**\n\t1. If you see 'Please enter your address below'\n- **Actions:**\n\t1. FOLLOW THESE INSTRUCTIONS CLOSELY\n\t2. Accept cookies first\n\t3. Type `%address%` into the input field\n\t4. Type `%zip_code%` into the input field\n\t5. Click on 'Service Type' dropdown, down arrow key once, then enter key\n\t6. Click the 'Go' button\n\t7. TERMINATE AT THIS POINT",
+    "## State: CONFIRM_ADDRESS\n- **Description:** Confirm address location\n- **Triggers:**\n\t1. If you see 'Verify that the marker below is the correct location for your address'\n- **Actions:**\n\t1. Scroll down\n\t2. Click the 'Next' button\n\t3. TERMINATE AT THIS POINT",
+    "## State: SERVICEABLE\n- **Description:** Build your bundle\n- **Triggers:**\n\t1. If you see 'Build your bundle'\n- **Actions:**\n\t1. TERMINATE AT THIS POINT\n- **End State:** serviceable_with_plans",
+    "## State: NO_SERVICE\n- **Description:** Service not available - (e.g. 'If you see internet is not available at your address')\n- **Triggers:**\n\t1. If you see 'Aww shucks! Our service isn't available.'\n- **Actions:**\n\t1. TERMINATE AT THIS POINT\n- **End State:** no_service"
+  ],
+  "passed_states": [],
+  "recursion_count": 4,
+  "last_passed_state_name": null,
+  "consecutive_state_count": 0,
+  "state_timeout_start": null,
+  "variables": {
+    "address": "200 Frank H Ogawa Plz, Oakland, CA",
+    "zip_code": "94612"
+  },
+  "synthesis_prompt": "```\n## Step 1\nStep: TERMINATION\n```",
+  "synthesis_choice": {
+    "name": "NO_SERVICE",
+    "description": "Service not available - (e.g. 'If you see internet is not available at your address')",
+    "triggers": [
+      "If you see 'Aww shucks! Our service isn't available.'"
+    ],
+    "actions": [
+      "TERMINATE AT THIS POINT"
+    ],
+    "end_state": "no_service"
+  },
+  "synthesis_triggers": [
+    {
+      "type": "text",
+      "params": {
+        "text": "Maybe In The Future"
+      }
+    },
+    {
+      "type": "text",
+      "params": {
+        "text": "We are not in your area. However, we are actively expanding and evaluating new places to extend serv..."
+      }
+    }
+  ],
+  "executed_states": [
+    {
+      "name": "START",
+      "description": "Navigate to Team Midwest CrowdFiber page",
+      "checks": [
+        {
+          "type": "url",
+          "params": {
+            "url": "data:,"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "navigate",
+          "params": {
+            "url": "https://internet.teammidwest.com/front_end/"
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "Task completed successfully as per the instructions."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the Team Midwest page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Looking for our FCC Broadband Labels? They are visible once you enter your address and are in an act..."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "button.termly-styles-module-root-aecb0e.termly-styles-module-primary-c223ae.termly-styles-module-solid-aab01d.termly-styles-button-a4543c.t-acceptAllButton",
+            "x": 1169.94140625,
+            "y": 774.4140625
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+            "x": 421.875,
+            "y": 517.0859375
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%zip_code%",
+            "by": "css selector",
+            "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+            "x": 945.75,
+            "y": 517.0859375
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+            "x": 1088.62109375,
+            "y": 516.078125
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "Task completed successfully"
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "We found this address:"
+          }
+        },
+        {
+          "type": "text",
+          "params": {
+            "text": "200 Frank H Ogawa Plz, Oakland CA 94612"
+          }
+        },
+        {
+          "type": "text",
+          "params": {
+            "text": "(search for a different address)"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1140.90234375,
+            "y": 710.7421875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "Task completed successfully"
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'If you see internet is not available at your address')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Maybe In The Future"
+          }
+        },
+        {
+          "type": "text",
+          "params": {
+            "text": "We are not in your area. However, we are actively expanding and evaluating new places to extend serv..."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The instruction is to terminate the task immediately."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": []
+    }
+  ]
+}

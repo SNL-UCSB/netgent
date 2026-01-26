@@ -1,0 +1,99 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to Novos Fiber page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "data:,"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://novosfiber.com/"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task was to navigate to the website and then terminate. The navigation is complete, so terminating the task."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "If on the Novos Fiber page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://novosfiber.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Check Availability"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.address-input-nondl[id=\"address-component\"][type=\"text\"][autocomplete=\"off\"][placeholder*=\"Search for your address\"]",
+          "x": 569.453125,
+          "y": 745.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.submit-button[type=\"button\"]",
+          "x": 861.69921875,
+          "y": 745.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is to terminate immediately after clicking the 'Search Now' button."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Our fiber internet service isn\u2019t available at your address at this time."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is to terminate immediately."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  }
+]

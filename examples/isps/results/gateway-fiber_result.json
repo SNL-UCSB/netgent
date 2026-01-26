@@ -1,0 +1,189 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to Gateway Fiber page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "data:,"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://shop.gatewayfiber.com/"
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input[aria-label*=\"Enter full street address\"][id=\"input-371\"][placeholder*=\"Enter full street address\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 504.0,
+          "y": 655.4453125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.v-input__slot[role=\"combobox\"]",
+          "x": 532.0,
+          "y": 655.4453125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "If on the Gateway Fiber page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "See if Gateway Fiber is in your neighborhood"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+          "x": 531.99609375,
+          "y": 737.4453125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Address is not serviceable"
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available (e.g. 'Residential Fiber Interest Form Request Fiber For Your Neighborhood')",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Stay in the know"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Darn it. We don\u2019t currently serve your address...yet."
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "But we might in the future."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query requires the agent to terminate immediately. The current HTML state shows the page after an address check failed, displaying a message \"Darn it. We don't currently serve your address...yet.\" and a form to enter contact information. The instruction is to terminate, regardless of the page content."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  },
+  {
+    "name": "CONFIRM_ADDRESS",
+    "description": "Confirm address location",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "1"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://shop.gatewayfiber.com/#/order/1"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "span.v-stepper__step__step.primary"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "tab"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+          "x": 531.99609375,
+          "y": 588.9453125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  }
+]

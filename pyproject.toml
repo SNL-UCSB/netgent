@@ -49,6 +49,8 @@ dependencies = [
     "pulumi-aws (>=7.0.0,<8.0.0)",
     "pandas (>=2.3.3,<3.0.0)",
     "faker>=40.1.0",
+    "openinference-instrumentation-langchain>=0.1.58",
+    "arize-phoenix>=4.0.0",
 ]
 
 [tool.poetry]

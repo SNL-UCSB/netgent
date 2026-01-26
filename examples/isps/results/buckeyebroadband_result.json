@@ -1,0 +1,301 @@
+{
+  "state_repository": [
+    {
+      "name": "Navigate To Buckeye Broadband",
+      "description": "Navigated to the Buckeye Broadband Website",
+      "checks": [
+        {
+          "type": "url",
+          "params": {
+            "url": "data:,"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "navigate",
+          "params": {
+            "url": "https://www.buckeyebroadband.com/packages"
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is complete as the navigation to the packages page is done and the user has instructed to terminate the task immediately after completing the navigation."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "Enter Address on Buckeye Broadband Homepage",
+      "description": "Enter the address to check service availability",
+      "checks": [
+        {
+          "type": "url",
+          "params": {
+            "url": "https://www.buckeyebroadband.com/packages"
+          }
+        },
+        {
+          "type": "text",
+          "params": {
+            "text": "Get a Better Deal With Buckeye"
+          }
+        },
+        {
+          "type": "text",
+          "params": {
+            "text": "Enter your address to see what internet, TV, and mobile services are available where you live."
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "h1"
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "p"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.form-control.required.serviceability-check__input.serviceability-check__input--placeholder[type=\"text\"][autocomplete=\"off\"][id=\"serviceability-address\"][name=\"serviceability-address\"][placeholder*=\"Search your address\"][required=\"\"]",
+            "x": 554.77734375,
+            "y": 659.5
+          }
+        },
+        {
+          "type": "press_key",
+          "params": {
+            "key": "down"
+          }
+        },
+        {
+          "type": "press_key",
+          "params": {
+            "key": "enter"
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is complete as the address input is done and the user has instructed to terminate the task immediately after completing the address input."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "Internet Available at Address on Buckeye Broadband",
+      "description": "Internet service is available at this address - 'Showing available offers for'",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Showing available offers for:"
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "p.product-list__subtitle-msg.product-list__subtitle--lg"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The user query instructs to terminate the task immediately."
+          }
+        }
+      ],
+      "end_state": "Service Available",
+      "executed": []
+    }
+  ],
+  "state_prompts": [
+    "## State: Navigate To Buckeye Broadband\n- **Description:** Navigated to the Buckeye Broadband Website\n- **Triggers:**\n\t1. If it is on the chrome homescreen\n- **Actions:**\n\t1. Go to https://www.buckeyebroadband.com/packages word for word\n\t2. TERMINATE AT THIS POINT",
+    "## State: Enter Address on Buckeye Broadband Homepage\n- **Description:** Enter the address to check service availability\n- **Triggers:**\n\t1. If on the Buckeye Broadband page with an address input field\n- **Actions:**\n\t1. FOLLOW THESE INSTRUCTIONS CLOSELY\n\t2. Scroll down to see the address input field\n\t3. Type `%address%` into the address input field\n\t4. Press down and enter to confirm\n\t5. TERMINATE AT THIS POINT",
+    "## State: Internet Available at Address on Buckeye Broadband\n- **Description:** Internet service is available at this address - 'Showing available offers for'\n- **Triggers:**\n\t1. If you see 'Showing available offers for'\n- **Actions:**\n\t1. TERMINATE AT THIS POINT\n- **End State:** Service Available",
+    "## State: Internet Not Available at Address on Buckeye Broadband\n- **Description:** Internet service is not available at this address (e.g - 'Your address is in survey phase, show your interest below')\n- **Triggers:**\n\t1. If you see 'service not available' or 'Your address is in survey phase, show your interest below'\n- **Actions:**\n\t1. TERMINATE AT THIS POINT\n- **End State:** Service Not Available"
+  ],
+  "passed_states": [],
+  "recursion_count": 3,
+  "last_passed_state_name": null,
+  "consecutive_state_count": 0,
+  "state_timeout_start": null,
+  "variables": {
+    "address": "8967 SUMMERFIELD RD, LAMBERTVILLE, MI, 48144"
+  },
+  "synthesis_prompt": "```\n## Step 1\nStep: TERMINATION\n```",
+  "synthesis_choice": {
+    "name": "Internet Available at Address on Buckeye Broadband",
+    "description": "Internet service is available at this address - 'Showing available offers for'",
+    "triggers": [
+      "If you see 'Showing available offers for'"
+    ],
+    "actions": [
+      "TERMINATE AT THIS POINT"
+    ],
+    "end_state": "Service Available"
+  },
+  "synthesis_triggers": [
+    {
+      "type": "text",
+      "params": {
+        "text": "Showing available offers for:"
+      }
+    },
+    {
+      "type": "element",
+      "params": {
+        "by": "css selector",
+        "selector": "p.product-list__subtitle-msg.product-list__subtitle--lg"
+      }
+    }
+  ],
+  "executed_states": [
+    {
+      "name": "Navigate To Buckeye Broadband",
+      "description": "Navigated to the Buckeye Broadband Website",
+      "checks": [
+        {
+          "type": "url",
+          "params": {
+            "url": "data:,"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "navigate",
+          "params": {
+            "url": "https://www.buckeyebroadband.com/packages"
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is complete as the navigation to the packages page is done and the user has instructed to terminate the task immediately after completing the navigation."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "Enter Address on Buckeye Broadband Homepage",
+      "description": "Enter the address to check service availability",
+      "checks": [
+        {
+          "type": "url",
+          "params": {
+            "url": "https://www.buckeyebroadband.com/packages"
+          }
+        },
+        {
+          "type": "text",
+          "params": {
+            "text": "Get a Better Deal With Buckeye"
+          }
+        },
+        {
+          "type": "text",
+          "params": {
+            "text": "Enter your address to see what internet, TV, and mobile services are available where you live."
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "h1"
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "p"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.form-control.required.serviceability-check__input.serviceability-check__input--placeholder[type=\"text\"][autocomplete=\"off\"][id=\"serviceability-address\"][name=\"serviceability-address\"][placeholder*=\"Search your address\"][required=\"\"]",
+            "x": 554.77734375,
+            "y": 659.5
+          }
+        },
+        {
+          "type": "press_key",
+          "params": {
+            "key": "down"
+          }
+        },
+        {
+          "type": "press_key",
+          "params": {
+            "key": "enter"
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is complete as the address input is done and the user has instructed to terminate the task immediately after completing the address input."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "Internet Available at Address on Buckeye Broadband",
+      "description": "Internet service is available at this address - 'Showing available offers for'",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Showing available offers for:"
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "p.product-list__subtitle-msg.product-list__subtitle--lg"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The user query instructs to terminate the task immediately."
+          }
+        }
+      ],
+      "end_state": "Service Available",
+      "executed": []
+    }
+  ]
+}

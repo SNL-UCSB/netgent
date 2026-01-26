@@ -1,0 +1,281 @@
+{
+  "state_repository": [
+    {
+      "name": "START",
+      "description": "Navigate to Further Reach homepage",
+      "checks": [
+        {
+          "type": "url",
+          "params": {
+            "url": "data:,"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "navigate",
+          "params": {
+            "url": "https://furtherreach.net/"
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is complete as per the instructions."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "HOMEPAGE",
+      "description": "If on the Further Reach homepage",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Check Availability"
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "a.elementor-item.elementor-item-active[href=\"https://furtherreach.net/\"]"
+          }
+        },
+        {
+          "type": "text",
+          "params": {
+            "text": "Check Availability"
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "button.btn[type=\"submit\"]"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address% %zip_code%",
+            "by": "css selector",
+            "selector": "input.input-field.ui-autocomplete-input[type=\"text\"][id=\"street-address\"][name=\"street\"][placeholder*=\"Street Address\"][aria-label*=\"Street Address\"][autocomplete=\"off\"]",
+            "x": 524.20703125,
+            "y": 656.59375
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "button.btn[type=\"submit\"]",
+            "x": 1011.34375,
+            "y": 657.59375
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is complete as per the instructions."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "SERVICEABLE",
+      "description": "Build your bundle",
+      "checks": [
+        {
+          "type": "url",
+          "params": {
+            "url": "https://furtherreach.net/signup_plans_02/?GA=fr_mkur6ulb_l6hh9gmz&__enc=mLLk_adQaWPFfYed.0QhyWRHwS0LuBWlcfj0DgbhXy8GMqWxiJforRqsYqjakUJOgbMAj5vxzbrByXk0GQDgEuEV5nC6vbMDnjTs5aKkwCtS5DDriHocmxKPeMfsYp8uRfxM1gugyXOrUiTW5ReDjVF04F2I"
+          }
+        },
+        {
+          "type": "text",
+          "params": {
+            "text": "Step 2 of 5:"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The instruction is to terminate the action immediately."
+          }
+        }
+      ],
+      "end_state": "serviceable_with_plans",
+      "executed": []
+    }
+  ],
+  "state_prompts": [
+    "## State: START\n- **Description:** Navigate to Further Reach homepage\n- **Triggers:**\n\t1. If it is on the chrome homescreen\n- **Actions:**\n\t1. Go to https://furtherreach.net/ word for word\n\t2. TERMINATE AT THIS POINT",
+    "## State: HOMEPAGE\n- **Description:** If on the Further Reach homepage\n- **Triggers:**\n\t1. If you see 'Check Availability' button or link\n- **Actions:**\n\t1. FOLLOW THESE INSTRUCTIONS CLOSELY\n\t2. Type `%address%` and `%zip_code%` into the input field\n\t3. Click 'Check Availability'\n\t4. TERMINATE AT THIS POINT",
+    "## State: SERVICEABLE\n- **Description:** Build your bundle\n- **Triggers:**\n\t1. If you see 'Build your bundle'\n- **Actions:**\n\t1. DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT\n- **End State:** serviceable_with_plans",
+    "## State: NO_SERVICE\n- **Description:** Service not available\n- **Triggers:**\n\t1. If you see 'Unfortunately, we are not currently in your area.'\n- **Actions:**\n\t1. DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT\n- **End State:** no_service"
+  ],
+  "passed_states": [],
+  "recursion_count": 3,
+  "last_passed_state_name": null,
+  "consecutive_state_count": 0,
+  "state_timeout_start": null,
+  "variables": {
+    "address": "17th St, Oakland, CA",
+    "zip_code": "94612"
+  },
+  "synthesis_prompt": "```\n## Step 1\nStep: TERMINATE ACTION\n```",
+  "synthesis_choice": {
+    "name": "SERVICEABLE",
+    "description": "Build your bundle",
+    "triggers": [
+      "If you see 'Build your bundle'"
+    ],
+    "actions": [
+      "DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT"
+    ],
+    "end_state": "serviceable_with_plans"
+  },
+  "synthesis_triggers": [
+    {
+      "type": "url",
+      "params": {
+        "url": "https://furtherreach.net/signup_plans_02/?GA=fr_mkur6ulb_l6hh9gmz&__enc=mLLk_adQaWPFfYed.0QhyWRHwS0LuBWlcfj0DgbhXy8GMqWxiJforRqsYqjakUJOgbMAj5vxzbrByXk0GQDgEuEV5nC6vbMDnjTs5aKkwCtS5DDriHocmxKPeMfsYp8uRfxM1gugyXOrUiTW5ReDjVF04F2I"
+      }
+    },
+    {
+      "type": "text",
+      "params": {
+        "text": "Step 2 of 5:"
+      }
+    }
+  ],
+  "executed_states": [
+    {
+      "name": "START",
+      "description": "Navigate to Further Reach homepage",
+      "checks": [
+        {
+          "type": "url",
+          "params": {
+            "url": "data:,"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "navigate",
+          "params": {
+            "url": "https://furtherreach.net/"
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is complete as per the instructions."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "HOMEPAGE",
+      "description": "If on the Further Reach homepage",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Check Availability"
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "a.elementor-item.elementor-item-active[href=\"https://furtherreach.net/\"]"
+          }
+        },
+        {
+          "type": "text",
+          "params": {
+            "text": "Check Availability"
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "button.btn[type=\"submit\"]"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address% %zip_code%",
+            "by": "css selector",
+            "selector": "input.input-field.ui-autocomplete-input[type=\"text\"][id=\"street-address\"][name=\"street\"][placeholder*=\"Street Address\"][aria-label*=\"Street Address\"][autocomplete=\"off\"]",
+            "x": 524.20703125,
+            "y": 656.59375
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "button.btn[type=\"submit\"]",
+            "x": 1011.34375,
+            "y": 657.59375
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is complete as per the instructions."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "SERVICEABLE",
+      "description": "Build your bundle",
+      "checks": [
+        {
+          "type": "url",
+          "params": {
+            "url": "https://furtherreach.net/signup_plans_02/?GA=fr_mkur6ulb_l6hh9gmz&__enc=mLLk_adQaWPFfYed.0QhyWRHwS0LuBWlcfj0DgbhXy8GMqWxiJforRqsYqjakUJOgbMAj5vxzbrByXk0GQDgEuEV5nC6vbMDnjTs5aKkwCtS5DDriHocmxKPeMfsYp8uRfxM1gugyXOrUiTW5ReDjVF04F2I"
+          }
+        },
+        {
+          "type": "text",
+          "params": {
+            "text": "Step 2 of 5:"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The instruction is to terminate the action immediately."
+          }
+        }
+      ],
+      "end_state": "serviceable_with_plans",
+      "executed": []
+    }
+  ]
+}

@@ -12,7 +12,22 @@ import time
 from netgent.components.web_agent import WebAgent
 from netgent.utils.message import StatePrompt
 from netgent.errors import NetGentError, NetGentExecutionError
+import json
+from phoenix.otel import register
+from openinference.instrumentation.langchain import LangChainInstrumentor
+from openinference.instrumentation import using_metadata
+from opentelemetry import trace
+from opentelemetry.trace import Status, StatusCode
+import contextlib
 load_dotenv()
+
+# Setup tracing
+tracer_provider = register(
+    project_name="netgent-default",
+    batch=True,
+)
+LangChainInstrumentor().instrument(tracer_provider=tracer_provider)
+tracer = trace.get_tracer(__name__)
 
 
 
@@ -26,12 +41,14 @@ class NetGentState(TypedDict):
     state_timeout_start: Optional[float]
     variables: Optional[dict[str, Any]]
     synthesis_prompt: Optional[str]
-    synthesis_choice: Optional[StatePrompt]
+    synthesis_choice: Optional[dict[str, Any]]
     synthesis_triggers: Optional[list[str]]
     executed_states: Optional[list[dict[str, Any]]]
+    metadata: Optional[dict[str, Any]]
 
 class NetGent():
     def __init__(self, driver: Driver = None, controller: BaseController = None, llm: BaseChatModel = None, config: Optional[dict] = None, llm_enabled: bool = True, user_data_dir: Optional[str] = None, proxy: Optional[str] = None):
+        
         self.llm = llm
         self.llm_enabled = llm_enabled
         self.driver = driver
@@ -111,8 +128,8 @@ class NetGent():
         synthesis_choice = state.get('synthesis_choice')
         
         # Check if synthesis choice has an end_state
-        if synthesis_choice and synthesis_choice.end_state and synthesis_choice.end_state != "":
-            print(f"Web agent generated state with end_state: {synthesis_choice.end_state}")
+        if synthesis_choice and synthesis_choice.get('end_state') and synthesis_choice.get('end_state') != "":
+            print(f"Web agent generated state with end_state: {synthesis_choice.get('end_state')}")
             return END
         
         # Otherwise continue to program_controller
@@ -243,11 +260,11 @@ class NetGent():
         
         # Create new state from synthesis and web agent output
         new_state = {
-            "name": synthesis_choice.name if synthesis_choice else "generated_state",
-            "description": synthesis_choice.description if synthesis_choice else "",
+            "name": synthesis_choice.get('name') if synthesis_choice else "generated_state",
+            "description": synthesis_choice.get('description') if synthesis_choice else "",
             "checks": synthesis_triggers,
             "actions": actions,
-            "end_state": synthesis_choice.end_state if synthesis_choice else "",
+            "end_state": synthesis_choice.get('end_state') if synthesis_choice else "",
             "executed": []
         }
         
@@ -257,7 +274,7 @@ class NetGent():
         # Find matching state in repository and update its executed field
         if synthesis_choice:
             for repo_state in state_repository:
-                if repo_state.get('name') == synthesis_choice.name:
+                if repo_state.get('name') == synthesis_choice.get('name'):
                     # Initialize executed field if not present
                     if "executed" not in repo_state:
                         repo_state["executed"] = []
@@ -280,7 +297,7 @@ class NetGent():
             "messages": web_agent_state.get('messages')
         }
 
-    def run(self, state_prompts: list[StatePrompt] = [], state_repository: list[dict[str, Any]] = [], variables: dict[str, Any] = {}, end_state_files: str = ""):
+    def run(self, state_prompts: list[StatePrompt] = [], state_repository: list[dict[str, Any]] = [], variables: dict[str, Any] = {}, end_state_files: str = "", session: Optional[str] = None):
         # Accept either a list of state dicts or a dict containing "state_repository"
         if isinstance(state_repository, dict):
             repo_list = state_repository.get("state_repository", [])
@@ -306,16 +323,28 @@ class NetGent():
             "executed_states": [],
             "variables": variables,
         }
-        try:
-            result = self.graph.invoke(state, {"recursion_limit": 100000})
-            
-            if end_state_files:
-                html = self.driver.page_source
-                with open(end_state_files, "w") as f:
-                    f.write(html)
-            
-            return result
-        except NetGentExecutionError as e:
-            raise NetGentError(name=e.name, message=e.message) from e
-    
+        
+        with tracer.start_as_current_span("NetGent") as span:
+            try:
+                result = self.graph.invoke(state, config={"recursion_limit": 100000})
+                
+                metadata = {"session": session, "variables": variables}
+                span.set_attribute("metadata", json.dumps(metadata))
+                
+                if end_state_files:
+                    html = self.driver.page_source
+                    with open(end_state_files, "w") as f:
+                        f.write(html)
+                
+                print(f"DEBUG: Setting span status to OK for {span}")
+                span.set_status(Status(StatusCode.OK))
 
+                return result
+            except NetGentExecutionError as e:
+                span.set_status(Status(StatusCode.ERROR, description=e.message))
+                span.record_exception(e)
+                raise NetGentError(name=e.name, message=e.message) from e
+            except Exception as e:
+                span.set_status(Status(StatusCode.ERROR, description=str(e)))
+                span.record_exception(e)
+                raise e

@@ -1,0 +1,6 @@
+trace_id,duration_seconds,input_tokens,output_tokens,total_tokens,web_agent_input_tokens,web_agent_output_tokens,web_agent_total_tokens,state_synthesis_input_tokens,state_synthesis_output_tokens,state_synthesis_total_tokens,metadata
+1433bdfd37f894bbcf2b601bafdd6c3f,118.699983,130079.0,3136.0,133215.0,95911.0,2533.0,98444.0,24046.0,428.0,24474.0,nan
+58c4e5760777708363c3a8bd786a08e0,131.197411,145993.0,3297.0,149290.0,114694.0,2823.0,117517.0,31299.0,474.0,31773.0,"{""session"": ""teammidwest"", ""variables"": {""address"": ""1605 Clay St, Oakland, CA"", ""zip_code"": ""94612""}}"
+ac5867a385334384a8bf67cc22231908,135.818415,145920.0,3329.0,149249.0,114627.0,2871.0,117498.0,31293.0,458.0,31751.0,"{""session"": ""teammidwest"", ""variables"": {""address"": ""200 Frank H Ogawa Plz, Oakland, CA"", ""zip_code"": ""94612""}}"
+bcac9710c92ec377e13a6446b5eec505,141.016842,145971.0,3067.0,149038.0,114672.0,2555.0,117227.0,31299.0,512.0,31811.0,"{""session"": ""teammidwest"", ""variables"": {""address"": ""1625 Clay St, Oakland, CA"", ""zip_code"": ""94612""}}"
+fac9e34d3820bd979572f9eb6f8dec8a,160.546684,148283.0,3598.0,151881.0,116996.0,3056.0,120052.0,31287.0,542.0,31829.0,"{""session"": ""teammidwest"", ""variables"": {""address"": ""1700 Jefferson St, Oakland, CA"", ""zip_code"": ""94612""}}"

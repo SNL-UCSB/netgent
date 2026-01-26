@@ -1,0 +1,380 @@
+{
+  "state_repository": [
+    {
+      "name": "START",
+      "description": "Navigate to Firefly CrowdFiber page",
+      "checks": [
+        {
+          "type": "url",
+          "params": {
+            "url": "data:,"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "navigate",
+          "params": {
+            "url": "https://register.fireflyva.com/front_end/"
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The navigation to the website was successful, and the page is now loaded. The task is complete."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the Firefly page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Enter your address below to pre-register"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder=\"Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+            "x": 311.3828125,
+            "y": 518.3828125
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%zip_code%",
+            "by": "css selector",
+            "selector": "input.input.is-large.zip[placeholder=\"Zip\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+            "x": 835.2578125,
+            "y": 518.3828125
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "select[id=\"\"][name=\"locate[service_class]\"][required=\"\"]",
+            "x": 1041.0078125,
+            "y": 517.375
+          }
+        },
+        {
+          "type": "press_key",
+          "params": {
+            "key": "down"
+          }
+        },
+        {
+          "type": "press_key",
+          "params": {
+            "key": "enter"
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+            "x": 1199.12890625,
+            "y": 517.375
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The address has been entered, the zip code has been entered, the service type has been selected, and the 'Go' button has been clicked. The address has been found. The task is complete."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Please take a second to verify that the marker below is the correct location for your address. You c..."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1140.90234375,
+            "y": 712.7421875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is to terminate immediately."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'Unfortunately, we are not currently in your area.')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Your contact info"
+          }
+        },
+        {
+          "type": "url",
+          "params": {
+            "url": "https://register.fireflyva.com/front_end/cart/96ccf1e6-f23f-444d-b87f-80c154fc86ad/contact"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is to terminate immediately."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": []
+    }
+  ],
+  "state_prompts": [
+    "## State: START\n- **Description:** Navigate to Firefly CrowdFiber page\n- **Triggers:**\n\t1. If it is on the chrome homescreen\n- **Actions:**\n\t1. Go to https://register.fireflyva.com/front_end/ word for word\n\t2. TERMINATE AT THIS POINT",
+    "## State: ADDRESS_BAR\n- **Description:** If on the Firefly page\n- **Triggers:**\n\t1. If you see 'Please enter your address below'\n- **Actions:**\n\t1. FOLLOW THESE INSTRUCTIONS CLOSELY\n\t2. Accept cookies first\n\t3. Type `%address%` into the input field\n\t4. Type `%zip_code%` into the input field\n\t5. Click on 'Service' dropdown, down arrow key once, then enter key\n\t6. Click the 'Go' button\n\t7. TERMINATE AT THIS POINT",
+    "## State: CONFIRM_ADDRESS\n- **Description:** Confirm address location\n- **Triggers:**\n\t1. If you see 'Verify that the marker below is the correct location for your address'\n- **Actions:**\n\t1. Scroll down\n\t2. Click the 'Next' button\n\t3. TERMINATE AT THIS POINT",
+    "## State: SERVICEABLE\n- **Description:** Build your bundle\n- **Triggers:**\n\t1. If you see 'Build your bundle'\n- **Actions:**\n\t1. TERMINATE AT THIS POINT\n- **End State:** serviceable_with_plans",
+    "## State: NO_SERVICE\n- **Description:** Service not available - (e.g. 'Unfortunately, we are not currently in your area.')\n- **Triggers:**\n\t1. If you see 'Unfortunately, we are not currently in your area.'\n- **Actions:**\n\t1. TERMINATE AT THIS POINT\n- **End State:** no_service"
+  ],
+  "passed_states": [],
+  "recursion_count": 4,
+  "last_passed_state_name": null,
+  "consecutive_state_count": 0,
+  "state_timeout_start": null,
+  "variables": {
+    "address": "200 Frank H Ogawa Plz, Oakland, CA",
+    "zip_code": "94612"
+  },
+  "synthesis_prompt": "```\n## Step 1\nStep: TERMINATION\n```",
+  "synthesis_choice": {
+    "name": "NO_SERVICE",
+    "description": "Service not available - (e.g. 'Unfortunately, we are not currently in your area.')",
+    "triggers": [
+      "If you see 'Unfortunately, we are not currently in your area.'"
+    ],
+    "actions": [
+      "TERMINATE AT THIS POINT"
+    ],
+    "end_state": "no_service"
+  },
+  "synthesis_triggers": [
+    {
+      "type": "text",
+      "params": {
+        "text": "Your contact info"
+      }
+    },
+    {
+      "type": "url",
+      "params": {
+        "url": "https://register.fireflyva.com/front_end/cart/96ccf1e6-f23f-444d-b87f-80c154fc86ad/contact"
+      }
+    }
+  ],
+  "executed_states": [
+    {
+      "name": "START",
+      "description": "Navigate to Firefly CrowdFiber page",
+      "checks": [
+        {
+          "type": "url",
+          "params": {
+            "url": "data:,"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "navigate",
+          "params": {
+            "url": "https://register.fireflyva.com/front_end/"
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The navigation to the website was successful, and the page is now loaded. The task is complete."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the Firefly page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Enter your address below to pre-register"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder=\"Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+            "x": 311.3828125,
+            "y": 518.3828125
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%zip_code%",
+            "by": "css selector",
+            "selector": "input.input.is-large.zip[placeholder=\"Zip\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+            "x": 835.2578125,
+            "y": 518.3828125
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "select[id=\"\"][name=\"locate[service_class]\"][required=\"\"]",
+            "x": 1041.0078125,
+            "y": 517.375
+          }
+        },
+        {
+          "type": "press_key",
+          "params": {
+            "key": "down"
+          }
+        },
+        {
+          "type": "press_key",
+          "params": {
+            "key": "enter"
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+            "x": 1199.12890625,
+            "y": 517.375
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The address has been entered, the zip code has been entered, the service type has been selected, and the 'Go' button has been clicked. The address has been found. The task is complete."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Please take a second to verify that the marker below is the correct location for your address. You c..."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1140.90234375,
+            "y": 712.7421875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is to terminate immediately."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'Unfortunately, we are not currently in your area.')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Your contact info"
+          }
+        },
+        {
+          "type": "url",
+          "params": {
+            "url": "https://register.fireflyva.com/front_end/cart/96ccf1e6-f23f-444d-b87f-80c154fc86ad/contact"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is to terminate immediately."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": []
+    }
+  ]
+}

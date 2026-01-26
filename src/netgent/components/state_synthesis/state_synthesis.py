@@ -14,8 +14,8 @@ load_dotenv()
 
 class StateSynthesisState(TypedDict):
     executed: list[dict[str, Any]] # History of Action
-    prompts: list[StatePrompt] # Available States
-    choice: StatePrompt | None # State Choice
+    prompts: list[dict[str, Any]] # Available States
+    choice: dict[str, Any] | None # State Choice
     triggers: list[str] # Triggers
     prompt: Optional[str] # Generated prompt for browser agent
 
@@ -29,7 +29,8 @@ class StateSynthesis():
 
 
     def run(self, prompts: list[StatePrompt], executed: list[dict[str, Any]]):
-        state = StateSynthesisState(prompts=prompts, choice=None, executed=executed, triggers=[])
+        serialized_prompts = [p.model_dump() for p in prompts]
+        state = StateSynthesisState(prompts=serialized_prompts, choice=None, executed=executed, triggers=[])
         state = self.graph.invoke(state, { "recursion_limit": 100})
         return state
     
@@ -49,7 +50,7 @@ class StateSynthesis():
         
         messages = [
             SystemMessage(content=get_prompt("CHOOSE_STATE_PROMPT").format(
-                STATES='\n'.join(str(prompt) for prompt in state['prompts']) + '\n'
+                STATES='\n'.join(str(StatePrompt(**prompt)) for prompt in state['prompts']) + '\n'
             )),
             HumanMessage(content=[
                 {
@@ -80,13 +81,13 @@ class StateSynthesis():
         # Fallback: Find First Matching State Name in Response Content
         if not state_name:
             for prompt in state["prompts"]:
-                if prompt.name in response.content:
-                    state_name = prompt.name
+                if prompt['name'] in response.content:
+                    state_name = prompt['name']
                     break
         
         # Selected Prompt
         choice = next(
-            (prompt for prompt in state["prompts"] if prompt.name == state_name),
+            (prompt for prompt in state["prompts"] if prompt['name'] == state_name),
             None
         )
 
@@ -145,7 +146,7 @@ class StateSynthesis():
                 {
                     "type": "text", 
                     "text": f"""## State Triggers
-    {chr(10).join(f"- {trigger}" for trigger in state['choice'].triggers)}
+    {chr(10).join(f"- {trigger}" for trigger in state['choice']['triggers'])}
                     """
                 },
             ])
@@ -171,7 +172,7 @@ class StateSynthesis():
                 {
                     "type": "text", 
                     "text": f"""## User Instruction
-    {chr(10).join(f"{i+1}. {action}" for i, action in enumerate(state['choice'].actions)) + chr(10) + "TERMINATE ACTION"}
+    {chr(10).join(f"{i+1}. {action}" for i, action in enumerate(state['choice']['actions'])) + chr(10) + "TERMINATE ACTION"}
     ## History of Action
     {self._prompt_execution(state.get('executed', [])) if state.get('executed') else 'No History of Actions'}
     ## Current Website State

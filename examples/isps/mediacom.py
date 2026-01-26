@@ -3,7 +3,6 @@ import os
 import sys
 from netgent.errors import NetGentError
 
-from bqtdb.main import BQTDatabase
 
 from netgent import NetGent, StatePrompt
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -14,75 +13,66 @@ load_dotenv()
 prompts = [
     StatePrompt(
         name="START",
-        description="Navigate to Mediacom shop page",
+        description="Navigate to Mediacom page",
         triggers=["If it is on the chrome homescreen"],
-        actions=["Go to https://shop.mediacomcable.com word for word", "TERMINATE AT THIS POINT"],
-    ),
-    StatePrompt(
-        name="EXISTING_CUSTOMER",
-        description="Handle existing customer check",
-        triggers=["If you see 'New Customer? Please provide the address where youd like to receive service' and 'Do you already have service at this address'"],
-        actions=["Click the 'NO,I'M MOVING IN' text or button", "TERMINATE AT THIS POINT"],
+        actions=["Go to https://shop.mediacomcable.com/ word for word", "TERMINATE AT THIS POINT"],
     ),
     StatePrompt(
         name="ADDRESS_BAR",
-        description="Enter address to check availability",
-        triggers=["If you see 'New Customer? Please provide the address where youd like to receive service'"],
-        actions=["FOLLOW THESE INSTRUCTIONS CLOSELY", "Click the 'Save Choices' button", "Click the 'Street Address' input field", "Type `%address%` into the input field", "Press down key to select the first suggestion", "Press enter key to confirm selection", "Click the 'SHOP NOW' button", "TERMINATE AT THIS POINT"],
+        description="If on the Mediacom page",
+        triggers=["If you see 'Search For Your Address'"],
+        actions=[
+            "FOLLOW THESE INSTRUCTIONS CLOSELY", 
+            "Type `%address%` into the 'Search For Your Address' input field", 
+            "Type `%zip_code%` into the 'Zip Code' input field",
+            "Click the 'GO' button", 
+            "TERMINATE AT THIS POINT"
+        ],
     ),
     StatePrompt(
-        name="NO_SERVICE",
-        description="Service not available",
-        triggers=["If you see 'Mediacom is not available at your address' or if no Xfinity page"],
+        name="CONFIRM_ADDRESS",
+        description="Confirm address location (If you see 'Click the Next Button to see if services are avaliable')",
+        triggers=["If you see 'Click the Next Button to see if services are avaliable'"],
+        actions=["Make sure to scroll down", "Click the 'Next' button", "TERMINATE AT THIS POINT"],
+    ),
+    StatePrompt(
+        name="INTERNET_AVAILABLE",
+        description="Service available - enter contact info",
+        triggers=["If you see 'Mediacom is in your neighborhood. Order now!'"],
+        actions=[
+            "Scroll to put this contact information in the form",
+            "Click the 'Next' button",
+            "TERMINATE AT THIS POINT"
+        ],
+    ),
+    StatePrompt(
+        name="SERVICEABLE",
+        description="Build your bundle",
+        triggers=["If you see 'Build your bundle'"],
+        actions=["TERMINATE AT THIS POINT"],
+        end_state="serviceable_with_plans"
+    ),
+    StatePrompt(
+        name="NO_SERVICE - If the website is not Mediacom, it means it is not servicable",
+        description="Service not available (e.g. 'Make It Possible!')",
+        triggers=[
+            "Get the Text from the page like 'If the website is not Mediacom, it means it is not servicable' and 'At this time, your home is not in a fiber area.   We may be able to provide wireless services until we receive more fiber interest.  By expressing interest and providing your information below, you will be helping us to determine where to go next.'",
+            "If you see 'We were unable to find a provider for your address. Please check the form and try again or call the SmartMove Hotline at 1-844-394-4910 to find your closest service provider.'"
+        ],
         actions=["TERMINATE AT THIS POINT"],
         end_state="no_service"
     ),
-    StatePrompt(
-        name="MAYBE_SERVICEABLE",
-        description="Service might be available",
-        triggers=["If you see 'You may be serviceable by Mediacom'"],
-        actions=["TERMINATE AT THIS POINT"],
-        end_state="maybe_serviceable"
-    ),
-    StatePrompt(
-        name="PLANS",
-        description="Select Plan",
-        triggers=["If you see 'Choose Your Plan For'"],
-        actions=["Click the 'Broadband Facts' text", "TERMINATE AT THIS POINT"],
-    ),
-    StatePrompt(
-        name="BB_FACTS",
-        description="Broadband Facts displayed",
-        triggers=["If you see 'Learn the Facts about Mediacom High Speed Data'"],
-        actions=["Take a screenshot", "TERMINATE AT THIS POINT"],
-        end_state="serviceable_with_plans"
-    ),
 ]
 
-addresses = []
-with BQTDatabase() as db:
-    # Fetching addresses for Mediacom service area
-    rows = db.query("SELECT * FROM bqtplus.mediacom_addresses LIMIT 1000")
-    for row in rows:
-        # Construct address string
-        # Clean up Zip code (remove .0 if present)
-        prop_zip = str(row['PropertyZip'])
-        if prop_zip.endswith('.0'):
-            prop_zip = prop_zip[:-2]
-            
-        full_address = f"{row['PropertyFullStreetAddress']}, {row['PropertyCity']}, {row['PropertyState']}, {prop_zip}"
-        only_address = row['PropertyFullStreetAddress']
-        city = row['PropertyCity']
-        state = row['PropertyState']
-        addresses.append({
-            'address': full_address,
-            'only_address': only_address,
-            'city': city,
-            'state': state,
-            'zip_code': prop_zip
-        })
+addresses = [
+    {"address": "15802 N 62ND ST, SCOTTSDALE, AZ", "zip_code": "85254"},
+    {"address": "4 1/2 12TH ST NW, ROCHESTER, MN", "zip_code": "55901"},
+    {"address": "B ST, COLORADO SPRINGS, CO", "zip_code": "80906"},
+    {"address": "J 5TH ST, COVINGTON, LA", "zip_code": "70433"},
+    {"address": "3282 Scottsville Rd, Charlottesvle, VA", "zip_code": "22902"}
+]
 
-agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2, vertexai=True, api_key=os.getenv("GOOGLE_API_KEY"), project=os.getenv("GOOGLE_CLOUD_PROJECT")), proxy="brd-customer-hl_bdb3a3b4-zone-static:zjblan9e6w2q@brd.superproxy.io:33335", llm_enabled=True)
+agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash", temperature=0.2, vertexai=True, api_key=os.getenv("GOOGLE_API_KEY"), project=os.getenv("GOOGLE_CLOUD_PROJECT")), llm_enabled=True)
 
 try:
     with open("examples/isps/results/mediacom_result.json", "r") as f:
@@ -92,19 +82,20 @@ except FileNotFoundError:
 
 row_data = addresses[0]
 address = row_data['address']
-only_address = row_data['only_address']
-city = row_data['city']
 zip_code = row_data['zip_code']
 
-print(f"Address: {address}, City: {city}, Zip: {zip_code}")
+print(f"Address: {address}, Zip: {zip_code}")
     
 result = agent.run(
     state_prompts=prompts, 
     state_repository=state_repository, 
-    variables={"address": address, "only_address": only_address, "city": city, "state": row_data['state'], "zip_code": zip_code}
+    variables={
+        "address": address,
+        "zip_code": zip_code
+    }
 )
 
-agent.set_state_wait_time(10)
+agent.set_state_wait_time(5)
 
 
 input("Press Enter to continue...")

@@ -1,0 +1,781 @@
+{
+  "state_repository": [
+    {
+      "name": "START",
+      "description": "Navigate to Crossbeam CrowdFiber page",
+      "checks": [
+        {
+          "type": "url",
+          "params": {
+            "url": "data:,"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "navigate",
+          "params": {
+            "url": "https://crossbeam.net/front_end/"
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The user query instructs me to terminate the task immediately after completing the previous steps."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the Crossbeam page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Enter your address below to see if you are in our service area."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+            "x": 311.3828125,
+            "y": 566.9765625
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%zip_code%",
+            "by": "css selector",
+            "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+            "x": 835.2578125,
+            "y": 566.9765625
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+            "x": 1199.12890625,
+            "y": 565.96875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The user query instructs me to terminate the task immediately after completing the previous steps."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "*To update the location of your address please drag and drop the blue pin to the rooftop of your ser..."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1140.90234375,
+            "y": 710.8125
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The user query instructs me to terminate the task immediately after completing the previous steps."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": [
+        {
+          "name": "CONFIRM_ADDRESS",
+          "description": "Confirm address location",
+          "checks": [
+            {
+              "type": "url",
+              "params": {
+                "url": "https://crossbeam.net/front_end/cart/f9789974-1a2d-4c61-a21b-74d41d53fec0"
+              }
+            },
+            {
+              "type": "text",
+              "params": {
+                "text": "*To update the location of your address please drag and drop the blue pin to the rooftop of your ser..."
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "scroll",
+              "params": {
+                "direction": "down",
+                "pixels": 10
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+                "x": 1140.90234375,
+                "y": 710.8125
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The address is outside the service territory."
+              }
+            }
+          ],
+          "end_state": "",
+          "executed": []
+        },
+        {
+          "name": "CONFIRM_ADDRESS",
+          "description": "Confirm address location",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "*To update the location of your address please drag and drop the blue pin to the rooftop of your ser..."
+              }
+            },
+            {
+              "type": "element",
+              "params": {
+                "by": "css selector",
+                "selector": "i"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "scroll",
+              "params": {
+                "direction": "down",
+                "pixels": 10
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+                "x": 1140.90234375,
+                "y": 710.8125
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The user query instructs to terminate the task immediately after the 'Next' button is clicked. The 'Next' button has been clicked."
+              }
+            }
+          ],
+          "end_state": "",
+          "executed": []
+        },
+        {
+          "name": "CONFIRM_ADDRESS",
+          "description": "Confirm address location",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "*To update the location of your address please drag and drop the blue pin to the rooftop of your ser..."
+              }
+            },
+            {
+              "type": "element",
+              "params": {
+                "by": "css selector",
+                "selector": "i"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "scroll",
+              "params": {
+                "direction": "down",
+                "pixels": 10
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+                "x": 1140.90234375,
+                "y": 710.8125
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The address is outside the service territory, and the task is to terminate."
+              }
+            }
+          ],
+          "end_state": "",
+          "executed": []
+        },
+        {
+          "name": "CONFIRM_ADDRESS",
+          "description": "Confirm address location",
+          "checks": [
+            {
+              "type": "url",
+              "params": {
+                "url": "https://crossbeam.net/front_end/cart/f913c99b-97b1-42c6-b95b-3c8dd8c2c044"
+              }
+            },
+            {
+              "type": "text",
+              "params": {
+                "text": "*To update the location of your address please drag and drop the blue pin to the rooftop of your ser..."
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "scroll",
+              "params": {
+                "direction": "down",
+                "pixels": 10
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+                "x": 1140.90234375,
+                "y": 710.8125
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The task is to terminate as per the instruction."
+              }
+            }
+          ],
+          "end_state": "",
+          "executed": []
+        }
+      ]
+    },
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'Unfortunately, your address is outside of Carroll EMC\u2019s service territory, which is who we are partnered with/where we are currently serving.')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Unfortunately, your address is\noutside of Carroll EMC\u2019s service territory, which is who we are partn..."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The user has instructed to terminate the current task."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": [
+        {
+          "name": "NO_SERVICE",
+          "description": "Service not available - (e.g. 'Unfortunately, your address is outside of Carroll EMC\u2019s service territory, which is who we are partnered with/where we are currently serving.')",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Unfortunately, your address is\noutside of Carroll EMC\u2019s service territory, which is who we are partn..."
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The task is complete."
+              }
+            }
+          ],
+          "end_state": "no_service",
+          "executed": []
+        },
+        {
+          "name": "NO_SERVICE",
+          "description": "Service not available - (e.g. 'Unfortunately, your address is outside of Carroll EMC\u2019s service territory, which is who we are partnered with/where we are currently serving.')",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Unfortunately, your address is\noutside of Carroll EMC\u2019s service territory, which is who we are partn..."
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The user query instructs to terminate the action immediately."
+              }
+            }
+          ],
+          "end_state": "no_service",
+          "executed": []
+        },
+        {
+          "name": "NO_SERVICE",
+          "description": "Service not available - (e.g. 'Unfortunately, your address is outside of Carroll EMC\u2019s service territory, which is who we are partnered with/where we are currently serving.')",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Unfortunately, your address is\noutside of Carroll EMC\u2019s service territory, which is who we are partn..."
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The address is outside the service territory, and the task is to terminate."
+              }
+            }
+          ],
+          "end_state": "no_service",
+          "executed": []
+        },
+        {
+          "name": "NO_SERVICE",
+          "description": "Service not available - (e.g. 'Unfortunately, your address is outside of Carroll EMC\u2019s service territory, which is who we are partnered with/where we are currently serving.')",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Unfortunately, your address is\noutside of Carroll EMC\u2019s service territory, which is who we are partn..."
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The task is to terminate immediately."
+              }
+            }
+          ],
+          "end_state": "no_service",
+          "executed": []
+        }
+      ]
+    },
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "url",
+          "params": {
+            "url": "https://crossbeam.net/front_end/cart/f9789974-1a2d-4c61-a21b-74d41d53fec0"
+          }
+        },
+        {
+          "type": "text",
+          "params": {
+            "text": "*To update the location of your address please drag and drop the blue pin to the rooftop of your ser..."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1140.90234375,
+            "y": 710.8125
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The address is outside the service territory."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'Unfortunately, your address is outside of Carroll EMC\u2019s service territory, which is who we are partnered with/where we are currently serving.')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Unfortunately, your address is\noutside of Carroll EMC\u2019s service territory, which is who we are partn..."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is complete."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": []
+    },
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "*To update the location of your address please drag and drop the blue pin to the rooftop of your ser..."
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "i"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1140.90234375,
+            "y": 710.8125
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The user query instructs to terminate the task immediately after the 'Next' button is clicked. The 'Next' button has been clicked."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'Unfortunately, your address is outside of Carroll EMC\u2019s service territory, which is who we are partnered with/where we are currently serving.')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Unfortunately, your address is\noutside of Carroll EMC\u2019s service territory, which is who we are partn..."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The user query instructs to terminate the action immediately."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": []
+    },
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "*To update the location of your address please drag and drop the blue pin to the rooftop of your ser..."
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "i"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1140.90234375,
+            "y": 710.8125
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The address is outside the service territory, and the task is to terminate."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'Unfortunately, your address is outside of Carroll EMC\u2019s service territory, which is who we are partnered with/where we are currently serving.')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Unfortunately, your address is\noutside of Carroll EMC\u2019s service territory, which is who we are partn..."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The address is outside the service territory, and the task is to terminate."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": []
+    },
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "url",
+          "params": {
+            "url": "https://crossbeam.net/front_end/cart/f913c99b-97b1-42c6-b95b-3c8dd8c2c044"
+          }
+        },
+        {
+          "type": "text",
+          "params": {
+            "text": "*To update the location of your address please drag and drop the blue pin to the rooftop of your ser..."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1140.90234375,
+            "y": 710.8125
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is to terminate as per the instruction."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'Unfortunately, your address is outside of Carroll EMC\u2019s service territory, which is who we are partnered with/where we are currently serving.')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Unfortunately, your address is\noutside of Carroll EMC\u2019s service territory, which is who we are partn..."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is to terminate immediately."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": []
+    }
+  ],
+  "state_prompts": [
+    "## State: START\n- **Description:** Navigate to Crossbeam CrowdFiber page\n- **Triggers:**\n\t1. If it is on the chrome homescreen\n- **Actions:**\n\t1. Go to https://crossbeam.net/front_end/ word for word\n\t2. TERMINATE AT THIS POINT",
+    "## State: ADDRESS_BAR\n- **Description:** If on the Crossbeam page\n- **Triggers:**\n\t1. If you see 'Please enter your address below'\n- **Actions:**\n\t1. FOLLOW THESE INSTRUCTIONS CLOSELY\n\t2. Accept cookies first\n\t3. Type `%address%` into the input field\n\t4. Type `%zip_code%` into the input field\n\t5. Click the 'Go' button\n\t6. TERMINATE AT THIS POINT",
+    "## State: CONFIRM_ADDRESS\n- **Description:** Confirm address location\n- **Triggers:**\n\t1. If you see 'To provide you with the best service possible, please verify that the blue pin on the map below is at the exact location of your service address.'\n- **Actions:**\n\t1. Scroll down\n\t2. Click the 'Next' button\n\t3. DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT",
+    "## State: SERVICEABLE\n- **Description:** Build your bundle\n- **Triggers:**\n\t1. If you see 'Build your bundle'\n- **Actions:**\n\t1. DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT\n- **End State:** serviceable_with_plans",
+    "## State: NO_SERVICE\n- **Description:** Service not available - (e.g. 'Unfortunately, your address is outside of Carroll EMC\u2019s service territory, which is who we are partnered with/where we are currently serving.')\n- **Triggers:**\n\t1. If you see 'Unfortunately, your address is outside of Carroll EMC\u2019s service territory, which is who we are partnered with/where we are currently serving.'\n- **Actions:**\n\t1. DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT\n- **End State:** no_service"
+  ],
+  "passed_states": [],
+  "recursion_count": 4,
+  "last_passed_state_name": null,
+  "consecutive_state_count": 0,
+  "state_timeout_start": null,
+  "variables": {
+    "address": "200 Frank H Ogawa Plz, Oakland, CA",
+    "zip_code": "94612"
+  },
+  "synthesis_prompt": "## Step 1\nStep: TERMINATION\n",
+  "synthesis_choice": {
+    "name": "NO_SERVICE",
+    "description": "Service not available - (e.g. 'Unfortunately, your address is outside of Carroll EMC\u2019s service territory, which is who we are partnered with/where we are currently serving.')",
+    "triggers": [
+      "If you see 'Unfortunately, your address is outside of Carroll EMC\u2019s service territory, which is who we are partnered with/where we are currently serving.'"
+    ],
+    "actions": [
+      "DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT"
+    ],
+    "end_state": "no_service"
+  },
+  "synthesis_triggers": [
+    {
+      "type": "text",
+      "params": {
+        "text": "Unfortunately, your address is\noutside of Carroll EMC\u2019s service territory, which is who we are partn..."
+      }
+    }
+  ],
+  "executed_states": [
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "url",
+          "params": {
+            "url": "https://crossbeam.net/front_end/cart/f913c99b-97b1-42c6-b95b-3c8dd8c2c044"
+          }
+        },
+        {
+          "type": "text",
+          "params": {
+            "text": "*To update the location of your address please drag and drop the blue pin to the rooftop of your ser..."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1140.90234375,
+            "y": 710.8125
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is to terminate as per the instruction."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'Unfortunately, your address is outside of Carroll EMC\u2019s service territory, which is who we are partnered with/where we are currently serving.')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Unfortunately, your address is\noutside of Carroll EMC\u2019s service territory, which is who we are partn..."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is to terminate immediately."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": []
+    }
+  ]
+}

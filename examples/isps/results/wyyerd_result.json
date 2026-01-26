@@ -1,0 +1,602 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to the Wyyerd availability page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "data:,"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://www.wyyerd.com"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as instructed."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.wyyerd.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "The Fastest Internet Speeds in Your Area."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.address-input-nondl[id=\"address-component\"][type=\"text\"][autocomplete=\"off\"][placeholder*=\"Enter Your Address\"]",
+          "x": 866.0,
+          "y": 290.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.submit-button[type=\"button\"]",
+          "x": 1101.0,
+          "y": 290.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The previous actions were to scroll down, type the address, press the 'down' key, press the 'enter' key, and click the 'Check Availability' button. The current HTML state shows a loading screen. The next step is to terminate the task as instructed by the user."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": [
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://www.wyyerd.com/"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "The Fastest Internet Speeds in Your Area."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "scroll",
+            "params": {
+              "direction": "down",
+              "pixels": 10
+            }
+          },
+          {
+            "type": "scroll",
+            "params": {
+              "direction": "down",
+              "pixels": 1000
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.address-input-nondl[id=\"address-component\"][type=\"text\"][autocomplete=\"off\"][placeholder*=\"Enter Your Address\"]",
+              "x": 866.0,
+              "y": 290.0
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.submit-button[type=\"button\"]",
+              "x": 1101.0,
+              "y": 290.0
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://www.wyyerd.com/"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "The Fastest Internet Speeds in Your Area."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "scroll",
+            "params": {
+              "direction": "down",
+              "pixels": 10
+            }
+          },
+          {
+            "type": "scroll",
+            "params": {
+              "direction": "down",
+              "pixels": 10
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.address-input-nondl[id=\"address-component\"][type=\"text\"][autocomplete=\"off\"][placeholder*=\"Enter Your Address\"]",
+              "x": 866.0,
+              "y": 290.0
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.submit-button[type=\"button\"]",
+              "x": 1101.0,
+              "y": 290.0
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per Step 5. The previous actions have successfully led to clicking the 'CHECK AVAILABILITY' button. The current HTML state shows a loading screen."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://www.wyyerd.com/"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "The Fastest Internet Speeds in Your Area."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "scroll",
+            "params": {
+              "direction": "down",
+              "pixels": 10
+            }
+          },
+          {
+            "type": "scroll",
+            "params": {
+              "direction": "down",
+              "pixels": 10
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.address-input-nondl[id=\"address-component\"][type=\"text\"][autocomplete=\"off\"][placeholder*=\"Enter Your Address\"]",
+              "x": 866.0,
+              "y": 290.0
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.submit-button[type=\"button\"]",
+              "x": 1101.0,
+              "y": 290.0
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully as per instructions. The loading screen is visible after clicking the 'Check Availability' button, so the task is considered complete."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Services not available in your area",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "We are not in your area yet"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user has instructed to terminate the task immediately."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": [
+      {
+        "name": "NO_SERVICE",
+        "description": "Services not available in your area",
+        "checks": [],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully as per instructions. The loading screen is visible after clicking the 'Check Availability' button, so the task is considered complete."
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.wyyerd.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "The Fastest Internet Speeds in Your Area."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 1000
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.address-input-nondl[id=\"address-component\"][type=\"text\"][autocomplete=\"off\"][placeholder*=\"Enter Your Address\"]",
+          "x": 866.0,
+          "y": 290.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.submit-button[type=\"button\"]",
+          "x": 1101.0,
+          "y": 290.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.wyyerd.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "The Fastest Internet Speeds in Your Area."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.address-input-nondl[id=\"address-component\"][type=\"text\"][autocomplete=\"off\"][placeholder*=\"Enter Your Address\"]",
+          "x": 866.0,
+          "y": 290.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.submit-button[type=\"button\"]",
+          "x": 1101.0,
+          "y": 290.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per Step 5. The previous actions have successfully led to clicking the 'CHECK AVAILABILITY' button. The current HTML state shows a loading screen."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.wyyerd.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "The Fastest Internet Speeds in Your Area."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.address-input-nondl[id=\"address-component\"][type=\"text\"][autocomplete=\"off\"][placeholder*=\"Enter Your Address\"]",
+          "x": 866.0,
+          "y": 290.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.submit-button[type=\"button\"]",
+          "x": 1101.0,
+          "y": 290.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully as per instructions. The loading screen is visible after clicking the 'Check Availability' button, so the task is considered complete."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Services not available in your area",
+    "checks": [],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully as per instructions. The loading screen is visible after clicking the 'Check Availability' button, so the task is considered complete."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  }
+]

@@ -10,15 +10,15 @@ class BrowserSession:
     def __init__(self, proxy: str = None, user_data_dir: str | None = None):
         self._driver: Driver | None = None
         self._default_args: list[str] = [
-            "--force-device-scale-factor=1",
-            "--disable-dev-shm-usage",
-            "--disable-blink-features=AutomationControlled",
-            "--no-sandbox",
-            "--use-fake-ui-for-media-stream",
-            "--use-fake-device-for-media-stream",
-            "--window-size=1920,1080",
-            "--start-maximized",
-            "--disable-gpu",
+            # "--force-device-scale-factor=1",
+            # "--disable-dev-shm-usage",
+            # "--disable-blink-features=AutomationControlled",
+            # "--no-sandbox",
+            # "--use-fake-ui-for-media-stream",
+            # "--use-fake-device-for-media-stream",
+            # "--window-size=1920,1080",
+            # "--start-maximized",
+            # "--disable-gpu",
         ]
         if user_data_dir:
             self._default_args.append(f" --user-data-dir={user_data_dir}")
@@ -53,7 +53,8 @@ class BrowserSession:
             logger.warning(f"Could not setup Xlib display for pyautogui: {e}")
         
         # Don't use xvfb=True since we're managing Xvfb ourselves in the startup script
-        self._driver = Driver(proxy=self.proxy, user_data_dir=self.user_data_dir, enable_3d_apis=True, chromium_arg=self._args)
+        # self._driver = Driver(proxy=self.proxy, user_data_dir=self.user_data_dir, enable_3d_apis=True, chromium_arg=self._args)
+        self._driver = Driver(proxy=self.proxy)
 
     def quit(self):
         if self._driver is None:

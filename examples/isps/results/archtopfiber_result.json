@@ -1,0 +1,145 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to Archtop Fiber page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "data:,"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://shopwvt.archtopfiber.com/"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "If on the Archtop Fiber page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Get Fiber Internet Now! Plans Starting at $39.99!"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://shopwvt.archtopfiber.com/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input[aria-label*=\"Street Address Field\"][name=\"streetaddress\"][id=\"streetaddress\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 404.0,
+          "y": 721.1015625
+        }
+      },
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%zip_code%",
+          "by": "css selector",
+          "selector": "input[name=\"zip\"][type=\"text\"]",
+          "x": 495.1875,
+          "y": 573.3046875
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%state%",
+          "by": "css selector",
+          "selector": "input[name=\"state\"][type=\"text\"]",
+          "x": 182.078125,
+          "y": 573.3046875
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%city%",
+          "by": "css selector",
+          "selector": "input[name=\"city\"][type=\"text\"]",
+          "x": 495.1875,
+          "y": 447.203125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.residential[type=\"button\"]",
+          "x": 208.2578125,
+          "y": 718.3046875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button[type=\"submit\"]",
+          "x": 404.0,
+          "y": 830.3046875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available (e.g Hmm... looks like we had trouble recognizing your address. Give us a quick call at 844-832-7823)",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Hmm... looks like we had trouble recognizing your address. Give us a quick call at 844-832-7823"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  }
+]

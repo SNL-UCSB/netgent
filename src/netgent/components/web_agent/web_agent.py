@@ -15,6 +15,9 @@ import json
 from netgent.utils.message import Message, format_context, Metadata, ActionOutput
 import time
 import os
+
+
+
 load_dotenv()
 
 
@@ -116,20 +119,22 @@ class WebAgent():
             pending_action=None
         )
         state = self.graph.invoke(state, { "recursion_limit": 100})
+        print("Web Agent State:", state)
         return state
     
     def _annotate(self, state: WebAgentState):
         time.sleep(2 * self.wait_period)
         self.elements, self.prompt, self.screenshot = mark_page(self.driver).with_retry().invoke(None)
-        state["messages"] += [Metadata(
-            timestamp=state["timestep"], 
-            elements=self.elements, 
-            element_description=self.prompt, 
-            screenshot=self.screenshot, 
-            dom="",
-            url=self.driver.current_url, 
-            title=self.driver.title
-        )]
+        # state["messages"] += [Metadata(
+        #     timestamp=state["timestep"], 
+        #     elements=self.elements, 
+        #     element_description=self.prompt, 
+        #     # screenshot=self.screenshot, 
+        #     screenshot=None,
+        #     dom="",
+        #     url=self.driver.current_url, 
+        #     title=self.driver.title
+        # )]
         state["timestep"] += 1
         return { **state }
     
@@ -271,6 +276,12 @@ class WebAgent():
 
         action_name = pending_action["type"]
         action_params = pending_action["params"]
+
+        if action_name == 'click' and not action_params:
+            print(f"Skipping click action with empty params: {pending_action}")
+            state["pending_action"] = None
+            state["timestep"] += 1
+            return { **state }
 
         self.action_registry.execute(action_name, action_params)
 

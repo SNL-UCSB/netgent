@@ -1,0 +1,77 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to Highline page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "data:,"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://shop.highlinefast.com/#/order/1"
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input[aria-label*=\"Please enter your full address, including zip\"][id=\"input-319\"][placeholder*=\"Please enter your full address, including zip\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 363.1796875,
+          "y": 588.515625
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.secondary[type=\"button\"][id=\"address-button\"]",
+          "x": 391.1796875,
+          "y": 742.671875
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 2
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The current HTML state shows that the page has loaded. The previous actions were to navigate to the page, type an address, wait for the page to load, and click next. The page now displays a message indicating that services are not currently offered in the area. The task is now complete."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available (e.g. 'Residential Fiber Interest Form Request Fiber For Your Neighborhood')",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Residential"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The instruction is to terminate the task immediately."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  }
+]
