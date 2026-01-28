@@ -5,7 +5,6 @@ from netgent.errors import NetGentError
 from bqtdb.main import BQTDatabase
 from netgent import NetGent, StatePrompt
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_google_vertexai import ChatVertexAI
 from dotenv import load_dotenv
 load_dotenv()
 prompts = [
@@ -26,14 +25,16 @@ prompts = [
             description="Internet service is available at this address - 'Showing available offers for'",
             triggers=["If you see 'Showing available offers for'"],
             actions=["TERMINATE AT THIS POINT"],
-            end_state="Service Available"
+            end_state="Service Available",
+            save_content=True,
         ),
         StatePrompt(
             name="Internet Not Available at Address on Buckeye Broadband",
             description="Internet service is not available at this address (e.g - 'Your address is in survey phase, show your interest below')",
             triggers=["If you see 'service not available' or 'Your address is in survey phase, show your interest below'"],
             actions=["TERMINATE AT THIS POINT"],
-            end_state="Service Not Available"
+            end_state="Service Not Available",
+            save_content=True,
         ),
     ]
 
@@ -48,7 +49,7 @@ addresses = [
 
 address = addresses[4]
 
-agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash", temperature=0.2, vertexai=True, api_key=os.getenv("GOOGLE_API_KEY"), project=os.getenv("GOOGLE_CLOUD_PROJECT")), proxy=os.getenv("PROXY_URL"), llm_enabled=True)
+agent = NetGent(llm=ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0.2, google_api_key=os.getenv("GOOGLE_API_KEY")), proxy=os.getenv("PROXY_URL"), llm_enabled=True)
 
 state_repository = []
 
@@ -56,7 +57,8 @@ result = agent.run(
     state_prompts=prompts, 
     state_repository=state_repository, 
     variables={"address": address["address"]},
-    session="buckeyebroadband"
+    session="buckeyebroadband",
+    save_content_dir="examples/isps/save/buckeyebroadband"
 )
 
 input("Press Enter to continue...")

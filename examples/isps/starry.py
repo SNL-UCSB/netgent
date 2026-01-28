@@ -5,7 +5,6 @@ from netgent.errors import NetGentError
 from bqtdb.main import BQTDatabase
 from netgent import NetGent, StatePrompt
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_google_vertexai import ChatVertexAI
 from dotenv import load_dotenv
 from faker import Faker
 
@@ -30,14 +29,16 @@ prompts = [
         description="Service available",
         triggers=["If you see 'Great news!' or 'Starry is available'"],
         actions=["DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT"],
-        end_state="serviceable_with_plans"
+        end_state="serviceable_with_plans",
+        save_content=True,
     ),
     StatePrompt(
         name="NO_SERVICE",
         description="Service not available - (e.g. 'Sorry, Starry isn’t currently available at your address.')",
         triggers=["If you see 'Sorry, Starry isn’t currently available at your address.'"],
         actions=["DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT"],
-        end_state="no_service"
+        end_state="no_service",
+        save_content=True,
     ),
 ]
 
@@ -68,7 +69,7 @@ email = fake.email()
 
 print(f"Address: {address}, Zip: {zip_code}")
 
-agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash", temperature=0.2, vertexai=True, api_key=os.getenv("GOOGLE_API_KEY"), project=os.getenv("GOOGLE_CLOUD_PROJECT")), proxy=os.getenv("PROXY_URL"), llm_enabled=True)
+agent = NetGent(llm=ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0.2, google_api_key=os.getenv("GOOGLE_API_KEY")), proxy=os.getenv("PROXY_URL"), llm_enabled=True)
 
 state_repository = []
 
@@ -89,7 +90,8 @@ result = agent.run(
         "address": address, 
         "zip_code": zip_code,
     },
-    session="starry"
+    session="starry",
+    save_content_dir="examples/isps/save/starry"
 )
 
 input("Press Enter to continue...")

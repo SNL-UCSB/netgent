@@ -7,7 +7,6 @@ from bqtdb.main import BQTDatabase
 
 from netgent import NetGent, StatePrompt
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_google_vertexai import ChatVertexAI
 from dotenv import load_dotenv
 load_dotenv()
 prompts = [
@@ -40,21 +39,24 @@ prompts = [
             description="Internet service is available at this address",
             triggers=["If you see internet plans, pricing, or 'Shop plans' or 'View plans' options"],
             actions=["TERMINATE AT THIS POINT"],
-            end_state="Service Available"
+            end_state="Service Available",
+            save_content=True,
         ),
         StatePrompt(
             name="Internet Not Available at Address on Astound or They Say Internet is Coming Soon or Technical Issue",
             description="Internet service is not available at this address",
             triggers=["If you see 'service not available', 'not in your area', or 'we don't offer service' or 'coming soon (in the link or on the website)' or 'technical issue'"],
             actions=["TERMINATE AT THIS POINT AND DON'T PERFORM ANY ACTIONS"],
-            end_state="Service Not Available"
+            end_state="Service Not Available",
+            save_content=True,
         ),
         StatePrompt(
             name="Technical Issue",
             description="Technical issue at this address",
             triggers=["If you see 'technical issue'"],
             actions=["TERMINATE AT THIS POINT. Don't perform any actions. just quit."],
-            end_state="Technical Issue"
+            end_state="Technical Issue",
+            save_content=True,
         ),
     ]
 
@@ -75,7 +77,7 @@ with BQTDatabase() as db:
             "zip_code": zip_code
         })
 
-agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2, vertexai=True, api_key=os.getenv("GOOGLE_API_KEY"), project=os.getenv("GOOGLE_CLOUD_PROJECT")), proxy=os.getenv("PROXY_URL"), llm_enabled=True)
+agent = NetGent(llm=ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0.2, google_api_key=os.getenv("GOOGLE_API_KEY")), proxy=os.getenv("PROXY_URL"), llm_enabled=True)
 
 try:
     with open("examples/isps/results/astound_result.json", "r") as f:
@@ -90,7 +92,9 @@ zip_code = addresses[4]["zip_code"]
 result = agent.run(
     state_prompts=prompts, 
     state_repository=state_repository, 
-    variables={"address": address, "zip_code": zip_code}
+    variables={"address": address, "zip_code": zip_code},
+    save_content_dir="examples/isps/save/astound",
+    session="astound"
 )
 
 # Write result to file
@@ -107,7 +111,7 @@ try:
 except FileNotFoundError:
     result = []
 
-result = agent.run(state_prompts=prompts, state_repository=result)
+result = agent.run(state_prompts=prompts, state_repository=result, save_content_dir="examples/isps/save/astound", session="astound")
 
 input("Press Enter to continue...")
 os.makedirs("examples/isps/results", exist_ok=True)

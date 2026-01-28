@@ -7,7 +7,6 @@ from bqtdb.main import BQTDatabase
 
 from netgent import NetGent, StatePrompt
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_google_vertexai import ChatVertexAI
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -23,7 +22,8 @@ prompts = [
         description="Enter address to check availability",
         triggers=["If you see 'Find Service Near You'"],
         actions=["FOLLOW THESE INSTRUCTIONS CLOSELY", "Press Accept All Cookies button", "Scroll down to the 'Street Address' and 'Zip Code' input fields", "Click the 'Street Address' input field", "Type `%address%` into the address input field", "Press down key to select the first suggestion", "Press enter key to confirm selection", "Click the 'SEE SERVICES' button", "Wait for 10 seconds", "TERMINATE AT THIS POINT"],
-        end_state="searched"
+        end_state="searched",
+        save_content=True,
     ),
 ]
 
@@ -50,7 +50,7 @@ with BQTDatabase() as db:
             'zip_code': prop_zip
         })
 
-agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2, vertexai=True, api_key=os.getenv("GOOGLE_API_KEY"), project=os.getenv("GOOGLE_CLOUD_PROJECT")), llm_enabled=True)
+agent = NetGent(llm=ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0.2, google_api_key=os.getenv("GOOGLE_API_KEY")), llm_enabled=True)
 
 try:
     with open("examples/isps/results/riverstreet_result.json", "r") as f:
@@ -69,7 +69,9 @@ print(f"Address: {address}, City: {city}, Zip: {zip_code}")
 result = agent.run(
     state_prompts=prompts, 
     state_repository=state_repository, 
-    variables={"address": address, "only_address": only_address, "city": city, "state": row_data['state'], "zip_code": zip_code}
+    variables={"address": address, "only_address": only_address, "city": city, "state": row_data['state'], "zip_code": zip_code},
+    save_content_dir="examples/isps/save/riverstreet",
+    session="riverstreet"
 )
 
 agent.set_state_wait_time(10)

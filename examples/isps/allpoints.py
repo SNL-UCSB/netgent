@@ -15,13 +15,13 @@ prompts = [
     StatePrompt(
         name="START",
         description="Navigate to Allpoints Broadband signup page",
-        triggers=["If it is on the chrome homescreen"],
+        triggers=["If the URL is 'data:,' (chrome homescreen)"],
         actions=["Go to https://signup.allpointsbroadband.com word for word", "TERMINATE AT THIS POINT"],
     ),
     StatePrompt(
         name="ADDRESS_BAR",
         description="Enter address to check availability",
-        triggers=["If you see 'Tell us where you want your services'"],
+        triggers=["If you see 'Tell us where you want your services' text. DO NOT GET THE URL HERE'"],
         actions=[
             "FOLLOW THESE INSTRUCTIONS CLOSELY",
             "Type `%address%` into the input field",
@@ -31,17 +31,17 @@ prompts = [
         ],
     ),
     StatePrompt(
-        name="SERVICEABLE - If you see 'Choose the internet plan that works best for you.' screen",
-        description="Choose the internet plan that works best for you.",
-        triggers=["If you see 'Choose the internet plan that works best for you.' screen (get the text and element)"],
+        name="SERVICEABLE",
+        description="Choose internet plan - address is serviceable",
+        triggers=["If you see 'Choose the internet plan that works best for you.' DO NOT GET THE URL HERE"],
         actions=["TERMINATE AT THIS POINT"],
         end_state="serviceable_with_plans",
         save_content=True
     ),
     StatePrompt(
-        name="NO_SERVICE - If you see 'We're not in your area just yet' screen",
+        name="NO_SERVICE",
         description="Not in service area",
-        triggers=["If you see 'We're not in your area just yet' screen (get the text and element)"],
+        triggers=["If you see 'We're not in your area just yet' text. DO NOT GET THE URL HERE"],
         actions=["TERMINATE AT THIS POINT"],
         end_state="no_service",
         save_content=True
@@ -71,7 +71,15 @@ with BQTDatabase() as db:
             'zip_code': prop_zip
         })
 
-agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash", temperature=0.2, vertexai=True, api_key=os.getenv("GOOGLE_API_KEY"), project=os.getenv("GOOGLE_CLOUD_PROJECT")), llm_enabled=True, config= {"allow_multiple_states": True})
+agent = NetGent(
+    llm=ChatGoogleGenerativeAI(
+        model="gemini-2.0-flash", 
+        temperature=0.2, 
+        google_api_key=os.getenv("GOOGLE_API_KEY")
+    ), 
+    llm_enabled=True, 
+    config={"allow_multiple_states": True}
+)
 
 try:
     with open("examples/isps/results2/allpoints_result.json", "r") as f:
@@ -79,7 +87,7 @@ try:
 except FileNotFoundError:
     state_repository = []
 
-row_data = addresses[5]
+row_data = addresses[6]
 address = row_data['address']
 only_address = row_data['only_address']
 city = row_data['city']
@@ -91,7 +99,8 @@ result = agent.run(
     state_prompts=prompts, 
     state_repository=state_repository, 
     variables={"address": address, "only_address": only_address, "city": city, "state": row_data['state'], "zip_code": zip_code},
-    save_content_dir="examples/isps/allpoints",
+    save_content_dir="examples/isps/save/allpoints",
+    session="allpoints"
 )
 
 agent.set_state_wait_time(10)

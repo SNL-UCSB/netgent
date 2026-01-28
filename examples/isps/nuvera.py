@@ -5,7 +5,6 @@ from netgent.errors import NetGentError
 from bqtdb.main import BQTDatabase
 from netgent import NetGent, StatePrompt
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_google_vertexai import ChatVertexAI
 from dotenv import load_dotenv
 from faker import Faker
 
@@ -30,14 +29,16 @@ prompts = [
         description="Service not available",
         triggers=["If you see URL is 'https://nuvera.net/future-service/' and 'We’re not in your neighborhood yet…'"],
         actions=["JUST DONT DO ANYTHING AT THIS POINT AND TERMINATE"],
-        end_state="no_service"
+        end_state="no_service",
+        save_content=True,
     ),
     StatePrompt(
         name="SERVICEABLE",
         description="Service available",
         triggers=["If you see 'We are serving your area at this time'"],
         actions=["JUST DONT DO ANYTHING AT THIS POINT AND TERMINATE"],
-        end_state="serviceable"
+        end_state="serviceable",
+        save_content=True,
     )
 ]
 
@@ -78,7 +79,7 @@ email = fake.email()
 
 print(f"Address: {address}, City: {city}, Zip: {zip_code}")
 
-agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash", temperature=0.2, vertexai=True, api_key=os.getenv("GOOGLE_API_KEY"), project=os.getenv("GOOGLE_CLOUD_PROJECT")), proxy=os.getenv("PROXY_URL"), llm_enabled=True)
+agent = NetGent(llm=ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0.2, google_api_key=os.getenv("GOOGLE_API_KEY")), proxy=os.getenv("PROXY_URL"), llm_enabled=True)
 
 state_repository = []
 
@@ -103,7 +104,8 @@ result = agent.run(
         "zip_code": zip_code,
         "email": email
     },
-    session="nuvera"
+    session="nuvera",
+    save_content_dir="examples/isps/save/nuvera"
 )
 
 input("Press Enter to continue...")

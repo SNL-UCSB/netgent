@@ -7,7 +7,6 @@ from bqtdb.main import BQTDatabase
 
 from netgent import NetGent, StatePrompt
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_google_vertexai import ChatVertexAI
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -43,28 +42,32 @@ prompts = [
         description="Service available - multiple plans",
         triggers=["If you see 'Before you make your selection, we want to show you the options available to you.'"],
         actions=["TERMINATE AT THIS POINT"],
-        end_state="serviceable"
+        end_state="serviceable",
+        save_content=True,
     ),
     StatePrompt(
         name="NO_SERVICE",
         description="No service - CenturyLink",
         triggers=["If you see 'CenturyLink may not be able to provide internet service at your address'"],
         actions=["TERMINATE AT THIS POINT"],
-        end_state="no_service"
+        end_state="no_service",
+        save_content=True,
     ),
     StatePrompt(
         name="NO_SERVICE_Brightspeed",
         description="No service - Brightspeed area",
         triggers=["If you see 'Brightspeed is the new internet provider for your neighborhood.'"],
         actions=["TERMINATE AT THIS POINT"],
-        end_state="no_service"
+        end_state="no_service",
+        save_content=True,
     ),
     StatePrompt(
         name="UNKNOWN_ADDRESS",
         description="Unknown address",
         triggers=["If you see 'We're having trouble finding your address'"],
         actions=["TERMINATE AT THIS POINT"],
-        end_state="unknown_address"
+        end_state="unknown_address",
+        save_content=True,
     ),
 ]
 
@@ -91,7 +94,7 @@ with BQTDatabase() as db:
             'zip_code': prop_zip
         })
 
-agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2, vertexai=True, api_key=os.getenv("GOOGLE_API_KEY"), project=os.getenv("GOOGLE_CLOUD_PROJECT")), llm_enabled=True)
+agent = NetGent(llm=ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0.2, google_api_key=os.getenv("GOOGLE_API_KEY")), llm_enabled=True)
 
 try:
     with open("examples/isps/results/centurylink_result.json", "r") as f:
@@ -110,7 +113,9 @@ print(f"Address: {address}, City: {city}, Zip: {zip_code}")
 result = agent.run(
     state_prompts=prompts, 
     state_repository=state_repository, 
-    variables={"address": address, "only_address": only_address, "city": city, "state": row_data['state'], "zip_code": zip_code}
+    variables={"address": address, "only_address": only_address, "city": city, "state": row_data['state'], "zip_code": zip_code},
+    save_content_dir="examples/isps/save/centurylink",
+    session="centurylink"
 )
 
 agent.set_state_wait_time(10)

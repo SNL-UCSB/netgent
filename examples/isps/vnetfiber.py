@@ -6,7 +6,6 @@ from netgent.errors import NetGentError
 
 from netgent import NetGent, StatePrompt
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_google_vertexai import ChatVertexAI
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -34,14 +33,16 @@ prompts = [
         description="Build your bundle",
         triggers=["If you see 'Build your bundle'"],
         actions=["TERMINATE AT THIS POINT"],
-        end_state="serviceable_with_plans"
+        end_state="serviceable_with_plans",
+        save_content=True,
     ),
     StatePrompt(
         name="NO_SERVICE",
         description="Service not available - (e.g. Make It Possible!)",
         triggers=["Get the Text from the page like 'Make It Possible!' and 'While your address is not in an area that we have plans to serve at this time, if we receive enough expressions of interest in your neighborhood, we may be able to provide our services to you in the future."],
         actions=["TERMINATE AT THIS POINT"],
-        end_state="no_service"
+        end_state="no_service",
+        save_content=True,
     ),
 ]
 
@@ -53,7 +54,7 @@ addresses = [
     {"address": "J 5TH ST, COVINGTON, LA", "zip_code": "70433"}
 ]
 
-agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash", temperature=0.2, vertexai=True, api_key=os.getenv("GOOGLE_API_KEY"), project=os.getenv("GOOGLE_CLOUD_PROJECT")), llm_enabled=True)
+agent = NetGent(llm=ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0.2, google_api_key=os.getenv("GOOGLE_API_KEY")), llm_enabled=True)
 
 try:
     with open("examples/isps/results/vnetfiber_result.json", "r") as f:
@@ -73,7 +74,9 @@ result = agent.run(
     variables={
         "address": address,
         "zip_code": zip_code
-    }
+    },
+    save_content_dir="examples/isps/save/vnetfiber",
+    session="vnetfiber"
 )
 
 agent.set_state_wait_time(5)

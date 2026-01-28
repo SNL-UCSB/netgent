@@ -6,7 +6,6 @@ from netgent.errors import NetGentError
 
 from netgent import NetGent, StatePrompt
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_google_vertexai import ChatVertexAI
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -50,7 +49,8 @@ prompts = [
         description="Build your bundle",
         triggers=["If you see 'Build your bundle'"],
         actions=["TERMINATE AT THIS POINT"],
-        end_state="serviceable_with_plans"
+        end_state="serviceable_with_plans",
+        save_content=True,
     ),
     StatePrompt(
         name="NO_SERVICE - If the website is not Mediacom, it means it is not servicable",
@@ -60,7 +60,8 @@ prompts = [
             "If you see 'We were unable to find a provider for your address. Please check the form and try again or call the SmartMove Hotline at 1-844-394-4910 to find your closest service provider.'"
         ],
         actions=["TERMINATE AT THIS POINT"],
-        end_state="no_service"
+        end_state="no_service",
+        save_content=True,
     ),
 ]
 
@@ -72,7 +73,7 @@ addresses = [
     {"address": "3282 Scottsville Rd, Charlottesvle, VA", "zip_code": "22902"}
 ]
 
-agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash", temperature=0.2, vertexai=True, api_key=os.getenv("GOOGLE_API_KEY"), project=os.getenv("GOOGLE_CLOUD_PROJECT")), llm_enabled=True)
+agent = NetGent(llm=ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0.2, google_api_key=os.getenv("GOOGLE_API_KEY")), llm_enabled=True)
 
 try:
     with open("examples/isps/results/mediacom_result.json", "r") as f:
@@ -92,7 +93,9 @@ result = agent.run(
     variables={
         "address": address,
         "zip_code": zip_code
-    }
+    },
+    save_content_dir="examples/isps/save/mediacom",
+    session="mediacom"
 )
 
 agent.set_state_wait_time(5)

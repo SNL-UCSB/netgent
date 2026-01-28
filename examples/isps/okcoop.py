@@ -7,7 +7,6 @@ from bqtdb.main import BQTDatabase
 
 from netgent import NetGent, StatePrompt
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_google_vertexai import ChatVertexAI
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -29,7 +28,8 @@ prompts = [
         description="Service not available in area",
         triggers=["If you see 'Please enter your service address below' and 'We are still working to build out our network in your area'"],
         actions=["TERMINATE AT THIS POINT"],
-        end_state="no_service"
+        end_state="no_service",
+        save_content=True,
     ),
     StatePrompt(
         name="SERVICEABLE",
@@ -42,7 +42,8 @@ prompts = [
         description="Internet plans selection",
         triggers=["If you see 'INTERNET PLANS'"],
         actions=["TERMINATE AT THIS POINT"],
-        end_state="serviceable_with_plans"
+        end_state="serviceable_with_plans",
+        save_content=True,
     ),
     StatePrompt(
         name="ADDRESS_BAR",
@@ -75,7 +76,7 @@ with BQTDatabase() as db:
             'zip_code': prop_zip
         })
 
-agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2, vertexai=True, api_key=os.getenv("GOOGLE_API_KEY"), project=os.getenv("GOOGLE_CLOUD_PROJECT")), proxy="brd-customer-hl_bdb3a3b4-zone-static:zjblan9e6w2q@brd.superproxy.io:33335", llm_enabled=True)
+agent = NetGent(llm=ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0.2, google_api_key=os.getenv("GOOGLE_API_KEY")), proxy="brd-customer-hl_bdb3a3b4-zone-static:zjblan9e6w2q@brd.superproxy.io:33335", llm_enabled=True)
 
 try:
     with open("examples/isps/results/okcoop_result.json", "r") as f:
@@ -94,7 +95,9 @@ print(f"Address: {address}, City: {city}, Zip: {zip_code}")
 result = agent.run(
     state_prompts=prompts, 
     state_repository=state_repository, 
-    variables={"address": address, "only_address": only_address, "city": city, "state": row_data['state'], "zip_code": zip_code}
+    variables={"address": address, "only_address": only_address, "city": city, "state": row_data['state'], "zip_code": zip_code},
+    save_content_dir="examples/isps/save/okcoop",
+    session="okcoop"
 )
 
 agent.set_state_wait_time(10)

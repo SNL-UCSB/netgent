@@ -7,7 +7,6 @@ from bqtdb.main import BQTDatabase
 
 from netgent import NetGent, StatePrompt
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_google_vertexai import ChatVertexAI
 from dotenv import load_dotenv
 load_dotenv()
 prompts = [
@@ -52,77 +51,88 @@ prompts = [
             description="Choose your plan - service is available",
             triggers=["If you see 'Choose your plan'"],
             actions=["TERMINATE AT THIS POINT"],
-            end_state="serviceable_with_plans"
+            end_state="serviceable_with_plans",
+            save_content=True,
         ),
         StatePrompt(
             name="SERVICEABLE_LTE",
             description="LTE Home Internet is available",
             triggers=["If you see 'Good news, LTE Home Internet is available at your address.'"],
             actions=["TERMINATE AT THIS POINT"],
-            end_state="serviceable_with_plans"
+            end_state="serviceable_with_plans",
+            save_content=True,
         ),
         StatePrompt(
             name="SERVICEABLE_5G",
             description="5G Home Internet is available",
             triggers=["If you see 'Good news, 5G Home Internet is available at your address.'"],
             actions=["TERMINATE AT THIS POINT"],
-            end_state="serviceable_with_plans"
+            end_state="serviceable_with_plans",
+            save_content=True,
         ),
         StatePrompt(
             name="NO_SERVICE",
             description="Be among the first to know - no service",
             triggers=["If you see 'Be among the first to know'"],
             actions=["TERMINATE AT THIS POINT"],
-            end_state="no_service"
+            end_state="no_service",
+            save_content=True,
         ),
         StatePrompt(
             name="NO_SERVICE_ADDITIONAL",
             description="Verizon Home Internet isn't available",
             triggers=["If you see 'Verizon Home Internet isn't available at your address'"],
             actions=["TERMINATE AT THIS POINT"],
-            end_state="no_service"
+            end_state="no_service",
+            save_content=True,
         ),
         StatePrompt(
             name="EXISTING_ORDER",
             description="Address has a pending order",
             triggers=["If you see 'Looks like this address has a pending order.'"],
             actions=["TERMINATE AT THIS POINT"],
-            end_state="existing_service"
+            end_state="existing_service",
+            save_content=True,
         ),
         StatePrompt(
             name="NO_DROPDOWN",
             description="Enter address and select from dropdown error",
             triggers=["If you see 'Enter address and select from dropdown.'"],
             actions=["TERMINATE AT THIS POINT"],
-            end_state="access_error"
+            end_state="access_error",
+            save_content=True,
         ),
         StatePrompt(
             name="PLEASE_CONTACT",
             description="Contact customer service required",
             triggers=["If you see 'Please contact the National Customer Service Center.'"],
             actions=["TERMINATE AT THIS POINT"],
-            end_state="unknown_address"
+            end_state="unknown_address",
+            save_content=True,
         ),
         StatePrompt(
             name="BUSINESS_ADDRESS",
             description="Business address detected",
             triggers=["If you see 'Looks like you entered a business address.'"],
             actions=["TERMINATE AT THIS POINT"],
-            end_state="business_address"
+            end_state="business_address",
+            save_content=True,
         ),
         StatePrompt(
             name="ERROR",
             description="Unable to process request",
             triggers=["If you see 'We're sorry. We are unable to process your request at this time.'"],
             actions=["TERMINATE AT THIS POINT"],
-            end_state="access_error"
+            end_state="access_error",
+            save_content=True,
         ),
         StatePrompt(
             name="ORDER_ERROR",
             description="Unable to continue order",
             triggers=["If you see 'We're unable to continue your order at this time.'"],
             actions=["TERMINATE AT THIS POINT"],
-            end_state="unknown_address"
+            end_state="unknown_address",
+            save_content=True,
         ),
     ]
 
@@ -147,7 +157,7 @@ with BQTDatabase() as db:
             'zip_code': prop_zip
         })
 
-agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2, vertexai=True, api_key=os.getenv("GOOGLE_API_KEY"), project=os.getenv("GOOGLE_CLOUD_PROJECT")), proxy=os.getenv("PROXY_URL"), llm_enabled=True)
+agent = NetGent(llm=ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0.2, google_api_key=os.getenv("GOOGLE_API_KEY")), proxy=os.getenv("PROXY_URL"), llm_enabled=True)
 
 try:
     with open("examples/isps/results/verizon_result.json", "r") as f:
@@ -165,7 +175,9 @@ print(f"Address: {address}, City: {city}, Zip: {zip_code}")
 result = agent.run(
     state_prompts=prompts, 
     state_repository=state_repository, 
-    variables={"address": address, "city": city, "state": row_data['state'], "zip_code": zip_code}
+    variables={"address": address, "city": city, "state": row_data['state'], "zip_code": zip_code},
+    save_content_dir="examples/isps/save/verizon",
+    session="verizon"
 )
 
 agent.set_state_wait_time(5)

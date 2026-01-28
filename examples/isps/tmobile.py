@@ -7,7 +7,6 @@ from bqtdb.main import BQTDatabase
 
 from netgent import NetGent, StatePrompt
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_google_vertexai import ChatVertexAI
 from dotenv import load_dotenv
 load_dotenv()
 prompts = [
@@ -40,42 +39,48 @@ prompts = [
             description="5G Home Internet is available",
             triggers=["If you see '5G Home Internet is available'"],
             actions=["TERMINATE AT THIS POINT"],
-            end_state="serviceable_with_plans"
+            end_state="serviceable_with_plans",
+            save_content=True,
         ),
         StatePrompt(
             name="NO_SERVICE",
             description="No service - join waitlist for 5G",
             triggers=["If you see 'our waitlist for 5G'"],
             actions=["TERMINATE AT THIS POINT"],
-            end_state="no_service"
+            end_state="no_service",
+            save_content=True,
         ),
         StatePrompt(
             name="NO_UNIT",
             description="Please enter unit number",
             triggers=["If you see 'Please enter unit'"],
             actions=["TERMINATE AT THIS POINT"],
-            end_state="unknown_address"
+            end_state="unknown_address",
+            save_content=True,
         ),
         StatePrompt(
             name="BAD_ADDRESS",
             description="Please choose an address from the list",
             triggers=["If you see 'Please choose an address from the list'"],
             actions=["TERMINATE AT THIS POINT"],
-            end_state="unknown_address"
+            end_state="unknown_address",
+            save_content=True,
         ),
         StatePrompt(
             name="BUSINESS",
             description="Business address detected",
             triggers=["If you see 'This appears to be a business address'"],
             actions=["TERMINATE AT THIS POINT"],
-            end_state="business_address"
+            end_state="business_address",
+            save_content=True,
         ),
         StatePrompt(
             name="ACCESS_DENIED",
             description="Access denied error",
             triggers=["If you see 'Access Denied'"],
             actions=["TERMINATE AT THIS POINT"],
-            end_state="access_error"
+            end_state="access_error",
+            save_content=True,
         ),
     ]
 
@@ -100,7 +105,7 @@ with BQTDatabase() as db:
             'zip_code': prop_zip
         })
 
-agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2, vertexai=True, api_key=os.getenv("GOOGLE_API_KEY"), project=os.getenv("GOOGLE_CLOUD_PROJECT")), proxy=os.getenv("PROXY_URL"), llm_enabled=True)
+agent = NetGent(llm=ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0.2, google_api_key=os.getenv("GOOGLE_API_KEY")), proxy=os.getenv("PROXY_URL"), llm_enabled=True)
 
 try:
     with open("examples/isps/results/tmobile_result.json", "r") as f:
@@ -118,7 +123,9 @@ print(f"Address: {address}, City: {city}, Zip: {zip_code}")
 result = agent.run(
     state_prompts=prompts, 
     state_repository=state_repository, 
-    variables={"address": address, "city": city, "state": row_data['state'], "zip_code": zip_code}
+    variables={"address": address, "city": city, "state": row_data['state'], "zip_code": zip_code},
+    save_content_dir="examples/isps/save/tmobile",
+    session="tmobile"
 )
 
 agent.set_state_wait_time(5)

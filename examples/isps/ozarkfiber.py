@@ -5,7 +5,6 @@ from netgent.errors import NetGentError
 from bqtdb.main import BQTDatabase
 from netgent import NetGent, StatePrompt
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_google_vertexai import ChatVertexAI
 from dotenv import load_dotenv
 load_dotenv()
 prompts = [
@@ -26,14 +25,16 @@ prompts = [
             description="Internet service is available at this address",
             triggers=["If you see 'service available'"],
             actions=["TERMINATE AT THIS POINT"],
-            end_state="Service Available"
+            end_state="Service Available",
+            save_content=True,
         ),
         StatePrompt(
             name="Internet Not Available at Address on Ozark Fiber",
             description="Internet service is not available at this address (e.g - 'Your address is in survey phase, show your interest below')",
             triggers=["If you see 'service not available' or 'Your address is in survey phase, show your interest below'"],
             actions=["TERMINATE AT THIS POINT"],
-            end_state="Service Not Available"
+            end_state="Service Not Available",
+            save_content=True,
         ),
     ]
 
@@ -63,7 +64,7 @@ with BQTDatabase() as db:
 
 address = addresses[5]
 
-agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash", temperature=0.2, vertexai=True, api_key=os.getenv("GOOGLE_API_KEY"), project=os.getenv("GOOGLE_CLOUD_PROJECT")), proxy=os.getenv("PROXY_URL"), llm_enabled=True)
+agent = NetGent(llm=ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0.2, google_api_key=os.getenv("GOOGLE_API_KEY")), proxy=os.getenv("PROXY_URL"), llm_enabled=True)
 
 state_repository = []
 
@@ -71,7 +72,8 @@ result = agent.run(
     state_prompts=prompts, 
     state_repository=state_repository, 
     variables={"address": address["address"], "zip_code": address["zip_code"]},
-    session="ozarkfiber"
+    session="ozarkfiber",
+    save_content_dir="examples/isps/save/ozarkfiber"
 )
 
 input("Press Enter to continue...")

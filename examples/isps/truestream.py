@@ -7,7 +7,6 @@ from bqtdb.main import BQTDatabase
 
 from netgent import NetGent, StatePrompt
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_google_vertexai import ChatVertexAI
 from dotenv import load_dotenv
 load_dotenv()
 prompts = [
@@ -28,21 +27,24 @@ prompts = [
             description="Service is available - Burnips 2 Installation",
             triggers=["If you see 'Burnips 2: Installation &'"],
             actions=["TERMINATE AT THIS POINT"],
-            end_state="serviceable_with_plans"
+            end_state="serviceable_with_plans",
+            save_content=True,
         ),
         StatePrompt(
             name="NO_SERVICE",
             description="Services not available in your area",
             triggers=["If you see 'AVAILABILITY AND STATUS' and 'Services are not available in your area'"],
             actions=["TERMINATE AT THIS POINT"],
-            end_state="no_service"
+            end_state="no_service",
+            save_content=True,
         ),
         StatePrompt(
             name="403_FORBIDDEN",
             description="403 Forbidden access error",
             triggers=["If you see '403 Forbidden'"],
             actions=["TERMINATE AT THIS POINT"],
-            end_state="access_error"
+            end_state="access_error",
+            save_content=True,
         ),
     ]
 
@@ -67,7 +69,7 @@ with BQTDatabase() as db:
             'zip_code': prop_zip
         })
 
-agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2, vertexai=True, api_key=os.getenv("GOOGLE_API_KEY"), project=os.getenv("GOOGLE_CLOUD_PROJECT")), proxy=os.getenv("PROXY_URL"), llm_enabled=True)
+agent = NetGent(llm=ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0.2, google_api_key=os.getenv("GOOGLE_API_KEY")), proxy=os.getenv("PROXY_URL"), llm_enabled=True)
 
 try:
     with open("examples/isps/results/truestream_result.json", "r") as f:
@@ -85,7 +87,9 @@ print(f"Address: {address}, City: {city}, Zip: {zip_code}")
 result = agent.run(
     state_prompts=prompts, 
     state_repository=state_repository, 
-    variables={"address": address, "city": city, "state": row_data['state'], "zip_code": zip_code}
+    variables={"address": address, "city": city, "state": row_data['state'], "zip_code": zip_code},
+    save_content_dir="examples/isps/save/truestream",
+    session="truestream"
 )
 
 agent.set_state_wait_time(5)

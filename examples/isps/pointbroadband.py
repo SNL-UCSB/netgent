@@ -5,7 +5,6 @@ from netgent.errors import NetGentError
 from bqtdb.main import BQTDatabase
 from netgent import NetGent, StatePrompt
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_google_vertexai import ChatVertexAI
 from dotenv import load_dotenv
 load_dotenv()
 prompts = [
@@ -42,14 +41,16 @@ prompts = [
         description="Build your bundle",
         triggers=["If you see 'Build your bundle'"],
         actions=["TERMINATE AT THIS POINT"],
-        end_state="serviceable_with_plans"
+        end_state="serviceable_with_plans",
+        save_content=True,
     ),
     StatePrompt(
         name="NO_SERVICE",
         description="Service not available (e.g. 'Residential Fiber Interest Form Request Fiber For Your Neighborhood')",
         triggers=["Get the Text from the page like 'Residential Fiber Interest Form Request Fiber For Your Neighborhood"],
         actions=["TERMINATE AT THIS POINT"],
-        end_state="no_service"
+        end_state="no_service",
+        save_content=True,
     ),
 ]
 
@@ -72,7 +73,7 @@ with BQTDatabase() as db:
 
 address = addresses[4]
 
-agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash", temperature=0.2, vertexai=True, api_key=os.getenv("GOOGLE_API_KEY"), project=os.getenv("GOOGLE_CLOUD_PROJECT")), proxy=os.getenv("PROXY_URL"), llm_enabled=True)
+agent = NetGent(llm=ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0.2, google_api_key=os.getenv("GOOGLE_API_KEY")), proxy=os.getenv("PROXY_URL"), llm_enabled=True)
 
 state_repository = []
 
@@ -80,7 +81,8 @@ result = agent.run(
     state_prompts=prompts, 
     state_repository=state_repository, 
     variables={"address": address["address"], "zip_code": address["zip_code"]},
-    session="pointbroadband"
+    session="pointbroadband",
+    save_content_dir="examples/isps/save/pointbroadband"
 )
 
 input("Press Enter to continue...")

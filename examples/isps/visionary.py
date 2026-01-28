@@ -7,7 +7,6 @@ from bqtdb.main import BQTDatabase
 
 from netgent import NetGent, StatePrompt
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_google_vertexai import ChatVertexAI
 from dotenv import load_dotenv
 load_dotenv()
 prompts = [
@@ -34,21 +33,24 @@ prompts = [
             description="Service plans are available at this address",
             triggers=["If you see 'Please select from the below service plans that are available at your address.'"],
             actions=["TERMINATE AT THIS POINT"],
-            end_state="serviceable_with_plans"
+            end_state="serviceable_with_plans",
+            save_content=True,
         ),
         StatePrompt(
             name="EXISTING_SERVICE",
             description="Address already has service with Visionary",
             triggers=["If you see 'Your address already has service with Visionary'"],
             actions=["TERMINATE AT THIS POINT"],
-            end_state="serviceable_with_plans"
+            end_state="serviceable_with_plans",
+            save_content=True,
         ),
         StatePrompt(
             name="NO_SERVICE",
             description="Visionary is not available in this area",
             triggers=["If you see 'We are not in your area... yet!'"],
             actions=["TERMINATE AT THIS POINT"],
-            end_state="no_service"
+            end_state="no_service",
+            save_content=True,
         ),
     ]
 
@@ -73,7 +75,7 @@ with BQTDatabase() as db:
             'zip_code': prop_zip
         })
 
-agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2, vertexai=True, api_key=os.getenv("GOOGLE_API_KEY"), project=os.getenv("GOOGLE_CLOUD_PROJECT")), proxy=os.getenv("PROXY_URL"), llm_enabled=True)
+agent = NetGent(llm=ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0.2, google_api_key=os.getenv("GOOGLE_API_KEY")), proxy=os.getenv("PROXY_URL"), llm_enabled=True)
 
 try:
     with open("examples/isps/results/visionary_result.json", "r") as f:
@@ -106,7 +108,9 @@ result = agent.run(
         "name_l": name_l,
         "email": email,
         "phone_num": phone_num
-    }
+    },
+    save_content_dir="examples/isps/save/visionary",
+    session="visionary"
 )
 
 agent.set_state_wait_time(5)

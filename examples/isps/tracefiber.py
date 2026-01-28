@@ -5,7 +5,6 @@ from netgent.errors import NetGentError
 from bqtdb.main import BQTDatabase
 from netgent import NetGent, StatePrompt
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_google_vertexai import ChatVertexAI
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -42,14 +41,16 @@ prompts = [
         description="If serviceable",
         triggers=["If you see 'Great news!'"],
         actions=["TERMINATE AT THIS POINT"],
-        end_state="serviceable"
+        end_state="serviceable",
+        save_content=True,
     ),
     StatePrompt(
         name="NO_SERVICE",
         description="Service not available - (e.g. 'Make It Possible!' or similar)",
         triggers=["If you see 'Make It Possible!' or similar"],
         actions=["TERMINATE AT THIS POINT"],
-        end_state="no_service"
+        end_state="no_service",
+        save_content=True,
     ),
 ]
 
@@ -74,7 +75,7 @@ zip_code = address_data['zip_code']
 
 print(f"Address: {address}, Zip: {zip_code}")
 
-agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash", temperature=0.2, vertexai=True, api_key=os.getenv("GOOGLE_API_KEY"), project=os.getenv("GOOGLE_CLOUD_PROJECT")), proxy=os.getenv("PROXY_URL"), llm_enabled=True)
+agent = NetGent(llm=ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0.2, google_api_key=os.getenv("GOOGLE_API_KEY")), proxy=os.getenv("PROXY_URL"), llm_enabled=True)
 
 state_repository = []
 
@@ -95,7 +96,8 @@ result = agent.run(
         "address": address, 
         "zip_code": zip_code,
     },
-    session="tracefiber"
+    session="tracefiber",
+    save_content_dir="examples/isps/save/tracefiber"
 )
 
 input("Press Enter to continue...")

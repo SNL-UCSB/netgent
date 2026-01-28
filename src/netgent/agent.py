@@ -321,7 +321,7 @@ class NetGent():
             "checks": synthesis_triggers,
             "actions": actions,
             "end_state": synthesis_choice.get('end_state') if synthesis_choice else "",
-            "save_content": synthesis_choice.get('save_content', False) if synthesis_choice else False,
+            "save_content": (synthesis_choice.get('save_content', False) or bool(synthesis_choice.get('end_state'))) if synthesis_choice else False,
             "executed": []
         }
         
@@ -390,7 +390,37 @@ class NetGent():
         
         with tracer.start_as_current_span("NetGent") as span:
             try:
+                # Log input
+                input_data = {
+                    "state_prompts": [prompt.model_dump() if hasattr(prompt, 'model_dump') else str(prompt) for prompt in state_prompts],
+                    "variables": variables,
+                    "session": session
+                }
+                span.set_attribute("input.value", json.dumps(input_data))
+                span.set_attribute("input.mime_type", "application/json")
+                
                 result = self.graph.invoke(state, config={"recursion_limit": 100000})
+                
+                # Log output
+                passed_states = result.get("passed_states", [])
+                end_state = "unknown"
+                
+                # First check executed_states for the last state's end_state (most reliable for agent execution)
+                executed_states = result.get("executed_states", [])
+                if executed_states and len(executed_states) > 0:
+                    last_state = executed_states[-1]
+                    if last_state.get("end_state"):
+                        end_state = last_state.get("end_state")
+                
+                # Fallback to passed_states if executed_states didn't have it (or wasn't present)
+                if end_state == "unknown" and passed_states and len(passed_states) > 0:
+                     end_state = passed_states[0].get("end_state", "unknown")
+                
+                output_data = {
+                    "end_state": end_state
+                }
+                span.set_attribute("output.value", json.dumps(output_data))
+                span.set_attribute("output.mime_type", "application/json")
                 
                 metadata = {"session": session, "variables": variables}
                 span.set_attribute("metadata", json.dumps(metadata))

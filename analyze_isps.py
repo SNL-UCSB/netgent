@@ -4,6 +4,20 @@ import os
 import statistics
 import sys
 
+def count_string_chars(node):
+    """Recursively count characters in string literals within an AST node."""
+    total = 0
+    if isinstance(node, ast.Constant) and isinstance(node.value, str):
+        total += len(node.value)
+    elif isinstance(node, ast.List):
+        for elt in node.elts:
+            total += count_string_chars(elt)
+    elif isinstance(node, ast.JoinedStr):  # f-strings
+        for value in node.values:
+            total += count_string_chars(value)
+    return total
+
+
 def analyze_file(filepath):
     try:
         with open(filepath, 'r') as f:
@@ -16,8 +30,8 @@ def analyze_file(filepath):
     except SyntaxError:
         return None
 
-    lines_needed = 0
-    lines_modified = 0
+    chars_needed = 0
+    chars_modified = 0
     found_prompts = False
 
     for node in ast.walk(tree):
@@ -31,20 +45,16 @@ def analyze_file(filepath):
                     if isinstance(func, ast.Name) and func.id == 'StatePrompt':
                         found_prompts = True
                         
-                        # Calculate Lines Needed (Total size of the list or individual items)
-                        # We sum the size of each StatePrompt call
+                        # Count characters in each StatePrompt
                         for elt in node.value.elts:
-                            lines_needed += (elt.end_lineno - elt.lineno + 1)
-                            
-                            # Calculate Lines Modified (triggers and actions)
                             if isinstance(elt, ast.Call):
                                 for keyword in elt.keywords:
-                                    if keyword.arg in ['triggers', 'actions', 'name', 'description']:
-                                        # keyword.value is typically a List
-                                        if hasattr(keyword.value, 'end_lineno') and hasattr(keyword.value, 'lineno'):
-                                            # We count the lines this list spans
-                                            # This is a good proxy for "content" lines
-                                            lines_modified += (keyword.value.end_lineno - keyword.value.lineno + 1)
+                                    # Count all user-defined string content for "chars needed"
+                                    if keyword.arg in ['name', 'description', 'triggers', 'actions']:
+                                        chars_needed += count_string_chars(keyword.value)
+                                    # Count only triggers/actions for "chars modified" (interface-dependent)
+                                    if keyword.arg in ['triggers', 'actions']:
+                                        chars_modified += count_string_chars(keyword.value)
                         
                         # We verify only the first valid prompts list we find to avoid duplicates 
                         # (though usually there is only one)
@@ -53,8 +63,8 @@ def analyze_file(filepath):
     if found_prompts:
         return {
             'isp': os.path.basename(filepath).replace('.py', ''),
-            'needed': lines_needed,
-            'modified': lines_modified
+            'chars_needed': chars_needed,
+            'chars_modified': chars_modified
         }
     return None
 
@@ -77,14 +87,14 @@ def main():
     results.sort(key=lambda x: x['isp'])
 
     # Print Table
-    print(f"{'ISP':<25} | {'Lines Needed':<12} | {'Lines Modified':<14}")
+    print(f"{'ISP':<25} | {'Chars Needed':<12} | {'Chars Modified':<14}")
     print("-" * 57)
     for r in results:
-        print(f"{r['isp']:<25} | {r['needed']:<12} | {r['modified']:<14}")
+        print(f"{r['isp']:<25} | {r['chars_needed']:<12} | {r['chars_modified']:<14}")
 
     # Calculate CDFs
-    needed_vals = sorted([r['needed'] for r in results])
-    modified_vals = sorted([r['modified'] for r in results])
+    needed_vals = sorted([r['chars_needed'] for r in results])
+    modified_vals = sorted([r['chars_modified'] for r in results])
     
     def get_percentile(data, p):
         idx = int(len(data) * p)
@@ -92,7 +102,7 @@ def main():
         return data[idx]
 
     print("\nCDF (Cumulative Distribution Function) Estimates:")
-    print(f"{'Percentile':<10} | {'Lines Needed':<12} | {'Lines Modified':<14}")
+    print(f"{'Percentile':<10} | {'Chars Needed':<12} | {'Chars Modified':<14}")
     print("-" * 42)
     for p in [0.1, 0.25, 0.5, 0.75, 0.9, 0.95, 0.99, 1.0]:
         n_val = get_percentile(needed_vals, p)
@@ -102,12 +112,12 @@ def main():
     # Export to CSV
     import csv
     with open('isp_analysis.csv', 'w', newline='') as csvfile:
-        fieldnames = ['ISP', 'Lines Needed', 'Lines Modified']
+        fieldnames = ['ISP', 'Chars Needed', 'Chars Modified']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
         writer.writeheader()
         for r in results:
-            writer.writerow({'ISP': r['isp'], 'Lines Needed': r['needed'], 'Lines Modified': r['modified']})
+            writer.writerow({'ISP': r['isp'], 'Chars Needed': r['chars_needed'], 'Chars Modified': r['chars_modified']})
     
     print(f"\nCSV exported to 'isp_analysis.csv'")
 

@@ -7,7 +7,6 @@ from bqtdb.main import BQTDatabase
 
 from netgent import NetGent, StatePrompt
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_google_vertexai import ChatVertexAI
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -29,14 +28,15 @@ prompts = [
         description="Service not available at this address",
         triggers=["If you see 'See Pricing In Your Area' and '123NET Home Fiber Internet services are not currently available at this address' or 'fiber is coming through your area'"],
         actions=["TERMINATE AT THIS POINT"],
-        end_state="no_service"
+        end_state="no_service",
+        save_content=True,
     ),
     StatePrompt(
         name="SERVICEABLE",
         description="Service available in area",
         triggers=["If you see 'SERVICE IS AVAILABLE IN YOUR AREA'"],
         actions=["Take a screenshot", "TERMINATE AT THIS POINT"],
-        end_state="serviceable_with_plans"
+        end_state="serviceable_with_plans",
         save_content=True
     )
 ]
@@ -64,10 +64,10 @@ with BQTDatabase() as db:
             'zip_code': prop_zip
         })
 
-agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2, vertexai=True, api_key=os.getenv("GOOGLE_API_KEY"), project=os.getenv("GOOGLE_CLOUD_PROJECT")), proxy="brd-customer-hl_bdb3a3b4-zone-static:zjblan9e6w2q@brd.superproxy.io:33335", llm_enabled=True)
+agent = NetGent(llm=ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0.2, google_api_key=os.getenv("GOOGLE_API_KEY")), llm_enabled=True, proxy="brd-customer-hl_bdb3a3b4-zone-static:zjblan9e6w2q@brd.superproxy.io:33335")
 
 try:
-    with open("examples/isps/results/123net_result.json", "r") as f:
+    with open("examples/isps/results2/123net_result.json", "r") as f:
         state_repository = json.load(f)
 except FileNotFoundError:
     state_repository = []
@@ -83,13 +83,15 @@ print(f"Address: {address}, City: {city}, Zip: {zip_code}")
 result = agent.run(
     state_prompts=prompts, 
     state_repository=state_repository, 
-    variables={"address": address, "only_address": only_address, "city": city, "state": row_data['state'], "zip_code": zip_code}
+    variables={"address": address, "only_address": only_address, "city": city, "state": row_data['state'], "zip_code": zip_code},
+    session="123net",
+    save_content_dir="examples/isps/save/123net"
 )
 
 agent.set_state_wait_time(10)
 
 
 input("Press Enter to continue...")
-os.makedirs("examples/isps/results", exist_ok=True)
-with open("examples/isps/results/123net_result.json", "w") as f:
+os.makedirs("examples/isps/results2", exist_ok=True)
+with open("examples/isps/results2/123net_result.json", "w") as f:
     json.dump(result["state_repository"], f, indent=2)
