@@ -97,6 +97,10 @@ class StateSynthesis():
         return { **state, "choice": choice }
     
     def _define_trigger(self, state: StateSynthesisState):
+        # Check if choice is None (no matching state found)
+        if state['choice'] is None:
+            raise ValueError("No matching state was selected by the LLM. The current page state may not match any defined StatePrompts.")
+        
         # Define the Trigger for the State
         # Get available triggers from the page
         page_triggers = find_trigger(self.controller.driver)

@@ -30,14 +30,16 @@ prompts = [
         description="Build your bundle",
         triggers=["If you see 'Build your bundle'"],
         actions=["DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT"],
-        end_state="serviceable_with_plans"
+        end_state="serviceable_with_plans",
+        save_content=True
     ),
     StatePrompt(
         name="NO_SERVICE",
         description="Service not available - (e.g. 'Currently Unavailable')",
         triggers=["If you see 'We’ve got good news and bad news.'"],
         actions=["DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT"],
-        end_state="no_service"
+        end_state="no_service",
+        save_content=True
     ),
 ]
 
@@ -89,6 +91,7 @@ result = agent.run(
         "address": address, 
         "zip_code": zip_code,
     },
+    save_content_dir="examples/isps/aeneas",
     session="aeneas"
 )
 

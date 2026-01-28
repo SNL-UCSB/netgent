@@ -37,6 +37,7 @@ prompts = [
         triggers=["If you see 'SERVICE IS AVAILABLE IN YOUR AREA'"],
         actions=["Take a screenshot", "TERMINATE AT THIS POINT"],
         end_state="serviceable_with_plans"
+        save_content=True
     )
 ]
 

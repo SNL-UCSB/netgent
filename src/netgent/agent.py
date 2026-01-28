@@ -13,6 +13,7 @@ from netgent.components.web_agent import WebAgent
 from netgent.utils.message import StatePrompt
 from netgent.errors import NetGentError, NetGentExecutionError
 import json
+import os
 from phoenix.otel import register
 from openinference.instrumentation.langchain import LangChainInstrumentor
 from openinference.instrumentation import using_metadata
@@ -234,8 +235,63 @@ class NetGent():
         
     def _state_executor(self, state: NetGentState):
         passed_states = state.get('passed_states', [])
-        self.state_executor.run(passed_states[0], state.get('variables', {}))
+        current_state = passed_states[0]
+        self.state_executor.run(current_state, state.get('variables', {}))
+        
+        # Save content if save_content is True and save_content_dir is set
+        if current_state.get('save_content', False) and self._save_content_dir:
+            self._save_state_content(current_state, state.get('variables', {}))
+        
         return {**state}
+    
+    def _save_state_content(self, current_state: dict, variables: dict):
+        """Save full page screenshot and HTML for a state with save_content=True"""
+        import datetime
+        
+        # Create save directory if it doesn't exist
+        os.makedirs(self._save_content_dir, exist_ok=True)
+        
+        # Generate filename based on state name and timestamp
+        state_name = current_state.get('name', 'unknown').replace(' ', '_').replace('/', '_')
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        base_filename = f"{state_name}_{timestamp}"
+        
+        # Add variable info to filename if available (e.g., address for ISP checks)
+        if 'address' in variables:
+            # Sanitize address for filename
+            addr_short = variables['address'][:30].replace(' ', '_').replace(',', '').replace('/', '_')
+            base_filename = f"{addr_short}_{base_filename}"
+        
+        # Save full page screenshot using CDP (Chrome DevTools Protocol)
+        screenshot_path = os.path.join(self._save_content_dir, f"{base_filename}.png")
+        try:
+            # Use CDP to get full page screenshot
+            import base64
+            result = self.driver.execute_cdp_cmd("Page.captureScreenshot", {
+                "format": "png",
+                "captureBeyondViewport": True,
+                "fromSurface": True
+            })
+            with open(screenshot_path, "wb") as f:
+                f.write(base64.b64decode(result["data"]))
+            print(f"Saved full page screenshot to {screenshot_path}")
+        except Exception as e:
+            # Fallback to regular screenshot if CDP fails
+            try:
+                self.driver.save_screenshot(screenshot_path)
+                print(f"Saved viewport screenshot to {screenshot_path} (full page not available)")
+            except Exception as e2:
+                print(f"Failed to save screenshot: {e2}")
+        
+        # Save HTML
+        html_path = os.path.join(self._save_content_dir, f"{base_filename}.html")
+        try:
+            html = self.driver.page_source
+            with open(html_path, "w", encoding="utf-8") as f:
+                f.write(html)
+            print(f"Saved HTML to {html_path}")
+        except Exception as e:
+            print(f"Failed to save HTML: {e}")
 
     def _state_synthesis(self, state: NetGentState):
         # Pass executed states to state synthesis for tracking
@@ -265,6 +321,7 @@ class NetGent():
             "checks": synthesis_triggers,
             "actions": actions,
             "end_state": synthesis_choice.get('end_state') if synthesis_choice else "",
+            "save_content": synthesis_choice.get('save_content', False) if synthesis_choice else False,
             "executed": []
         }
         
@@ -290,6 +347,10 @@ class NetGent():
         executed_states = state.get('executed_states', [])
         updated_executed_states = executed_states + [new_state]
         
+        # Save content if save_content is True and save_content_dir is set
+        if new_state.get('save_content', False) and self._save_content_dir:
+            self._save_state_content(new_state, state.get('variables', {}))
+        
         return {
             **state,
             "state_repository": updated_state_repository,
@@ -297,7 +358,7 @@ class NetGent():
             "messages": web_agent_state.get('messages')
         }
 
-    def run(self, state_prompts: list[StatePrompt] = [], state_repository: list[dict[str, Any]] = [], variables: dict[str, Any] = {}, end_state_files: str = "", session: Optional[str] = None):
+    def run(self, state_prompts: list[StatePrompt] = [], state_repository: list[dict[str, Any]] = [], variables: dict[str, Any] = {}, end_state_files: str = "", session: Optional[str] = None, save_content_dir: Optional[str] = None):
         # Accept either a list of state dicts or a dict containing "state_repository"
         if isinstance(state_repository, dict):
             repo_list = state_repository.get("state_repository", [])
@@ -309,6 +370,9 @@ class NetGent():
         for state_item in repo_list:
             if isinstance(state_item, dict) and "executed" not in state_item:
                 state_item["executed"] = []
+
+        # Store save_content_dir for use in state executor
+        self._save_content_dir = save_content_dir
 
         state: NetGentState = {
             "state_repository": repo_list,

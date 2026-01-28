@@ -32,17 +32,19 @@ prompts = [
     ),
     StatePrompt(
         name="SERVICEABLE - If you see 'Choose the internet plan that works best for you.' screen",
-        description="Choose internet plan",
+        description="Choose the internet plan that works best for you.",
         triggers=["If you see 'Choose the internet plan that works best for you.' screen (get the text and element)"],
         actions=["TERMINATE AT THIS POINT"],
-        end_state="serviceable_with_plans"
+        end_state="serviceable_with_plans",
+        save_content=True
     ),
     StatePrompt(
         name="NO_SERVICE - If you see 'We're not in your area just yet' screen",
         description="Not in service area",
         triggers=["If you see 'We're not in your area just yet' screen (get the text and element)"],
         actions=["TERMINATE AT THIS POINT"],
-        end_state="no_service"
+        end_state="no_service",
+        save_content=True
     ),
 ]
 
@@ -69,10 +71,10 @@ with BQTDatabase() as db:
             'zip_code': prop_zip
         })
 
-agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2, vertexai=True, api_key=os.getenv("GOOGLE_API_KEY"), project=os.getenv("GOOGLE_CLOUD_PROJECT")), llm_enabled=True)
+agent = NetGent(llm=ChatVertexAI(model="gemini-2.0-flash", temperature=0.2, vertexai=True, api_key=os.getenv("GOOGLE_API_KEY"), project=os.getenv("GOOGLE_CLOUD_PROJECT")), llm_enabled=True, config= {"allow_multiple_states": True})
 
 try:
-    with open("examples/isps/results/allpoints_result.json", "r") as f:
+    with open("examples/isps/results2/allpoints_result.json", "r") as f:
         state_repository = json.load(f)
 except FileNotFoundError:
     state_repository = []
@@ -88,13 +90,14 @@ print(f"Address: {address}, City: {city}, Zip: {zip_code}")
 result = agent.run(
     state_prompts=prompts, 
     state_repository=state_repository, 
-    variables={"address": address, "only_address": only_address, "city": city, "state": row_data['state'], "zip_code": zip_code}
+    variables={"address": address, "only_address": only_address, "city": city, "state": row_data['state'], "zip_code": zip_code},
+    save_content_dir="examples/isps/allpoints",
 )
 
 agent.set_state_wait_time(10)
 
 
 input("Press Enter to continue...")
-os.makedirs("examples/isps/results", exist_ok=True)
-with open("examples/isps/results/allpoints_result.json", "w") as f:
+os.makedirs("examples/isps/results2", exist_ok=True)
+with open("examples/isps/results2/allpoints_result.json", "w") as f:
     json.dump(result["state_repository"], f, indent=2)

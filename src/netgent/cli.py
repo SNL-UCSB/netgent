@@ -116,7 +116,8 @@ def load_prompts(prompts_input: str) -> List[StatePrompt]:
             description=prompt_data.get('description', ''),
             triggers=prompt_data.get('triggers', []),
             actions=prompt_data.get('actions', []),
-            end_state=prompt_data.get('end_state', '')
+            end_state=prompt_data.get('end_state', ''),
+            save_content=prompt_data.get('save_content', False)
         )
         prompts.append(prompt)
     

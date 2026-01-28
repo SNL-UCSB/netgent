@@ -165,9 +165,11 @@ class StatePrompt(BaseModel):
     triggers: list[str] = Field(description="Triggers of the State (What Triggers the State to Run the Actions)")
     actions: list[str] = Field(description="Actions of the State (What the State Does. What It Should Run)")
     end_state: Optional[str] = Field(description="The reason for the state to end", default="")
+    save_content: bool = Field(description="If True, saves a full page screenshot and HTML when this state is reached.", default=False)
     
     def __str__(self):
         actions_str = "\n".join([f"\t{i+1}. {action}" for i, action in enumerate(self.actions)])
         triggers_str = "\n".join([f"\t{i+1}. {trigger}" for i, trigger in enumerate(self.triggers)])
         end_state_str = f"\n- **End State:** {self.end_state}" if self.end_state else ""
-        return f"## State: {self.name}\n- **Description:** {self.description}\n- **Triggers:**\n{triggers_str}\n- **Actions:**\n{actions_str}{end_state_str}"
+        save_content_str = f"\n- **Save Content:** True" if self.save_content else ""
+        return f"## State: {self.name}\n- **Description:** {self.description}\n- **Triggers:**\n{triggers_str}\n- **Actions:**\n{actions_str}{end_state_str}{save_content_str}"
