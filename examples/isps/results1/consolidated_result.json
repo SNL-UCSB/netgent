@@ -1,0 +1,336 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to Consolidated check availability page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "about:blank"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://www.consolidated.com/residential/check-availability"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete as per the instructions."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Please provide your complete service address, starting with street number."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.form-control.ui-autocomplete-input[id=\"enter-address\"][type=\"text\"][placeholder*=\"Ex. 123 Main St, Mattoon, IL\"][autocomplete=\"off\"]",
+          "x": 620.0,
+          "y": 349.703125
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.form-control.ui-autocomplete-input[id=\"enter-address\"][type=\"text\"][placeholder*=\"Ex. 123 Main St, Mattoon, IL\"][autocomplete=\"off\"]",
+          "x": 620.0,
+          "y": 349.703125
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete as per the instructions."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_NOT_FOUND",
+    "description": "Address not found",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "We weren't able to find your address, but it could be us and not you."
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.consolidated.com/address-not-found"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete as per the instructions."
+        }
+      }
+    ],
+    "end_state": "unknown_address",
+    "executed": [
+      {
+        "name": "ADDRESS_NOT_FOUND",
+        "description": "Address not found",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "We weren't able to find your address, but it could be us and not you."
+            }
+          },
+          {
+            "type": "url",
+            "params": {
+              "url": "https://www.consolidated.com/address-not-found"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "unknown_address",
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_NOT_FOUND",
+        "description": "Address not found",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "We weren't able to find your address, but it could be us and not you."
+            }
+          },
+          {
+            "type": "url",
+            "params": {
+              "url": "https://www.consolidated.com/address-not-found"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "unknown_address",
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_NOT_FOUND",
+        "description": "Address not found",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "We weren't able to find your address, but it could be us and not you."
+            }
+          },
+          {
+            "type": "url",
+            "params": {
+              "url": "https://www.consolidated.com/address-not-found"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "unknown_address",
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_NOT_FOUND",
+        "description": "Address not found",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "We weren't able to find your address, but it could be us and not you."
+            }
+          },
+          {
+            "type": "url",
+            "params": {
+              "url": "https://www.consolidated.com/address-not-found"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "unknown_address",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "ADDRESS_NOT_FOUND",
+    "description": "Address not found",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "We weren't able to find your address, but it could be us and not you."
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.consolidated.com/address-not-found"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "unknown_address",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_NOT_FOUND",
+    "description": "Address not found",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "We weren't able to find your address, but it could be us and not you."
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.consolidated.com/address-not-found"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "unknown_address",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_NOT_FOUND",
+    "description": "Address not found",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "We weren't able to find your address, but it could be us and not you."
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.consolidated.com/address-not-found"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "unknown_address",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_NOT_FOUND",
+    "description": "Address not found",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "We weren't able to find your address, but it could be us and not you."
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.consolidated.com/address-not-found"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "unknown_address",
+    "executed": []
+  }
+]

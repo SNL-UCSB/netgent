@@ -1,0 +1,863 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to Race Communications website",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "data:,"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://race.com"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete. The website has been navigated to and the instructions say to terminate."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Check to see if we're in your area and choose the speed you need."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.Banner_closeButton__7lxeX[type=\"button\"][aria-label*=\"Close banner\"]",
+          "x": 1153.0,
+          "y": 897.6875
+        }
+      },
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.BaseInput_inputField__4O0f1[id=\"home-hero-section-check-availability-autocomplete-address\"][type=\"text\"][placeholder*=\"Check your address to get started\"][autocomplete=\"off\"]",
+          "x": 636.0,
+          "y": 662.28125
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.BaseInput_inputField__4O0f1[id=\"home-hero-section-check-availability-autocomplete-address\"][type=\"text\"][placeholder*=\"Check your address to get started\"][autocomplete=\"off\"]",
+          "x": 636.0,
+          "y": 662.28125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div",
+          "x": 623.0,
+          "y": 717.78125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.LocationContextSelector_myAddressIsNotShown__YWdpv",
+          "x": 620.0,
+          "y": 764.3828125
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": [
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Check to see if we're in your area and choose the speed you need."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.Banner_closeButton__7lxeX[type=\"button\"][aria-label*=\"Close banner\"]",
+              "x": 1153.0,
+              "y": 897.6875
+            }
+          },
+          {
+            "type": "scroll",
+            "params": {
+              "direction": "down",
+              "pixels": 10
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.BaseInput_inputField__4O0f1[id=\"home-hero-section-check-availability-autocomplete-address\"][type=\"text\"][placeholder*=\"Check your address to get started\"][autocomplete=\"off\"]",
+              "x": 636.0,
+              "y": 662.28125
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.BaseInput_inputField__4O0f1[id=\"home-hero-section-check-availability-autocomplete-address\"][type=\"text\"][placeholder*=\"Check your address to get started\"][autocomplete=\"off\"]",
+              "x": 636.0,
+              "y": 662.28125
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.DropdownListContent_optionButton__7f5FT[type=\"button\"]",
+              "x": 620.0,
+              "y": 717.78125
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The current HTML state shows a blank page. Therefore, I need to terminate the task."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Check to see if we're in your area and choose the speed you need."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.Banner_closeButton__7lxeX[type=\"button\"][aria-label*=\"Close banner\"]",
+              "x": 1153.0,
+              "y": 897.6875
+            }
+          },
+          {
+            "type": "scroll",
+            "params": {
+              "direction": "down",
+              "pixels": 10
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.BaseInput_inputField__4O0f1[id=\"home-hero-section-check-availability-autocomplete-address\"][type=\"text\"][placeholder*=\"Check your address to get started\"][autocomplete=\"off\"]",
+              "x": 636.0,
+              "y": 662.28125
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.BaseInput_inputField__4O0f1[id=\"home-hero-section-check-availability-autocomplete-address\"][type=\"text\"][placeholder*=\"Check your address to get started\"][autocomplete=\"off\"]",
+              "x": 636.0,
+              "y": 662.28125
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.DropdownListContent_optionButton__7f5FT[type=\"button\"]",
+              "x": 620.0,
+              "y": 717.78125
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The address fields are already populated, and the 'My address is not shown' text is not visible. The next step is to proceed by filling in the remaining fields. However, the task is to click the 'My address is not shown' text. Since the 'My address is not shown' text is not visible, the task cannot be completed."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Check to see if we're in your area and choose the speed you need."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.Banner_closeButton__7lxeX[type=\"button\"][aria-label*=\"Close banner\"]",
+              "x": 1153.0,
+              "y": 897.6875
+            }
+          },
+          {
+            "type": "scroll",
+            "params": {
+              "direction": "down",
+              "pixels": 10
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.BaseInput_inputField__4O0f1[id=\"home-hero-section-check-availability-autocomplete-address\"][type=\"text\"][placeholder*=\"Check your address to get started\"][autocomplete=\"off\"]",
+              "x": 636.0,
+              "y": 662.28125
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.BaseInput_inputField__4O0f1[id=\"home-hero-section-check-availability-autocomplete-address\"][type=\"text\"][placeholder*=\"Check your address to get started\"][autocomplete=\"off\"]",
+              "x": 636.0,
+              "y": 662.28125
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.DropdownListContent_optionButton__7f5FT[type=\"button\"]",
+              "x": 620.0,
+              "y": 717.78125
+            }
+          },
+          {
+            "type": "wait",
+            "params": {
+              "seconds": 2
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The current HTML state shows the plans available at the address. The previous plan was to click the 'My address is not shown' text. However, the current HTML state does not show the 'My address is not shown' text. The current HTML state shows the plans available at the address. Therefore, the previous plan is incorrect. The current plan is to terminate the task."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Check to see if we're in your area and choose the speed you need."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.Banner_closeButton__7lxeX[type=\"button\"][aria-label*=\"Close banner\"]",
+              "x": 1153.0,
+              "y": 897.6875
+            }
+          },
+          {
+            "type": "scroll",
+            "params": {
+              "direction": "down",
+              "pixels": 10
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.BaseInput_inputField__4O0f1[id=\"home-hero-section-check-availability-autocomplete-address\"][type=\"text\"][placeholder*=\"Check your address to get started\"][autocomplete=\"off\"]",
+              "x": 636.0,
+              "y": 662.28125
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.BaseInput_inputField__4O0f1[id=\"home-hero-section-check-availability-autocomplete-address\"][type=\"text\"][placeholder*=\"Check your address to get started\"][autocomplete=\"off\"]",
+              "x": 636.0,
+              "y": 662.28125
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.DropdownListContent_optionButton__7f5FT[type=\"button\"]",
+              "x": 620.0,
+              "y": 717.78125
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.Button_button__Lpc93.Button_primary__zA1qx.Button_xxl__ISPMa[type=\"button\"]",
+              "x": 619.9921875,
+              "y": 552.8984375
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The current HTML state is the same as the previous one, so the 'Edit Address' button is not present. The address '2105 E K3 Avenue, Lancaster, CA, 93535' is still present as element 8. The previous plan was incorrect, and the correct next step is to terminate."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "MAYBE_SERVICEABLE",
+    "description": "Service might be available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Our fast fiber internet may be available at your address. Contact us now to get started on your orde..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "maybe_serviceable",
+    "executed": [
+      {
+        "name": "MAYBE_SERVICEABLE",
+        "description": "Service might be available",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Race is coming soon in your area!"
+            }
+          },
+          {
+            "type": "url",
+            "params": {
+              "url": "https://race.com/order?locationId=403849&customerType=B2C"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is to terminate immediately."
+            }
+          }
+        ],
+        "end_state": "maybe_serviceable",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Check to see if we're in your area and choose the speed you need."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.Banner_closeButton__7lxeX[type=\"button\"][aria-label*=\"Close banner\"]",
+          "x": 1153.0,
+          "y": 897.6875
+        }
+      },
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.BaseInput_inputField__4O0f1[id=\"home-hero-section-check-availability-autocomplete-address\"][type=\"text\"][placeholder*=\"Check your address to get started\"][autocomplete=\"off\"]",
+          "x": 636.0,
+          "y": 662.28125
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.BaseInput_inputField__4O0f1[id=\"home-hero-section-check-availability-autocomplete-address\"][type=\"text\"][placeholder*=\"Check your address to get started\"][autocomplete=\"off\"]",
+          "x": 636.0,
+          "y": 662.28125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.DropdownListContent_optionButton__7f5FT[type=\"button\"]",
+          "x": 620.0,
+          "y": 717.78125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The current HTML state shows a blank page. Therefore, I need to terminate the task."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "SERVICEABLE_PLANS2",
+    "description": "Service available with Gigabit/Internet 300 plans",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Good news! Race is available at your address."
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Gigabit Internet"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Internet 300"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The instruction is to terminate the task immediately."
+        }
+      }
+    ],
+    "end_state": "serviceable_with_plans",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Check to see if we're in your area and choose the speed you need."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.Banner_closeButton__7lxeX[type=\"button\"][aria-label*=\"Close banner\"]",
+          "x": 1153.0,
+          "y": 897.6875
+        }
+      },
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.BaseInput_inputField__4O0f1[id=\"home-hero-section-check-availability-autocomplete-address\"][type=\"text\"][placeholder*=\"Check your address to get started\"][autocomplete=\"off\"]",
+          "x": 636.0,
+          "y": 662.28125
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.BaseInput_inputField__4O0f1[id=\"home-hero-section-check-availability-autocomplete-address\"][type=\"text\"][placeholder*=\"Check your address to get started\"][autocomplete=\"off\"]",
+          "x": 636.0,
+          "y": 662.28125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.DropdownListContent_optionButton__7f5FT[type=\"button\"]",
+          "x": 620.0,
+          "y": 717.78125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The address fields are already populated, and the 'My address is not shown' text is not visible. The next step is to proceed by filling in the remaining fields. However, the task is to click the 'My address is not shown' text. Since the 'My address is not shown' text is not visible, the task cannot be completed."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "MAYBE_SERVICEABLE",
+    "description": "Service might be available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Race is coming soon in your area!"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://race.com/order?locationId=403849&customerType=B2C"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is to terminate immediately."
+        }
+      }
+    ],
+    "end_state": "maybe_serviceable",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Check to see if we're in your area and choose the speed you need."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.Banner_closeButton__7lxeX[type=\"button\"][aria-label*=\"Close banner\"]",
+          "x": 1153.0,
+          "y": 897.6875
+        }
+      },
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.BaseInput_inputField__4O0f1[id=\"home-hero-section-check-availability-autocomplete-address\"][type=\"text\"][placeholder*=\"Check your address to get started\"][autocomplete=\"off\"]",
+          "x": 636.0,
+          "y": 662.28125
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.BaseInput_inputField__4O0f1[id=\"home-hero-section-check-availability-autocomplete-address\"][type=\"text\"][placeholder*=\"Check your address to get started\"][autocomplete=\"off\"]",
+          "x": 636.0,
+          "y": 662.28125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.DropdownListContent_optionButton__7f5FT[type=\"button\"]",
+          "x": 620.0,
+          "y": 717.78125
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 2
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The current HTML state shows the plans available at the address. The previous plan was to click the 'My address is not shown' text. However, the current HTML state does not show the 'My address is not shown' text. The current HTML state shows the plans available at the address. Therefore, the previous plan is incorrect. The current plan is to terminate the task."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "SERVICEABLE_PLANS1",
+    "description": "Service available with multiple plans",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Good news! Race is available at your address."
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Gigabit Internet"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "5 Gigabit Internet"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "10 Gigabit Internet"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Internet 500"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query instructs to terminate the task immediately."
+        }
+      }
+    ],
+    "end_state": "serviceable_with_plans",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Check to see if we're in your area and choose the speed you need."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.Banner_closeButton__7lxeX[type=\"button\"][aria-label*=\"Close banner\"]",
+          "x": 1153.0,
+          "y": 897.6875
+        }
+      },
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.BaseInput_inputField__4O0f1[id=\"home-hero-section-check-availability-autocomplete-address\"][type=\"text\"][placeholder*=\"Check your address to get started\"][autocomplete=\"off\"]",
+          "x": 636.0,
+          "y": 662.28125
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.BaseInput_inputField__4O0f1[id=\"home-hero-section-check-availability-autocomplete-address\"][type=\"text\"][placeholder*=\"Check your address to get started\"][autocomplete=\"off\"]",
+          "x": 636.0,
+          "y": 662.28125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.DropdownListContent_optionButton__7f5FT[type=\"button\"]",
+          "x": 620.0,
+          "y": 717.78125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.Button_button__Lpc93.Button_primary__zA1qx.Button_xxl__ISPMa[type=\"button\"]",
+          "x": 619.9921875,
+          "y": 552.8984375
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The current HTML state is the same as the previous one, so the 'Edit Address' button is not present. The address '2105 E K3 Avenue, Lancaster, CA, 93535' is still present as element 8. The previous plan was incorrect, and the correct next step is to terminate."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "BUSINESS_ADDRESS",
+    "description": "Check if it is a business address",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Enter your address to get started"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "This is a business address"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://race.com/order?locationId=108428&customerType=B2C"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete."
+        }
+      }
+    ],
+    "end_state": "business_address",
+    "executed": []
+  }
+]

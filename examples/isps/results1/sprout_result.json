@@ -1,0 +1,809 @@
+{
+  "state_repository": [
+    {
+      "name": "START",
+      "description": "Navigate to Sprout Fiber CrowdFiber page",
+      "checks": [
+        {
+          "type": "url",
+          "params": {
+            "url": "data:,"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "navigate",
+          "params": {
+            "url": "https://signup.sproutfiberinternet.com/front_end"
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is completed as per the instructions."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the Sprout Fiber page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Please do not search your mailing address unless it is the same as your 911"
+          }
+        },
+        {
+          "type": "text",
+          "params": {
+            "text": "service address."
+          }
+        },
+        {
+          "type": "url",
+          "params": {
+            "url": "https://signup.sproutfiberinternet.com/front_end"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+            "x": 311.3828125,
+            "y": 784.390625
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%zip_code%",
+            "by": "css selector",
+            "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+            "x": 835.2578125,
+            "y": 784.390625
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+            "x": 1199.12890625,
+            "y": 783.3828125
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The address and zip code have already been entered and the 'Go' button has been clicked, resulting in the address being found. The previous steps were successful in inputting the address and zip code and clicking the 'Go' button. The current step is to terminate the task."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": [
+        {
+          "name": "ADDRESS_BAR",
+          "description": "If on the Sprout Fiber page",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Please do not search your mailing address unless it is the same as your 911"
+              }
+            },
+            {
+              "type": "text",
+              "params": {
+                "text": "service address."
+              }
+            },
+            {
+              "type": "url",
+              "params": {
+                "url": "https://signup.sproutfiberinternet.com/front_end"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "type",
+              "params": {
+                "text": "%address%",
+                "by": "css selector",
+                "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+                "x": 311.3828125,
+                "y": 784.390625
+              }
+            },
+            {
+              "type": "type",
+              "params": {
+                "text": "%zip_code%",
+                "by": "css selector",
+                "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+                "x": 835.2578125,
+                "y": 784.390625
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+                "x": 1199.12890625,
+                "y": 783.3828125
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The address and zip code have been entered, and the 'Go' button has been clicked. The address was found. The task is complete."
+              }
+            }
+          ],
+          "end_state": "",
+          "executed": []
+        },
+        {
+          "name": "ADDRESS_BAR",
+          "description": "If on the Sprout Fiber page",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Please do not search your mailing address unless it is the same as your 911"
+              }
+            },
+            {
+              "type": "text",
+              "params": {
+                "text": "service address."
+              }
+            },
+            {
+              "type": "element",
+              "params": {
+                "by": "css selector",
+                "selector": "span"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "type",
+              "params": {
+                "text": "%address%",
+                "by": "css selector",
+                "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+                "x": 311.3828125,
+                "y": 784.390625
+              }
+            },
+            {
+              "type": "type",
+              "params": {
+                "text": "%zip_code%",
+                "by": "css selector",
+                "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+                "x": 835.2578125,
+                "y": 784.390625
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+                "x": 1199.12890625,
+                "y": 783.3828125
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "Task completed successfully"
+              }
+            }
+          ],
+          "end_state": "",
+          "executed": []
+        },
+        {
+          "name": "ADDRESS_BAR",
+          "description": "If on the Sprout Fiber page",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Please do not search your mailing address unless it is the same as your 911"
+              }
+            },
+            {
+              "type": "url",
+              "params": {
+                "url": "https://signup.sproutfiberinternet.com/front_end"
+              }
+            },
+            {
+              "type": "element",
+              "params": {
+                "by": "css selector",
+                "selector": "a[href=\"/front_end/zones\"]"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "type",
+              "params": {
+                "text": "%address%",
+                "by": "css selector",
+                "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+                "x": 311.3828125,
+                "y": 784.390625
+              }
+            },
+            {
+              "type": "type",
+              "params": {
+                "text": "%zip_code%",
+                "by": "css selector",
+                "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+                "x": 835.2578125,
+                "y": 784.390625
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+                "x": 1199.12890625,
+                "y": 783.3828125
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The address was found, and the task is complete as per Step 4."
+              }
+            }
+          ],
+          "end_state": "",
+          "executed": []
+        },
+        {
+          "name": "ADDRESS_BAR",
+          "description": "If on the Sprout Fiber page",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Please do not search your mailing address unless it is the same as your 911"
+              }
+            },
+            {
+              "type": "url",
+              "params": {
+                "url": "https://signup.sproutfiberinternet.com/front_end"
+              }
+            },
+            {
+              "type": "element",
+              "params": {
+                "by": "css selector",
+                "selector": "span"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "type",
+              "params": {
+                "text": "%address%",
+                "by": "css selector",
+                "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+                "x": 311.3828125,
+                "y": 784.390625
+              }
+            },
+            {
+              "type": "type",
+              "params": {
+                "text": "%zip_code%",
+                "by": "css selector",
+                "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+                "x": 835.2578125,
+                "y": 784.390625
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+                "x": 1199.12890625,
+                "y": 783.3828125
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The address and zip code have been entered, and the 'Go' button has been clicked. The task is complete."
+              }
+            }
+          ],
+          "end_state": "",
+          "executed": []
+        }
+      ]
+    },
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Verify that the blue pin on the map is at the correct location for your service address."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1140.90234375,
+            "y": 835.9921875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The address is not within the service area. Terminating the task as per the instructions."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'Service Not Available')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Service Not Available"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The instruction is to terminate the action immediately. The initial HTML state shows the page with the Sprout Fiber Internet logo, a progress bar indicating 'Confirm Location', 'Contact Info', 'Survey', and 'Submit', and a message stating 'Service Not Available' because the address is not within the service area."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the Sprout Fiber page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Please do not search your mailing address unless it is the same as your 911"
+          }
+        },
+        {
+          "type": "text",
+          "params": {
+            "text": "service address."
+          }
+        },
+        {
+          "type": "url",
+          "params": {
+            "url": "https://signup.sproutfiberinternet.com/front_end"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+            "x": 311.3828125,
+            "y": 784.390625
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%zip_code%",
+            "by": "css selector",
+            "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+            "x": 835.2578125,
+            "y": 784.390625
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+            "x": 1199.12890625,
+            "y": 783.3828125
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The address and zip code have been entered, and the 'Go' button has been clicked. The address was found. The task is complete."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the Sprout Fiber page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Please do not search your mailing address unless it is the same as your 911"
+          }
+        },
+        {
+          "type": "text",
+          "params": {
+            "text": "service address."
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "span"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+            "x": 311.3828125,
+            "y": 784.390625
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%zip_code%",
+            "by": "css selector",
+            "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+            "x": 835.2578125,
+            "y": 784.390625
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+            "x": 1199.12890625,
+            "y": 783.3828125
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "Task completed successfully"
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the Sprout Fiber page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Please do not search your mailing address unless it is the same as your 911"
+          }
+        },
+        {
+          "type": "url",
+          "params": {
+            "url": "https://signup.sproutfiberinternet.com/front_end"
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "a[href=\"/front_end/zones\"]"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+            "x": 311.3828125,
+            "y": 784.390625
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%zip_code%",
+            "by": "css selector",
+            "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+            "x": 835.2578125,
+            "y": 784.390625
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+            "x": 1199.12890625,
+            "y": 783.3828125
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The address was found, and the task is complete as per Step 4."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the Sprout Fiber page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Please do not search your mailing address unless it is the same as your 911"
+          }
+        },
+        {
+          "type": "url",
+          "params": {
+            "url": "https://signup.sproutfiberinternet.com/front_end"
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "span"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+            "x": 311.3828125,
+            "y": 784.390625
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%zip_code%",
+            "by": "css selector",
+            "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+            "x": 835.2578125,
+            "y": 784.390625
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+            "x": 1199.12890625,
+            "y": 783.3828125
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The address and zip code have been entered, and the 'Go' button has been clicked. The task is complete."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    }
+  ],
+  "state_prompts": [
+    "## State: START\n- **Description:** Navigate to Sprout Fiber CrowdFiber page\n- **Triggers:**\n\t1. If it is on the chrome homescreen\n- **Actions:**\n\t1. Go to https://signup.sproutfiberinternet.com/front_end word for word\n\t2. TERMINATE AT THIS POINT",
+    "## State: ADDRESS_BAR\n- **Description:** If on the Sprout Fiber page\n- **Triggers:**\n\t1. If you see 'Please enter your address below'\n- **Actions:**\n\t1. FOLLOW THESE INSTRUCTIONS CLOSELY\n\t2. Accept cookies first\n\t3. Type `%address%` into the input field\n\t4. Type `%zip_code%` into the input field\n\t5. Click the 'Go' button\n\t6. TERMINATE AT THIS POINT",
+    "## State: CONFIRM_ADDRESS\n- **Description:** Confirm address location\n- **Triggers:**\n\t1. If you see 'Verify that the blue pin on the map is at the correct location for your service address.'\n- **Actions:**\n\t1. Scroll down\n\t2. Click the 'Next' button\n\t3. DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT",
+    "## State: SERVICEABLE\n- **Description:** Build your bundle\n- **Triggers:**\n\t1. If you see 'Build your bundle'\n- **Actions:**\n\t1. DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT\n- **End State:** serviceable_with_plans",
+    "## State: NO_SERVICE\n- **Description:** Service not available - (e.g. 'Service Not Available')\n- **Triggers:**\n\t1. If you see 'Service Not Available'\n- **Actions:**\n\t1. DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT\n- **End State:** no_service"
+  ],
+  "passed_states": [
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'Service Not Available')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Service Not Available"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The instruction is to terminate the action immediately. The initial HTML state shows the page with the Sprout Fiber Internet logo, a progress bar indicating 'Confirm Location', 'Contact Info', 'Survey', and 'Submit', and a message stating 'Service Not Available' because the address is not within the service area."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": []
+    }
+  ],
+  "recursion_count": 4,
+  "last_passed_state_name": "NO_SERVICE",
+  "consecutive_state_count": 1,
+  "state_timeout_start": null,
+  "variables": {
+    "address": "17th St, Oakland, CA",
+    "zip_code": "94612"
+  },
+  "synthesis_prompt": "```\n## Step 1\nStep: Type '%address%' into the 'Search For Your Address' input field.\n```\n```\n## Step 2\nStep: Type '%zip_code%' into the 'Zip Code' input field.\n```\n```\n## Step 3\nStep: Click the 'Go' button.\n```\n```\n## Step 4\nStep: TERMINATION\n```",
+  "synthesis_choice": {
+    "name": "ADDRESS_BAR",
+    "description": "If on the Sprout Fiber page",
+    "triggers": [
+      "If you see 'Please enter your address below'"
+    ],
+    "actions": [
+      "FOLLOW THESE INSTRUCTIONS CLOSELY",
+      "Accept cookies first",
+      "Type `%address%` into the input field",
+      "Type `%zip_code%` into the input field",
+      "Click the 'Go' button",
+      "TERMINATE AT THIS POINT"
+    ],
+    "end_state": ""
+  },
+  "synthesis_triggers": [
+    {
+      "type": "text",
+      "params": {
+        "text": "Please do not search your mailing address unless it is the same as your 911"
+      }
+    },
+    {
+      "type": "url",
+      "params": {
+        "url": "https://signup.sproutfiberinternet.com/front_end"
+      }
+    },
+    {
+      "type": "element",
+      "params": {
+        "by": "css selector",
+        "selector": "span"
+      }
+    }
+  ],
+  "executed_states": [
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the Sprout Fiber page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Please do not search your mailing address unless it is the same as your 911"
+          }
+        },
+        {
+          "type": "url",
+          "params": {
+            "url": "https://signup.sproutfiberinternet.com/front_end"
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "span"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+            "x": 311.3828125,
+            "y": 784.390625
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%zip_code%",
+            "by": "css selector",
+            "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+            "x": 835.2578125,
+            "y": 784.390625
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+            "x": 1199.12890625,
+            "y": 783.3828125
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The address and zip code have been entered, and the 'Go' button has been clicked. The task is complete."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    }
+  ]
+}

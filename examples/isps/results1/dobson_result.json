@@ -1,0 +1,766 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to Dobson shop page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "about:blank"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://shop.dobson.net/#/order/1"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query specifies to terminate immediately after completing the first two steps."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Check for Fiber Fast Internet Availability and Pricing..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input[aria-label*=\"Enter your address\u2026\"][id=\"input-319\"][placeholder*=\"Enter your address\u2026\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 562.0,
+          "y": 673.625
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input[aria-label*=\"Enter your address\u2026\"][id=\"input-319\"][placeholder*=\"Enter your address\u2026\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 562.0,
+          "y": 673.625
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+          "x": 590.0,
+          "y": 771.625
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is to terminate after clicking the next button. The current state is after clicking the next button, so the task is complete."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": [
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Check for Fiber Fast Internet Availability and Pricing..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input[aria-label*=\"Enter your address\u2026\"][id=\"input-319\"][placeholder*=\"Enter your address\u2026\"][type=\"text\"][autocomplete=\"off\"]",
+              "x": 562.0,
+              "y": 673.625
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input[aria-label*=\"Enter your address\u2026\"][id=\"input-319\"][placeholder*=\"Enter your address\u2026\"][type=\"text\"][autocomplete=\"off\"]",
+              "x": 562.0,
+              "y": 673.625
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+              "x": 590.0,
+              "y": 771.625
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Check for Fiber Fast Internet Availability and Pricing..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input[aria-label*=\"Enter your address\u2026\"][id=\"input-319\"][placeholder*=\"Enter your address\u2026\"][type=\"text\"][autocomplete=\"off\"]",
+              "x": 562.0,
+              "y": 673.625
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input[aria-label*=\"Enter your address\u2026\"][id=\"input-319\"][placeholder*=\"Enter your address\u2026\"][type=\"text\"][autocomplete=\"off\"]",
+              "x": 562.0,
+              "y": 673.625
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+              "x": 590.0,
+              "y": 771.625
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is to fill out the contact information form and terminate. There is no explicit 'Send' button, so we terminate the task here."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Check for Fiber Fast Internet Availability and Pricing..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input[aria-label*=\"Enter your address\u2026\"][id=\"input-319\"][placeholder*=\"Enter your address\u2026\"][type=\"text\"][autocomplete=\"off\"]",
+              "x": 562.0,
+              "y": 673.625
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input[aria-label*=\"Enter your address\u2026\"][id=\"input-319\"][placeholder*=\"Enter your address\u2026\"][type=\"text\"][autocomplete=\"off\"]",
+              "x": 562.0,
+              "y": 673.625
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+              "x": 590.0,
+              "y": 771.625
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Check for Fiber Fast Internet Availability and Pricing..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input[aria-label*=\"Enter your address\u2026\"][id=\"input-319\"][placeholder*=\"Enter your address\u2026\"][type=\"text\"][autocomplete=\"off\"]",
+              "x": 562.0,
+              "y": 673.625
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input[aria-label*=\"Enter your address\u2026\"][id=\"input-319\"][placeholder*=\"Enter your address\u2026\"][type=\"text\"][autocomplete=\"off\"]",
+              "x": 562.0,
+              "y": 673.625
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+              "x": 590.0,
+              "y": 771.625
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The previous steps were to enter an address and click next. The current HTML state shows 'Something Went Wrong'. This indicates that the previous actions were not successful. The task is now terminated."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "We are not serving your area at this time but please provide us with your contact information so we ..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query instructs to terminate immediately."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": [
+      {
+        "name": "NO_SERVICE",
+        "description": "Service not available",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "We are not serving your area at this time but please provide us with your contact information so we ..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "executed": []
+      },
+      {
+        "name": "NO_SERVICE",
+        "description": "Service not available",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "We are not serving your area at this time but please provide us with your contact information so we ..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is to terminate the session."
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "executed": []
+      },
+      {
+        "name": "NO_SERVICE",
+        "description": "Service not available",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "We are not serving your area at this time but please provide us with your contact information so we ..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The address is not serviceable."
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Check for Fiber Fast Internet Availability and Pricing..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input[aria-label*=\"Enter your address\u2026\"][id=\"input-319\"][placeholder*=\"Enter your address\u2026\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 562.0,
+          "y": 673.625
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input[aria-label*=\"Enter your address\u2026\"][id=\"input-319\"][placeholder*=\"Enter your address\u2026\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 562.0,
+          "y": 673.625
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+          "x": 590.0,
+          "y": 771.625
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "We are not serving your area at this time but please provide us with your contact information so we ..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Check for Fiber Fast Internet Availability and Pricing..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input[aria-label*=\"Enter your address\u2026\"][id=\"input-319\"][placeholder*=\"Enter your address\u2026\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 562.0,
+          "y": 673.625
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input[aria-label*=\"Enter your address\u2026\"][id=\"input-319\"][placeholder*=\"Enter your address\u2026\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 562.0,
+          "y": 673.625
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+          "x": 590.0,
+          "y": 771.625
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is to fill out the contact information form and terminate. There is no explicit 'Send' button, so we terminate the task here."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "We are not serving your area at this time but please provide us with your contact information so we ..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is to terminate the session."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Check for Fiber Fast Internet Availability and Pricing..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input[aria-label*=\"Enter your address\u2026\"][id=\"input-319\"][placeholder*=\"Enter your address\u2026\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 562.0,
+          "y": 673.625
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input[aria-label*=\"Enter your address\u2026\"][id=\"input-319\"][placeholder*=\"Enter your address\u2026\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 562.0,
+          "y": 673.625
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+          "x": 590.0,
+          "y": 771.625
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "We are not serving your area at this time but please provide us with your contact information so we ..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The address is not serviceable."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Check for Fiber Fast Internet Availability and Pricing..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input[aria-label*=\"Enter your address\u2026\"][id=\"input-319\"][placeholder*=\"Enter your address\u2026\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 562.0,
+          "y": 673.625
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input[aria-label*=\"Enter your address\u2026\"][id=\"input-319\"][placeholder*=\"Enter your address\u2026\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 562.0,
+          "y": 673.625
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+          "x": 590.0,
+          "y": 771.625
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The previous steps were to enter an address and click next. The current HTML state shows 'Something Went Wrong'. This indicates that the previous actions were not successful. The task is now terminated."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "UNKNOWN_ERROR",
+    "description": "Unknown error",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Something Went Wrong"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is to terminate immediately."
+        }
+      }
+    ],
+    "end_state": "not_found",
+    "executed": []
+  }
+]

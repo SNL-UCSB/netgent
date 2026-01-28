@@ -1,0 +1,868 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to SCI REMC CrowdFiber page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "data:,"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://join.sciremc.com/front_end/"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully as per the instructions."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Enter your address below to check availability in your area!"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder=\"Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+          "x": 311.3828125,
+          "y": 639.3125
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%zip_code%",
+          "by": "css selector",
+          "selector": "input.input.is-large.zip[placeholder=\"Zip\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+          "x": 835.2578125,
+          "y": 639.3125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "select[id=\"\"][name=\"locate[service_class]\"][required=\"\"]",
+          "x": 1041.0078125,
+          "y": 638.3046875
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+          "x": 1199.12890625,
+          "y": 638.3046875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "CONFIRM_ADDRESS",
+    "description": "Confirm address location - 'if you see 'Verify that the marker below is the correct location for your address'",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Verify that the marker below is the correct location for your address. If not, drag the blue marker ..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+          "x": 1140.90234375,
+          "y": 712.8046875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": [
+      {
+        "name": "CONFIRM_ADDRESS",
+        "description": "Confirm address location - 'if you see 'Verify that the marker below is the correct location for your address'",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Verify that the marker below is the correct location for your address. If not, drag the blue marker ..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "scroll",
+            "params": {
+              "direction": "down",
+              "pixels": 10
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+              "x": 1140.90234375,
+              "y": 712.8046875
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "CONFIRM_ADDRESS",
+        "description": "Confirm address location - 'if you see 'Verify that the marker below is the correct location for your address'",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Verify that the marker below is the correct location for your address. If not, drag the blue marker ..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "scroll",
+            "params": {
+              "direction": "down",
+              "pixels": 10
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+              "x": 1140.90234375,
+              "y": 712.8046875
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is complete."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "CONFIRM_ADDRESS",
+        "description": "Confirm address location - 'if you see 'Verify that the marker below is the correct location for your address'",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Verify that the marker below is the correct location for your address. If not, drag the blue marker ..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "scroll",
+            "params": {
+              "direction": "down",
+              "pixels": 10
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+              "x": 1140.90234375,
+              "y": 712.8046875
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "CONFIRM_ADDRESS",
+        "description": "Confirm address location - 'if you see 'Verify that the marker below is the correct location for your address'",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Verify that the marker below is the correct location for your address. If not, drag the blue marker ..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "scroll",
+            "params": {
+              "direction": "down",
+              "pixels": 10
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+              "x": 1140.90234375,
+              "y": 712.8046875
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The current HTML state does not show a 'Next' button. Therefore, I cannot click the 'Next' button."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "CONFIRM_ADDRESS",
+        "description": "Confirm address location - 'if you see 'Verify that the marker below is the correct location for your address'",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Verify that the marker below is the correct location for your address. If not, drag the blue marker ..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "scroll",
+            "params": {
+              "direction": "down",
+              "pixels": 10
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+              "x": 1140.90234375,
+              "y": 712.8046875
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The 'Next' button is not available on the page, and the task requires immediate termination after clicking it. Therefore, the task cannot be completed."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://join.sciremc.com/front_end/cart/2f8f111a-f9a5-4c22-a780-64084a7c39b4/contact"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Contact Info"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The instruction is to terminate the task immediately."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": [
+      {
+        "name": "NO_SERVICE",
+        "description": "Service not available",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Not in a service area just yet\u2014but we\u2019d still love to hear from you."
+            }
+          },
+          {
+            "type": "url",
+            "params": {
+              "url": "https://join.sciremc.com/front_end/cart/1900c410-42d2-4f0f-8ebd-4bd84704cdaa/contact"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "executed": []
+      },
+      {
+        "name": "NO_SERVICE",
+        "description": "Service not available",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Not in a service area just yet\u2014but we\u2019d still love to hear from you."
+            }
+          },
+          {
+            "type": "url",
+            "params": {
+              "url": "https://join.sciremc.com/front_end/cart/f9aadb31-b713-4a1d-9464-73a8b26340c5/contact"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "li.active"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Terminating the task as per the instruction."
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "executed": []
+      },
+      {
+        "name": "NO_SERVICE",
+        "description": "Service not available",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Not in a service area just yet\u2014but we\u2019d still love to hear from you."
+            }
+          },
+          {
+            "type": "url",
+            "params": {
+              "url": "https://join.sciremc.com/front_end/cart/7d9babe0-77ed-484f-8b00-d665806de813/contact"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Your contact info"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "executed": []
+      },
+      {
+        "name": "NO_SERVICE",
+        "description": "Service not available",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Contact Info"
+            }
+          },
+          {
+            "type": "url",
+            "params": {
+              "url": "https://join.sciremc.com/front_end/cart/adec84bb-c75b-4ba7-802c-1e2dad925c6d/contact"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "executed": []
+      },
+      {
+        "name": "NO_SERVICE",
+        "description": "Service not available",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Not in a service area just yet\u2014but we\u2019d still love to hear from you."
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Your address is not currently included in SCI REMC\u2019s fiber construction plans. However, community in..."
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Please complete the form below to register your interest. This does not commit you to service, but i..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is complete as per the instructions."
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "CONFIRM_ADDRESS",
+    "description": "Confirm address location - 'if you see 'Verify that the marker below is the correct location for your address'",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Verify that the marker below is the correct location for your address. If not, drag the blue marker ..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+          "x": 1140.90234375,
+          "y": 712.8046875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Not in a service area just yet\u2014but we\u2019d still love to hear from you."
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://join.sciremc.com/front_end/cart/1900c410-42d2-4f0f-8ebd-4bd84704cdaa/contact"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  },
+  {
+    "name": "CONFIRM_ADDRESS",
+    "description": "Confirm address location - 'if you see 'Verify that the marker below is the correct location for your address'",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Verify that the marker below is the correct location for your address. If not, drag the blue marker ..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+          "x": 1140.90234375,
+          "y": 712.8046875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Not in a service area just yet\u2014but we\u2019d still love to hear from you."
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://join.sciremc.com/front_end/cart/f9aadb31-b713-4a1d-9464-73a8b26340c5/contact"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "li.active"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Terminating the task as per the instruction."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  },
+  {
+    "name": "CONFIRM_ADDRESS",
+    "description": "Confirm address location - 'if you see 'Verify that the marker below is the correct location for your address'",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Verify that the marker below is the correct location for your address. If not, drag the blue marker ..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+          "x": 1140.90234375,
+          "y": 712.8046875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Not in a service area just yet\u2014but we\u2019d still love to hear from you."
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://join.sciremc.com/front_end/cart/7d9babe0-77ed-484f-8b00-d665806de813/contact"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Your contact info"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  },
+  {
+    "name": "CONFIRM_ADDRESS",
+    "description": "Confirm address location - 'if you see 'Verify that the marker below is the correct location for your address'",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Verify that the marker below is the correct location for your address. If not, drag the blue marker ..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+          "x": 1140.90234375,
+          "y": 712.8046875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The current HTML state does not show a 'Next' button. Therefore, I cannot click the 'Next' button."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Contact Info"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://join.sciremc.com/front_end/cart/adec84bb-c75b-4ba7-802c-1e2dad925c6d/contact"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  },
+  {
+    "name": "CONFIRM_ADDRESS",
+    "description": "Confirm address location - 'if you see 'Verify that the marker below is the correct location for your address'",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Verify that the marker below is the correct location for your address. If not, drag the blue marker ..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+          "x": 1140.90234375,
+          "y": 712.8046875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The 'Next' button is not available on the page, and the task requires immediate termination after clicking it. Therefore, the task cannot be completed."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Not in a service area just yet\u2014but we\u2019d still love to hear from you."
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Your address is not currently included in SCI REMC\u2019s fiber construction plans. However, community in..."
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Please complete the form below to register your interest. This does not commit you to service, but i..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete as per the instructions."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  }
+]

@@ -1,0 +1,247 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to Metronet sign up page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "about:blank"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://signup.metronet.com/ssu"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is to terminate the session."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Is Metronet in your area?"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.address.ui-autocomplete-input[type=\"text\"][required=\"\"][data-id=\"address\"][placeholder*=\"Ex: 123 N Oak St, Lafayette, IN 47905\"][autocomplete=\"off\"]",
+          "x": 620.0,
+          "y": 454.953125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "li.ui-menu-item",
+          "x": 619.9921875,
+          "y": 493.703125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button[type=\"submit\"]",
+          "x": 773.203125,
+          "y": 575.203125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "Access Denied",
+    "description": "Service not available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Access Denied"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The instruction is to terminate the session."
+        }
+      }
+    ],
+    "end_state": "access_denied",
+    "executed": [
+      {
+        "name": "Access Denied",
+        "description": "Service not available",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Sorry, you have been blocked"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "You are unable to access"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "access_denied",
+        "executed": []
+      },
+      {
+        "name": "Access Denied",
+        "description": "Service not available",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Access Denied"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Terminating the task as per the user's instruction."
+            }
+          }
+        ],
+        "end_state": "access_denied",
+        "executed": []
+      },
+      {
+        "name": "Access Denied",
+        "description": "Service not available",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Access Denied"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed."
+            }
+          }
+        ],
+        "end_state": "access_denied",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "Access Denied",
+    "description": "Service not available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Sorry, you have been blocked"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "You are unable to access"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "access_denied",
+    "executed": []
+  },
+  {
+    "name": "Access Denied",
+    "description": "Service not available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Access Denied"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Terminating the task as per the user's instruction."
+        }
+      }
+    ],
+    "end_state": "access_denied",
+    "executed": []
+  },
+  {
+    "name": "Access Denied",
+    "description": "Service not available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Access Denied"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed."
+        }
+      }
+    ],
+    "end_state": "access_denied",
+    "executed": []
+  }
+]

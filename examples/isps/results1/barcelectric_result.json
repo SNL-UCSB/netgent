@@ -1,0 +1,291 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to Barc Electric SmartHub page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "about:blank"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://barcelectric.smarthub.coop/ui/#/newConnect/serviceLocation"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete. The page has been navigated to the specified URL."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "What is the address of your new service location?"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.mat-input-element.mat-form-field-autofill-control.mat-autocomplete-trigger.ng-tns-c50-0.ng-untouched.ng-pristine.ng-invalid.cdk-text-field-autofill-monitored[type=\"text\"][aria-label*=\"Search for Your New Service Address\"][placeholder*=\"123 MAIN ST APT 1, City, State ZIP\"][required=\"\"][id=\"mat-input-0\"][autocomplete=\"off\"][role=\"combobox\"]",
+          "x": 388.0,
+          "y": 772.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "up"
+        }
+      },
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.mat-focus-indicator.mat-button.mat-button-base.no-right-margin.nisc-primary-button.ng-star-inserted[data-cy=\"continueBtn\"]",
+          "x": 1146.875,
+          "y": 733.109375
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete. The 'Continue' button was clicked in the previous action."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": [
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "What is the address of your new service location?"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.mat-input-element.mat-form-field-autofill-control.mat-autocomplete-trigger.ng-tns-c50-0.ng-untouched.ng-pristine.ng-invalid.cdk-text-field-autofill-monitored[type=\"text\"][aria-label*=\"Search for Your New Service Address\"][placeholder*=\"123 MAIN ST APT 1, City, State ZIP\"][required=\"\"][id=\"mat-input-0\"][autocomplete=\"off\"][role=\"combobox\"]",
+              "x": 388.0,
+              "y": 772.0
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "up"
+            }
+          },
+          {
+            "type": "scroll",
+            "params": {
+              "direction": "down",
+              "pixels": 10
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.mat-focus-indicator.mat-button.mat-button-base.no-right-margin.nisc-primary-button.ng-star-inserted[data-cy=\"continueBtn\"]",
+              "x": 1146.875,
+              "y": 733.109375
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is complete. The address has been entered, selected, and the continue button has been clicked."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available in area or if there it says failure or the it say that we are not currently providing services in your area",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Sorry, we are not currently providing services in your area."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete. The prompt instructs to terminate immediately."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  },
+  {
+    "name": "FAILURE",
+    "description": "Failure page - address lookup failed",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "WE\u2019RE SORRY\u2026"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The instruction is to terminate at this point."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "What is the address of your new service location?"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.mat-input-element.mat-form-field-autofill-control.mat-autocomplete-trigger.ng-tns-c50-0.ng-untouched.ng-pristine.ng-invalid.cdk-text-field-autofill-monitored[type=\"text\"][aria-label*=\"Search for Your New Service Address\"][placeholder*=\"123 MAIN ST APT 1, City, State ZIP\"][required=\"\"][id=\"mat-input-0\"][autocomplete=\"off\"][role=\"combobox\"]",
+          "x": 388.0,
+          "y": 772.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "up"
+        }
+      },
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.mat-focus-indicator.mat-button.mat-button-base.no-right-margin.nisc-primary-button.ng-star-inserted[data-cy=\"continueBtn\"]",
+          "x": 1146.875,
+          "y": 733.109375
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete. The address has been entered, selected, and the continue button has been clicked."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  }
+]

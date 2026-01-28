@@ -1,0 +1,636 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to CimTel shop page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "about:blank"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://shop.cimtel.net/#/order/1"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query instructs to terminate the task."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Enter your address to see offers"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input[aria-label*=\"Enter your address\u2026\"][id=\"input-319\"][placeholder*=\"Enter your address\u2026\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 597.5,
+          "y": 498.734375
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+          "x": 625.4921875,
+          "y": 657.578125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query instructs to terminate the task."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": [
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Enter your address to see offers"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input[aria-label*=\"Enter your address\u2026\"][id=\"input-319\"][placeholder*=\"Enter your address\u2026\"][type=\"text\"][autocomplete=\"off\"]",
+              "x": 597.5,
+              "y": 498.734375
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+              "x": 625.4921875,
+              "y": 657.578125
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Enter your address to see offers"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input[aria-label*=\"Enter your address\u2026\"][id=\"input-319\"][placeholder*=\"Enter your address\u2026\"][type=\"text\"][autocomplete=\"off\"]",
+              "x": 597.5,
+              "y": 498.734375
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+              "x": 625.4921875,
+              "y": 657.578125
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Enter your address to see offers"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input[aria-label*=\"Enter your address\u2026\"][id=\"input-319\"][placeholder*=\"Enter your address\u2026\"][type=\"text\"][autocomplete=\"off\"]",
+              "x": 597.5,
+              "y": 498.734375
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+              "x": 625.4921875,
+              "y": 657.578125
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The address has been entered and the 'Choose Your Speed' page is displayed. The task is now complete."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Enter your address to see offers"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input[aria-label*=\"Enter your address\u2026\"][id=\"input-319\"][placeholder*=\"Enter your address\u2026\"][type=\"text\"][autocomplete=\"off\"]",
+              "x": 597.5,
+              "y": 498.734375
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+              "x": 625.4921875,
+              "y": 657.578125
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The previous steps were to input the address, press the down key, press the enter key, and click the 'NEXT' button. The current HTML shows that the 'NEXT' button click has led to the 'CHOOSE YOUR SPEED' page. The next step is TERMINATION."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Enter your address to see offers"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input[aria-label*=\"Enter your address\u2026\"][id=\"input-319\"][placeholder*=\"Enter your address\u2026\"][type=\"text\"][autocomplete=\"off\"]",
+              "x": 597.5,
+              "y": 498.734375
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+              "x": 625.4921875,
+              "y": 657.578125
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is complete as per the instructions."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "SERVICEABLE_PLANS",
+    "description": "Service available - choose speed",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "CHOOSE YOUR SPEED"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query instructs to terminate the task at this point."
+        }
+      }
+    ],
+    "end_state": "serviceable_with_plans",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Enter your address to see offers"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input[aria-label*=\"Enter your address\u2026\"][id=\"input-319\"][placeholder*=\"Enter your address\u2026\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 597.5,
+          "y": 498.734375
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+          "x": 625.4921875,
+          "y": 657.578125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Enter your address to see offers"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input[aria-label*=\"Enter your address\u2026\"][id=\"input-319\"][placeholder*=\"Enter your address\u2026\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 597.5,
+          "y": 498.734375
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+          "x": 625.4921875,
+          "y": 657.578125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Enter your address to see offers"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input[aria-label*=\"Enter your address\u2026\"][id=\"input-319\"][placeholder*=\"Enter your address\u2026\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 597.5,
+          "y": 498.734375
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+          "x": 625.4921875,
+          "y": 657.578125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The address has been entered and the 'Choose Your Speed' page is displayed. The task is now complete."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Enter your address to see offers"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input[aria-label*=\"Enter your address\u2026\"][id=\"input-319\"][placeholder*=\"Enter your address\u2026\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 597.5,
+          "y": 498.734375
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+          "x": 625.4921875,
+          "y": 657.578125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The previous steps were to input the address, press the down key, press the enter key, and click the 'NEXT' button. The current HTML shows that the 'NEXT' button click has led to the 'CHOOSE YOUR SPEED' page. The next step is TERMINATION."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Enter your address to see offers"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input[aria-label*=\"Enter your address\u2026\"][id=\"input-319\"][placeholder*=\"Enter your address\u2026\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 597.5,
+          "y": 498.734375
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+          "x": 625.4921875,
+          "y": 657.578125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete as per the instructions."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  }
+]

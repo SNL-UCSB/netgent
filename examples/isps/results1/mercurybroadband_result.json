@@ -1,0 +1,713 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to Mercury Broadband sign up page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "about:blank"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://mercurybroadband.com"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully as per the instructions."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "See if Mercury Fiber or Wireless Internet is available for your address."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.address-input[type=\"text\"][id=\"address-input-mercury-address-lookup-1\"][placeholder*=\"Enter your address\"]",
+          "x": 521.59375,
+          "y": 562.890625
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%only_address%",
+          "by": "css selector",
+          "selector": "input.address-input[type=\"text\"][id=\"address-input-mercury-address-lookup-1\"][placeholder*=\"Enter your address\"]",
+          "x": 521.59375,
+          "y": 562.890625
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.address-item",
+          "x": 620.0,
+          "y": 697.890625
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a.mercury-check-availability-btn[href=\"https://mercuryfiber.com/signup/verify/?location_id=42457436\"]",
+          "x": 966.59375,
+          "y": 563.390625
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The address is already associated with a Mercury account. Task completed."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "EXISTING_CUSTOMER",
+    "description": "Existing customer record found",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Our records show that a Mercury account is already associated with this address. For further assista..."
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "p.text-center"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Terminating the task as per the instruction."
+        }
+      }
+    ],
+    "end_state": "existing_service",
+    "executed": [
+      {
+        "name": "EXISTING_CUSTOMER",
+        "description": "Existing customer record found",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Our records show that a Mercury account is already associated with this address. For further assista..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "existing_service",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "FIBER_SERVICE",
+    "description": "Fiber Internet available, fill contact info",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fiber Internet Is Available at Your Address!"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://mercuryfiber.com/signup/order/fiber/?location_id=42436592&scid=106&step=lead"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%name_f%",
+          "by": "css selector",
+          "selector": "input[type=\"text\"][id=\"first_name\"][name=\"first_name\"][placeholder*=\"First Name*\"][autocomplete=\"true\"][required=\"\"]",
+          "x": 405.984375,
+          "y": 551.6875
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%name_l%",
+          "by": "css selector",
+          "selector": "input[type=\"text\"][id=\"last_name\"][name=\"last_name\"][placeholder*=\"Last Name*\"][autocomplete=\"true\"][required=\"\"]",
+          "x": 833.984375,
+          "y": 551.6875
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%phone_num%",
+          "by": "css selector",
+          "selector": "input[type=\"tel\"][id=\"phone\"][name=\"phone_number\"][placeholder*=\"Phone Number*\"][autocomplete=\"true\"][required=\"\"]",
+          "x": 405.984375,
+          "y": 619.6875
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%email%",
+          "by": "css selector",
+          "selector": "input[type=\"email\"][id=\"email\"][name=\"email\"][placeholder=\"Email*\"][autocomplete=\"true\"][required=\"\"]",
+          "x": 833.984375,
+          "y": 619.6875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "label[for=\"consentCheck\"]",
+          "x": 619.984375,
+          "y": 707.1875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.order-continue.btn.btn-next[type=\"button\"]",
+          "x": 619.984375,
+          "y": 821.1875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete as all the required fields have been filled and the 'View Plans' button has been clicked."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": [
+      {
+        "name": "FIBER_SERVICE",
+        "description": "Fiber Internet available, fill contact info",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fiber Internet Is Available at Your Address!"
+            }
+          },
+          {
+            "type": "url",
+            "params": {
+              "url": "https://mercuryfiber.com/signup/order/fiber/?location_id=42436397&scid=106&step=lead"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input[type=\"text\"][id=\"first_name\"][name=\"first_name\"][placeholder*=\"First Name*\"][autocomplete=\"true\"][required=\"\"]",
+              "x": 405.984375,
+              "y": 551.6875
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%name_f%",
+              "by": "css selector",
+              "selector": "input[type=\"text\"][id=\"first_name\"][name=\"first_name\"][placeholder*=\"First Name*\"][autocomplete=\"true\"][required=\"\"]",
+              "x": 405.984375,
+              "y": 551.6875
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input[type=\"text\"][id=\"last_name\"][name=\"last_name\"][placeholder*=\"Last Name*\"][autocomplete=\"true\"][required=\"\"]",
+              "x": 833.984375,
+              "y": 551.6875
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%name_l%",
+              "by": "css selector",
+              "selector": "input[type=\"text\"][id=\"last_name\"][name=\"last_name\"][placeholder*=\"Last Name*\"][autocomplete=\"true\"][required=\"\"]",
+              "x": 833.984375,
+              "y": 551.6875
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input[type=\"tel\"][id=\"phone\"][name=\"phone_number\"][placeholder*=\"Phone Number*\"][autocomplete=\"true\"][required=\"\"]",
+              "x": 405.984375,
+              "y": 619.6875
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%phone_num%",
+              "by": "css selector",
+              "selector": "input[type=\"tel\"][id=\"phone\"][name=\"phone_number\"][placeholder*=\"Phone Number*\"][autocomplete=\"true\"][required=\"\"]",
+              "x": 405.984375,
+              "y": 619.6875
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input[type=\"email\"][id=\"email\"][name=\"email\"][placeholder=\"Email*\"][autocomplete=\"true\"][required=\"\"]",
+              "x": 833.984375,
+              "y": 619.6875
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%email%",
+              "by": "css selector",
+              "selector": "input[type=\"email\"][id=\"email\"][name=\"email\"][placeholder=\"Email*\"][autocomplete=\"true\"][required=\"\"]",
+              "x": 833.984375,
+              "y": 619.6875
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "label[for=\"consentCheck\"]",
+              "x": 619.984375,
+              "y": 707.1875
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.order-continue.btn.btn-next[type=\"button\"]",
+              "x": 619.984375,
+              "y": 821.1875
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is complete, terminating the session."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "FIBER_SERVICE",
+        "description": "Fiber Internet available, fill contact info",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fiber Internet Is Available at Your Address!"
+            }
+          },
+          {
+            "type": "url",
+            "params": {
+              "url": "https://mercuryfiber.com/signup/order/fiber/?location_id=42436377&scid=106&step=lead"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "type",
+            "params": {
+              "text": "%name_f%",
+              "by": "css selector",
+              "selector": "input[type=\"text\"][id=\"first_name\"][name=\"first_name\"][placeholder*=\"First Name*\"][autocomplete=\"true\"][required=\"\"]",
+              "x": 405.984375,
+              "y": 551.6875
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%name_l%",
+              "by": "css selector",
+              "selector": "input[type=\"text\"][id=\"last_name\"][name=\"last_name\"][placeholder*=\"Last Name*\"][autocomplete=\"true\"][required=\"\"]",
+              "x": 833.984375,
+              "y": 551.6875
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%phone_num%",
+              "by": "css selector",
+              "selector": "input[type=\"tel\"][id=\"phone\"][name=\"phone_number\"][placeholder*=\"Phone Number*\"][autocomplete=\"true\"][required=\"\"]",
+              "x": 405.984375,
+              "y": 619.6875
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%email%",
+              "by": "css selector",
+              "selector": "input[type=\"email\"][id=\"email\"][name=\"email\"][placeholder=\"Email*\"][autocomplete=\"true\"][required=\"\"]",
+              "x": 833.984375,
+              "y": 619.6875
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "label[for=\"consentCheck\"]",
+              "x": 619.984375,
+              "y": 707.1875
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.order-continue.btn.btn-next[type=\"button\"]",
+              "x": 619.984375,
+              "y": 821.1875
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "PLANS",
+    "description": "Select Fiber Plan",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Select Your Fiber Plan"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.toggle[type=\"button\"]",
+          "x": 222.0,
+          "y": 883.3125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.lightbox.learn-more-btn[type=\"button\"]",
+          "x": 110.7890625,
+          "y": 901.21875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is to take a screenshot and terminate. The screenshot has been taken in the previous step, so terminating now."
+        }
+      }
+    ],
+    "end_state": "serviceable_with_plans",
+    "executed": []
+  },
+  {
+    "name": "FIBER_SERVICE",
+    "description": "Fiber Internet available, fill contact info",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fiber Internet Is Available at Your Address!"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://mercuryfiber.com/signup/order/fiber/?location_id=42436397&scid=106&step=lead"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input[type=\"text\"][id=\"first_name\"][name=\"first_name\"][placeholder*=\"First Name*\"][autocomplete=\"true\"][required=\"\"]",
+          "x": 405.984375,
+          "y": 551.6875
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%name_f%",
+          "by": "css selector",
+          "selector": "input[type=\"text\"][id=\"first_name\"][name=\"first_name\"][placeholder*=\"First Name*\"][autocomplete=\"true\"][required=\"\"]",
+          "x": 405.984375,
+          "y": 551.6875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input[type=\"text\"][id=\"last_name\"][name=\"last_name\"][placeholder*=\"Last Name*\"][autocomplete=\"true\"][required=\"\"]",
+          "x": 833.984375,
+          "y": 551.6875
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%name_l%",
+          "by": "css selector",
+          "selector": "input[type=\"text\"][id=\"last_name\"][name=\"last_name\"][placeholder*=\"Last Name*\"][autocomplete=\"true\"][required=\"\"]",
+          "x": 833.984375,
+          "y": 551.6875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input[type=\"tel\"][id=\"phone\"][name=\"phone_number\"][placeholder*=\"Phone Number*\"][autocomplete=\"true\"][required=\"\"]",
+          "x": 405.984375,
+          "y": 619.6875
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%phone_num%",
+          "by": "css selector",
+          "selector": "input[type=\"tel\"][id=\"phone\"][name=\"phone_number\"][placeholder*=\"Phone Number*\"][autocomplete=\"true\"][required=\"\"]",
+          "x": 405.984375,
+          "y": 619.6875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input[type=\"email\"][id=\"email\"][name=\"email\"][placeholder=\"Email*\"][autocomplete=\"true\"][required=\"\"]",
+          "x": 833.984375,
+          "y": 619.6875
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%email%",
+          "by": "css selector",
+          "selector": "input[type=\"email\"][id=\"email\"][name=\"email\"][placeholder=\"Email*\"][autocomplete=\"true\"][required=\"\"]",
+          "x": 833.984375,
+          "y": 619.6875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "label[for=\"consentCheck\"]",
+          "x": 619.984375,
+          "y": 707.1875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.order-continue.btn.btn-next[type=\"button\"]",
+          "x": 619.984375,
+          "y": 821.1875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete, terminating the session."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "EXISTING_CUSTOMER",
+    "description": "Existing customer record found",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Our records show that a Mercury account is already associated with this address. For further assista..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "existing_service",
+    "executed": []
+  },
+  {
+    "name": "FIBER_SERVICE",
+    "description": "Fiber Internet available, fill contact info",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fiber Internet Is Available at Your Address!"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://mercuryfiber.com/signup/order/fiber/?location_id=42436377&scid=106&step=lead"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%name_f%",
+          "by": "css selector",
+          "selector": "input[type=\"text\"][id=\"first_name\"][name=\"first_name\"][placeholder*=\"First Name*\"][autocomplete=\"true\"][required=\"\"]",
+          "x": 405.984375,
+          "y": 551.6875
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%name_l%",
+          "by": "css selector",
+          "selector": "input[type=\"text\"][id=\"last_name\"][name=\"last_name\"][placeholder*=\"Last Name*\"][autocomplete=\"true\"][required=\"\"]",
+          "x": 833.984375,
+          "y": 551.6875
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%phone_num%",
+          "by": "css selector",
+          "selector": "input[type=\"tel\"][id=\"phone\"][name=\"phone_number\"][placeholder*=\"Phone Number*\"][autocomplete=\"true\"][required=\"\"]",
+          "x": 405.984375,
+          "y": 619.6875
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%email%",
+          "by": "css selector",
+          "selector": "input[type=\"email\"][id=\"email\"][name=\"email\"][placeholder=\"Email*\"][autocomplete=\"true\"][required=\"\"]",
+          "x": 833.984375,
+          "y": 619.6875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "label[for=\"consentCheck\"]",
+          "x": 619.984375,
+          "y": 707.1875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.order-continue.btn.btn-next[type=\"button\"]",
+          "x": 619.984375,
+          "y": 821.1875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  }
+]

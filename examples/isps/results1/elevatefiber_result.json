@@ -1,0 +1,205 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to Elevate Fiber page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "about:blank"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://join.elevatefiber.com/front_end"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as the page has been navigated to and the instruction is to terminate."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Please enter your address below."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder=\"Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+          "x": 271.390625,
+          "y": 384.234375
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+          "x": 1159.1328125,
+          "y": 383.2265625
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+          "x": 1100.8984375,
+          "y": 801.4921875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "INTERNET_AVAILABLE",
+    "description": "Service available - enter contact info",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Elevate is in your neighborhood. Order now!"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "b"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Service available. Sign up today!"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%email%",
+          "by": "css selector",
+          "selector": "input.input.is-medium[placeholder*=\"Email Address\"][type=\"email\"][name=\"[user][email]\"][id=\"user_email\"][required=\"true\"]",
+          "x": 613.0,
+          "y": 665.0390625
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%name_f%",
+          "by": "css selector",
+          "selector": "input.input.is-medium[placeholder=\"First\"][type=\"text\"][name=\"[contact][first_name]\"][id=\"contact_first_name\"][required=\"\"]",
+          "x": 495.5,
+          "y": 754.0234375
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%name_l%",
+          "by": "css selector",
+          "selector": "input.input.is-medium[placeholder=\"Last\"][type=\"text\"][name=\"[contact][last_name]\"][id=\"contact_last_name\"][required=\"\"]",
+          "x": 942.0,
+          "y": 754.0234375
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%phone_num%",
+          "by": "css selector",
+          "selector": "input.input.is-medium[placeholder*=\"Phone Number\"][type=\"tel\"][id=\"contact_phone_number\"][name=\"[contact][phone_number]\"][required=\"true\"][title*=\"Phone number should contain 10 digits\"]",
+          "x": 387.125,
+          "y": 804.5078125
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+          "x": 1100.8984375,
+          "y": 883.4921875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "SERVICEABLE",
+    "description": "Build your bundle",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Build your bundle"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query instructs me to terminate the task immediately."
+        }
+      }
+    ],
+    "end_state": "serviceable_with_plans",
+    "executed": []
+  }
+]

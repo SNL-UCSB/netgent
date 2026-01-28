@@ -1,0 +1,129 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to Allpoints Broadband signup page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "data:,"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://signup.allpointsbroadband.com"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query requires termination."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Tell us where you want your services."
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "h1.sc-dAlyuH.ilEQPm"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "h2.sc-jlZhew.iXMOvb.sc-1se7jdx-6.joKQlN"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.sc-isRoRg.fVrUAB[type=\"search\"][placeholder*=\"Enter full address\"]",
+          "x": 684.0,
+          "y": 503.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.sc-gFqAkR.cOuTVj.sc-ahr735-11.jiJWOB[type=\"submit\"]",
+          "x": 389.75390625,
+          "y": 719.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "SERVICEABLE",
+    "description": "Choose internet plan - address is serviceable",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Internet plans"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Choose the internet plan that works best for you."
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "h1.sc-dAlyuH.ilEQPm"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query explicitly states to terminate the task immediately."
+        }
+      }
+    ],
+    "end_state": "serviceable_with_plans",
+    "save_content": true,
+    "executed": []
+  }
+]

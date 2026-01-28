@@ -1,0 +1,130 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to Conexon Connect signup page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "about:blank"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://www.connectsignup.com"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query asks to terminate the task immediately."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Is service from Conexon Connect available to me?"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input[autocomplete=\"off\"][id=\"react-select-2-input\"][type=\"text\"][role=\"combobox\"]",
+          "x": 126.2265625,
+          "y": 641.3125
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input[autocomplete=\"off\"][id=\"react-select-2-input\"][type=\"text\"][role=\"combobox\"]",
+          "x": 126.2265625,
+          "y": 641.3125
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.inline-flex.items-center.py-2.border.border-transparent.leading-5.font-medium.rounded-md.text-white.transition.ease-in-out.duration-150.bg-conexonBlue.px-4.undefined[type=\"submit\"]",
+          "x": 194.625,
+          "y": 777.3125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query asks to terminate the task immediately."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "SERVICEABLE",
+    "description": "Service available - select services",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Select services below to sign-up for world-class, affordable reliable internet."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query instructs to terminate the task immediately."
+        }
+      }
+    ],
+    "end_state": "serviceable_with_plans",
+    "executed": []
+  },
+  {
+    "name": "EXISTING_SERVICE",
+    "description": "Existing service at address",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "There is an existing account registered to this address"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "existing_service",
+    "executed": []
+  }
+]

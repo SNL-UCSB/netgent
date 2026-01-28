@@ -1,0 +1,424 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to MTA Solutions page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "data:,"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://www.mtasolutions.com/residential/internet/#plans"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete as per the instructions."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "If on the MTA Solutions page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Enter your"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "h2.chakra-heading.css-1xicnyg"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Address"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.chakra-input.css-4ww2d6[name=\"Addy\"][type=\"text\"][placeholder*=\"1234 Alaska Ln\"]",
+          "x": 660.0,
+          "y": 394.7421875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "li.css-jl7qte",
+          "x": 660.0,
+          "y": 435.7421875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.chakra-button.button.css-o3gp1c[type=\"button\"]",
+          "x": 660.0,
+          "y": 497.3359375
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete as per the instructions. The address has been entered, selected, and submitted. The page is now retrieving available plans. The instructions state to terminate immediately."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": [
+      {
+        "name": "ADDRESS_BAR",
+        "description": "If on the MTA Solutions page",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Sorry, there was an unexpected error."
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Oh no! We couldn't retrieve plans at this time. Please fill out the form below and we will get in to..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.chakra-input.button.css-htfgv1[type=\"submit\"]",
+              "x": 660.0,
+              "y": 623.0390625
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is complete as per the instructions. The address has been entered, selected, and submitted. The page is now retrieving available plans. The instructions state to terminate immediately."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "If on the MTA Solutions page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Sorry, there was an unexpected error."
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Oh no! We couldn't retrieve plans at this time. Please fill out the form below and we will get in to..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.chakra-input.button.css-htfgv1[type=\"submit\"]",
+          "x": 660.0,
+          "y": 623.0390625
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete as per the instructions. The address has been entered, selected, and submitted. The page is now retrieving available plans. The instructions state to terminate immediately."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Sorry, there was an unexpected error."
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Oh no! We couldn't retrieve plans at this time. Please fill out the form below and we will get in to..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete as per the instructions. The address has been entered, selected, and submitted. The page is now retrieving available plans. The instructions state to terminate immediately."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": [
+      {
+        "name": "NO_SERVICE",
+        "description": "Service not available (e.g. 'Oh no! We couldn't retrieve plans at this time. Please fill out the form below and we will get in touch shortly.')",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Thank you for your interest in MTA internet service! Unfortunately, we aren't currently offering ser..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Terminating as per the instruction."
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "executed": []
+      },
+      {
+        "name": "NO_SERVICE",
+        "description": "Service not available (e.g. 'Oh no! We couldn't retrieve plans at this time. Please fill out the form below and we will get in touch shortly.')",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Oh no! We couldn't retrieve plans at this time. Please fill out the form below and we will get in to..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Terminating as per instruction."
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "executed": []
+      },
+      {
+        "name": "NO_SERVICE",
+        "description": "Service not available (e.g. 'Oh no! We couldn't retrieve plans at this time. Please fill out the form below and we will get in touch shortly.')",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Oh no! We couldn't retrieve plans at this time. Please fill out the form below and we will get in to..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The instruction is to terminate at this point."
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "executed": []
+      },
+      {
+        "name": "NO_SERVICE",
+        "description": "Service not available (e.g. 'Oh no! We couldn't retrieve plans at this time. Please fill out the form below and we will get in touch shortly.')",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Oh no! We couldn't retrieve plans at this time. Please fill out the form below and we will get in to..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The instruction is to terminate at this point."
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "executed": []
+      },
+      {
+        "name": "NO_SERVICE",
+        "description": "Service not available (e.g. 'Oh no! We couldn't retrieve plans at this time. Please fill out the form below and we will get in touch shortly.')",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Oh no! We couldn't retrieve plans at this time. Please fill out the form below and we will get in to..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The instruction is to terminate at this point."
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available (e.g. 'Oh no! We couldn't retrieve plans at this time. Please fill out the form below and we will get in touch shortly.')",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Thank you for your interest in MTA internet service! Unfortunately, we aren't currently offering ser..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Terminating as per the instruction."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available (e.g. 'Oh no! We couldn't retrieve plans at this time. Please fill out the form below and we will get in touch shortly.')",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Oh no! We couldn't retrieve plans at this time. Please fill out the form below and we will get in to..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Terminating as per instruction."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available (e.g. 'Oh no! We couldn't retrieve plans at this time. Please fill out the form below and we will get in touch shortly.')",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Oh no! We couldn't retrieve plans at this time. Please fill out the form below and we will get in to..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The instruction is to terminate at this point."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available (e.g. 'Oh no! We couldn't retrieve plans at this time. Please fill out the form below and we will get in touch shortly.')",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Oh no! We couldn't retrieve plans at this time. Please fill out the form below and we will get in to..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The instruction is to terminate at this point."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available (e.g. 'Oh no! We couldn't retrieve plans at this time. Please fill out the form below and we will get in touch shortly.')",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Oh no! We couldn't retrieve plans at this time. Please fill out the form below and we will get in to..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The instruction is to terminate at this point."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  }
+]

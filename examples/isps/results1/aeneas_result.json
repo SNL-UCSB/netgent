@@ -1,0 +1,140 @@
+{
+  "state_repository": [
+    {
+      "name": "START",
+      "description": "Navigate to Aeneas CrowdFiber page",
+      "checks": [
+        {
+          "type": "url",
+          "params": {
+            "url": "data:,"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "navigate",
+          "params": {
+            "url": "https://fiber.aeneas.com/"
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is complete. The page has been navigated to, and the next step is termination."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the Aeneas page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Check Internet Availability"
+          }
+        },
+        {
+          "type": "url",
+          "params": {
+            "url": "https://fiber.aeneas.com/map"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address% %zip_code%",
+            "by": "css selector",
+            "selector": "input[type=\"text\"][autocomplete=\"off\"][aria-label*=\"Address Search Input\"]",
+            "x": 295.0,
+            "y": 255.5
+          }
+        },
+        {
+          "type": "press_key",
+          "params": {
+            "key": "enter"
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is complete. The address and zip code have been entered, the enter key has been pressed, and the next step is termination."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'Currently Unavailable')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Currently Unavailable"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is complete. The instruction was to terminate the action immediately."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": []
+    }
+  ],
+  "state_prompts": [
+    "## State: START\n- **Description:** Navigate to Aeneas CrowdFiber page\n- **Triggers:**\n\t1. If it is on the chrome homescreen\n- **Actions:**\n\t1. Go to https://fiber.aeneas.com/ word for word\n\t2. TERMINATE AT THIS POINT",
+    "## State: ADDRESS_BAR\n- **Description:** If on the Aeneas page\n- **Triggers:**\n\t1. If you see 'Please enter your address below'\n- **Actions:**\n\t1. FOLLOW THESE INSTRUCTIONS CLOSELY\n\t2. Type `%address%` and `%zip_code%` into the input field\n\t3. Press the 'Enter' key\n\t4. TERMINATE AT THIS POINT",
+    "## State: SERVICEABLE\n- **Description:** Build your bundle\n- **Triggers:**\n\t1. If you see 'Build your bundle'\n- **Actions:**\n\t1. DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT\n- **End State:** serviceable_with_plans",
+    "## State: NO_SERVICE\n- **Description:** Service not available - (e.g. 'Currently Unavailable')\n- **Triggers:**\n\t1. If you see 'We\u2019ve got good news and bad news.'\n- **Actions:**\n\t1. DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT\n- **End State:** no_service"
+  ],
+  "passed_states": [
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'Currently Unavailable')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Currently Unavailable"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is complete. The instruction was to terminate the action immediately."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": []
+    }
+  ],
+  "recursion_count": 3,
+  "last_passed_state_name": "NO_SERVICE",
+  "consecutive_state_count": 1,
+  "state_timeout_start": null,
+  "variables": {
+    "address": "1633 San Pablo Ave, Oakland, CA",
+    "zip_code": "94612"
+  },
+  "synthesis_prompt": null,
+  "synthesis_choice": null,
+  "synthesis_triggers": null,
+  "executed_states": []
+}

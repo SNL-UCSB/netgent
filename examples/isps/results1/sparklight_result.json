@@ -1,0 +1,171 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to the Sparklight internet page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "about:blank"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://www.sparklight.com/internet"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query instructs me to terminate the task immediately after completing the previous step."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR1",
+    "description": "Click Shop plans button",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Shop plans"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.flex.justify-center.items-center.gap-2.shrink-0.rounded-full.text-sm.font-medium.transition.duration-200.border.border-solid.bg-primary.text-primary-foreground.border-primary.w-fit.min-w-28.h-10.px-4.py-2[role=\"button\"][type=\"button\"]",
+          "x": 716.0,
+          "y": 742.0
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%only_address%",
+          "by": "css selector",
+          "selector": "input.w-full.px-3.py-2.border.border-solid.rounded-md.overflow-hidden.text-ellipsis.text-sm.font-normal.leading-5.text-muted-foreground.transition-all.duration-200.border-input.flex.h-10.items-center.self-stretch[name=\"streetAddress\"][id=\"716e3c11-534c-4b78-a7bc-f05b4f950454\"][type=\"text\"][placeholder*=\"Street Address\"]",
+          "x": 473.7890625,
+          "y": 608.5
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "",
+          "by": "css selector",
+          "selector": "input.w-full.px-3.py-2.border.border-solid.rounded-md.overflow-hidden.text-ellipsis.text-sm.font-normal.leading-5.text-muted-foreground.transition-all.duration-200.border-input.flex.h-10.items-center.self-stretch[name=\"apartment\"][aria-label*=\"Apartment Number\"][id=\"6d95bb36-cd55-4b5c-8b48-684093e3a4d9\"][type=\"text\"][placeholder*=\"Apt No.\"]",
+          "x": 629.7890625,
+          "y": 608.5
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%zip_code%",
+          "by": "css selector",
+          "selector": "input.w-full.px-3.py-2.border.border-solid.rounded-md.overflow-hidden.text-ellipsis.text-sm.font-normal.leading-5.text-muted-foreground.transition-all.duration-200.border-input.flex.h-10.items-center.self-stretch[name=\"zipCode\"][id=\"7f87d5dc-3624-4c15-aa20-31d8a3b5bd23\"][type=\"text\"][placeholder*=\"Zip Code\"]",
+          "x": 737.7890625,
+          "y": 608.5
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.flex.justify-center.items-center.gap-2.shrink-0.rounded-full.text-sm.font-medium.transition.duration-200.border.border-solid.bg-primary.text-primary-foreground.border-primary.w-fit.min-w-28.h-10.px-4.py-2.flex-grow[role=\"button\"][type=\"submit\"]",
+          "x": 875.99609375,
+          "y": 608.5
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 2
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query instructs me to terminate the task immediately after the previous action."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "SERVICEABLE",
+    "description": "Serviceable - Select 1 Gig plan",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Available Internet plans at"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://cart.sparklight.com/shop/?webid=Bm%2FtiRuo4uINSzMVixR%2BiQ%3D%3D"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a.text-primary-foreground.rounded-full.w-full.flex.items-center.justify-center.p-2.cursor-pointer[id=\"open-Internet-plans\"][href=\"/shop/offerdetails?webid=Bm%2FtiRuo4uINSzMVixR%2BiQ%3D%3D\"]",
+          "x": 275.0,
+          "y": 779.5
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query instructs me to terminate the task immediately after completing the previous step."
+        }
+      }
+    ],
+    "end_state": "serviceable_with_plans",
+    "executed": []
+  },
+  {
+    "name": "EXISTING_SERVICE",
+    "description": "Address already has service",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "We already service this location"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Are you the current account holder?"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Terminating the task as instructed."
+        }
+      }
+    ],
+    "end_state": "existing_service",
+    "executed": []
+  }
+]

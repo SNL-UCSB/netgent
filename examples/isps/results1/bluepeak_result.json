@@ -1,0 +1,770 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to the Quantum Fiber availability page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "data:,"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://mybluepeak.com/internet/"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Check Availability"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "a[href=\"javascript:void(0);\"][id=\"hs-eu-confirmation-button\"][role=\"button\"]",
+          "x": 985.9921875,
+          "y": 254.0
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.components-text-control__input[type=\"text\"][placeholder*=\"Enter location...\"][name=\"search\"]",
+          "x": 941.15625,
+          "y": 598.234375
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 2
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.components-text-control__input[type=\"text\"][placeholder*=\"Enter location...\"][name=\"search\"]",
+          "x": 506.609375,
+          "y": 737.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The current HTML state is the same as before, so the previous actions were not successful. The next step is to terminate the task."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": [
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Check Availability"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.components-text-control__input[type=\"text\"][placeholder*=\"Enter location...\"][name=\"search\"]",
+              "x": 941.15625,
+              "y": 598.234375
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. The previous steps involved typing an address, pressing the down key, pressing the enter key, clicking on the address text box, and pressing the enter key. The user query requires termination after these steps."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Check Availability"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.components-text-control__input[type=\"text\"][placeholder*=\"Enter location...\"][name=\"search\"]",
+              "x": 941.15625,
+              "y": 598.234375
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.components-text-control__input[type=\"text\"][placeholder*=\"Enter location...\"][name=\"search\"]",
+              "x": 506.609375,
+              "y": 737.0
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The previous actions were to type the address `%address%` into the \"Enter location...\" input field, press the down key, then press the enter key, and click on the \"Enter location...\" text box, and then press the enter key. The current HTML state shows that the address has been entered into the input field. The next step is to terminate the task."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Check Availability"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.components-text-control__input[type=\"text\"][placeholder*=\"Enter location...\"][name=\"search\"]",
+              "x": 941.15625,
+              "y": 598.234375
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "wait",
+            "params": {
+              "seconds": 2
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.components-text-control__input[type=\"text\"][placeholder*=\"Enter location...\"][name=\"search\"]",
+              "x": 506.609375,
+              "y": 737.0
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Check Availability"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.components-text-control__input[type=\"text\"][placeholder*=\"Enter location...\"][name=\"search\"]",
+              "x": 941.15625,
+              "y": 598.234375
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "wait",
+            "params": {
+              "seconds": 2
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.components-text-control__input[type=\"text\"][placeholder*=\"Enter location...\"][name=\"search\"]",
+              "x": 506.609375,
+              "y": 737.0
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Services not available in your area",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fiber internet may be available at your address! Call 855-636-1547 to find more. Looking for a diffe..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is to terminate."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": [
+      {
+        "name": "NO_SERVICE",
+        "description": "Services not available in your area",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fiber internet may be available at your address! Call 855-636-1547 to find more. Looking for a diffe..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. The previous steps involved typing an address, pressing the down key, pressing the enter key, clicking on the address text box, and pressing the enter key. The user query requires termination after these steps."
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "executed": []
+      },
+      {
+        "name": "NO_SERVICE",
+        "description": "Services not available in your area",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fiber internet may be available at your address! Call 855-636-1547 to find more. Looking for a diffe..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is complete, so I am terminating the session."
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "executed": []
+      },
+      {
+        "name": "NO_SERVICE",
+        "description": "Services not available in your area",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fiber internet may be available at your address! Call 855-636-1547 to find more. Looking for a diffe..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "executed": []
+      },
+      {
+        "name": "NO_SERVICE",
+        "description": "Services not available in your area",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fiber internet may be available at your address! Call 855-636-1547 to find more. Looking for a diffe..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Check Availability"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.components-text-control__input[type=\"text\"][placeholder*=\"Enter location...\"][name=\"search\"]",
+          "x": 941.15625,
+          "y": 598.234375
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. The previous steps involved typing an address, pressing the down key, pressing the enter key, clicking on the address text box, and pressing the enter key. The user query requires termination after these steps."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Services not available in your area",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fiber internet may be available at your address! Call 855-636-1547 to find more. Looking for a diffe..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. The previous steps involved typing an address, pressing the down key, pressing the enter key, clicking on the address text box, and pressing the enter key. The user query requires termination after these steps."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Check Availability"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.components-text-control__input[type=\"text\"][placeholder*=\"Enter location...\"][name=\"search\"]",
+          "x": 941.15625,
+          "y": 598.234375
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.components-text-control__input[type=\"text\"][placeholder*=\"Enter location...\"][name=\"search\"]",
+          "x": 506.609375,
+          "y": 737.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The previous actions were to type the address `%address%` into the \"Enter location...\" input field, press the down key, then press the enter key, and click on the \"Enter location...\" text box, and then press the enter key. The current HTML state shows that the address has been entered into the input field. The next step is to terminate the task."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Services not available in your area",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fiber internet may be available at your address! Call 855-636-1547 to find more. Looking for a diffe..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete, so I am terminating the session."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Check Availability"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.components-text-control__input[type=\"text\"][placeholder*=\"Enter location...\"][name=\"search\"]",
+          "x": 941.15625,
+          "y": 598.234375
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 2
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.components-text-control__input[type=\"text\"][placeholder*=\"Enter location...\"][name=\"search\"]",
+          "x": 506.609375,
+          "y": 737.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Services not available in your area",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fiber internet may be available at your address! Call 855-636-1547 to find more. Looking for a diffe..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Check Availability"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.components-text-control__input[type=\"text\"][placeholder*=\"Enter location...\"][name=\"search\"]",
+          "x": 941.15625,
+          "y": 598.234375
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 2
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.components-text-control__input[type=\"text\"][placeholder*=\"Enter location...\"][name=\"search\"]",
+          "x": 506.609375,
+          "y": 737.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Services not available in your area",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fiber internet may be available at your address! Call 855-636-1547 to find more. Looking for a diffe..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  }
+]

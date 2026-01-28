@@ -1,0 +1,99 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to Nsight Telservices page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "data:,"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://www.nsighttel.com/services/"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully. The page has been navigated to and the task is to terminate."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "If on the Nsight Telservices page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Find offers for your home."
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.nsighttel.com/services/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input[type=\"text\"][placeholder*=\"Your address\"][autocomplete=\"off\"][id=\"hero_street\"][name=\"street\"]",
+          "x": 352.5,
+          "y": 540.75
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input[type=\"submit\"]",
+          "x": 205.0,
+          "y": 592.5
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is to terminate as instructed in step 4."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "We could not find you in our system!"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is to terminate as instructed."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  }
+]

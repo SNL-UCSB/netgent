@@ -1,0 +1,158 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to the Vyve Broadband address search page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "data:,"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://www.vyvebroadband.com/shop/address-search/"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as the page has been navigated to the specified URL and the next step is termination."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Street Address"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "label.fieldLabel.required[id=\"addressLine1Label\"][for=\"addressLine1\"]"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.form-control[autocomplete=\"off\"][type=\"text\"][id=\"addressLine1\"]",
+          "x": 660.0,
+          "y": 418.796875
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.form-control[autocomplete=\"off\"][type=\"text\"][id=\"addressLine1\"]",
+          "x": 660.0,
+          "y": 418.796875
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%city%",
+          "by": "css selector",
+          "selector": "input.form-control[autocomplete=\"off\"][type=\"text\"][id=\"city\"]",
+          "x": 425.0,
+          "y": 670.796875
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%state%",
+          "by": "css selector",
+          "selector": "input.form-control[autocomplete=\"off\"][type=\"text\"][id=\"state\"]",
+          "x": 777.5,
+          "y": 638.796875
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%zip_code%",
+          "by": "css selector",
+          "selector": "input.form-control[autocomplete=\"off\"][type=\"text\"][id=\"zip\"]",
+          "x": 1012.5,
+          "y": 638.796875
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.submit[type=\"submit\"][aria-label*=\"Submit button\"]",
+          "x": 659.99609375,
+          "y": 719.796875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "Internet Not Available at Address on Vyve",
+    "description": "Internet service is not available at this address",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "We can\u2019t find that address in our database, but we can likely service your home."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed."
+        }
+      }
+    ],
+    "end_state": "Service Not Available",
+    "executed": []
+  }
+]

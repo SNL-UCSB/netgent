@@ -1,0 +1,114 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to the RiverStreet Services Check Availability page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "data:,"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://myriverstreet.net/services/internet/"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user has instructed to terminate the task immediately after completing the navigation."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Find Service in Your Area"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.cky-btn.cky-btn-accept[aria-label*=\"Accept All\"]",
+          "x": 410.9140625,
+          "y": 875.0
+        }
+      },
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.ui-autocomplete-input[autocomplete=\"one-time-code\"][id=\"locate_address-1\"][name=\"locate[add-ress]\"][placeholder*=\"Street Address\"][type=\"text\"]",
+          "x": 334.828125,
+          "y": 772.046875
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.ui-autocomplete-input[autocomplete=\"one-time-code\"][id=\"locate_address-1\"][name=\"locate[add-ress]\"][placeholder*=\"Street Address\"][type=\"text\"]",
+          "x": 334.828125,
+          "y": 772.046875
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.btn[type=\"submit\"]",
+          "x": 975.421875,
+          "y": 772.046875
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 10
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "searched",
+    "executed": []
+  }
+]

@@ -1,0 +1,1438 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to SECOM page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "data:,"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://secom.crowdfiber.com/front_end"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query instructs to terminate the task."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "If on the SECOM page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Search your address to learn more about fiber internet plans in your"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://secom.crowdfiber.com/front_end"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "b"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+          "x": 311.3828125,
+          "y": 487.0859375
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%zip_code%",
+          "by": "css selector",
+          "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+          "x": 835.2578125,
+          "y": 487.0859375
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "select[id=\"\"][name=\"locate[service_class]\"][required=\"\"]",
+          "x": 1041.0078125,
+          "y": 486.078125
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+          "x": 1199.12890625,
+          "y": 486.078125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": [
+      {
+        "name": "ADDRESS_BAR",
+        "description": "If on the SECOM page",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Search your address to learn more about fiber internet plans in your"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "neighborhood"
+            }
+          },
+          {
+            "type": "url",
+            "params": {
+              "url": "https://secom.crowdfiber.com/front_end"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+              "x": 311.3828125,
+              "y": 487.0859375
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%zip_code%",
+              "by": "css selector",
+              "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+              "x": 835.2578125,
+              "y": 487.0859375
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "select[id=\"\"][name=\"locate[service_class]\"][required=\"\"]",
+              "x": 1041.0078125,
+              "y": 486.078125
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+              "x": 1199.12890625,
+              "y": 486.078125
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "If on the SECOM page",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Search your address to learn more about fiber internet plans in your"
+            }
+          },
+          {
+            "type": "url",
+            "params": {
+              "url": "https://secom.crowdfiber.com/front_end"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "b"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+              "x": 311.3828125,
+              "y": 487.0859375
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%zip_code%",
+              "by": "css selector",
+              "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+              "x": 835.2578125,
+              "y": 487.0859375
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "select[id=\"\"][name=\"locate[service_class]\"][required=\"\"]",
+              "x": 1041.0078125,
+              "y": 486.078125
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+              "x": 1199.12890625,
+              "y": 486.078125
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is complete, so terminate."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "If on the SECOM page",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Search your address to learn more about fiber internet plans in your"
+            }
+          },
+          {
+            "type": "url",
+            "params": {
+              "url": "https://secom.crowdfiber.com/front_end"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "b"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+              "x": 311.3828125,
+              "y": 487.0859375
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%zip_code%",
+              "by": "css selector",
+              "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+              "x": 835.2578125,
+              "y": 487.0859375
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "select[id=\"\"][name=\"locate[service_class]\"][required=\"\"]",
+              "x": 1041.0078125,
+              "y": 486.078125
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+              "x": 1199.12890625,
+              "y": 486.078125
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as the address and zip code were correctly inputted, a service type was selected, and the 'GO' button was clicked, leading to the display of the map and the text 'Click the Next button to see if services are available at J 5th St in Covington LA 70433'."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "If on the SECOM page",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Search your address to learn more about fiber internet plans in your"
+            }
+          },
+          {
+            "type": "url",
+            "params": {
+              "url": "https://secom.crowdfiber.com/front_end"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+              "x": 311.3828125,
+              "y": 487.0859375
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%zip_code%",
+              "by": "css selector",
+              "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+              "x": 835.2578125,
+              "y": 487.0859375
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "select[id=\"\"][name=\"locate[service_class]\"][required=\"\"]",
+              "x": 1041.0078125,
+              "y": 486.078125
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+              "x": 1199.12890625,
+              "y": 486.078125
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "CONFIRM_ADDRESS",
+    "description": "Confirm address location",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Click the Next button to see if services are available\u00a0at"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://secom.crowdfiber.com/front_end/cart/6e5e1975-0d1f-42e5-a78f-db0e88be654c"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+          "x": 1140.90234375,
+          "y": 710.9921875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query instructs to terminate the task."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": [
+      {
+        "name": "CONFIRM_ADDRESS",
+        "description": "Confirm address location",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "*If you would like to update the location of your address please drag and drop the blue pin to the r..."
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "i"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "scroll",
+            "params": {
+              "direction": "down",
+              "pixels": 10
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+              "x": 1140.90234375,
+              "y": 710.9921875
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is to terminate immediately after clicking the 'Next' button."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "CONFIRM_ADDRESS",
+        "description": "Confirm address location",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Click the Next button to see if services are available\u00a0at"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "span"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "scroll",
+            "params": {
+              "direction": "down",
+              "pixels": 10
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+              "x": 1140.90234375,
+              "y": 710.9921875
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is complete, so terminate."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "CONFIRM_ADDRESS",
+        "description": "Confirm address location",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "*If you would like to update the location of your address please drag and drop the blue pin to the r..."
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "i"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "scroll",
+            "params": {
+              "direction": "down",
+              "pixels": 10
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+              "x": 1140.90234375,
+              "y": 710.9921875
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as the address and zip code were correctly inputted, a service type was selected, and the 'GO' button was clicked, leading to the display of the map and the text 'Click the Next button to see if services are available at J 5th St in Covington LA 70433'. The 'Next' button was clicked."
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      },
+      {
+        "name": "CONFIRM_ADDRESS",
+        "description": "Confirm address location",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Click the Next button to see if services are available\u00a0at"
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "span"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "scroll",
+            "params": {
+              "direction": "down",
+              "pixels": 10
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+              "x": 1140.90234375,
+              "y": 710.9921875
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available (e.g. 'Make It Possible!')",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Make It Possible!"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "At this time, your home is not in a fiber area.\u00a0 \u00a0We may be able to provide wireless services until ..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query instructs to terminate the task immediately."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": [
+      {
+        "name": "NO_SERVICE",
+        "description": "Service not available (e.g. 'Make It Possible!')",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Make It Possible!"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "At this time, your home is not in a fiber area.\u00a0 \u00a0We may be able to provide wireless services until ..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The user query instructs to terminate the task immediately."
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "executed": []
+      },
+      {
+        "name": "NO_SERVICE",
+        "description": "Service not available (e.g. 'Make It Possible!')",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Make It Possible!"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "At this time, your home is not in a fiber area.\u00a0 \u00a0We may be able to provide wireless services until ..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is complete, so terminate."
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "executed": []
+      },
+      {
+        "name": "NO_SERVICE",
+        "description": "Service not available (e.g. 'Make It Possible!')",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Make It Possible!"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "At this time, your home is not in a fiber area.\u00a0 \u00a0We may be able to provide wireless services until ..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The instruction is to terminate the task immediately."
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "executed": []
+      },
+      {
+        "name": "NO_SERVICE",
+        "description": "Service not available (e.g. 'Make It Possible!')",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Make It Possible!"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "At this time, your home is not in a fiber area.\u00a0 \u00a0We may be able to provide wireless services until ..."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "If on the SECOM page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Search your address to learn more about fiber internet plans in your"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "neighborhood"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://secom.crowdfiber.com/front_end"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+          "x": 311.3828125,
+          "y": 487.0859375
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%zip_code%",
+          "by": "css selector",
+          "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+          "x": 835.2578125,
+          "y": 487.0859375
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "select[id=\"\"][name=\"locate[service_class]\"][required=\"\"]",
+          "x": 1041.0078125,
+          "y": 486.078125
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+          "x": 1199.12890625,
+          "y": 486.078125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "CONFIRM_ADDRESS",
+    "description": "Confirm address location",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "*If you would like to update the location of your address please drag and drop the blue pin to the r..."
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "i"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+          "x": 1140.90234375,
+          "y": 710.9921875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is to terminate immediately after clicking the 'Next' button."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available (e.g. 'Make It Possible!')",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Make It Possible!"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "At this time, your home is not in a fiber area.\u00a0 \u00a0We may be able to provide wireless services until ..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query instructs to terminate the task immediately."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "If on the SECOM page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Search your address to learn more about fiber internet plans in your"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://secom.crowdfiber.com/front_end"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "b"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+          "x": 311.3828125,
+          "y": 487.0859375
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%zip_code%",
+          "by": "css selector",
+          "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+          "x": 835.2578125,
+          "y": 487.0859375
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "select[id=\"\"][name=\"locate[service_class]\"][required=\"\"]",
+          "x": 1041.0078125,
+          "y": 486.078125
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+          "x": 1199.12890625,
+          "y": 486.078125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete, so terminate."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "CONFIRM_ADDRESS",
+    "description": "Confirm address location",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Click the Next button to see if services are available\u00a0at"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "span"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+          "x": 1140.90234375,
+          "y": 710.9921875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete, so terminate."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available (e.g. 'Make It Possible!')",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Make It Possible!"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "At this time, your home is not in a fiber area.\u00a0 \u00a0We may be able to provide wireless services until ..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete, so terminate."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "If on the SECOM page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Search your address to learn more about fiber internet plans in your"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://secom.crowdfiber.com/front_end"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "b"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+          "x": 311.3828125,
+          "y": 487.0859375
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%zip_code%",
+          "by": "css selector",
+          "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+          "x": 835.2578125,
+          "y": 487.0859375
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "select[id=\"\"][name=\"locate[service_class]\"][required=\"\"]",
+          "x": 1041.0078125,
+          "y": 486.078125
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+          "x": 1199.12890625,
+          "y": 486.078125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as the address and zip code were correctly inputted, a service type was selected, and the 'GO' button was clicked, leading to the display of the map and the text 'Click the Next button to see if services are available at J 5th St in Covington LA 70433'."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "CONFIRM_ADDRESS",
+    "description": "Confirm address location",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "*If you would like to update the location of your address please drag and drop the blue pin to the r..."
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "i"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+          "x": 1140.90234375,
+          "y": 710.9921875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as the address and zip code were correctly inputted, a service type was selected, and the 'GO' button was clicked, leading to the display of the map and the text 'Click the Next button to see if services are available at J 5th St in Covington LA 70433'. The 'Next' button was clicked."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available (e.g. 'Make It Possible!')",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Make It Possible!"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "At this time, your home is not in a fiber area.\u00a0 \u00a0We may be able to provide wireless services until ..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The instruction is to terminate the task immediately."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "If on the SECOM page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Search your address to learn more about fiber internet plans in your"
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://secom.crowdfiber.com/front_end"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+          "x": 311.3828125,
+          "y": 487.0859375
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%zip_code%",
+          "by": "css selector",
+          "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+          "x": 835.2578125,
+          "y": 487.0859375
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "select[id=\"\"][name=\"locate[service_class]\"][required=\"\"]",
+          "x": 1041.0078125,
+          "y": 486.078125
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+          "x": 1199.12890625,
+          "y": 486.078125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "CONFIRM_ADDRESS",
+    "description": "Confirm address location",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Click the Next button to see if services are available\u00a0at"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "span"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "scroll",
+        "params": {
+          "direction": "down",
+          "pixels": 10
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+          "x": 1140.90234375,
+          "y": 710.9921875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available (e.g. 'Make It Possible!')",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Make It Possible!"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "At this time, your home is not in a fiber area.\u00a0 \u00a0We may be able to provide wireless services until ..."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  }
+]

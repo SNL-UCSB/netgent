@@ -1,0 +1,142 @@
+{
+  "state_repository": [
+    {
+      "name": "START",
+      "description": "Navigate to GVEC shop page",
+      "checks": [
+        {
+          "type": "url",
+          "params": {
+            "url": "data:,"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "navigate",
+          "params": {
+            "url": "https://shop.gvec.net/#/order/1"
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input[aria-label*=\"Please enter your full address including zip code.\"][id=\"input-319\"][placeholder*=\"Please enter your full address including zip code.\"][type=\"text\"][autocomplete=\"off\"]",
+            "x": 664.0,
+            "y": 445.4453125
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+            "x": 691.99609375,
+            "y": 619.6015625
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "bradley",
+            "by": "css selector",
+            "selector": "input[type=\"text\"][name=\"input_1.3\"][id=\"input_54_1_3\"]",
+            "x": 384.75,
+            "y": 806.1328125
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "Task completed successfully"
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Show Us Your Interest!"
+          }
+        },
+        {
+          "type": "url",
+          "params": {
+            "url": "https://www.gvec.net/internet-interest/"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "Task completed successfully"
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": []
+    }
+  ],
+  "state_prompts": [
+    "## State: START\n- **Description:** Navigate to GVEC shop page\n- **Triggers:**\n\t1. If it is on the chrome homescreen\n- **Actions:**\n\t1. Go to https://shop.gvec.net/#/order/1 word for word\n\t2. TERMINATE AT THIS POINT",
+    "## State: ADDRESS_BAR\n- **Description:** Enter address to check availability\n- **Triggers:**\n\t1. If you see 'Check for Fiber Fast Internet Availability and Pricing'\n- **Actions:**\n\t1. FOLLOW THESE INSTRUCTIONS CLOSELY\n\t2. Click the 'Enter your address' input field\n\t3. Type `%address%` into the input field\n\t4. Press down key to select the first suggestion\n\t5. Press enter key to confirm selection\n\t6. Click the 'NEXT' button\n\t7. JUST DONT DO ANYTHING AT THIS POINT AND TERMINATE",
+    "## State: NO_SERVICE\n- **Description:** Service not available\n- **Triggers:**\n\t1. If you see 'Show Us Your Interest!' or 'URL: https://www.gvec.net/internet-interest/'\n- **Actions:**\n\t1. JUST DONT DO ANYTHING AT THIS POINT AND TERMINATE\n- **End State:** no_service",
+    "## State: SERVICEABLE\n- **Description:** Service available\n- **Triggers:**\n\t1. If you see 'We are serving your area at this time'\n- **Actions:**\n\t1. JUST DONT DO ANYTHING AT THIS POINT AND TERMINATE\n- **End State:** serviceable",
+    "## State: UNKNOWN_ERROR\n- **Description:** Unknown error\n- **Triggers:**\n\t1. If you see 'We apologize something went wrong with your search'\n- **Actions:**\n\t1. TERMINATE AT THIS POINT\n- **End State:** not_found"
+  ],
+  "passed_states": [
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Show Us Your Interest!"
+          }
+        },
+        {
+          "type": "url",
+          "params": {
+            "url": "https://www.gvec.net/internet-interest/"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "Task completed successfully"
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": []
+    }
+  ],
+  "recursion_count": 2,
+  "last_passed_state_name": "NO_SERVICE",
+  "consecutive_state_count": 1,
+  "state_timeout_start": null,
+  "variables": {
+    "address": "200 Frank H Ogawa Plz, Oakland, CA, 94612",
+    "only_address": "200 Frank H Ogawa Plz",
+    "city": "Oakland",
+    "state": "CA",
+    "zip_code": "94612",
+    "email": "matthewdouglas@example.org"
+  },
+  "synthesis_prompt": null,
+  "synthesis_choice": null,
+  "synthesis_triggers": null,
+  "executed_states": []
+}

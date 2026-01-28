@@ -1,0 +1,213 @@
+{
+  "state_repository": [
+    {
+      "name": "START",
+      "description": "Navigate to Hyak CrowdFiber page",
+      "checks": [
+        {
+          "type": "url",
+          "params": {
+            "url": "data:,"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "navigate",
+          "params": {
+            "url": "https://register.hyak.co/front_end"
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The user requested immediate termination after the first step."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the Hyak page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Enter your address to see available plans"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.input.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+            "x": 248.27734375,
+            "y": 575.796875
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%zip_code%",
+            "by": "css selector",
+            "selector": "input.input.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+            "x": 649.5546875,
+            "y": 575.796875
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "select[id=\"\"][name=\"locate[service_class]\"][required=\"\"]",
+            "x": 808.3046875,
+            "y": 575.796875
+          }
+        },
+        {
+          "type": "press_key",
+          "params": {
+            "key": "down"
+          }
+        },
+        {
+          "type": "press_key",
+          "params": {
+            "key": "enter"
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-primary.address_search_button[type=\"submit\"][name=\"commit\"]",
+            "x": 932.02734375,
+            "y": 575.796875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "Task completed successfully"
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Confirm Your Address"
+          }
+        },
+        {
+          "type": "url",
+          "params": {
+            "url": "https://register.hyak.co/front_end/cart/999e576f-8545-4501-85a5-bdecff41b8ed"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-primary[type=\"submit\"][name=\"commit\"]",
+            "x": 1202.25,
+            "y": 658.7109375
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task instruction specifies to terminate immediately after clicking the 'Next' button."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'We\u2019ve got good news and bad news.')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Already registered? | Sign in here"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task instruction is to terminate immediately."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": []
+    }
+  ],
+  "state_prompts": [
+    "## State: START\n- **Description:** Navigate to Hyak CrowdFiber page\n- **Triggers:**\n\t1. If it is on the chrome homescreen\n- **Actions:**\n\t1. Go to https://register.hyak.co/front_end word for word\n\t2. TERMINATE AT THIS POINT",
+    "## State: ADDRESS_BAR\n- **Description:** If on the Hyak page\n- **Triggers:**\n\t1. If you see 'Please enter your address below'\n- **Actions:**\n\t1. FOLLOW THESE INSTRUCTIONS CLOSELY\n\t2. Accept cookies first\n\t3. Type `%address%` into the input field\n\t4. Type `%zip_code%` into the input field\n\t5. Click on 'Service' dropdown, down arrow key once, then enter key\n\t6. Click the 'Go' button\n\t7. TERMINATE AT THIS POINT",
+    "## State: CONFIRM_ADDRESS\n- **Description:** Confirm address location\n- **Triggers:**\n\t1. If you see 'Verify that the marker below is the correct location for your address'\n- **Actions:**\n\t1. Scroll down\n\t2. Click the 'Next' button\n\t3. DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT",
+    "## State: SERVICEABLE\n- **Description:** Build your bundle\n- **Triggers:**\n\t1. If you see 'Build your bundle'\n- **Actions:**\n\t1. DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT\n- **End State:** serviceable_with_plans",
+    "## State: NO_SERVICE\n- **Description:** Service not available - (e.g. 'We\u2019ve got good news and bad news.')\n- **Triggers:**\n\t1. If you see 'We\u2019ve got good news and bad news.'\n- **Actions:**\n\t1. DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT\n- **End State:** no_service"
+  ],
+  "passed_states": [
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'We\u2019ve got good news and bad news.')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Already registered? | Sign in here"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task instruction is to terminate immediately."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": []
+    }
+  ],
+  "recursion_count": 3,
+  "last_passed_state_name": "NO_SERVICE",
+  "consecutive_state_count": 1,
+  "state_timeout_start": null,
+  "variables": {
+    "address": "1700 Jefferson St, Oakland, CA",
+    "zip_code": "94612"
+  },
+  "synthesis_prompt": null,
+  "synthesis_choice": null,
+  "synthesis_triggers": null,
+  "executed_states": []
+}

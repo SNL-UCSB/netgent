@@ -1,0 +1,399 @@
+{
+  "state_repository": [
+    {
+      "name": "START",
+      "description": "Navigate to Infinium CrowdFiber page",
+      "checks": [
+        {
+          "type": "url",
+          "params": {
+            "url": "data:,"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "navigate",
+          "params": {
+            "url": "https://join.infinium.coop/front_end"
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "Task completed successfully."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the Infinium page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Enter your address below to see if we can service your home or business!"
+          }
+        },
+        {
+          "type": "url",
+          "params": {
+            "url": "https://join.infinium.coop/front_end"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder=\"Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+            "x": 311.3828125,
+            "y": 655.7734375
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%zip_code%",
+            "by": "css selector",
+            "selector": "input.input.is-large.zip[placeholder=\"Zip\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+            "x": 835.2578125,
+            "y": 655.7734375
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "select[id=\"\"][name=\"locate[service_class]\"][required=\"\"]",
+            "x": 1041.0078125,
+            "y": 654.765625
+          }
+        },
+        {
+          "type": "press_key",
+          "params": {
+            "key": "down"
+          }
+        },
+        {
+          "type": "press_key",
+          "params": {
+            "key": "enter"
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+            "x": 1199.12890625,
+            "y": 654.765625
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "Task completed successfully"
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Verify that the marker below is the correct location for your address. If not, drag the blue marker ..."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1140.90234375,
+            "y": 712.9921875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The service is not currently offered in the specified area, and there is no 'Next' button to click. Terminating the task as requested."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'If you see internet is not available at your address')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Already registered? | Sign in here"
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "a[href=\"/users/sign_in\"][alt*=\"Sign in here\"]"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The service is not currently offered in the specified area. Terminating the task as requested."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": []
+    }
+  ],
+  "state_prompts": [
+    "## State: START\n- **Description:** Navigate to Infinium CrowdFiber page\n- **Triggers:**\n\t1. If it is on the chrome homescreen\n- **Actions:**\n\t1. Go to https://join.infinium.coop/front_end word for word\n\t2. TERMINATE AT THIS POINT",
+    "## State: ADDRESS_BAR\n- **Description:** If on the Infinium page\n- **Triggers:**\n\t1. If you see 'Please enter your address below'\n- **Actions:**\n\t1. FOLLOW THESE INSTRUCTIONS CLOSELY\n\t2. Type `%address%` into the input field\n\t3. Type `%zip_code%` into the input field\n\t4. Click on 'Service Type' dropdown, down arrow key once, then enter key\n\t5. Click the 'Go' button\n\t6. TERMINATE AT THIS POINT",
+    "## State: CONFIRM_ADDRESS\n- **Description:** Confirm address location\n- **Triggers:**\n\t1. If you see 'Verify that the marker below is the correct location for your address'\n- **Actions:**\n\t1. Scroll down\n\t2. Click the 'Next' button\n\t3. TERMINATE AT THIS POINT",
+    "## State: SERVICEABLE\n- **Description:** Build your bundle\n- **Triggers:**\n\t1. If you see 'Build your bundle'\n- **Actions:**\n\t1. TERMINATE AT THIS POINT\n- **End State:** serviceable_with_plans",
+    "## State: NO_SERVICE\n- **Description:** Service not available - (e.g. 'If you see internet is not available at your address')\n- **Triggers:**\n\t1. If you see 'Aww shucks! Our service isn't available.'\n- **Actions:**\n\t1. TERMINATE AT THIS POINT\n- **End State:** no_service"
+  ],
+  "passed_states": [],
+  "recursion_count": 4,
+  "last_passed_state_name": null,
+  "consecutive_state_count": 0,
+  "state_timeout_start": null,
+  "variables": {
+    "address": "17th St, Oakland, CA",
+    "zip_code": "94612",
+    "name_f": "Allison",
+    "name_l": "Joseph",
+    "phone_num": "6322343891",
+    "email": "craig92@example.org"
+  },
+  "synthesis_prompt": "## Step 1\nStep: TERMINATION",
+  "synthesis_choice": {
+    "name": "NO_SERVICE",
+    "description": "Service not available - (e.g. 'If you see internet is not available at your address')",
+    "triggers": [
+      "If you see 'Aww shucks! Our service isn't available.'"
+    ],
+    "actions": [
+      "TERMINATE AT THIS POINT"
+    ],
+    "end_state": "no_service"
+  },
+  "synthesis_triggers": [
+    {
+      "type": "text",
+      "params": {
+        "text": "Already registered? | Sign in here"
+      }
+    },
+    {
+      "type": "element",
+      "params": {
+        "by": "css selector",
+        "selector": "a[href=\"/users/sign_in\"][alt*=\"Sign in here\"]"
+      }
+    }
+  ],
+  "executed_states": [
+    {
+      "name": "START",
+      "description": "Navigate to Infinium CrowdFiber page",
+      "checks": [
+        {
+          "type": "url",
+          "params": {
+            "url": "data:,"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "navigate",
+          "params": {
+            "url": "https://join.infinium.coop/front_end"
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "Task completed successfully."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the Infinium page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Enter your address below to see if we can service your home or business!"
+          }
+        },
+        {
+          "type": "url",
+          "params": {
+            "url": "https://join.infinium.coop/front_end"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder=\"Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+            "x": 311.3828125,
+            "y": 655.7734375
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%zip_code%",
+            "by": "css selector",
+            "selector": "input.input.is-large.zip[placeholder=\"Zip\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+            "x": 835.2578125,
+            "y": 655.7734375
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "select[id=\"\"][name=\"locate[service_class]\"][required=\"\"]",
+            "x": 1041.0078125,
+            "y": 654.765625
+          }
+        },
+        {
+          "type": "press_key",
+          "params": {
+            "key": "down"
+          }
+        },
+        {
+          "type": "press_key",
+          "params": {
+            "key": "enter"
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+            "x": 1199.12890625,
+            "y": 654.765625
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "Task completed successfully"
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Verify that the marker below is the correct location for your address. If not, drag the blue marker ..."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1140.90234375,
+            "y": 712.9921875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The service is not currently offered in the specified area, and there is no 'Next' button to click. Terminating the task as requested."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'If you see internet is not available at your address')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Already registered? | Sign in here"
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "a[href=\"/users/sign_in\"][alt*=\"Sign in here\"]"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The service is not currently offered in the specified area. Terminating the task as requested."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": []
+    }
+  ]
+}

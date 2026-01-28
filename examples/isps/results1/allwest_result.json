@@ -1,0 +1,612 @@
+{
+  "state_repository": [
+    {
+      "name": "START",
+      "description": "Navigate to All West page",
+      "checks": [
+        {
+          "type": "url",
+          "params": {
+            "url": "data:,"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "navigate",
+          "params": {
+            "url": "https://shop.allwest.com/order/1"
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "Task completed successfully."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the All West page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Find the best offers in your area"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input[aria-label*=\"Enter your home address\"][id=\"input-371\"][placeholder*=\"Enter your home address\"][type=\"text\"][autocomplete=\"off\"]",
+            "x": 568.0,
+            "y": 649.84375
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+            "x": 596.0,
+            "y": 731.84375
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is complete."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": [
+        {
+          "name": "ADDRESS_BAR",
+          "description": "If on the All West page",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Find the best offers in your area"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "type",
+              "params": {
+                "text": "%address%",
+                "by": "css selector",
+                "selector": "input[aria-label*=\"Enter your home address\"][id=\"input-371\"][placeholder*=\"Enter your home address\"][type=\"text\"][autocomplete=\"off\"]",
+                "x": 568.0,
+                "y": 649.84375
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+                "x": 596.0,
+                "y": 731.84375
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "Task completed successfully as per the instructions."
+              }
+            }
+          ],
+          "end_state": "",
+          "executed": []
+        },
+        {
+          "name": "ADDRESS_BAR",
+          "description": "If on the All West page",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Find the best offers in your area"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "type",
+              "params": {
+                "text": "%address%",
+                "by": "css selector",
+                "selector": "input[aria-label*=\"Enter your home address\"][id=\"input-371\"][placeholder*=\"Enter your home address\"][type=\"text\"][autocomplete=\"off\"]",
+                "x": 568.0,
+                "y": 649.84375
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+                "x": 596.0,
+                "y": 731.84375
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The task is completed as per the instructions. The address has been entered and the continue button has been clicked. The next step is to terminate."
+              }
+            }
+          ],
+          "end_state": "",
+          "executed": []
+        },
+        {
+          "name": "ADDRESS_BAR",
+          "description": "If on the All West page",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Find the best offers in your area"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "type",
+              "params": {
+                "text": "%address%",
+                "by": "css selector",
+                "selector": "input[aria-label*=\"Enter your home address\"][id=\"input-371\"][placeholder*=\"Enter your home address\"][type=\"text\"][autocomplete=\"off\"]",
+                "x": 568.0,
+                "y": 649.84375
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+                "x": 596.0,
+                "y": 731.84375
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The task is completed."
+              }
+            }
+          ],
+          "end_state": "",
+          "executed": []
+        },
+        {
+          "name": "ADDRESS_BAR",
+          "description": "If on the All West page",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Find the best offers in your area"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "type",
+              "params": {
+                "text": "%address%",
+                "by": "css selector",
+                "selector": "input[aria-label*=\"Enter your home address\"][id=\"input-371\"][placeholder*=\"Enter your home address\"][type=\"text\"][autocomplete=\"off\"]",
+                "x": 568.0,
+                "y": 649.84375
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+                "x": 596.0,
+                "y": 731.84375
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "Task completed successfully"
+              }
+            }
+          ],
+          "end_state": "",
+          "executed": []
+        },
+        {
+          "name": "ADDRESS_BAR",
+          "description": "If on the All West page",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Find the best offers in your area"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "type",
+              "params": {
+                "text": "%address%",
+                "by": "css selector",
+                "selector": "input[aria-label*=\"Enter your home address\"][id=\"input-371\"][placeholder*=\"Enter your home address\"][type=\"text\"][autocomplete=\"off\"]",
+                "x": 568.0,
+                "y": 649.84375
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+                "x": 596.0,
+                "y": 731.84375
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "Task completed successfully"
+              }
+            }
+          ],
+          "end_state": "",
+          "executed": []
+        }
+      ]
+    },
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available (e.g. 'Contact Us')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Contact Us"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is to terminate."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the All West page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Find the best offers in your area"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input[aria-label*=\"Enter your home address\"][id=\"input-371\"][placeholder*=\"Enter your home address\"][type=\"text\"][autocomplete=\"off\"]",
+            "x": 568.0,
+            "y": 649.84375
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+            "x": 596.0,
+            "y": 731.84375
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "Task completed successfully as per the instructions."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the All West page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Find the best offers in your area"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input[aria-label*=\"Enter your home address\"][id=\"input-371\"][placeholder*=\"Enter your home address\"][type=\"text\"][autocomplete=\"off\"]",
+            "x": 568.0,
+            "y": 649.84375
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+            "x": 596.0,
+            "y": 731.84375
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is completed as per the instructions. The address has been entered and the continue button has been clicked. The next step is to terminate."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the All West page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Find the best offers in your area"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input[aria-label*=\"Enter your home address\"][id=\"input-371\"][placeholder*=\"Enter your home address\"][type=\"text\"][autocomplete=\"off\"]",
+            "x": 568.0,
+            "y": 649.84375
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+            "x": 596.0,
+            "y": 731.84375
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is completed."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the All West page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Find the best offers in your area"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input[aria-label*=\"Enter your home address\"][id=\"input-371\"][placeholder*=\"Enter your home address\"][type=\"text\"][autocomplete=\"off\"]",
+            "x": 568.0,
+            "y": 649.84375
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+            "x": 596.0,
+            "y": 731.84375
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "Task completed successfully"
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the All West page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Find the best offers in your area"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input[aria-label*=\"Enter your home address\"][id=\"input-371\"][placeholder*=\"Enter your home address\"][type=\"text\"][autocomplete=\"off\"]",
+            "x": 568.0,
+            "y": 649.84375
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+            "x": 596.0,
+            "y": 731.84375
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "Task completed successfully"
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    }
+  ],
+  "state_prompts": [
+    "## State: START\n- **Description:** Navigate to All West page\n- **Triggers:**\n\t1. If it is on the chrome homescreen\n- **Actions:**\n\t1. Go to https://shop.allwest.com/order/1 word for word\n\t2. TERMINATE AT THIS POINT",
+    "## State: ADDRESS_BAR\n- **Description:** If on the All West page\n- **Triggers:**\n\t1. If you see 'Please enter your address below'\n- **Actions:**\n\t1. FOLLOW THESE INSTRUCTIONS CLOSELY\n\t2. Type `%address%` into the input field\n\t3. Click submit to confirm selection\n\t4. TERMINATE AT THIS POINT",
+    "## State: CONFIRM_ADDRESS\n- **Description:** Confirm address location\n- **Triggers:**\n\t1. If you see 'Verify that the marker below is the correct location for your address'\n- **Actions:**\n\t1. Scroll down\n\t2. press tab and enter\n\t3. Click the 'Next' button\n\t4. TERMINATE AT THIS POINT",
+    "## State: INTERNET_AVAILABLE\n- **Description:** Service available - enter contact info\n- **Triggers:**\n\t1. If you see 'All West is in your neighborhood. Order now!'\n- **Actions:**\n\t1. Scroll to put this contact information in the form\n\t2. Click the 'Next' button\n\t3. TERMINATE AT THIS POINT",
+    "## State: SERVICEABLE\n- **Description:** Build your bundle\n- **Triggers:**\n\t1. If you see 'Build your bundle'\n- **Actions:**\n\t1. TERMINATE AT THIS POINT\n- **End State:** serviceable_with_plans",
+    "## State: NO_SERVICE\n- **Description:** Service not available (e.g. 'Contact Us')\n- **Triggers:**\n\t1. Get the Text from the page like 'Contact Us'\n- **Actions:**\n\t1. TERMINATE AT THIS POINT\n- **End State:** no_service"
+  ],
+  "passed_states": [
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available (e.g. 'Contact Us')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Contact Us"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is to terminate."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": []
+    }
+  ],
+  "recursion_count": 3,
+  "last_passed_state_name": "NO_SERVICE",
+  "consecutive_state_count": 1,
+  "state_timeout_start": null,
+  "variables": {
+    "address": "200 Frank H Ogawa Plz, Oakland, CA",
+    "zip_code": "94612"
+  },
+  "synthesis_prompt": "```\n## Step 1\nStep: Type '%address%' into the 'Enter your home address' input field.\n```\n```\n## Step 2\nStep: Click the 'CONTINUE' button to submit the address.\n```\n```\n## Step 3\nStep: TERMINATION\n```",
+  "synthesis_choice": {
+    "name": "ADDRESS_BAR",
+    "description": "If on the All West page",
+    "triggers": [
+      "If you see 'Please enter your address below'"
+    ],
+    "actions": [
+      "FOLLOW THESE INSTRUCTIONS CLOSELY",
+      "Type `%address%` into the input field",
+      "Click submit to confirm selection",
+      "TERMINATE AT THIS POINT"
+    ],
+    "end_state": ""
+  },
+  "synthesis_triggers": [
+    {
+      "type": "text",
+      "params": {
+        "text": "Find the best offers in your area"
+      }
+    }
+  ],
+  "executed_states": [
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the All West page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Find the best offers in your area"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input[aria-label*=\"Enter your home address\"][id=\"input-371\"][placeholder*=\"Enter your home address\"][type=\"text\"][autocomplete=\"off\"]",
+            "x": 568.0,
+            "y": 649.84375
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+            "x": 596.0,
+            "y": 731.84375
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "Task completed successfully"
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    }
+  ]
+}

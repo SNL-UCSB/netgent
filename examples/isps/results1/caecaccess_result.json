@@ -1,0 +1,791 @@
+{
+  "state_repository": [
+    {
+      "name": "START",
+      "description": "Navigate to CAEC Access CrowdFiber page",
+      "checks": [
+        {
+          "type": "url",
+          "params": {
+            "url": "data:,"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "navigate",
+          "params": {
+            "url": "https://caecaccess.com/front_end"
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is completed as the page has been navigated to and the instruction is to terminate immediately after."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the CAEC Access page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Confirm you are eligible for service and register."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder=\"Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+            "x": 385.5,
+            "y": 547.8828125
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%zip_code%",
+            "by": "css selector",
+            "selector": "input.input.is-large.zip[placeholder=\"Zip\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+            "x": 481.75,
+            "y": 618.8828125
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "select[id=\"\"][name=\"locate[service_class]\"][required=\"\"]",
+            "x": 289.25,
+            "y": 688.875
+          }
+        },
+        {
+          "type": "press_key",
+          "params": {
+            "key": "down"
+          }
+        },
+        {
+          "type": "press_key",
+          "params": {
+            "key": "enter"
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.address_search_button.bg-gradient[type=\"submit\"][name=\"commit\"]",
+            "x": 481.75,
+            "y": 688.6328125
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "Task completed successfully"
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Verify that the marker below is the correct location for your address. If not, drag the blue marker ..."
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "p"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1116.06640625,
+            "y": 748.421875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is completed as instructed in Step 3."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": [
+        {
+          "name": "CONFIRM_ADDRESS",
+          "description": "Confirm address location",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Verify that the marker below is the correct location for your address. If not, drag the blue marker ..."
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "scroll",
+              "params": {
+                "direction": "down",
+                "pixels": 10
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+                "x": 1116.06640625,
+                "y": 748.421875
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The address is not serviceable, and there is no next step to take. The task is complete."
+              }
+            }
+          ],
+          "end_state": "",
+          "executed": []
+        },
+        {
+          "name": "CONFIRM_ADDRESS",
+          "description": "Confirm address location",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Verify that the marker below is the correct location for your address. If not, drag the blue marker ..."
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "scroll",
+              "params": {
+                "direction": "down",
+                "pixels": 10
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+                "x": 1116.06640625,
+                "y": 748.421875
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The address is not in an area where service is available at this time. Terminating as per instructions."
+              }
+            }
+          ],
+          "end_state": "",
+          "executed": []
+        },
+        {
+          "name": "CONFIRM_ADDRESS",
+          "description": "Confirm address location",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Verify that the marker below is the correct location for your address. If not, drag the blue marker ..."
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "scroll",
+              "params": {
+                "direction": "down",
+                "pixels": 10
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+                "x": 1116.06640625,
+                "y": 748.421875
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The task is complete as per the instructions."
+              }
+            }
+          ],
+          "end_state": "",
+          "executed": []
+        },
+        {
+          "name": "CONFIRM_ADDRESS",
+          "description": "Confirm address location",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Verify that the marker below is the correct location for your address. If not, drag the blue marker ..."
+              }
+            },
+            {
+              "type": "element",
+              "params": {
+                "by": "css selector",
+                "selector": "p"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "scroll",
+              "params": {
+                "direction": "down",
+                "pixels": 10
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+                "x": 1116.06640625,
+                "y": 748.421875
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The address is not serviceable and there is no 'Next' button to proceed."
+              }
+            }
+          ],
+          "end_state": "",
+          "executed": []
+        }
+      ]
+    },
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'Unfortunately, your address is not in an area where service is available at this time. However, if we receive enough expressions of interest in your neighborhood, we may add this area in the future. To register your interest, please complete the form below. This does not obligate you for service, but will allow us to keep you informed of changes.')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Unfortunately, your address is not in an area where service is available at this time. However, if w..."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The user query instructs to terminate the execution immediately."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": [
+        {
+          "name": "NO_SERVICE",
+          "description": "Service not available - (e.g. 'Unfortunately, your address is not in an area where service is available at this time. However, if we receive enough expressions of interest in your neighborhood, we may add this area in the future. To register your interest, please complete the form below. This does not obligate you for service, but will allow us to keep you informed of changes.')",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Unfortunately, your address is not in an area where service is available at this time. However, if w..."
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The user query instructs to terminate the execution immediately."
+              }
+            }
+          ],
+          "end_state": "no_service",
+          "executed": []
+        },
+        {
+          "name": "NO_SERVICE",
+          "description": "Service not available - (e.g. 'Unfortunately, your address is not in an area where service is available at this time. However, if we receive enough expressions of interest in your neighborhood, we may add this area in the future. To register your interest, please complete the form below. This does not obligate you for service, but will allow us to keep you informed of changes.')",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Unfortunately, your address is not in an area where service is available at this time. However, if w..."
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "Terminating the execution as per the instruction."
+              }
+            }
+          ],
+          "end_state": "no_service",
+          "executed": []
+        },
+        {
+          "name": "NO_SERVICE",
+          "description": "Service not available - (e.g. 'Unfortunately, your address is not in an area where service is available at this time. However, if we receive enough expressions of interest in your neighborhood, we may add this area in the future. To register your interest, please complete the form below. This does not obligate you for service, but will allow us to keep you informed of changes.')",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "We\u2019re sorry."
+              }
+            },
+            {
+              "type": "text",
+              "params": {
+                "text": "Unfortunately, your address is not in an area where service is available at this time. However, if w..."
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The task is to terminate the execution."
+              }
+            }
+          ],
+          "end_state": "no_service",
+          "executed": []
+        },
+        {
+          "name": "NO_SERVICE",
+          "description": "Service not available - (e.g. 'Unfortunately, your address is not in an area where service is available at this time. However, if we receive enough expressions of interest in your neighborhood, we may add this area in the future. To register your interest, please complete the form below. This does not obligate you for service, but will allow us to keep you informed of changes.')",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Unfortunately, your address is not in an area where service is available at this time. However, if w..."
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "Terminating the task as instructed."
+              }
+            }
+          ],
+          "end_state": "no_service",
+          "executed": []
+        }
+      ]
+    },
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Verify that the marker below is the correct location for your address. If not, drag the blue marker ..."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1116.06640625,
+            "y": 748.421875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The address is not serviceable, and there is no next step to take. The task is complete."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'Unfortunately, your address is not in an area where service is available at this time. However, if we receive enough expressions of interest in your neighborhood, we may add this area in the future. To register your interest, please complete the form below. This does not obligate you for service, but will allow us to keep you informed of changes.')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Unfortunately, your address is not in an area where service is available at this time. However, if w..."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The user query instructs to terminate the execution immediately."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": []
+    },
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Verify that the marker below is the correct location for your address. If not, drag the blue marker ..."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1116.06640625,
+            "y": 748.421875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The address is not in an area where service is available at this time. Terminating as per instructions."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'Unfortunately, your address is not in an area where service is available at this time. However, if we receive enough expressions of interest in your neighborhood, we may add this area in the future. To register your interest, please complete the form below. This does not obligate you for service, but will allow us to keep you informed of changes.')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Unfortunately, your address is not in an area where service is available at this time. However, if w..."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "Terminating the execution as per the instruction."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": []
+    },
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Verify that the marker below is the correct location for your address. If not, drag the blue marker ..."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1116.06640625,
+            "y": 748.421875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is complete as per the instructions."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'Unfortunately, your address is not in an area where service is available at this time. However, if we receive enough expressions of interest in your neighborhood, we may add this area in the future. To register your interest, please complete the form below. This does not obligate you for service, but will allow us to keep you informed of changes.')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "We\u2019re sorry."
+          }
+        },
+        {
+          "type": "text",
+          "params": {
+            "text": "Unfortunately, your address is not in an area where service is available at this time. However, if w..."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is to terminate the execution."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": []
+    },
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Verify that the marker below is the correct location for your address. If not, drag the blue marker ..."
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "p"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1116.06640625,
+            "y": 748.421875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The address is not serviceable and there is no 'Next' button to proceed."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'Unfortunately, your address is not in an area where service is available at this time. However, if we receive enough expressions of interest in your neighborhood, we may add this area in the future. To register your interest, please complete the form below. This does not obligate you for service, but will allow us to keep you informed of changes.')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Unfortunately, your address is not in an area where service is available at this time. However, if w..."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "Terminating the task as instructed."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": []
+    }
+  ],
+  "state_prompts": [
+    "## State: START\n- **Description:** Navigate to CAEC Access CrowdFiber page\n- **Triggers:**\n\t1. If it is on the chrome homescreen\n- **Actions:**\n\t1. Go to https://caecaccess.com/front_end word for word\n\t2. TERMINATE AT THIS POINT",
+    "## State: ADDRESS_BAR\n- **Description:** If on the CAEC Access page\n- **Triggers:**\n\t1. If you see 'Please enter your address below'\n- **Actions:**\n\t1. FOLLOW THESE INSTRUCTIONS CLOSELY\n\t2. Scroll down\n\t3. Type `%address%` into the input field\n\t4. Type `%zip_code%` into the input field\n\t5. Press on the 'Select Market' dropdown menu and press down key and press enter key\n\t6. Click the 'Go' button\n\t7. TERMINATE AT THIS POINT",
+    "## State: CONFIRM_ADDRESS\n- **Description:** Confirm address location\n- **Triggers:**\n\t1. If you see 'Verify that the blue pin on the map is at the correct location for your service address.'\n- **Actions:**\n\t1. Scroll down\n\t2. Click the 'Next' button\n\t3. DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT",
+    "## State: SERVICEABLE\n- **Description:** Build your bundle\n- **Triggers:**\n\t1. If you see 'Build your bundle'\n- **Actions:**\n\t1. DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT\n- **End State:** serviceable_with_plans",
+    "## State: NO_SERVICE\n- **Description:** Service not available - (e.g. 'Unfortunately, your address is not in an area where service is available at this time. However, if we receive enough expressions of interest in your neighborhood, we may add this area in the future. To register your interest, please complete the form below. This does not obligate you for service, but will allow us to keep you informed of changes.')\n- **Triggers:**\n\t1. If you see 'Unfortunately, your address is not in an area where service is available at this time. However, if we receive enough expressions of interest in your neighborhood, we may add this area in the future. To register your interest, please complete the form below. This does not obligate you for service, but will allow us to keep you informed of changes.'\n- **Actions:**\n\t1. DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT\n- **End State:** no_service"
+  ],
+  "passed_states": [],
+  "recursion_count": 4,
+  "last_passed_state_name": null,
+  "consecutive_state_count": 0,
+  "state_timeout_start": null,
+  "variables": {
+    "address": "200 Frank H Ogawa Plz, Oakland, CA",
+    "zip_code": "94612"
+  },
+  "synthesis_prompt": "```\n## Step 1\nStep: TERMINATE ACTION\n```",
+  "synthesis_choice": {
+    "name": "NO_SERVICE",
+    "description": "Service not available - (e.g. 'Unfortunately, your address is not in an area where service is available at this time. However, if we receive enough expressions of interest in your neighborhood, we may add this area in the future. To register your interest, please complete the form below. This does not obligate you for service, but will allow us to keep you informed of changes.')",
+    "triggers": [
+      "If you see 'Unfortunately, your address is not in an area where service is available at this time. However, if we receive enough expressions of interest in your neighborhood, we may add this area in the future. To register your interest, please complete the form below. This does not obligate you for service, but will allow us to keep you informed of changes.'"
+    ],
+    "actions": [
+      "DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT"
+    ],
+    "end_state": "no_service"
+  },
+  "synthesis_triggers": [
+    {
+      "type": "text",
+      "params": {
+        "text": "Unfortunately, your address is not in an area where service is available at this time. However, if w..."
+      }
+    }
+  ],
+  "executed_states": [
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Verify that the marker below is the correct location for your address. If not, drag the blue marker ..."
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "p"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1116.06640625,
+            "y": 748.421875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The address is not serviceable and there is no 'Next' button to proceed."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'Unfortunately, your address is not in an area where service is available at this time. However, if we receive enough expressions of interest in your neighborhood, we may add this area in the future. To register your interest, please complete the form below. This does not obligate you for service, but will allow us to keep you informed of changes.')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Unfortunately, your address is not in an area where service is available at this time. However, if w..."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "Terminating the task as instructed."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": []
+    }
+  ]
+}

@@ -1,0 +1,388 @@
+{
+  "state_repository": [
+    {
+      "name": "START",
+      "description": "Navigate to DFT Communications CrowdFiber page",
+      "checks": [
+        {
+          "type": "url",
+          "params": {
+            "url": "data:,"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "navigate",
+          "params": {
+            "url": "https://connect.dftcommunications.com/front_end"
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is completed as per the instructions. The website has been navigated to, and the next step is to terminate."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the DFT Communications page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Enter your address below to see if our services are available at your location!"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+            "x": 311.3828125,
+            "y": 552.3828125
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%zip_code%",
+            "by": "css selector",
+            "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+            "x": 835.2578125,
+            "y": 552.3828125
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "select[id=\"\"][name=\"locate[service_class]\"][required=\"\"]",
+            "x": 1041.0078125,
+            "y": 551.375
+          }
+        },
+        {
+          "type": "press_key",
+          "params": {
+            "key": "down"
+          }
+        },
+        {
+          "type": "press_key",
+          "params": {
+            "key": "enter"
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+            "x": 1199.12890625,
+            "y": 551.375
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is completed as per the instructions. The website has been navigated to, the address and zip code have been entered, the service type has been selected, and the 'Go' button has been clicked. The next step is to terminate."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Click the Next button to see if services are available\u00a0at"
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "span"
+          }
+        },
+        {
+          "type": "text",
+          "params": {
+            "text": "7 Th St in Oakland CA 94612"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1140.90234375,
+            "y": 710.9921875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The current HTML state shows that the page has advanced to the contact information section, where the user is prompted to enter their email address. The original instruction was to terminate the task. Therefore, this step is still valid."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'Make It Possible!')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Make It Possible!"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The user query instructs to terminate the execution immediately. Therefore, no further steps are required."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": []
+    }
+  ],
+  "state_prompts": [
+    "## State: START\n- **Description:** Navigate to DFT Communications CrowdFiber page\n- **Triggers:**\n\t1. If it is on the chrome homescreen\n- **Actions:**\n\t1. Go to https://connect.dftcommunications.com/front_end word for word\n\t2. TERMINATE AT THIS POINT",
+    "## State: ADDRESS_BAR\n- **Description:** If on the DFT Communications page\n- **Triggers:**\n\t1. If you see 'Please enter your address below'\n- **Actions:**\n\t1. FOLLOW THESE INSTRUCTIONS CLOSELY\n\t2. Accept cookies first\n\t3. Type `%address%` into the input field\n\t4. Type `%zip_code%` into the input field\n\t5. Click on 'Service' dropdown, down arrow key once, then enter key\n\t6. Click the 'Go' button\n\t7. TERMINATE AT THIS POINT",
+    "## State: CONFIRM_ADDRESS\n- **Description:** Confirm address location\n- **Triggers:**\n\t1. If you see 'Verify that the marker below is the correct location for your address'\n- **Actions:**\n\t1. Scroll down\n\t2. Click the 'Next' button\n\t3. TERMINATE AT THIS POINT",
+    "## State: SERVICEABLE\n- **Description:** Build your bundle\n- **Triggers:**\n\t1. If you see 'Build your bundle'\n- **Actions:**\n\t1. DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT\n- **End State:** serviceable_with_plans",
+    "## State: NO_SERVICE\n- **Description:** Service not available - (e.g. 'Make It Possible!')\n- **Triggers:**\n\t1. If you see 'Make It Possible!'\n- **Actions:**\n\t1. DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT\n- **End State:** no_service"
+  ],
+  "passed_states": [],
+  "recursion_count": 4,
+  "last_passed_state_name": null,
+  "consecutive_state_count": 0,
+  "state_timeout_start": null,
+  "variables": {
+    "address": "17th St, Oakland, CA",
+    "zip_code": "94612"
+  },
+  "synthesis_prompt": "```\n## Step 1\nStep: TERMINATE THE EXECUTION.\n```",
+  "synthesis_choice": {
+    "name": "NO_SERVICE",
+    "description": "Service not available - (e.g. 'Make It Possible!')",
+    "triggers": [
+      "If you see 'Make It Possible!'"
+    ],
+    "actions": [
+      "DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT"
+    ],
+    "end_state": "no_service"
+  },
+  "synthesis_triggers": [
+    {
+      "type": "text",
+      "params": {
+        "text": "Make It Possible!"
+      }
+    }
+  ],
+  "executed_states": [
+    {
+      "name": "START",
+      "description": "Navigate to DFT Communications CrowdFiber page",
+      "checks": [
+        {
+          "type": "url",
+          "params": {
+            "url": "data:,"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "navigate",
+          "params": {
+            "url": "https://connect.dftcommunications.com/front_end"
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is completed as per the instructions. The website has been navigated to, and the next step is to terminate."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the DFT Communications page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Enter your address below to see if our services are available at your location!"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+            "x": 311.3828125,
+            "y": 552.3828125
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%zip_code%",
+            "by": "css selector",
+            "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+            "x": 835.2578125,
+            "y": 552.3828125
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "select[id=\"\"][name=\"locate[service_class]\"][required=\"\"]",
+            "x": 1041.0078125,
+            "y": 551.375
+          }
+        },
+        {
+          "type": "press_key",
+          "params": {
+            "key": "down"
+          }
+        },
+        {
+          "type": "press_key",
+          "params": {
+            "key": "enter"
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+            "x": 1199.12890625,
+            "y": 551.375
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is completed as per the instructions. The website has been navigated to, the address and zip code have been entered, the service type has been selected, and the 'Go' button has been clicked. The next step is to terminate."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Click the Next button to see if services are available\u00a0at"
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "span"
+          }
+        },
+        {
+          "type": "text",
+          "params": {
+            "text": "7 Th St in Oakland CA 94612"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1140.90234375,
+            "y": 710.9921875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The current HTML state shows that the page has advanced to the contact information section, where the user is prompted to enter their email address. The original instruction was to terminate the task. Therefore, this step is still valid."
+          }
+        }
+      ],
+      "end_state": "",
+      "executed": []
+    },
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'Make It Possible!')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Make It Possible!"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The user query instructs to terminate the execution immediately. Therefore, no further steps are required."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "executed": []
+    }
+  ]
+}

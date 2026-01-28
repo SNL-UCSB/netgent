@@ -1,0 +1,163 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to the TDS address entry page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "about:blank"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://tdstelecom.com/visitor/address-entry.html"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete as the page has been navigated to successfully."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to view available services",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://tdstelecom.com/visitor/address-entry.html"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "WE USE COOKIES"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button[id=\"onetrust-accept-btn-handler\"]",
+          "x": 1159.296875,
+          "y": 819.16015625
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.form-control.sessioncamexclude.ui-autocomplete-input[id=\"fullAddress\"][type=\"text\"][name=\"fullAddress\"][placeholder=\"\"][autocomplete=\"off\"]",
+          "x": 473.33203125,
+          "y": 654.4453125
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%only_address%",
+          "by": "css selector",
+          "selector": "input.form-control.sessioncamexclude.ui-autocomplete-input[id=\"fullAddress\"][type=\"text\"][name=\"fullAddress\"][placeholder=\"\"][autocomplete=\"off\"]",
+          "x": 473.33203125,
+          "y": 654.4453125
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.gallery-btn.pull-left[id=\"address-submit\"][type=\"submit\"]",
+          "x": 165.8984375,
+          "y": 772.2421875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete. The address has been entered, selected, and the submit button has been clicked."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE2",
+    "description": "Address not found in systems",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "We're sorry, but your address was not found in our systems. We cannot offer you any products at this..."
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://tdstelecom.com/visitor/unknown-address.html?fullAddress=9794+BOAT+CLUB+DR+SNELLING+CA&detailValue=dHA9MCN0dj02NjA4NWZmNyNsb2M9MTMwOTkwMyNsbmc9MzYjaG49OTc5NCNsYnM9MTA5OjExMTA4MDk0"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The instruction is to terminate immediately."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "executed": []
+  },
+  {
+    "name": "SERVICE_AVAILABLE_PLANS",
+    "description": "Choose a package - service is available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Choose a package and customize options to suit your needs."
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://tdstelecom.com/shop/packages/best-deals.html"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully."
+        }
+      }
+    ],
+    "end_state": "serviceable_with_plans",
+    "executed": []
+  }
+]
