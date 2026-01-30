@@ -31,11 +31,11 @@ class StateExecutor:
         if variables:
             params = self._render_value(params, variables)
         
-        logger.debug(f"Executing action: {action_type} with params: {params}")
+        print(f"Executing action: {action_type} with params: {params}")
         
         try:
             result = self.registry.execute(action_type, params)
-            logger.debug(f"Action {action_type} executed successfully")
+            print(f"Action {action_type} executed successfully")
             return result
         except KeyError as e:
             logger.error(f"Action not found: {e}")

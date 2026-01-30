@@ -50,8 +50,8 @@ prompts = [
     ),
     StatePrompt(
         name="NO_SERVICE",
-        description="Service not available (e.g. 'Contact Us')",
-        triggers=["Get the Text from the page like 'Contact Us'"],
+        description="Service not available (e.g. If it has the text 'Contact Us')",
+        triggers=["If you see 'Contact Us'"],
         actions=["TERMINATE AT THIS POINT"],
         end_state="no_service",
         save_content=True,

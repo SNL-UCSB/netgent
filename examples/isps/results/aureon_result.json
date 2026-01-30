@@ -1,0 +1,2453 @@
+{
+  "state_repository": [
+    {
+      "name": "START",
+      "description": "Navigate to Aureon page",
+      "checks": [
+        {
+          "type": "url",
+          "params": {
+            "url": "data:,"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "navigate",
+          "params": {
+            "url": "https://connect.aureon.com/front_end"
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "Task completed successfully as per the instructions."
+          }
+        }
+      ],
+      "end_state": "",
+      "save_content": false,
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the Aureon page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Submit your address below to see if your is located in Aureon's Service Area!"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+            "x": 421.875,
+            "y": 486.1875
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%zip_code%",
+            "by": "css selector",
+            "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+            "x": 945.75,
+            "y": 486.1875
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+            "x": 1088.62109375,
+            "y": 485.1796875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is to terminate immediately after clicking the 'Go' button."
+          }
+        }
+      ],
+      "end_state": "",
+      "save_content": false,
+      "executed": [
+        {
+          "name": "ADDRESS_BAR",
+          "description": "If on the Aureon page",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Submit your address below to see if your is located in Aureon's Service Area!"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "type",
+              "params": {
+                "text": "%address%",
+                "by": "css selector",
+                "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+                "x": 421.875,
+                "y": 486.1875
+              }
+            },
+            {
+              "type": "type",
+              "params": {
+                "text": "%zip_code%",
+                "by": "css selector",
+                "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+                "x": 945.75,
+                "y": 486.1875
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+                "x": 1088.62109375,
+                "y": 485.1796875
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The task is completed successfully."
+              }
+            }
+          ],
+          "end_state": "",
+          "save_content": false,
+          "executed": []
+        },
+        {
+          "name": "ADDRESS_BAR",
+          "description": "If on the Aureon page",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Submit your address below to see if your is located in Aureon's Service Area!"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "type",
+              "params": {
+                "text": "%address%",
+                "by": "css selector",
+                "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+                "x": 421.875,
+                "y": 486.1875
+              }
+            },
+            {
+              "type": "type",
+              "params": {
+                "text": "%zip_code%",
+                "by": "css selector",
+                "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+                "x": 945.75,
+                "y": 486.1875
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+                "x": 1088.62109375,
+                "y": 485.1796875
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The address and zip code have been entered and the go button has been clicked. The map is displayed with the address. The task is complete."
+              }
+            }
+          ],
+          "end_state": "",
+          "save_content": false,
+          "executed": []
+        },
+        {
+          "name": "ADDRESS_BAR",
+          "description": "If on the Aureon page",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Submit your address below to see if your is located in Aureon's Service Area!"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "type",
+              "params": {
+                "text": "%address%",
+                "by": "css selector",
+                "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+                "x": 421.875,
+                "y": 486.1875
+              }
+            },
+            {
+              "type": "type",
+              "params": {
+                "text": "%zip_code%",
+                "by": "css selector",
+                "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+                "x": 945.75,
+                "y": 486.1875
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+                "x": 1088.62109375,
+                "y": 485.1796875
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The task is completed as the address and zip code were successfully submitted and the page has advanced to show the address."
+              }
+            }
+          ],
+          "end_state": "",
+          "save_content": false,
+          "executed": []
+        },
+        {
+          "name": "ADDRESS_BAR",
+          "description": "If on the Aureon page",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Submit your address below to see if your is located in Aureon's Service Area!"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "type",
+              "params": {
+                "text": "%address%",
+                "by": "css selector",
+                "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+                "x": 421.875,
+                "y": 486.1875
+              }
+            },
+            {
+              "type": "type",
+              "params": {
+                "text": "%zip_code%",
+                "by": "css selector",
+                "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+                "x": 945.75,
+                "y": 486.1875
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+                "x": 1088.62109375,
+                "y": 485.1796875
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The task is complete."
+              }
+            }
+          ],
+          "end_state": "",
+          "save_content": false,
+          "executed": []
+        },
+        {
+          "name": "ADDRESS_BAR",
+          "description": "If on the Aureon page",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Submit your address below to see if your is located in Aureon's Service Area!"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "type",
+              "params": {
+                "text": "%address%",
+                "by": "css selector",
+                "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+                "x": 421.875,
+                "y": 486.1875
+              }
+            },
+            {
+              "type": "type",
+              "params": {
+                "text": "%zip_code%",
+                "by": "css selector",
+                "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+                "x": 945.75,
+                "y": 486.1875
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+                "x": 1088.62109375,
+                "y": 485.1796875
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The task is complete as per the instructions."
+              }
+            }
+          ],
+          "end_state": "",
+          "save_content": false,
+          "executed": []
+        },
+        {
+          "name": "ADDRESS_BAR",
+          "description": "If on the Aureon page",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Submit your address below to see if your is located in Aureon's Service Area!"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "type",
+              "params": {
+                "text": "%address%",
+                "by": "css selector",
+                "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+                "x": 421.875,
+                "y": 486.1875
+              }
+            },
+            {
+              "type": "type",
+              "params": {
+                "text": "%zip_code%",
+                "by": "css selector",
+                "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+                "x": 945.75,
+                "y": 486.1875
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+                "x": 1088.62109375,
+                "y": 485.1796875
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The address and zip code have been inputted and the 'Go' button has been clicked. The page now shows the address on a map. The task is complete."
+              }
+            }
+          ],
+          "end_state": "",
+          "save_content": false,
+          "executed": []
+        },
+        {
+          "name": "ADDRESS_BAR",
+          "description": "If on the Aureon page",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Submit your address below to see if your is located in Aureon's Service Area!"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "type",
+              "params": {
+                "text": "%address%",
+                "by": "css selector",
+                "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+                "x": 421.875,
+                "y": 486.1875
+              }
+            },
+            {
+              "type": "type",
+              "params": {
+                "text": "%zip_code%",
+                "by": "css selector",
+                "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+                "x": 945.75,
+                "y": 486.1875
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+                "x": 1088.62109375,
+                "y": 485.1796875
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The address and zip code have been entered and the 'Go' button has been clicked. The map is displayed with the address. The task is complete."
+              }
+            }
+          ],
+          "end_state": "",
+          "save_content": false,
+          "executed": []
+        },
+        {
+          "name": "ADDRESS_BAR",
+          "description": "If on the Aureon page",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Submit your address below to see if your is located in Aureon's Service Area!"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "type",
+              "params": {
+                "text": "%address%",
+                "by": "css selector",
+                "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+                "x": 421.875,
+                "y": 486.1875
+              }
+            },
+            {
+              "type": "type",
+              "params": {
+                "text": "%zip_code%",
+                "by": "css selector",
+                "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+                "x": 945.75,
+                "y": 486.1875
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+                "x": 1088.62109375,
+                "y": 485.1796875
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The task is completed."
+              }
+            }
+          ],
+          "end_state": "",
+          "save_content": false,
+          "executed": []
+        },
+        {
+          "name": "ADDRESS_BAR",
+          "description": "If on the Aureon page",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Submit your address below to see if your is located in Aureon's Service Area!"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "type",
+              "params": {
+                "text": "%address%",
+                "by": "css selector",
+                "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+                "x": 421.875,
+                "y": 486.1875
+              }
+            },
+            {
+              "type": "type",
+              "params": {
+                "text": "%zip_code%",
+                "by": "css selector",
+                "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+                "x": 945.75,
+                "y": 486.1875
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+                "x": 1088.62109375,
+                "y": 485.1796875
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The task is complete. The address and zip code have been entered and the go button has been clicked. The page has updated to show the address entered."
+              }
+            }
+          ],
+          "end_state": "",
+          "save_content": false,
+          "executed": []
+        },
+        {
+          "name": "ADDRESS_BAR",
+          "description": "If on the Aureon page",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Submit your address below to see if your is located in Aureon's Service Area!"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "type",
+              "params": {
+                "text": "%address%",
+                "by": "css selector",
+                "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+                "x": 421.875,
+                "y": 486.1875
+              }
+            },
+            {
+              "type": "type",
+              "params": {
+                "text": "%zip_code%",
+                "by": "css selector",
+                "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+                "x": 945.75,
+                "y": 486.1875
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+                "x": 1088.62109375,
+                "y": 485.1796875
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The task is complete, so we terminate."
+              }
+            }
+          ],
+          "end_state": "",
+          "save_content": false,
+          "executed": []
+        }
+      ]
+    },
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Click the Next button in the bottom right!"
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "span"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1137.65625,
+            "y": 710.9921875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is to terminate immediately after clicking the 'Next' button. The previous action was clicking the 'Next' button, so now the task should be terminated."
+          }
+        }
+      ],
+      "end_state": "",
+      "save_content": false,
+      "executed": [
+        {
+          "name": "CONFIRM_ADDRESS",
+          "description": "Confirm address location",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Click the Next button in the bottom right!"
+              }
+            },
+            {
+              "type": "element",
+              "params": {
+                "by": "css selector",
+                "selector": "span"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The previous action was to terminate the task. The current step is to terminate the task."
+              }
+            }
+          ],
+          "end_state": "",
+          "save_content": false,
+          "executed": []
+        },
+        {
+          "name": "CONFIRM_ADDRESS",
+          "description": "Confirm address location",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Click the Next button in the bottom right!"
+              }
+            },
+            {
+              "type": "element",
+              "params": {
+                "by": "css selector",
+                "selector": "span"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "scroll",
+              "params": {
+                "direction": "down",
+                "pixels": 10
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+                "x": 1137.65625,
+                "y": 710.9921875
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The HTML doesn't show any button, we need to terminate the task."
+              }
+            }
+          ],
+          "end_state": "",
+          "save_content": false,
+          "executed": []
+        },
+        {
+          "name": "CONFIRM_ADDRESS",
+          "description": "Confirm address location",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Click the Next button in the bottom right!"
+              }
+            },
+            {
+              "type": "element",
+              "params": {
+                "by": "css selector",
+                "selector": "span"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "scroll",
+              "params": {
+                "direction": "down",
+                "pixels": 10
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+                "x": 1137.65625,
+                "y": 710.9921875
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The 'Next' button is not visible. The task is already terminated."
+              }
+            }
+          ],
+          "end_state": "",
+          "save_content": false,
+          "executed": []
+        },
+        {
+          "name": "CONFIRM_ADDRESS",
+          "description": "Confirm address location",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Click the Next button in the bottom right!"
+              }
+            },
+            {
+              "type": "element",
+              "params": {
+                "by": "css selector",
+                "selector": "span"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The previous action trajectory indicates that the task was completed and terminated. The current HTML state confirms that the address is displayed on the map. Therefore, no further actions are needed."
+              }
+            }
+          ],
+          "end_state": "",
+          "save_content": false,
+          "executed": []
+        },
+        {
+          "name": "CONFIRM_ADDRESS",
+          "description": "Confirm address location",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Click the Next button in the bottom right!"
+              }
+            },
+            {
+              "type": "element",
+              "params": {
+                "by": "css selector",
+                "selector": "span"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "scroll",
+              "params": {
+                "direction": "down",
+                "pixels": 10
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+                "x": 1137.65625,
+                "y": 710.9921875
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The current HTML state does not contain the 'Next' button. The previous action trajectory indicates that the 'Next' button was clicked, but the page has not advanced as expected. The current page requires the user to enter their email address, which is a different step than the one described in the global plan. Therefore, the task cannot be completed and must be terminated."
+              }
+            }
+          ],
+          "end_state": "",
+          "save_content": false,
+          "executed": []
+        },
+        {
+          "name": "CONFIRM_ADDRESS",
+          "description": "Confirm address location",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Click the Next button in the bottom right!"
+              }
+            },
+            {
+              "type": "element",
+              "params": {
+                "by": "css selector",
+                "selector": "span"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "scroll",
+              "params": {
+                "direction": "down",
+                "pixels": 10
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+                "x": 1137.65625,
+                "y": 710.9921875
+              }
+            },
+            {
+              "type": "type",
+              "params": {
+                "text": "test@example.com",
+                "by": "css selector",
+                "selector": "input.input.is-medium[placeholder*=\"Email Address\"][type=\"email\"][name=\"[user][email]\"][id=\"user_email\"][required=\"true\"]",
+                "x": 653.0,
+                "y": 813.015625
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The task is complete. The email address has been entered, and the instruction is to terminate."
+              }
+            }
+          ],
+          "end_state": "",
+          "save_content": false,
+          "executed": []
+        },
+        {
+          "name": "CONFIRM_ADDRESS",
+          "description": "Confirm address location",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Click the Next button in the bottom right!"
+              }
+            },
+            {
+              "type": "element",
+              "params": {
+                "by": "css selector",
+                "selector": "span"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The previous action trajectory indicates that the task has already been completed and terminated. The current HTML state does not contain a 'Next' button. Therefore, no further actions are needed."
+              }
+            }
+          ],
+          "end_state": "",
+          "save_content": false,
+          "executed": []
+        },
+        {
+          "name": "CONFIRM_ADDRESS",
+          "description": "Confirm address location",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Click the Next button in the bottom right!"
+              }
+            },
+            {
+              "type": "element",
+              "params": {
+                "by": "css selector",
+                "selector": "span"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "scroll",
+              "params": {
+                "direction": "down",
+                "pixels": 10
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+                "x": 1137.65625,
+                "y": 710.9921875
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The task is complete."
+              }
+            }
+          ],
+          "end_state": "",
+          "save_content": false,
+          "executed": []
+        },
+        {
+          "name": "CONFIRM_ADDRESS",
+          "description": "Confirm address location",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Click the Next button in the bottom right!"
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "scroll",
+              "params": {
+                "direction": "down",
+                "pixels": 10
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+                "x": 1137.65625,
+                "y": 710.9921875
+              }
+            },
+            {
+              "type": "type",
+              "params": {
+                "text": "test@example.com",
+                "by": "css selector",
+                "selector": "input.input.is-medium[placeholder*=\"Email Address\"][type=\"email\"][name=\"[user][email]\"][id=\"user_email\"][required=\"true\"]",
+                "x": 653.0,
+                "y": 813.015625
+              }
+            },
+            {
+              "type": "scroll",
+              "params": {
+                "direction": "down",
+                "pixels": 10
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+                "x": 1137.65625,
+                "y": 709.453125
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+                "x": 1137.65625,
+                "y": 808.453125
+              }
+            },
+            {
+              "type": "type",
+              "params": {
+                "text": "John",
+                "by": "css selector",
+                "selector": "input.input.is-medium.error[placeholder=\"First\"][type=\"text\"][name=\"[contact][first_name]\"][id=\"contact_first_name\"][required=\"\"]",
+                "x": 535.5,
+                "y": 529.5
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+                "x": 1137.65625,
+                "y": 808.453125
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+                "x": 1137.65625,
+                "y": 808.453125
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+                "x": 1137.65625,
+                "y": 808.453125
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+                "x": 1137.65625,
+                "y": 808.453125
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+                "x": 1137.65625,
+                "y": 808.453125
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+                "x": 1137.65625,
+                "y": 808.453125
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+                "x": 1137.65625,
+                "y": 808.453125
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+                "x": 1137.65625,
+                "y": 808.453125
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+                "x": 1137.65625,
+                "y": 808.453125
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+                "x": 1137.65625,
+                "y": 808.453125
+              }
+            },
+            {
+              "type": "click",
+              "params": {
+                "by": "css selector",
+                "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+                "x": 1137.65625,
+                "y": 808.453125
+              }
+            },
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The instruction is to terminate the task."
+              }
+            }
+          ],
+          "end_state": "",
+          "save_content": false,
+          "executed": []
+        }
+      ]
+    },
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'Aureon does not currently have commercial services available in your area. We are able to work with partners throughout the United States to help support the data and network needs of businesses like yours. If you are interested in exploring our partner network options, please provide your contact information below. An Aureon expert will reach out to you regarding your request.')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Aureon does not currently have commercial services available in your area."
+          }
+        },
+        {
+          "type": "text",
+          "params": {
+            "text": "We are able to work with partners throughout the United States to help support the data and network ..."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The instruction is to terminate the action immediately."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "save_content": true,
+      "executed": [
+        {
+          "name": "NO_SERVICE",
+          "description": "Service not available - (e.g. 'Aureon does not currently have commercial services available in your area. We are able to work with partners throughout the United States to help support the data and network needs of businesses like yours. If you are interested in exploring our partner network options, please provide your contact information below. An Aureon expert will reach out to you regarding your request.')",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Aureon does not currently have commercial services available in your area."
+              }
+            },
+            {
+              "type": "text",
+              "params": {
+                "text": "We are able to work with partners throughout the United States to help support the data and network ..."
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The task is completed successfully."
+              }
+            }
+          ],
+          "end_state": "no_service",
+          "save_content": true,
+          "executed": []
+        },
+        {
+          "name": "NO_SERVICE",
+          "description": "Service not available - (e.g. 'Aureon does not currently have commercial services available in your area. We are able to work with partners throughout the United States to help support the data and network needs of businesses like yours. If you are interested in exploring our partner network options, please provide your contact information below. An Aureon expert will reach out to you regarding your request.')",
+          "checks": [
+            {
+              "type": "text",
+              "params": {
+                "text": "Aureon does not currently have commercial services available in your area."
+              }
+            }
+          ],
+          "actions": [
+            {
+              "type": "terminate",
+              "params": {
+                "reason": "The user query instructs to terminate the action immediately."
+              }
+            }
+          ],
+          "end_state": "no_service",
+          "save_content": true,
+          "executed": []
+        }
+      ]
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the Aureon page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Submit your address below to see if your is located in Aureon's Service Area!"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+            "x": 421.875,
+            "y": 486.1875
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%zip_code%",
+            "by": "css selector",
+            "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+            "x": 945.75,
+            "y": 486.1875
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+            "x": 1088.62109375,
+            "y": 485.1796875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is completed successfully."
+          }
+        }
+      ],
+      "end_state": "",
+      "save_content": false,
+      "executed": []
+    },
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Click the Next button in the bottom right!"
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "span"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The previous action was to terminate the task. The current step is to terminate the task."
+          }
+        }
+      ],
+      "end_state": "",
+      "save_content": false,
+      "executed": []
+    },
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Click the Next button in the bottom right!"
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "span"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1137.65625,
+            "y": 710.9921875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The HTML doesn't show any button, we need to terminate the task."
+          }
+        }
+      ],
+      "end_state": "",
+      "save_content": false,
+      "executed": []
+    },
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'Aureon does not currently have commercial services available in your area. We are able to work with partners throughout the United States to help support the data and network needs of businesses like yours. If you are interested in exploring our partner network options, please provide your contact information below. An Aureon expert will reach out to you regarding your request.')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Aureon does not currently have commercial services available in your area."
+          }
+        },
+        {
+          "type": "text",
+          "params": {
+            "text": "We are able to work with partners throughout the United States to help support the data and network ..."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is completed successfully."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "save_content": true,
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the Aureon page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Submit your address below to see if your is located in Aureon's Service Area!"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+            "x": 421.875,
+            "y": 486.1875
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%zip_code%",
+            "by": "css selector",
+            "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+            "x": 945.75,
+            "y": 486.1875
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+            "x": 1088.62109375,
+            "y": 485.1796875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The address and zip code have been entered and the go button has been clicked. The map is displayed with the address. The task is complete."
+          }
+        }
+      ],
+      "end_state": "",
+      "save_content": false,
+      "executed": []
+    },
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Click the Next button in the bottom right!"
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "span"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1137.65625,
+            "y": 710.9921875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The 'Next' button is not visible. The task is already terminated."
+          }
+        }
+      ],
+      "end_state": "",
+      "save_content": false,
+      "executed": []
+    },
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'Aureon does not currently have commercial services available in your area. We are able to work with partners throughout the United States to help support the data and network needs of businesses like yours. If you are interested in exploring our partner network options, please provide your contact information below. An Aureon expert will reach out to you regarding your request.')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Aureon does not currently have commercial services available in your area."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The user query instructs to terminate the action immediately."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "save_content": true,
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the Aureon page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Submit your address below to see if your is located in Aureon's Service Area!"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+            "x": 421.875,
+            "y": 486.1875
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%zip_code%",
+            "by": "css selector",
+            "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+            "x": 945.75,
+            "y": 486.1875
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+            "x": 1088.62109375,
+            "y": 485.1796875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is completed as the address and zip code were successfully submitted and the page has advanced to show the address."
+          }
+        }
+      ],
+      "end_state": "",
+      "save_content": false,
+      "executed": []
+    },
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Click the Next button in the bottom right!"
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "span"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The previous action trajectory indicates that the task was completed and terminated. The current HTML state confirms that the address is displayed on the map. Therefore, no further actions are needed."
+          }
+        }
+      ],
+      "end_state": "",
+      "save_content": false,
+      "executed": []
+    },
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Click the Next button in the bottom right!"
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "span"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1137.65625,
+            "y": 710.9921875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The current HTML state does not contain the 'Next' button. The previous action trajectory indicates that the 'Next' button was clicked, but the page has not advanced as expected. The current page requires the user to enter their email address, which is a different step than the one described in the global plan. Therefore, the task cannot be completed and must be terminated."
+          }
+        }
+      ],
+      "end_state": "",
+      "save_content": false,
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the Aureon page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Submit your address below to see if your is located in Aureon's Service Area!"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+            "x": 421.875,
+            "y": 486.1875
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%zip_code%",
+            "by": "css selector",
+            "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+            "x": 945.75,
+            "y": 486.1875
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+            "x": 1088.62109375,
+            "y": 485.1796875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is complete."
+          }
+        }
+      ],
+      "end_state": "",
+      "save_content": false,
+      "executed": []
+    },
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Click the Next button in the bottom right!"
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "span"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1137.65625,
+            "y": 710.9921875
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "test@example.com",
+            "by": "css selector",
+            "selector": "input.input.is-medium[placeholder*=\"Email Address\"][type=\"email\"][name=\"[user][email]\"][id=\"user_email\"][required=\"true\"]",
+            "x": 653.0,
+            "y": 813.015625
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is complete. The email address has been entered, and the instruction is to terminate."
+          }
+        }
+      ],
+      "end_state": "",
+      "save_content": false,
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the Aureon page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Submit your address below to see if your is located in Aureon's Service Area!"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+            "x": 421.875,
+            "y": 486.1875
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%zip_code%",
+            "by": "css selector",
+            "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+            "x": 945.75,
+            "y": 486.1875
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+            "x": 1088.62109375,
+            "y": 485.1796875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is complete as per the instructions."
+          }
+        }
+      ],
+      "end_state": "",
+      "save_content": false,
+      "executed": []
+    },
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Click the Next button in the bottom right!"
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "span"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The previous action trajectory indicates that the task has already been completed and terminated. The current HTML state does not contain a 'Next' button. Therefore, no further actions are needed."
+          }
+        }
+      ],
+      "end_state": "",
+      "save_content": false,
+      "executed": []
+    },
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Click the Next button in the bottom right!"
+          }
+        },
+        {
+          "type": "element",
+          "params": {
+            "by": "css selector",
+            "selector": "span"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1137.65625,
+            "y": 710.9921875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is complete."
+          }
+        }
+      ],
+      "end_state": "",
+      "save_content": false,
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the Aureon page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Submit your address below to see if your is located in Aureon's Service Area!"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+            "x": 421.875,
+            "y": 486.1875
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%zip_code%",
+            "by": "css selector",
+            "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+            "x": 945.75,
+            "y": 486.1875
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+            "x": 1088.62109375,
+            "y": 485.1796875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The address and zip code have been inputted and the 'Go' button has been clicked. The page now shows the address on a map. The task is complete."
+          }
+        }
+      ],
+      "end_state": "",
+      "save_content": false,
+      "executed": []
+    },
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Click the Next button in the bottom right!"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1137.65625,
+            "y": 710.9921875
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "test@example.com",
+            "by": "css selector",
+            "selector": "input.input.is-medium[placeholder*=\"Email Address\"][type=\"email\"][name=\"[user][email]\"][id=\"user_email\"][required=\"true\"]",
+            "x": 653.0,
+            "y": 813.015625
+          }
+        },
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1137.65625,
+            "y": 709.453125
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1137.65625,
+            "y": 808.453125
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "John",
+            "by": "css selector",
+            "selector": "input.input.is-medium.error[placeholder=\"First\"][type=\"text\"][name=\"[contact][first_name]\"][id=\"contact_first_name\"][required=\"\"]",
+            "x": 535.5,
+            "y": 529.5
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1137.65625,
+            "y": 808.453125
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1137.65625,
+            "y": 808.453125
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1137.65625,
+            "y": 808.453125
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1137.65625,
+            "y": 808.453125
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1137.65625,
+            "y": 808.453125
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1137.65625,
+            "y": 808.453125
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1137.65625,
+            "y": 808.453125
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1137.65625,
+            "y": 808.453125
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1137.65625,
+            "y": 808.453125
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1137.65625,
+            "y": 808.453125
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1137.65625,
+            "y": 808.453125
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The instruction is to terminate the task."
+          }
+        }
+      ],
+      "end_state": "",
+      "save_content": false,
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the Aureon page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Submit your address below to see if your is located in Aureon's Service Area!"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+            "x": 421.875,
+            "y": 486.1875
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%zip_code%",
+            "by": "css selector",
+            "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+            "x": 945.75,
+            "y": 486.1875
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+            "x": 1088.62109375,
+            "y": 485.1796875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The address and zip code have been entered and the 'Go' button has been clicked. The map is displayed with the address. The task is complete."
+          }
+        }
+      ],
+      "end_state": "",
+      "save_content": false,
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the Aureon page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Submit your address below to see if your is located in Aureon's Service Area!"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+            "x": 421.875,
+            "y": 486.1875
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%zip_code%",
+            "by": "css selector",
+            "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+            "x": 945.75,
+            "y": 486.1875
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+            "x": 1088.62109375,
+            "y": 485.1796875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is completed."
+          }
+        }
+      ],
+      "end_state": "",
+      "save_content": false,
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the Aureon page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Submit your address below to see if your is located in Aureon's Service Area!"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+            "x": 421.875,
+            "y": 486.1875
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%zip_code%",
+            "by": "css selector",
+            "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+            "x": 945.75,
+            "y": 486.1875
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+            "x": 1088.62109375,
+            "y": 485.1796875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is complete. The address and zip code have been entered and the go button has been clicked. The page has updated to show the address entered."
+          }
+        }
+      ],
+      "end_state": "",
+      "save_content": false,
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the Aureon page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Submit your address below to see if your is located in Aureon's Service Area!"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+            "x": 421.875,
+            "y": 486.1875
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%zip_code%",
+            "by": "css selector",
+            "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+            "x": 945.75,
+            "y": 486.1875
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+            "x": 1088.62109375,
+            "y": 485.1796875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is complete, so we terminate."
+          }
+        }
+      ],
+      "end_state": "",
+      "save_content": false,
+      "executed": []
+    }
+  ],
+  "state_prompts": [
+    "## State: START\n- **Description:** Navigate to Aureon page\n- **Triggers:**\n\t1. If it is on the chrome homescreen\n- **Actions:**\n\t1. Go to https://connect.aureon.com/front_end word for word\n\t2. TERMINATE AT THIS POINT",
+    "## State: ADDRESS_BAR\n- **Description:** If on the Aureon page\n- **Triggers:**\n\t1. If you see 'Please enter your address below'\n- **Actions:**\n\t1. FOLLOW THESE INSTRUCTIONS CLOSELY\n\t2. Accept cookies first\n\t3. Type `%address%` into the input field\n\t4. Type `%zip_code%` into the input field\n\t5. Click the 'Go' button\n\t6. TERMINATE AT THIS POINT",
+    "## State: CONFIRM_ADDRESS\n- **Description:** Confirm address location\n- **Triggers:**\n\t1. If you see '*If you would like to update the location of your address please drag and drop the blue pin to the rooftop of your service address.'\n- **Actions:**\n\t1. Scroll down\n\t2. Click the 'Next' button\n\t3. DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT",
+    "## State: SERVICEABLE\n- **Description:** Build your bundle\n- **Triggers:**\n\t1. If you see 'Build your bundle'\n- **Actions:**\n\t1. DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT\n- **End State:** serviceable_with_plans\n- **Save Content:** True",
+    "## State: NO_SERVICE\n- **Description:** Service not available - (e.g. 'Aureon does not currently have commercial services available in your area. We are able to work with partners throughout the United States to help support the data and network needs of businesses like yours. If you are interested in exploring our partner network options, please provide your contact information below. An Aureon expert will reach out to you regarding your request.')\n- **Triggers:**\n\t1. If you see 'Aureon does not currently have commercial services available in your area. We are able to work with partners throughout the United States to help support the data and network needs of businesses like yours. If you are interested in exploring our partner network options, please provide your contact information below. An Aureon expert will reach out to you regarding your request.'\n- **Actions:**\n\t1. DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT\n- **End State:** no_service\n- **Save Content:** True"
+  ],
+  "passed_states": [
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'Aureon does not currently have commercial services available in your area. We are able to work with partners throughout the United States to help support the data and network needs of businesses like yours. If you are interested in exploring our partner network options, please provide your contact information below. An Aureon expert will reach out to you regarding your request.')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Aureon does not currently have commercial services available in your area."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The user query instructs to terminate the action immediately."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "save_content": true,
+      "executed": []
+    }
+  ],
+  "recursion_count": 4,
+  "last_passed_state_name": "NO_SERVICE",
+  "consecutive_state_count": 1,
+  "state_timeout_start": null,
+  "variables": {
+    "address": "1633 San Pablo Ave, Oakland, CA",
+    "zip_code": "94612"
+  },
+  "synthesis_prompt": "```\n## Step 1\nStep: Input '%address%' into the 'Search For Your Address' input field.\n```\n```\n## Step 2\nStep: Input '%zip_code%' into the 'Zip Code' input field.\n```\n```\n## Step 3\nStep: Click the 'Go' button.\n```\n```\n## Step 4\nStep: TERMINATION\n```",
+  "synthesis_choice": {
+    "name": "ADDRESS_BAR",
+    "description": "If on the Aureon page",
+    "triggers": [
+      "If you see 'Please enter your address below'"
+    ],
+    "actions": [
+      "FOLLOW THESE INSTRUCTIONS CLOSELY",
+      "Accept cookies first",
+      "Type `%address%` into the input field",
+      "Type `%zip_code%` into the input field",
+      "Click the 'Go' button",
+      "TERMINATE AT THIS POINT"
+    ],
+    "end_state": "",
+    "save_content": false
+  },
+  "synthesis_triggers": [
+    {
+      "type": "text",
+      "params": {
+        "text": "Submit your address below to see if your is located in Aureon's Service Area!"
+      }
+    }
+  ],
+  "executed_states": [
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the Aureon page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Submit your address below to see if your is located in Aureon's Service Area!"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+            "x": 421.875,
+            "y": 486.1875
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%zip_code%",
+            "by": "css selector",
+            "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+            "x": 945.75,
+            "y": 486.1875
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+            "x": 1088.62109375,
+            "y": 485.1796875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The task is complete, so we terminate."
+          }
+        }
+      ],
+      "end_state": "",
+      "save_content": false,
+      "executed": []
+    }
+  ]
+}

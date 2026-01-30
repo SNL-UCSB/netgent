@@ -57,7 +57,7 @@ with BQTDatabase() as db:
         addresses.append(address_entry)
 
 # Pick an address
-address_data = addresses[10] 
+address_data = addresses[12] 
 address = address_data['address']
 zip_code = address_data['zip_code']
 

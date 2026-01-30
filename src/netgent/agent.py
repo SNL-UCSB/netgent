@@ -236,6 +236,7 @@ class NetGent():
     def _state_executor(self, state: NetGentState):
         passed_states = state.get('passed_states', [])
         current_state = passed_states[0]
+        print(f"DEBUG: Running state '{current_state.get('name')}' from state_executor with actions: {current_state.get('actions')}")
         self.state_executor.run(current_state, state.get('variables', {}))
         
         # Save content if save_content is True and save_content_dir is set
@@ -358,7 +359,7 @@ class NetGent():
             "messages": web_agent_state.get('messages')
         }
 
-    def run(self, state_prompts: list[StatePrompt] = [], state_repository: list[dict[str, Any]] = [], variables: dict[str, Any] = {}, end_state_files: str = "", session: Optional[str] = None, save_content_dir: Optional[str] = None):
+    def run(self, state_prompts: list[StatePrompt] = [], state_repository: list[dict[str, Any]] = [], variables: dict[str, Any] = {}, end_state_files: str = "", session: Optional[str] = None, save_content_dir: Optional[str] = None, close_browser: bool = False):
         # Accept either a list of state dicts or a dict containing "state_repository"
         if isinstance(state_repository, dict):
             repo_list = state_repository.get("state_repository", [])
@@ -442,3 +443,10 @@ class NetGent():
                 span.set_status(Status(StatusCode.ERROR, description=str(e)))
                 span.record_exception(e)
                 raise e
+            finally:
+                if close_browser and self.driver:
+                    try:
+                        self.driver.quit()
+                        print("Browser closed by NetGent")
+                    except Exception as e:
+                        print(f"Error closing browser: {e}")

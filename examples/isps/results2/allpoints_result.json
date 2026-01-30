@@ -26,7 +26,31 @@
     ],
     "end_state": "",
     "save_content": false,
-    "executed": []
+    "executed": [
+      {
+        "name": "START",
+        "description": "Navigate to Allpoints Broadband signup page",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://signup.allpointsbroadband.com/plan/internet"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      }
+    ]
   },
   {
     "name": "ADDRESS_BAR",
@@ -88,7 +112,204 @@
     ],
     "end_state": "",
     "save_content": false,
-    "executed": []
+    "executed": [
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Internet plans"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Choose the internet plan that works best for you."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.sc-y9hi4b-0.sc-o9753a-1.cJvJRg.eawxRx[type=\"button\"]",
+              "x": 618.18359375,
+              "y": 318.0
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.sc-isRoRg.fVrUAB[type=\"search\"][placeholder*=\"Enter full address\"]",
+              "x": 684.0,
+              "y": 503.0
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.sc-gFqAkR.cOuTVj.sc-ahr735-11.jiJWOB[type=\"submit\"]",
+              "x": 389.75390625,
+              "y": 719.0
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Internet plans"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Choose the internet plan that works best for you."
+            }
+          },
+          {
+            "type": "element",
+            "params": {
+              "by": "css selector",
+              "selector": "h1.sc-dAlyuH.ilEQPm"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.sc-y9hi4b-0.sc-o9753a-1.cJvJRg.eawxRx[type=\"button\"]",
+              "x": 659.72265625,
+              "y": 318.0
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.sc-isRoRg.fVrUAB[type=\"search\"][placeholder*=\"Enter full address\"]",
+              "x": 684.0,
+              "y": 503.0
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.sc-gFqAkR.cOuTVj.sc-ahr735-11.jiJWOB[type=\"submit\"]",
+              "x": 389.75390625,
+              "y": 719.0
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Internet plans"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Choose the internet plan that works best for you."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.sc-y9hi4b-0.sc-o9753a-1.cJvJRg.eawxRx[type=\"button\"]",
+              "x": 652.96484375,
+              "y": 318.0
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.sc-isRoRg.fVrUAB[type=\"search\"][placeholder*=\"Enter full address\"]",
+              "x": 684.0,
+              "y": 503.0
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.sc-gFqAkR.cOuTVj.sc-ahr735-11.jiJWOB[type=\"submit\"]",
+              "x": 389.75390625,
+              "y": 719.0
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      }
+    ]
   },
   {
     "name": "SERVICEABLE",
@@ -123,6 +344,248 @@
       }
     ],
     "end_state": "serviceable_with_plans",
+    "save_content": true,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Internet plans"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Choose the internet plan that works best for you."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.sc-y9hi4b-0.sc-o9753a-1.cJvJRg.eawxRx[type=\"button\"]",
+          "x": 618.18359375,
+          "y": 318.0
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.sc-isRoRg.fVrUAB[type=\"search\"][placeholder*=\"Enter full address\"]",
+          "x": 684.0,
+          "y": 503.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.sc-gFqAkR.cOuTVj.sc-ahr735-11.jiJWOB[type=\"submit\"]",
+          "x": 389.75390625,
+          "y": 719.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Internet plans"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Choose the internet plan that works best for you."
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "h1.sc-dAlyuH.ilEQPm"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.sc-y9hi4b-0.sc-o9753a-1.cJvJRg.eawxRx[type=\"button\"]",
+          "x": 659.72265625,
+          "y": 318.0
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.sc-isRoRg.fVrUAB[type=\"search\"][placeholder*=\"Enter full address\"]",
+          "x": 684.0,
+          "y": 503.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.sc-gFqAkR.cOuTVj.sc-ahr735-11.jiJWOB[type=\"submit\"]",
+          "x": 389.75390625,
+          "y": 719.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Internet plans"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Choose the internet plan that works best for you."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.sc-y9hi4b-0.sc-o9753a-1.cJvJRg.eawxRx[type=\"button\"]",
+          "x": 652.96484375,
+          "y": 318.0
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.sc-isRoRg.fVrUAB[type=\"search\"][placeholder*=\"Enter full address\"]",
+          "x": 684.0,
+          "y": 503.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.sc-gFqAkR.cOuTVj.sc-ahr735-11.jiJWOB[type=\"submit\"]",
+          "x": 389.75390625,
+          "y": 719.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "START",
+    "description": "Navigate to Allpoints Broadband signup page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://signup.allpointsbroadband.com/plan/internet"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Not in service area",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Stay tuned! We\u2019re not in your area just yet \u2014 but we can\u2019t wait to get there!"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "no_service",
     "save_content": true,
     "executed": []
   }

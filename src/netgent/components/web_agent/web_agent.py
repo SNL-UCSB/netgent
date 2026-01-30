@@ -107,7 +107,9 @@ class WebAgent():
         }
 
 
-    def run(self, user_query: str, messages: List[Message] = [], wait_period: float = 0.5, variables: dict[str, Any] = {}):
+    def run(self, user_query: str, messages: List[Message] = None, wait_period: float = 0.5, variables: dict[str, Any] = {}):
+        if messages is None:
+            messages = []
         self.wait_period = wait_period
         state = WebAgentState(
             user_query=user_query,
@@ -119,8 +121,10 @@ class WebAgent():
             pending_action=None
         )
         state = self.graph.invoke(state, { "recursion_limit": 100})
-        print("Web Agent State:", state)
+        print("Web Agent State Actions:", state.get("actions"))
         return state
+
+    # ... (other methods)
     
     def _annotate(self, state: WebAgentState):
         time.sleep(2 * self.wait_period)
@@ -166,7 +170,6 @@ class WebAgent():
         print(self.prompt)
         return { **state, "global_plan": response.content }
 
-    
     def _generate(self, state: WebAgentState):
         # Build the prompt that instructs the LLM to propose the next action
         variables = state.get("variables", {}) or {}
@@ -226,11 +229,13 @@ class WebAgent():
         chain = prompt | self.llm | self.action_parser
         response = chain.invoke({})
 
-        state["messages"] += [ActionOutput(**response)]
+        state["messages"] = state["messages"] + [ActionOutput(**response)]
 
         replayable_action = self._convert_action_to_json(response)
-        print(replayable_action)
-        state["actions"] = state["actions"] + [replayable_action]
+        print(f"DEBUG: Generated action: {replayable_action}")
+        current_actions = state.get("actions", [])
+        state["actions"] = current_actions + [replayable_action]
+        print(f"DEBUG: Current actions list: {state['actions']}")
         state["pending_action"] = replayable_action
 
         return { **state }

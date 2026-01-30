@@ -1,0 +1,212 @@
+{
+  "state_repository": [
+    {
+      "name": "START",
+      "description": "Navigate to Altamaha Fiber CrowdFiber page",
+      "checks": [
+        {
+          "type": "url",
+          "params": {
+            "url": "data:,"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "navigate",
+          "params": {
+            "url": "https://join.altamahafiber.com/front_end"
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "Task completed successfully as per the user's instructions."
+          }
+        }
+      ],
+      "end_state": "",
+      "save_content": false,
+      "executed": []
+    },
+    {
+      "name": "ADDRESS_BAR",
+      "description": "If on the Altamaha Fiber page",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Home"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "type",
+          "params": {
+            "text": "%address%",
+            "by": "css selector",
+            "selector": "input.input.is-large.street.ui-autocomplete-input[placeholder*=\"Search For Your Address\"][required=\"required\"][type=\"text\"][name=\"locate[address]\"][id=\"locate_address\"][autocomplete=\"address-line1\"]",
+            "x": 311.3828125,
+            "y": 544.6953125
+          }
+        },
+        {
+          "type": "type",
+          "params": {
+            "text": "%zip_code%",
+            "by": "css selector",
+            "selector": "input.input.is-large.zip[placeholder*=\"Zip Code\"][required=\"required\"][type=\"text\"][name=\"locate[zip]\"][id=\"locate_zip\"][autocomplete=\"postal-code\"]",
+            "x": 835.2578125,
+            "y": 544.6953125
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "select[id=\"\"][name=\"locate[service_class]\"][required=\"\"]",
+            "x": 1041.0078125,
+            "y": 543.6875
+          }
+        },
+        {
+          "type": "press_key",
+          "params": {
+            "key": "down"
+          }
+        },
+        {
+          "type": "press_key",
+          "params": {
+            "key": "enter"
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-primary.is-large.address_search_button[type=\"submit\"][name=\"commit\"]",
+            "x": 1199.12890625,
+            "y": 543.6875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "Task completed successfully"
+          }
+        }
+      ],
+      "end_state": "",
+      "save_content": false,
+      "executed": []
+    },
+    {
+      "name": "CONFIRM_ADDRESS",
+      "description": "Confirm address location",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Please verify that the blue pin on the map below is at the exact location of your service address."
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "scroll",
+          "params": {
+            "direction": "down",
+            "pixels": 10
+          }
+        },
+        {
+          "type": "click",
+          "params": {
+            "by": "css selector",
+            "selector": "input.button.is-large.is-primary.is-pulled-right[type=\"submit\"][name=\"commit\"]",
+            "x": 1140.90234375,
+            "y": 710.9921875
+          }
+        },
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "Task completed successfully as per the instructions. The previous actions included scrolling down the page and clicking the 'Next' button. The current HTML state shows the page after these actions. The next step is to terminate the task as per the instructions."
+          }
+        }
+      ],
+      "end_state": "",
+      "save_content": false,
+      "executed": []
+    },
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'Make it a Possibility!')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Make it a Possibility!"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The user has explicitly instructed to terminate the execution."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "save_content": true,
+      "executed": []
+    }
+  ],
+  "state_prompts": [
+    "## State: START\n- **Description:** Navigate to Altamaha Fiber CrowdFiber page\n- **Triggers:**\n\t1. If it is on the chrome homescreen\n- **Actions:**\n\t1. Go to https://join.altamahafiber.com/front_end word for word\n\t2. TERMINATE AT THIS POINT",
+    "## State: ADDRESS_BAR\n- **Description:** If on the Altamaha Fiber page\n- **Triggers:**\n\t1. If you see 'Please enter your address below'\n- **Actions:**\n\t1. FOLLOW THESE INSTRUCTIONS CLOSELY\n\t2. Accept cookies first\n\t3. Type `%address%` into the input field\n\t4. Type `%zip_code%` into the input field\n\t5. Click on the drop down, Press down key to select the first suggestion\n\t6. Press enter key to confirm selection\n\t7. Click the 'Go' button\n\t8. TERMINATE AT THIS POINT",
+    "## State: CONFIRM_ADDRESS\n- **Description:** Confirm address location\n- **Triggers:**\n\t1. If you see 'Please verify that the blue pin on the map below is at the exact location of your service address.'\n- **Actions:**\n\t1. Scroll down\n\t2. Click the 'Next' button\n\t3. DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT",
+    "## State: SERVICEABLE\n- **Description:** Build your bundle\n- **Triggers:**\n\t1. If you see 'Build your bundle'\n- **Actions:**\n\t1. DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT\n- **End State:** serviceable_with_plans\n- **Save Content:** True",
+    "## State: NO_SERVICE\n- **Description:** Service not available - (e.g. 'Make it a Possibility!')\n- **Triggers:**\n\t1. If you see 'Make it a Possibility!'\n- **Actions:**\n\t1. DON'T DO ANYTHING, JUST TERMINATE AT THIS POINT\n- **End State:** no_service\n- **Save Content:** True"
+  ],
+  "passed_states": [
+    {
+      "name": "NO_SERVICE",
+      "description": "Service not available - (e.g. 'Make it a Possibility!')",
+      "checks": [
+        {
+          "type": "text",
+          "params": {
+            "text": "Make it a Possibility!"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "type": "terminate",
+          "params": {
+            "reason": "The user has explicitly instructed to terminate the execution."
+          }
+        }
+      ],
+      "end_state": "no_service",
+      "save_content": true,
+      "executed": []
+    }
+  ],
+  "recursion_count": 4,
+  "last_passed_state_name": "NO_SERVICE",
+  "consecutive_state_count": 1,
+  "state_timeout_start": null,
+  "variables": {
+    "address": "1633 San Pablo Ave, Oakland, CA",
+    "zip_code": "94612"
+  },
+  "synthesis_prompt": null,
+  "synthesis_choice": null,
+  "synthesis_triggers": null,
+  "executed_states": []
+}

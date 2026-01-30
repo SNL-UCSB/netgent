@@ -62,47 +62,46 @@ with BQTDatabase() as db:
         }
         addresses.append(address_entry)
 
-# Pick an address
-address_data = addresses[0] 
-address = address_data['address']
-zip_code = address_data['zip_code']
+for i in range(8, 11):
+    # Pick an address
+    address_data = addresses[i]
+    address = address_data['address']
+    zip_code = address_data['zip_code']
 
-# Generate fake contact info using Faker
-name_f = fake.first_name()
-name_l = fake.last_name()
-phone_num = fake.numerify("##########")
-email = fake.email()
+    # Generate fake contact info using Faker
+    name_f = fake.first_name()
+    name_l = fake.last_name()
+    phone_num = fake.numerify("##########")
+    email = fake.email()
 
-print(f"Address: {address}, Zip: {zip_code}")
+    print(f"Address: {address}, Zip: {zip_code}")
 
-agent = NetGent(llm=ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0.2, google_api_key=os.getenv("GOOGLE_API_KEY")), proxy=os.getenv("PROXY_URL"), llm_enabled=True)
+    agent = NetGent(llm=ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0.2, google_api_key=os.getenv("GOOGLE_API_KEY")), proxy=os.getenv("PROXY_URL"), llm_enabled=True)
 
-state_repository = []
+    state_repository = []
 
-if os.path.exists("examples/isps/results/altamahafiber_result.json"):
-    with open("examples/isps/results/altamahafiber_result.json", "r") as f:
-        try:
-            data = json.load(f)
-            if "state_repository" in data:
-                state_repository = data["state_repository"]
-                print(f"Loaded {len(state_repository)} states from previous session")
-        except:
-            pass
+    if os.path.exists("examples/isps/results/altamahafiber_result.json"):
+        with open("examples/isps/results/altamahafiber_result.json", "r") as f:
+            try:
+                data = json.load(f)
+                if "state_repository" in data:
+                    state_repository = data["state_repository"]
+                    print(f"Loaded {len(state_repository)} states from previous session")
+            except:
+                pass
 
-result = agent.run(
-    state_prompts=prompts, 
-    state_repository=state_repository, 
-    variables={
-        "address": address, 
-        "zip_code": zip_code,
-    },
-    session="altamahafiber",
-    save_content_dir="examples/isps/save/altamahafiber"
-)
+    result = agent.run(
+        state_prompts=prompts, 
+        state_repository=state_repository, 
+        variables={
+            "address": address, 
+            "zip_code": zip_code,
+        },
+        session="altamahafiber",
+        save_content_dir="examples/isps/save/altamahafiber"
+    )
 
-input("Press Enter to continue...")
-
-# Write result to file
-os.makedirs("examples/isps/results", exist_ok=True)
-with open("examples/isps/results/altamahafiber_result.json", "w") as f:
-    json.dump(result, f, indent=2, default=str)
+    # Write result to file
+    os.makedirs("examples/isps/results", exist_ok=True)
+    with open("examples/isps/results/altamahafiber_result.json", "w") as f:
+        json.dump(result, f, indent=2, default=str)

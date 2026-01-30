@@ -87,26 +87,25 @@ try:
 except FileNotFoundError:
     state_repository = []
 
-row_data = addresses[6]
-address = row_data['address']
-only_address = row_data['only_address']
-city = row_data['city']
-zip_code = row_data['zip_code']
+for i in range(8, 11):
+    row_data = addresses[i]
+    address = row_data['address']
+    only_address = row_data['only_address']
+    city = row_data['city']
+    zip_code = row_data['zip_code']
 
-print(f"Address: {address}, City: {city}, Zip: {zip_code}")
-    
-result = agent.run(
-    state_prompts=prompts, 
-    state_repository=state_repository, 
-    variables={"address": address, "only_address": only_address, "city": city, "state": row_data['state'], "zip_code": zip_code},
-    save_content_dir="examples/isps/save/allpoints",
-    session="allpoints"
-)
+    print(f"Address: {address}, City: {city}, Zip: {zip_code}")
+        
+    result = agent.run(
+        state_prompts=prompts, 
+        state_repository=state_repository, 
+        variables={"address": address, "only_address": only_address, "city": city, "state": row_data['state'], "zip_code": zip_code},
+        save_content_dir="examples/isps/save/allpoints",
+        session="allpoints"
+    )
 
-agent.set_state_wait_time(10)
+    agent.set_state_wait_time(10)
 
-
-input("Press Enter to continue...")
-os.makedirs("examples/isps/results2", exist_ok=True)
-with open("examples/isps/results2/allpoints_result.json", "w") as f:
-    json.dump(result["state_repository"], f, indent=2)
+    os.makedirs("examples/isps/results2", exist_ok=True)
+    with open("examples/isps/results2/allpoints_result.json", "w") as f:
+        json.dump(result["state_repository"], f, indent=2)

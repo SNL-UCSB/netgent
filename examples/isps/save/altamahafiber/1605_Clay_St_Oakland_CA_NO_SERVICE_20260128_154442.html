@@ -1,0 +1,1609 @@
+<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths fullscreen" lang="en" style=""><head>
+
+   <!-- Global site tag (gtag.js) - Google Analytics -->
+<script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-JLZTH8X3PP&amp;cx=c&amp;gtm=4e61r1"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=UA-210813355-1&amp;cx=c&amp;gtm=4e61r1"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-0K5KKEHHT1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0K5KKEHHT1');
+</script>
+  
+    <!-- core headers is now injected by default -->
+    <meta charset="utf-8">
+<title>Altamaha Fiber</title>
+<title>CrowdFiber</title>
+
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script>
+  var AppEnv = {bing_maps_key: "AiDJR7PhjGGWnLnwwFeNh6hYG8PzSZs-dz3P2xSKBCBWZdCfWznQekxluKLbnlMu",
+                fccapi_base_url: "https://fccapi.crowdfiber.io"};
+</script>
+
+<script src="/assets/turbolinks-2cc236e81e8b9da50aab2efac592d84af985aee56d3a7ee7144b0a3c2a2c4d18.js"></script>
+<script src="https://cdn.crowdfiber.io/lib/jquery/dist/jquery.js" data-turbolinks-track="reload"></script>
+<script src="https://checkout.stripe.com/checkout.js"></script>
+<script src="https://cdn.crowdfiber.io/jSignature/jSignature.min.js"></script>
+<script src="https://cdn.crowdfiber.io/lib/hellosign-embedded/umd/embedded.production.min.js"></script><style type="text/css">.x-hellosign-embedded {
+  height: 100%; }
+  .x-hellosign-embedded--in-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9997; }
+
+.x-hellosign-embedded__modal-screen {
+  display: block;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%; }
+  @media only screen and (max-width: 767px), only screen and (max-width: 900px) and (min-aspect-ratio: 16 / 9) {
+    .x-hellosign-embedded__modal-screen {
+      display: none; } }
+
+.x-hellosign-embedded__modal-content {
+  box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.25);
+  position: absolute;
+  top: 5vh;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 90vh;
+  min-height: 400px;
+  width: 80vw;
+  min-width: 512px;
+  max-width: 1024px; }
+  @media only screen and (max-width: 767px), only screen and (max-width: 900px) and (min-aspect-ratio: 16 / 9) {
+    .x-hellosign-embedded__modal-content {
+      overflow: hidden;
+      box-shadow: none;
+      height: 100%;
+      min-height: 0;
+      width: 100%;
+      min-width: 0;
+      transform: none;
+      left: 0;
+      top: 0; } }
+
+.x-hellosign-embedded__modal-close {
+  position: absolute;
+  top: 0;
+  right: -60px;
+  height: 40px;
+  width: 40px; }
+  @media only screen and (max-width: 767px), only screen and (max-width: 900px) and (min-aspect-ratio: 16 / 9) {
+    .x-hellosign-embedded__modal-close {
+      display: none; } }
+
+.x-hellosign-embedded__modal-close-button {
+  -webkit-appearance: none;
+  height: 100%;
+  width: 100%;
+  border: none;
+  background-color: #1A1A1A;
+  transition: background-color 0.35s ease;
+  will-change: background-color;
+  box-shadow: 0px 3px 9px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  padding: 20px; }
+  .x-hellosign-embedded__modal-close-button:hover {
+    background-color: #4E4E4E; }
+  .x-hellosign-embedded__modal-close-button::before, .x-hellosign-embedded__modal-close-button::after {
+    content: '';
+    position: absolute;
+    width: 1px;
+    background-color: white;
+    height: 20px;
+    top: 10px; }
+  .x-hellosign-embedded__modal-close-button::before {
+    transform: rotateZ(45deg); }
+  .x-hellosign-embedded__modal-close-button::after {
+    transform: rotateZ(-45deg); }
+
+.x-hellosign-embedded__iframe {
+  min-height: 400px;
+  background-color: #F7F8F9;
+  height: 100%;
+  border: none;
+  min-width: 100%;
+  width: 100px;
+  *width: 100%; }
+</style>
+<script src="/packs/hello-world-bundle-2b71914858c9fd0fa23d.js" data-turbolinks-track="reload"></script>
+
+<!-- Le styles -->
+<link rel="stylesheet" media="all" href="/assets/application-aa4dc6717f0814589a18a1b0863528d5c8d31418922c386c66a66f2dc9f77208.css" data-turbolinks-track="reload">
+<link data-turbolinks-track="reload" href="//fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,300,700" rel="stylesheet" type="text/css">
+<link href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" rel="stylesheet">
+<script data-turbolinks-track="reload" src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+<script data-turbolinks-track="reload" src="https://cdn.crowdfiber.io/lib/leaflet-ajax/dist/leaflet.ajax.min.js"></script>
+<script data-turbolinks-track="reload" src="https://js.stripe.com/v3/"></script>
+<script src="https://cdn.crowdfiber.io/lib/d3/d3.min.js" data-turbolinks-track="reload"></script>
+<meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="cdfy/zY3kfu5Bpn9j9mCdpguXzVRkKCCun0uG4//8F8Ezs6N55GJuJPM09A6bQiByQC8OLihZVh+nsmr19Q+HA==">
+<script src="/assets/assets-bbbfbeb14bf6d6f5278fcf09431eae2dc77437b4939a85a820cada42889aa4bf.js" data-turbolinks-track="reload"></script>
+<!-- Fav and touch icons -->
+<link href="/assets/ico/apple-touch-icon-144-precomposed-657b6a3ec057e2bdfaced95cd043eb9d9dae96a3db61f5dd1f55c9438bb74a12.png" rel="apple-touch-icon-precomposed" sizes="144x144">
+<link href="/assets/ico/apple-touch-icon-114-precomposed-43753a0dd33bfbc8e17386ce8bf6da5c7764c7957e365b13099f321dcc2f2fcc.png" rel="apple-touch-icon-precomposed" sizes="114x114">
+<link href="/assets/ico/apple-touch-icon-72-precomposed-283e46e32b29d75f190e7284934f194a42049bbbf170539419c092333f5765a0.png" rel="apple-touch-icon-precomposed" sizes="72x72">
+<link href="/assets/ico/apple-touch-icon-57-precomposed-af935ec9f3afaf764e5bb8c4fcff27a6f600f443497ce1822010ce24a7bf8fab.png" rel="apple-touch-icon-precomposed">
+<link href="https://cdn.crowdfiber.io/broadband-consumer-labels/widget_label.css" rel="stylesheet">
+<script src="https://cdn.crowdfiber.io/broadband-consumer-labels/widget.js"></script>
+<link href="https://s3-us-west-2.amazonaws.com/altamahaemc-crowdfiber-production-cae1b16d/brands/favicons/000/000/001/original/altamaha_favicon.png?1666369459" rel="shortcut icon">
+<script>
+//<![CDATA[
+window.gon={};gon.global={"campaign_slug":"altamahaemc-cae1b16d","campaign_full_url":"https://join.altamahafiber.com/campaigns/master","campaign_site_url":"https://join.altamahafiber.com","campaign_id":2,"facebook_text":"","twitter_text":"","linkedin_text":"","email_text":"","champions_text":"","user_id":null,"user_email":null};gon.google_tracking_code=["UA-40095058-7"];
+//]]>
+</script>
+<!-- -# = render "layouts/tracking_codes" -->
+<script src="/assets/modernizr-2.7.1-respond-1.1.0.min-f0ad2856825bd217cef7a71b59f55a5048eb6b026f469726b454e586445bc442.js" data-turbolinks-track="reload"></script>
+<script src="https://www.google.com/jsapi" data-turbolinks-track="reload"></script>
+
+<script src="https://cdn.crowdfiber.io/lib/numeral/min/numeral.min.js" data-turbolinks-track="reload"></script>
+<script src="https://cdn.crowdfiber.io/lib/highcharts-5.0.11/highcharts.js" data-turbolinks-track="reload"></script>
+<script src="https://cdn.crowdfiber.io/lib/highcharts-5.0.11/highcharts-more.js" data-turbolinks-track="reload"></script>
+<script src="https://cdn.crowdfiber.io/lib/highcharts-5.0.11/modules/solid-gauge.js" data-turbolinks-track="reload"></script>
+<script src="/assets/front_end/application-a3d87c6814376c3a57fa171ffa4b6f048f070b775dfa8e38dae71e602beab6f5.js" data-turbolinks-track="reload"></script><style type="text/css"></style>
+<!-- /%link{:href => "https://cdn.crowdfiber.io/lib/bootstrap-toggle/css/bootstrap-toggle.min.css", :rel => "stylesheet"}/ -->
+<!-- /%script{:src => "https://cdn.crowdfiber.io/lib/bootstrap-toggle/js/bootstrap-toggle.min.js"} -->
+<script data-turbolinks-track="reload" src="https://cdn.crowdfiber.io/lib/jssocials/dist/jssocials.min.js"></script>
+<link href="https://cdn.crowdfiber.io/lib/jssocials/dist/jssocials.css" rel="stylesheet">
+<link href="https://cdn.crowdfiber.io/lib/jssocials/dist/jssocials-theme-flat.css" rel="stylesheet">
+<script async="" defer="" src="//challenges.cloudflare.com/turnstile/v0/api.js"></script>
+<script>
+  var switchTo5x=true;
+  var campaign_lat="32.26964388317028"
+  var campaign_lon="-82.42494035050188"
+  var campaign_map_zoom_level="10"
+</script>
+<style>
+  .btn-success {
+    background: #008B52;
+    color: white;
+    border-color: #262626;
+  }
+  
+  .current-campaigns li.current a {
+    background: #008B52 !important;
+    color: white !important;
+  }
+  
+  a {
+    color: #424242;
+  }
+  
+  .jssocials-share-link {
+    color: white !important;
+  }
+  
+  #campaign_product_form a.add_nested_fields{
+    color: #008B52 !important;
+  }
+  
+  .well-green {
+    background-color: Leave this area blank (this is a Classic Theme setting). !important;
+  }
+  
+  #address_search_bar {
+    background: Leave this area blank (this is a Classic Theme setting). !important;
+  }
+  #zone_d3_map{
+    height: 400px;
+  }
+    body.stop-scrolling {
+      height: 100%;
+      overflow: hidden; }
+  
+    .sweet-overlay {
+      background-color: black;
+      /* IE8 */
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+      /* IE8 */
+      background-color: rgba(0, 0, 0, 0.4);
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      display: none;
+      z-index: 10000; }
+  
+    .sweet-alert {
+      background-color: white;
+      font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      width: 478px;
+      padding: 17px;
+      border-radius: 5px;
+      text-align: center;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      margin-left: -256px;
+      margin-top: -200px;
+      overflow: hidden;
+      display: none;
+      z-index: 99999; }
+      @media all and (max-width: 540px) {
+        .sweet-alert {
+          width: auto;
+          margin-left: 0;
+          margin-right: 0;
+          left: 15px;
+          right: 15px; } }
+      .sweet-alert h2 {
+        color: #575757;
+        font-size: 30px;
+        text-align: center;
+        font-weight: 600;
+        text-transform: none;
+        position: relative;
+        margin: 25px 0;
+        padding: 0;
+        line-height: 40px;
+        display: block; }
+      .sweet-alert p {
+        color: #797979;
+        font-size: 16px;
+        text-align: center;
+        font-weight: 300;
+        position: relative;
+        text-align: inherit;
+        float: none;
+        margin: 0;
+        padding: 0;
+        line-height: normal; }
+      .sweet-alert fieldset {
+        border: none;
+        position: relative; }
+      .sweet-alert .sa-error-container {
+        background-color: #f1f1f1;
+        margin-left: -17px;
+        margin-right: -17px;
+        overflow: hidden;
+        padding: 0 10px;
+        max-height: 0;
+        webkit-transition: padding 0.15s, max-height 0.15s;
+        transition: padding 0.15s, max-height 0.15s; }
+        .sweet-alert .sa-error-container.show {
+          padding: 10px 0;
+          max-height: 100px;
+          webkit-transition: padding 0.2s, max-height 0.2s;
+          transition: padding 0.25s, max-height 0.25s; }
+        .sweet-alert .sa-error-container .icon {
+          display: inline-block;
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          background-color: #ea7d7d;
+          color: white;
+          line-height: 24px;
+          text-align: center;
+          margin-right: 3px; }
+        .sweet-alert .sa-error-container p {
+          display: inline-block; }
+      .sweet-alert .sa-input-error {
+        position: absolute;
+        top: 29px;
+        right: 26px;
+        width: 20px;
+        height: 20px;
+        opacity: 0;
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+        -webkit-transition: all 0.1s;
+        transition: all 0.1s; }
+        .sweet-alert .sa-input-error::before, .sweet-alert .sa-input-error::after {
+          content: "";
+          width: 20px;
+          height: 6px;
+          background-color: #f06e57;
+          border-radius: 3px;
+          position: absolute;
+          top: 50%;
+          margin-top: -4px;
+          left: 50%;
+          margin-left: -9px; }
+        .sweet-alert .sa-input-error::before {
+          -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg); }
+        .sweet-alert .sa-input-error::after {
+          -webkit-transform: rotate(45deg);
+          transform: rotate(45deg); }
+        .sweet-alert .sa-input-error.show {
+          opacity: 1;
+          -webkit-transform: scale(1);
+          transform: scale(1); }
+      .sweet-alert input {
+        width: 100%;
+        box-sizing: border-box;
+        border-radius: 3px;
+        border: 1px solid #d7d7d7;
+        height: 43px;
+        margin-top: 10px;
+        margin-bottom: 17px;
+        font-size: 18px;
+        box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.06);
+        padding: 0 12px;
+        display: none;
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s; }
+        .sweet-alert input:focus {
+          outline: none;
+          box-shadow: 0px 0px 3px #c4e6f5;
+          border: 1px solid #b4dbed; }
+          .sweet-alert input:focus::-moz-placeholder {
+            transition: opacity 0.3s 0.03s ease;
+            opacity: 0.5; }
+          .sweet-alert input:focus:-ms-input-placeholder {
+            transition: opacity 0.3s 0.03s ease;
+            opacity: 0.5; }
+          .sweet-alert input:focus::-webkit-input-placeholder {
+            transition: opacity 0.3s 0.03s ease;
+            opacity: 0.5; }
+        .sweet-alert input::-moz-placeholder {
+          color: #bdbdbd; }
+        .sweet-alert input::-ms-clear {
+          display: none; }
+        .sweet-alert input:-ms-input-placeholder {
+          color: #bdbdbd; }
+        .sweet-alert input::-webkit-input-placeholder {
+          color: #bdbdbd; }
+      .sweet-alert.show-input input {
+        display: block; }
+      .sweet-alert .sa-confirm-button-container {
+        display: inline-block;
+        position: relative; }
+      .sweet-alert .la-ball-fall {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -27px;
+        margin-top: 4px;
+        opacity: 0;
+        visibility: hidden; }
+      .sweet-alert button {
+        background-color: #8CD4F5;
+        color: white;
+        border: none;
+        box-shadow: none;
+        font-size: 17px;
+        font-weight: 500;
+        -webkit-border-radius: 4px;
+        border-radius: 5px;
+        padding: 10px 32px;
+        margin: 26px 5px 0 5px;
+        cursor: pointer; }
+        .sweet-alert button:focus {
+          outline: none;
+          box-shadow: 0 0 2px rgba(128, 179, 235, 0.5), inset 0 0 0 1px rgba(0, 0, 0, 0.05); }
+        .sweet-alert button:hover {
+          background-color: #7ecff4; }
+        .sweet-alert button:active {
+          background-color: #5dc2f1; }
+        .sweet-alert button.cancel {
+          background-color: #C1C1C1; }
+          .sweet-alert button.cancel:hover {
+            background-color: #b9b9b9; }
+          .sweet-alert button.cancel:active {
+            background-color: #a8a8a8; }
+          .sweet-alert button.cancel:focus {
+            box-shadow: rgba(197, 205, 211, 0.8) 0px 0px 2px, rgba(0, 0, 0, 0.0470588) 0px 0px 0px 1px inset !important; }
+        .sweet-alert button[disabled] {
+          opacity: .6;
+          cursor: default; }
+        .sweet-alert button.confirm[disabled] {
+          color: transparent; }
+          .sweet-alert button.confirm[disabled] ~ .la-ball-fall {
+            opacity: 1;
+            visibility: visible;
+            transition-delay: 0s; }
+        .sweet-alert button::-moz-focus-inner {
+          border: 0; }
+      .sweet-alert[data-has-cancel-button=false] button {
+        box-shadow: none !important; }
+      .sweet-alert[data-has-confirm-button=false][data-has-cancel-button=false] {
+        padding-bottom: 40px; }
+      .sweet-alert .sa-icon {
+        width: 80px;
+        height: 80px;
+        border: 4px solid gray;
+        -webkit-border-radius: 40px;
+        border-radius: 40px;
+        border-radius: 50%;
+        margin: 20px auto;
+        padding: 0;
+        position: relative;
+        box-sizing: content-box; }
+        .sweet-alert .sa-icon.sa-error {
+          border-color: #F27474; }
+          .sweet-alert .sa-icon.sa-error .sa-x-mark {
+            position: relative;
+            display: block; }
+          .sweet-alert .sa-icon.sa-error .sa-line {
+            position: absolute;
+            height: 5px;
+            width: 47px;
+            background-color: #F27474;
+            display: block;
+            top: 37px;
+            border-radius: 2px; }
+            .sweet-alert .sa-icon.sa-error .sa-line.sa-left {
+              -webkit-transform: rotate(45deg);
+              transform: rotate(45deg);
+              left: 17px; }
+            .sweet-alert .sa-icon.sa-error .sa-line.sa-right {
+              -webkit-transform: rotate(-45deg);
+              transform: rotate(-45deg);
+              right: 16px; }
+        .sweet-alert .sa-icon.sa-warning {
+          border-color: #F8BB86; }
+          .sweet-alert .sa-icon.sa-warning .sa-body {
+            position: absolute;
+            width: 5px;
+            height: 47px;
+            left: 50%;
+            top: 10px;
+            -webkit-border-radius: 2px;
+            border-radius: 2px;
+            margin-left: -2px;
+            background-color: #F8BB86; }
+          .sweet-alert .sa-icon.sa-warning .sa-dot {
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+            margin-left: -3px;
+            left: 50%;
+            bottom: 10px;
+            background-color: #F8BB86; }
+        .sweet-alert .sa-icon.sa-info {
+          border-color: #C9DAE1; }
+          .sweet-alert .sa-icon.sa-info::before {
+            content: "";
+            position: absolute;
+            width: 5px;
+            height: 29px;
+            left: 50%;
+            bottom: 17px;
+            border-radius: 2px;
+            margin-left: -2px;
+            background-color: #C9DAE1; }
+          .sweet-alert .sa-icon.sa-info::after {
+            content: "";
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            margin-left: -3px;
+            top: 19px;
+            background-color: #C9DAE1;
+            left: 50%; }
+        .sweet-alert .sa-icon.sa-success {
+          border-color: #A5DC86; }
+          .sweet-alert .sa-icon.sa-success::before, .sweet-alert .sa-icon.sa-success::after {
+            content: '';
+            -webkit-border-radius: 40px;
+            border-radius: 40px;
+            border-radius: 50%;
+            position: absolute;
+            width: 60px;
+            height: 120px;
+            background: white;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg); }
+          .sweet-alert .sa-icon.sa-success::before {
+            -webkit-border-radius: 120px 0 0 120px;
+            border-radius: 120px 0 0 120px;
+            top: -7px;
+            left: -33px;
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            -webkit-transform-origin: 60px 60px;
+            transform-origin: 60px 60px; }
+          .sweet-alert .sa-icon.sa-success::after {
+            -webkit-border-radius: 0 120px 120px 0;
+            border-radius: 0 120px 120px 0;
+            top: -11px;
+            left: 30px;
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            -webkit-transform-origin: 0px 60px;
+            transform-origin: 0px 60px; }
+          .sweet-alert .sa-icon.sa-success .sa-placeholder {
+            width: 80px;
+            height: 80px;
+            border: 4px solid rgba(165, 220, 134, 0.2);
+            -webkit-border-radius: 40px;
+            border-radius: 40px;
+            border-radius: 50%;
+            box-sizing: content-box;
+            position: absolute;
+            left: -4px;
+            top: -4px;
+            z-index: 2; }
+          .sweet-alert .sa-icon.sa-success .sa-fix {
+            width: 5px;
+            height: 90px;
+            background-color: white;
+            position: absolute;
+            left: 28px;
+            top: 8px;
+            z-index: 1;
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg); }
+          .sweet-alert .sa-icon.sa-success .sa-line {
+            height: 5px;
+            background-color: #A5DC86;
+            display: block;
+            border-radius: 2px;
+            position: absolute;
+            z-index: 2; }
+            .sweet-alert .sa-icon.sa-success .sa-line.sa-tip {
+              width: 25px;
+              left: 14px;
+              top: 46px;
+              -webkit-transform: rotate(45deg);
+              transform: rotate(45deg); }
+            .sweet-alert .sa-icon.sa-success .sa-line.sa-long {
+              width: 47px;
+              right: 8px;
+              top: 38px;
+              -webkit-transform: rotate(-45deg);
+              transform: rotate(-45deg); }
+        .sweet-alert .sa-icon.sa-custom {
+          background-size: contain;
+          border-radius: 0;
+          border: none;
+          background-position: center center;
+          background-repeat: no-repeat; }
+  
+    /*
+     * Animations
+     */
+    @-webkit-keyframes showSweetAlert {
+      0% {
+        transform: scale(0.7);
+        -webkit-transform: scale(0.7); }
+      45% {
+        transform: scale(1.05);
+        -webkit-transform: scale(1.05); }
+      80% {
+        transform: scale(0.95);
+        -webkit-transform: scale(0.95); }
+      100% {
+        transform: scale(1);
+        -webkit-transform: scale(1); } }
+  
+    @keyframes showSweetAlert {
+      0% {
+        transform: scale(0.7);
+        -webkit-transform: scale(0.7); }
+      45% {
+        transform: scale(1.05);
+        -webkit-transform: scale(1.05); }
+      80% {
+        transform: scale(0.95);
+        -webkit-transform: scale(0.95); }
+      100% {
+        transform: scale(1);
+        -webkit-transform: scale(1); } }
+  
+    @-webkit-keyframes hideSweetAlert {
+      0% {
+        transform: scale(1);
+        -webkit-transform: scale(1); }
+      100% {
+        transform: scale(0.5);
+        -webkit-transform: scale(0.5); } }
+  
+    @keyframes hideSweetAlert {
+      0% {
+        transform: scale(1);
+        -webkit-transform: scale(1); }
+      100% {
+        transform: scale(0.5);
+        -webkit-transform: scale(0.5); } }
+  
+    @-webkit-keyframes slideFromTop {
+      0% {
+        top: 0%; }
+      100% {
+        top: 50%; } }
+  
+    @keyframes slideFromTop {
+      0% {
+        top: 0%; }
+      100% {
+        top: 50%; } }
+  
+    @-webkit-keyframes slideToTop {
+      0% {
+        top: 50%; }
+      100% {
+        top: 0%; } }
+  
+    @keyframes slideToTop {
+      0% {
+        top: 50%; }
+      100% {
+        top: 0%; } }
+  
+    @-webkit-keyframes slideFromBottom {
+      0% {
+        top: 70%; }
+      100% {
+        top: 50%; } }
+  
+    @keyframes slideFromBottom {
+      0% {
+        top: 70%; }
+      100% {
+        top: 50%; } }
+  
+    @-webkit-keyframes slideToBottom {
+      0% {
+        top: 50%; }
+      100% {
+        top: 70%; } }
+  
+    @keyframes slideToBottom {
+      0% {
+        top: 50%; }
+      100% {
+        top: 70%; } }
+  
+    .showSweetAlert[data-animation=pop] {
+      -webkit-animation: showSweetAlert 0.3s;
+      animation: showSweetAlert 0.3s; }
+  
+    .showSweetAlert[data-animation=none] {
+      -webkit-animation: none;
+      animation: none; }
+  
+    .showSweetAlert[data-animation=slide-from-top] {
+      -webkit-animation: slideFromTop 0.3s;
+      animation: slideFromTop 0.3s; }
+  
+    .showSweetAlert[data-animation=slide-from-bottom] {
+      -webkit-animation: slideFromBottom 0.3s;
+      animation: slideFromBottom 0.3s; }
+  
+    .hideSweetAlert[data-animation=pop] {
+      -webkit-animation: hideSweetAlert 0.2s;
+      animation: hideSweetAlert 0.2s; }
+  
+    .hideSweetAlert[data-animation=none] {
+      -webkit-animation: none;
+      animation: none; }
+  
+    .hideSweetAlert[data-animation=slide-from-top] {
+      -webkit-animation: slideToTop 0.4s;
+      animation: slideToTop 0.4s; }
+  
+    .hideSweetAlert[data-animation=slide-from-bottom] {
+      -webkit-animation: slideToBottom 0.3s;
+      animation: slideToBottom 0.3s; }
+  
+    @-webkit-keyframes animateSuccessTip {
+      0% {
+        width: 0;
+        left: 1px;
+        top: 19px; }
+      54% {
+        width: 0;
+        left: 1px;
+        top: 19px; }
+      70% {
+        width: 50px;
+        left: -8px;
+        top: 37px; }
+      84% {
+        width: 17px;
+        left: 21px;
+        top: 48px; }
+      100% {
+        width: 25px;
+        left: 14px;
+        top: 45px; } }
+  
+    @keyframes animateSuccessTip {
+      0% {
+        width: 0;
+        left: 1px;
+        top: 19px; }
+      54% {
+        width: 0;
+        left: 1px;
+        top: 19px; }
+      70% {
+        width: 50px;
+        left: -8px;
+        top: 37px; }
+      84% {
+        width: 17px;
+        left: 21px;
+        top: 48px; }
+      100% {
+        width: 25px;
+        left: 14px;
+        top: 45px; } }
+  
+    @-webkit-keyframes animateSuccessLong {
+      0% {
+        width: 0;
+        right: 46px;
+        top: 54px; }
+      65% {
+        width: 0;
+        right: 46px;
+        top: 54px; }
+      84% {
+        width: 55px;
+        right: 0px;
+        top: 35px; }
+      100% {
+        width: 47px;
+        right: 8px;
+        top: 38px; } }
+  
+    @keyframes animateSuccessLong {
+      0% {
+        width: 0;
+        right: 46px;
+        top: 54px; }
+      65% {
+        width: 0;
+        right: 46px;
+        top: 54px; }
+      84% {
+        width: 55px;
+        right: 0px;
+        top: 35px; }
+      100% {
+        width: 47px;
+        right: 8px;
+        top: 38px; } }
+  
+    @-webkit-keyframes rotatePlaceholder {
+      0% {
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg); }
+      5% {
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg); }
+      12% {
+        transform: rotate(-405deg);
+        -webkit-transform: rotate(-405deg); }
+      100% {
+        transform: rotate(-405deg);
+        -webkit-transform: rotate(-405deg); } }
+  
+    @keyframes rotatePlaceholder {
+      0% {
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg); }
+      5% {
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg); }
+      12% {
+        transform: rotate(-405deg);
+        -webkit-transform: rotate(-405deg); }
+      100% {
+        transform: rotate(-405deg);
+        -webkit-transform: rotate(-405deg); } }
+  
+    .animateSuccessTip {
+      -webkit-animation: animateSuccessTip 0.75s;
+      animation: animateSuccessTip 0.75s; }
+  
+    .animateSuccessLong {
+      -webkit-animation: animateSuccessLong 0.75s;
+      animation: animateSuccessLong 0.75s; }
+  
+    .sa-icon.sa-success.animate::after {
+      -webkit-animation: rotatePlaceholder 4.25s ease-in;
+      animation: rotatePlaceholder 4.25s ease-in; }
+  
+    @-webkit-keyframes animateErrorIcon {
+      0% {
+        transform: rotateX(100deg);
+        -webkit-transform: rotateX(100deg);
+        opacity: 0; }
+      100% {
+        transform: rotateX(0deg);
+        -webkit-transform: rotateX(0deg);
+        opacity: 1; } }
+  
+    @keyframes animateErrorIcon {
+      0% {
+        transform: rotateX(100deg);
+        -webkit-transform: rotateX(100deg);
+        opacity: 0; }
+      100% {
+        transform: rotateX(0deg);
+        -webkit-transform: rotateX(0deg);
+        opacity: 1; } }
+  
+    .animateErrorIcon {
+      -webkit-animation: animateErrorIcon 0.5s;
+      animation: animateErrorIcon 0.5s; }
+  
+    @-webkit-keyframes animateXMark {
+      0% {
+        transform: scale(0.4);
+        -webkit-transform: scale(0.4);
+        margin-top: 26px;
+        opacity: 0; }
+      50% {
+        transform: scale(0.4);
+        -webkit-transform: scale(0.4);
+        margin-top: 26px;
+        opacity: 0; }
+      80% {
+        transform: scale(1.15);
+        -webkit-transform: scale(1.15);
+        margin-top: -6px; }
+      100% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        margin-top: 0;
+        opacity: 1; } }
+  
+    @keyframes animateXMark {
+      0% {
+        transform: scale(0.4);
+        -webkit-transform: scale(0.4);
+        margin-top: 26px;
+        opacity: 0; }
+      50% {
+        transform: scale(0.4);
+        -webkit-transform: scale(0.4);
+        margin-top: 26px;
+        opacity: 0; }
+      80% {
+        transform: scale(1.15);
+        -webkit-transform: scale(1.15);
+        margin-top: -6px; }
+      100% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        margin-top: 0;
+        opacity: 1; } }
+  
+    .animateXMark {
+      -webkit-animation: animateXMark 0.5s;
+      animation: animateXMark 0.5s; }
+  
+    @-webkit-keyframes pulseWarning {
+      0% {
+        border-color: #F8D486; }
+      100% {
+        border-color: #F8BB86; } }
+  
+    @keyframes pulseWarning {
+      0% {
+        border-color: #F8D486; }
+      100% {
+        border-color: #F8BB86; } }
+  
+    .pulseWarning {
+      -webkit-animation: pulseWarning 0.75s infinite alternate;
+      animation: pulseWarning 0.75s infinite alternate; }
+  
+    @-webkit-keyframes pulseWarningIns {
+      0% {
+        background-color: #F8D486; }
+      100% {
+        background-color: #F8BB86; } }
+  
+    @keyframes pulseWarningIns {
+      0% {
+        background-color: #F8D486; }
+      100% {
+        background-color: #F8BB86; } }
+  
+    .pulseWarningIns {
+      -webkit-animation: pulseWarningIns 0.75s infinite alternate;
+      animation: pulseWarningIns 0.75s infinite alternate; }
+  
+    @-webkit-keyframes rotate-loading {
+      0% {
+        transform: rotate(0deg); }
+      100% {
+        transform: rotate(360deg); } }
+  
+    @keyframes rotate-loading {
+      0% {
+        transform: rotate(0deg); }
+      100% {
+        transform: rotate(360deg); } }
+  
+    /* Internet Explorer 9 has some special quirks that are fixed here */
+    /* The icons are not animated. */
+    /* This file is automatically merged into sweet-alert.min.js through Gulp */
+    /* Error icon */
+    .sweet-alert .sa-icon.sa-error .sa-line.sa-left {
+      -ms-transform: rotate(45deg) \9; }
+  
+    .sweet-alert .sa-icon.sa-error .sa-line.sa-right {
+      -ms-transform: rotate(-45deg) \9; }
+  
+    /* Success icon */
+    .sweet-alert .sa-icon.sa-success {
+      border-color: transparent\9; }
+  
+    .sweet-alert .sa-icon.sa-success .sa-line.sa-tip {
+      -ms-transform: rotate(45deg) \9; }
+  
+    .sweet-alert .sa-icon.sa-success .sa-line.sa-long {
+      -ms-transform: rotate(-45deg) \9; }
+  
+    /*!
+     * Load Awesome v1.1.0 (http://github.danielcardoso.net/load-awesome/)
+     * Copyright 2015 Daniel Cardoso <@DanielCardoso>
+     * Licensed under MIT
+     */
+    .la-ball-fall,
+    .la-ball-fall > div {
+      position: relative;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box; }
+  
+    .la-ball-fall {
+      display: block;
+      font-size: 0;
+      color: #fff; }
+  
+    .la-ball-fall.la-dark {
+      color: #333; }
+  
+    .la-ball-fall > div {
+      display: inline-block;
+      float: none;
+      background-color: currentColor;
+      border: 0 solid currentColor; }
+  
+    .la-ball-fall {
+      width: 54px;
+      height: 18px; }
+  
+    .la-ball-fall > div {
+      width: 10px;
+      height: 10px;
+      margin: 4px;
+      border-radius: 100%;
+      opacity: 0;
+      -webkit-animation: ball-fall 1s ease-in-out infinite;
+      -moz-animation: ball-fall 1s ease-in-out infinite;
+      -o-animation: ball-fall 1s ease-in-out infinite;
+      animation: ball-fall 1s ease-in-out infinite; }
+  
+    .la-ball-fall > div:nth-child(1) {
+      -webkit-animation-delay: -200ms;
+      -moz-animation-delay: -200ms;
+      -o-animation-delay: -200ms;
+      animation-delay: -200ms; }
+  
+    .la-ball-fall > div:nth-child(2) {
+      -webkit-animation-delay: -100ms;
+      -moz-animation-delay: -100ms;
+      -o-animation-delay: -100ms;
+      animation-delay: -100ms; }
+  
+    .la-ball-fall > div:nth-child(3) {
+      -webkit-animation-delay: 0ms;
+      -moz-animation-delay: 0ms;
+      -o-animation-delay: 0ms;
+      animation-delay: 0ms; }
+  
+    .la-ball-fall.la-sm {
+      width: 26px;
+      height: 8px; }
+  
+    .la-ball-fall.la-sm > div {
+      width: 4px;
+      height: 4px;
+      margin: 2px; }
+  
+    .la-ball-fall.la-2x {
+      width: 108px;
+      height: 36px; }
+  
+    .la-ball-fall.la-2x > div {
+      width: 20px;
+      height: 20px;
+      margin: 8px; }
+  
+    .la-ball-fall.la-3x {
+      width: 162px;
+      height: 54px; }
+  
+    .la-ball-fall.la-3x > div {
+      width: 30px;
+      height: 30px;
+      margin: 12px; }
+  
+    /*
+     * Animation
+     */
+    @-webkit-keyframes ball-fall {
+      0% {
+        opacity: 0;
+        -webkit-transform: translateY(-145%);
+        transform: translateY(-145%); }
+      10% {
+        opacity: .5; }
+      20% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        transform: translateY(0); }
+      80% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        transform: translateY(0); }
+      90% {
+        opacity: .5; }
+      100% {
+        opacity: 0;
+        -webkit-transform: translateY(145%);
+        transform: translateY(145%); } }
+  
+    @-moz-keyframes ball-fall {
+      0% {
+        opacity: 0;
+        -moz-transform: translateY(-145%);
+        transform: translateY(-145%); }
+      10% {
+        opacity: .5; }
+      20% {
+        opacity: 1;
+        -moz-transform: translateY(0);
+        transform: translateY(0); }
+      80% {
+        opacity: 1;
+        -moz-transform: translateY(0);
+        transform: translateY(0); }
+      90% {
+        opacity: .5; }
+      100% {
+        opacity: 0;
+        -moz-transform: translateY(145%);
+        transform: translateY(145%); } }
+  
+    @-o-keyframes ball-fall {
+      0% {
+        opacity: 0;
+        -o-transform: translateY(-145%);
+        transform: translateY(-145%); }
+      10% {
+        opacity: .5; }
+      20% {
+        opacity: 1;
+        -o-transform: translateY(0);
+        transform: translateY(0); }
+      80% {
+        opacity: 1;
+        -o-transform: translateY(0);
+        transform: translateY(0); }
+      90% {
+        opacity: .5; }
+      100% {
+        opacity: 0;
+        -o-transform: translateY(145%);
+        transform: translateY(145%); } }
+  
+    @keyframes ball-fall {
+      0% {
+        opacity: 0;
+        -webkit-transform: translateY(-145%);
+        -moz-transform: translateY(-145%);
+        -o-transform: translateY(-145%);
+        transform: translateY(-145%); }
+      10% {
+        opacity: .5; }
+      20% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        -moz-transform: translateY(0);
+        -o-transform: translateY(0);
+        transform: translateY(0); }
+      80% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        -moz-transform: translateY(0);
+        -o-transform: translateY(0);
+        transform: translateY(0); }
+      90% {
+        opacity: .5; }
+      100% {
+        opacity: 0;
+        -webkit-transform: translateY(145%);
+        -moz-transform: translateY(145%);
+        -o-transform: translateY(145%);
+        transform: translateY(145%); } }
+</style>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="/assets/theme/50/brand/1/c795c9256f04173da5c49790b897c281/stylesheets/progress-wizard/progress-wizard.css" rel="stylesheet" type="text/css">
+    <link href="/assets/theme/50/brand/1/c795c9256f04173da5c49790b897c281/stylesheets/bulma.css" rel="stylesheet" type="text/css">                  
+    <link href="/assets/theme/50/brand/1/c795c9256f04173da5c49790b897c281/stylesheets/screen.css" rel="stylesheet" type="text/css">
+      
+    <style id="dynamic_styles">
+      /* Element Key: primary_color {}*/
+ /* Sets the primary button color */
+.button.is-primary {
+  background: #008B52; !important;
+}
+/* Change color of notification panel on home page */
+.notification.is-primary {
+  background: #008B52; !important;
+}
+/* Sets the text color for the primary button */  
+.button.is-primary {
+  color: #FFFFFF !important;
+}
+/* Sets the primary hover color for buttons */
+.button.is-primary:hover {
+    background: #000000 !important;
+}
+/* Sets the hover text color for the primary button */  
+.button.is-primary:hover {
+    color: #FFFFFF !important;
+}
+/* Sets the background color for the Add button in the Bundle Builder */  
+a.btn.btm-sm.card-btn-add {
+    background: #008B52 !important;
+}
+/* Sets the background color for the Remove button in the Bundle Builder */
+a.btn.btm-sm.card-btn-remove {
+    background: #000000 !important;
+}
+/* Sets the background color for the Remove button in the Bundle Builder on Hover */
+a.btn.btm-sm.card-btn-remove:hover {
+    background: #008B52 !important;
+}
+/* Sets the background color for the Add button in the Bundle Builder on Hover */
+a.btn.btm-sm.card-btn-add:hover {
+    background: #000000 !important;
+}
+/* Sets the background color & text color for the active step on progress bar */  
+.progress-indicator > li.active .bubble {
+    background-color: #008B52;
+    color: #008B52;
+    border-color: #008B52;
+}
+/* Sets the background color for the horizontal bars on progress bar */  
+.progress-indicator > li.active .bubble:before, .progress-indicator > li.active .bubble:after {
+    background-color: #008B52;
+}
+
+/* Element Key: wallpaper_image {}*/
+ .hero {
+  background: url("https://s3-us-west-2.amazonaws.com/altamahaemc-crowdfiber-production-cae1b16d/theme_elements/attachments/000/000/655/original/wall_paper_1.png?1645815625") center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 1;
+  padding-bottom: 3rem;
+  //background-position-y: -100px;  
+}
+
+/* Element Key: existing-service-button-height {}*/
+ .existing-service-button-height{
+ height: 200px;
+ min-width: 225px;
+}
+    </style>
+
+    <!-- Facebook Pixel Code -->
+      
+    <!-- End Facebook Pixel Code -->
+      
+  </head>
+
+  <body>
+    <div id="wrapper">
+      <div class="container">    
+        <nav class="nav">
+  <div class="nav-left"></div>
+  <div class="nav-center">
+
+        
+            <div class="nav-item is-tab is-hidden-mobile">
+            	<a href="/users/sign_in" alt="Sign in here">Already registered? | Sign in here</a>
+	        </div>
+            
+    </div>
+    <span class="nav-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+	<div class="nav-right nav-menu">
+
+        
+            <div class="nav-item is-tab is-hidden-tablet">
+            	<a href="/users/sign_in" alt="Sign in here">Already registered? | Sign in here</a>
+	        </div>
+            
+            
+          
+  </div>
+</nav>
+
+                                  
+      </div>      
+        <section class="hero">
+          <div class="hero-body">
+            <div class="has-text-centered" id="campaign-logo" data-turbolinks-permanent="">
+              <div class="columns">
+                <div class="column is-8 is-offset-2">
+	          <a alt="Altamaha Fiber Access:  AEMC's Broadband Subsidiary" class="img logo brand is-hidden-mobile" href="/front_end" title="CrowdFiber Campaign">
+                    <img class="cf_image_editable glofiber" data-tag="header_image" data-theme-element-id="654" data-et="Image" src="https://s3-us-west-2.amazonaws.com/altamahaemc-crowdfiber-production-cae1b16d/theme_elements/attachments/000/000/654/original/Logo_Final.png?1645812881" title="header_image">  
+        	  </a>
+	          <a alt="Altamaha Fiber Access:  AEMC's Broadband Subsidiary" class="img logo brand is-hidden-desktop is-hidden-tablet" href="/front_end" title="CrowdFiber Campaign">
+                    <img class="cf_image_editable glofiber" data-tag="header_image" data-theme-element-id="654" data-et="Image" src="https://s3-us-west-2.amazonaws.com/altamahaemc-crowdfiber-production-cae1b16d/theme_elements/attachments/000/000/654/original/Logo_Final.png?1645812881" title="header_image">                        
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="global-modal-holder"></div>
+        <div id="modal-holder"></div>
+
+        <section class="section-main">
+          <div class="container">
+	    <div class="main-card-container card">
+	      
+	        <div class="has-text-centered is-hidden-mobile" style="background-color: #eeeeee;color: #4a4a4ac9;padding: 5px;">
+	      	  <b>Your Address:</b> 1605 Clay St, Oakland CA 94612
+	      	  <b> Service Area:</b> Remote
+	        </div>
+	        <div class="has-text-left is-hidden-tablet" style="background-color: #eeeeee;padding: 10px;margin-bottom: -20px;font-size: x-small;">
+	      	  <b>Address:</b> 1605 Clay St, Oakland CA 94612 <br>
+	      	  <b>Service Area:</b> Remote
+	        </div>
+	        	    
+              <div class="card-content">
+                <script>
+  // Position the current step near the center of the window on mobile devices
+  jQuery(document).ready(function ($) {
+    var windowWidth = window.innerWidth
+    if (windowWidth <= 500) {
+      var $progressBar = $('.progress-indicator')[0]
+      //$progressBar.style.position = "absolute"
+      //$progressBar.style.right = (220 - windowWidth/2) + "px"
+    }
+  })
+</script>
+
+  <div class="section" style="padding: 1.5rem 0rem;">
+      <div class="scroll-progress-bar" style="white-space: normal">
+        <ul class="progress-indicator" style="position: relative;">
+            
+              
+              
+              
+              <li style="color: inherit; padding-right: 5px" class=" ">
+                  <span class="bubble"></span>
+                  Confirm Location
+              </li>                               
+           
+              
+              
+              
+              <li style="color: inherit; padding-right: 5px" class=" active  ">
+                  <span class="bubble"></span>
+                  Contact Info
+              </li>                               
+           
+              
+              
+              
+              <li style="color: inherit; padding-right: 5px" class=" ">
+                  <span class="bubble"></span>
+                  Submit
+              </li>                               
+           
+        </ul>
+      </div>
+  </div>
+
+                <section class="section is-paddingless">
+                  
+<style>
+  /* Fix annoying input height variation */
+  form input[type=text] {
+    min-height: initial;
+    height: 2.285em !important;
+  }
+  form label.error {
+    background: #1976D2;
+    color: #ffffff;
+  }
+</style>
+
+
+<form action="/front_end/cart/4c148fc7-e95f-47a8-a4c1-d8e040dacfd7/contact" accept-charset="UTF-8" method="post" class="validatedForm" novalidate="novalidate"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="cdfy/zY3kfu5Bpn9j9mCdpguXzVRkKCCun0uG4//8F8Ezs6N55GJuJPM09A6bQiByQC8OLihZVh+nsmr19Q+HA==">
+<section class="section is-paddingless">
+    <div class="title is-5">  
+       
+        
+          
+            <div><h2 style="font-family: &quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; color: rgb(0, 0, 0);">Make it a Possibility!</h2><p><br></p><p>While your address is not in an area that we have plans to serve at this time, if we receive enough expressions of interest in your neighborhood, we may be able to provide our services to your address in the future. <br><br></p><p>To let us know you'd like to use our services, please provide us with your contact information and click the Submit button on the following page.</p></div>
+          
+        
+          
+    </div>
+<!--
+
+-->
+</section>
+
+
+
+<div class="subtitle is-3">
+  <div><p>Contact information:</p></div>
+</div>
+
+
+
+
+
+<div id="prevent_autofill" style="display: none;">
+  <input type="text" autocomplete="new-password">
+  <input type="password" autocomplete="new-password">
+</div>
+
+<div class="content is-medium">
+  <div class="notification" id="new_account_form">
+    <p></p>
+    <div class="field">
+      <label class="label">Enter your email address</label>
+      <p class="control has-icon has-icon-right">
+        <input class="input is-medium" placeholder="Email Address" type="email" name="[user][email]" id="user_email" required="true" aria-required="true">
+      </p>
+    </div>
+    
+   
+<div id="existing_account" class="hidden">
+  <div class="columns">
+    <div class="column is-12">
+    
+      An account already exists with this email address. If you'd like to continue, we can send you an email to validate your email address.
+      <div class="field">
+        <div class="control has-icon has-icon-right">
+        </div>
+      </div>
+      <div id="magic_lead_div">
+ 
+          <div class="field is-grouped is-grouped-centered">
+          <div class="control has-icon has-icon-right is-grouped-centered">
+            <a href="#" class="button is-primary is-large" id="lead_magic_link">Send me an email</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="columns">
+  <div class="column">
+    <div class="content is-medium">
+      <div class="field is-horizontal">
+        <div class="field-label is-medium">
+          <label class="label">Name</label>
+        </div>
+        <div class="field-body">
+          <div class="field is-grouped">
+            <p class="control is-expanded">
+              <input class="input is-medium" placeholder="First" type="text" name="[contact][first_name]" id="contact_first_name" value="" required="" aria-required="true">
+            </p>
+          </div>
+          <div class="field">
+            <p class="control is-expanded">
+              <input class="input is-medium" placeholder="Last" type="text" name="[contact][last_name]" id="contact_last_name" value="" required="" aria-required="true">
+            </p>
+          </div>
+        </div>
+      </div>
+      
+
+
+
+      <div class="field is-horizontal">
+        <div class="field-label is-medium">
+          <label class="label">Phone Number</label>
+        </div>
+        <div class="field-body">
+          <div class="field is-narrow">
+            <p class="control">
+              <input class="input is-medium" placeholder="Phone Number" type="tel" id="contact_phone_number" name="[contact][phone_number]" required="true" pattern="\D*(?:\d\D*){10,}$" title="Phone number should contain 10 digits" aria-required="true">
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+     
+  
+
+     
+  <div class="section has-text-centered">
+    <p>
+      <input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="cdfy/zY3kfu5Bpn9j9mCdpguXzVRkKCCun0uG4//8F8Ezs6N55GJuJPM09A6bQiByQC8OLihZVh+nsmr19Q+HA==">
+        <input type="submit" name="commit" value="Next" class="button is-large is-primary is-pulled-right">
+      </p>
+    <p></p>
+  </div>
+
+
+<script src="/assets/user_login-2cf3a7a3806efc2a019b9d6b5a0877625b6501a9bd5a5dbb24cfdc0e36304f4c.js"></script>
+
+<script>
+$("form").addClass("validatedForm");
+
+
+    let userPassword = document.getElementById("user_password");
+    let userConfirmPassword = document.getElementById("user_confirm_password");
+    let showPassword = document.getElementById("show_password");
+    
+    $("form").addClass("validatedForm");
+    
+    if (userPassword) {
+    	userPassword.addEventListener("keyup", function() {
+		    userConfirmPassword.value = this.value;
+		});
+	}
+
+	if (showPassword) {
+	    showPassword.addEventListener('change', (event) => {
+		    if (event.target.checked) {
+			    userPassword.type = "text";
+			} else {
+			    userPassword.type = "password";
+			}
+	    });
+    }
+
+    $('.validatedForm').validate({
+        rules: {
+            "[user][password]": {
+                minlength: 8
+            },
+            "[user][confirm_password][password]": {
+                minlength: 8,
+                equalTo : "#user_password"
+            }
+        }
+    });
+
+
+(function() {
+    $("#lead_magic_link").click(function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "/front_end/cart/4c148fc7-e95f-47a8-a4c1-d8e040dacfd7/magic_lead",
+            data: {email_entered: $("#user_email").val()},
+            success: magicLeadResponse,
+            dataType: 'json'
+        });
+    });
+    function magicLeadResponse(data){
+        $("#magic_lead_div").html(data["template"])
+    }
+    var $email = $('#user_email'),
+        $email_container = $('#user_email_field');
+
+    $("#user_has_no_email").change(function() {
+        if (this.checked) {
+            $email.prop('disabled', true);
+            $email_container.hide();
+        } else {
+            $email.prop('disabled', false);
+            $email_container.show();
+        }
+    });
+})();
+</script>
+
+
+
+                </div></form></section>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    
+    <div aria-hidden="true" aria-labelledby="submitting_order_modal" class="modal hide fade" id="submitting_order_modal" role="dialog" tabindex="-1">
+  <div class="modal-header">
+    <h3 id="myModalLabel">Processing..</h3>
+  </div>
+  <div class="modal-body">
+    <p>Stand by, We are processing your payment. This window will close automatically.</p>
+    <p>Do not close your browser or press the back button.</p>
+  </div>
+</div>  
+    
+<footer class="footer nopadding" style="background-color: #282a2b">
+  <div class="container-fluid">
+    <nav class="level">
+      <div class="level-item is-pulled-right">
+        <p class="heading" style="margin-top: 15px; padding-right: 10px">Powered by</p>
+        <a alt="Powered by CrowdFiber" href="https://www.crowdfiber.com/?utm_source=crowd_fiber_app" target="_blank">
+          <img class="logo-crowdfiber" src="/images/CrowdFiber-logo-final-transparent.png" alt="Powered by CrowdFiber" width="150px">
+        </a>
+      </div>
+    </nav>
+  </div>
+</footer>
+
+    <script src="/assets/theme/50/brand/1/c795c9256f04173da5c49790b897c281/javascripts/bulma.js" data-turbolinks-track="reload"></script>
+      
+    <script src="/assets/theme/50/brand/1/c795c9256f04173da5c49790b897c281/javascripts/promise.js" data-turbolinks-track="reload"></script>
+    <script>
+        var sharing_url   = gon.global.campaign_site_url;
+        var twitter_text  = gon.global.twitter_text;
+        var facebook_text = gon.global.facebook_text;
+        var linkedin_text = gon.global.linkedin_text;
+        var email_text    = gon.global.email_text;
+
+
+        // Only show social share buttons when the corresponding Admin template isn't blank
+        // This array is passed to the `jsSocials` plugin below
+        var social_share_buttons = [];
+
+        if (twitter_text)  {
+            social_share_buttons.push( {share: "twitter", text: twitter_text} );
+        }
+        if (facebook_text) {
+            social_share_buttons.push( {share: "facebook", text: facebook_text} );
+        }
+        if (linkedin_text) {
+            social_share_buttons.push( {share: "linkedin", text: linkedin_text} );
+        }
+
+        $('#dashboard_planning').click(function() {
+            planmap.invalidateSize();
+        });
+
+        $("#share-buttons").jsSocials({
+            showLabel: false,
+            url: sharing_url,
+            on: {
+                click: function(e) {
+                    send_ga_event({
+                        hitType: 'click',
+                        eventCategory: 'Social',
+                        eventAction: 'Clicked share on: ' + this.share,
+                        eventLabel: this.url
+                    });
+                }
+            },
+            shares: social_share_buttons
+        });
+    </script>        
+  
+
+
+<iframe name="__privateStripeMetricsController3840" frameborder="0" allowtransparency="true" scrolling="no" role="presentation" allow="payment *" src="https://js.stripe.com/v3/m-outer-3437aaddcdf6922d623e172c2d6f9278.html#url=https%3A%2F%2Fjoin.altamahafiber.com%2Ffront_end%2Fcart%2F4c148fc7-e95f-47a8-a4c1-d8e040dacfd7%2Fcontact&amp;title=Altamaha%20Fiber&amp;referrer=https%3A%2F%2Fjoin.altamahafiber.com%2Ffront_end%2Fcart%2F4c148fc7-e95f-47a8-a4c1-d8e040dacfd7&amp;muid=dc240b97-fdb3-452f-96d1-f76444b78fe1d57310&amp;sid=2f1ceecb-9144-4184-a067-8724d6d9ebd8d1abf1&amp;version=6&amp;preview=false&amp;__shared_params__[version]=v3" aria-hidden="true" tabindex="-1" style="border: none !important; margin: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; visibility: hidden !important; position: fixed !important; height: 1px !important; pointer-events: none !important; user-select: none !important;"></iframe></body></html>
