@@ -1,0 +1,282 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to the Ting website",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "about:blank"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://www.ting.com/#"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user has instructed to terminate the task after navigating to the specified website."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": [
+      {
+        "name": "START",
+        "description": "Navigate to the Ting website",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://www.ting.com/#"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Terminating the execution as per the instruction."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Make The Internet your internet"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.imei-input.imei-checker-input.w-input[name=\"Imei\"][placeholder*=\"e.g. 123 Ting Street, Anytown CA, 01234\"][type=\"text\"][id=\"ac-address-input\"]",
+          "x": 561.85546875,
+          "y": 490.421875
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.imei-input.imei-checker-input.w-input[name=\"Imei\"][placeholder*=\"e.g. 123 Ting Street, Anytown CA, 01234\"][type=\"text\"][id=\"ac-address-input\"]",
+          "x": 561.85546875,
+          "y": 490.421875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.ac-address-item",
+          "x": 561.85546875,
+          "y": 566.421875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.btn-md--4.solid-primary.text-center.imei-check-btn[id=\"address-checker-inline-btn\"]",
+          "x": 907.85546875,
+          "y": 490.421875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": [
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Life moves better at fiber speed"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.imei-input.imei-checker-input.w-input[name=\"Imei\"][placeholder*=\"e.g. 123 Ting Street, Anytown CA, 01234\"][type=\"text\"][id=\"ac-address-input\"]",
+              "x": 561.85546875,
+              "y": 490.421875
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.imei-input.imei-checker-input.w-input[name=\"Imei\"][placeholder*=\"e.g. 123 Ting Street, Anytown CA, 01234\"][type=\"text\"][id=\"ac-address-input\"]",
+              "x": 561.85546875,
+              "y": 490.421875
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "div.ac-address-item",
+              "x": 561.85546875,
+              "y": 551.421875
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "div.btn-md--4.solid-primary.text-center.imei-check-btn[id=\"address-checker-inline-btn\"]",
+              "x": 907.85546875,
+              "y": 490.421875
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is complete. The address has been entered, the address suggestion has been clicked, and the 'Check availability' button has been clicked. The page is now showing 'Please wait...'"
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "INTERNET_AVAILABLE",
+    "description": "Ting Internet is in your area",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Ting Internet is in your area!"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully."
+        }
+      }
+    ],
+    "end_state": "serviceable_with_plans",
+    "save_content": true,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Life moves better at fiber speed"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.imei-input.imei-checker-input.w-input[name=\"Imei\"][placeholder*=\"e.g. 123 Ting Street, Anytown CA, 01234\"][type=\"text\"][id=\"ac-address-input\"]",
+          "x": 561.85546875,
+          "y": 490.421875
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.imei-input.imei-checker-input.w-input[name=\"Imei\"][placeholder*=\"e.g. 123 Ting Street, Anytown CA, 01234\"][type=\"text\"][id=\"ac-address-input\"]",
+          "x": 561.85546875,
+          "y": 490.421875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.ac-address-item",
+          "x": 561.85546875,
+          "y": 551.421875
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.btn-md--4.solid-primary.text-center.imei-check-btn[id=\"address-checker-inline-btn\"]",
+          "x": 907.85546875,
+          "y": 490.421875
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete. The address has been entered, the address suggestion has been clicked, and the 'Check availability' button has been clicked. The page is now showing 'Please wait...'"
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Ting isn't in your area yet on the screen, run this",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Ting isn\u2019t in your area yet"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "save_content": true,
+    "executed": []
+  }
+]

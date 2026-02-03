@@ -1,0 +1,3151 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to Google Fiber page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "about:blank"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://fiber.google.com"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. The page has loaded successfully after navigation."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": [
+      {
+        "name": "START",
+        "description": "Navigate to Google Fiber page",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://gfiber.com/marketing-api/v2/address-search/v1/?_gl=1*1to3jf5*_gcl_au*MjA5Mzk0MDQzNi4xNzY5NjY5OTU4"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is to terminate immediately after the first step, which is navigation. The navigation has been completed."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.MuiInputBase-input.styles_addressInput__5n4Xk.css-j73zfz.pac-target-input[name=\"street_address\"][placeholder*=\"Enter your address\"][required=\"\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 510.015625,
+          "y": 540.0
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.MuiInputBase-input.styles_addressInput__5n4Xk.css-j73zfz.pac-target-input[name=\"street_address\"][placeholder*=\"Enter your address\"][required=\"\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 510.015625,
+          "y": 540.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.MuiButton-disableElevation.styles_submit__dNtUy.css-8qzx7[type=\"submit\"]",
+          "x": 882.015625,
+          "y": 540.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": [
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://fiber.google.com/"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "The Internet we all want \u2014 at a price that doesn\u2019t change"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is to terminate immediately."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://fiber.google.com/"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "The most awarded internet. Now reinvented."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is to terminate immediately."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://fiber.google.com/"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "The most awarded internet. Now reinvented."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is to terminate immediately."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://fiber.google.com/"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "The Internet we all want \u2014 at a price that doesn\u2019t change"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://fiber.google.com/"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "The Internet we all want \u2014 at a price that doesn\u2019t change"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "The most awarded internet. Now reinvented."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://fiber.google.com/"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "The Internet we all want \u2014 at a price that doesn\u2019t change"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://fiber.google.com/"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "The Internet we all want \u2014 at a price that doesn\u2019t change"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://fiber.google.com/"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "The Internet we all want \u2014 at a price that doesn\u2019t change"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://fiber.google.com/"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "The Internet we all want \u2014 at a price that doesn\u2019t change"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://fiber.google.com/"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "The Internet we all want \u2014 at a price that doesn\u2019t change"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://fiber.google.com/"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "The Internet we all want \u2014 at a price that doesn\u2019t change"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://fiber.google.com/"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "The Internet we all want \u2014 at a price that doesn\u2019t change"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://fiber.google.com/"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "The Internet we all want \u2014 at a price that doesn\u2019t change"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://fiber.google.com/"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "The Internet we all want \u2014 at a price that doesn\u2019t change"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Fast is just the beginning"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The task is completed as per the instructions. All steps are done."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "ENTER_EMAIL",
+    "description": "Not available - enter email for updates",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Enter your email address to receive updates."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is to terminate immediately."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "save_content": true,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://fiber.google.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "The Internet we all want \u2014 at a price that doesn\u2019t change"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is to terminate immediately."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://fiber.google.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "The most awarded internet. Now reinvented."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is to terminate immediately."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://fiber.google.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "The most awarded internet. Now reinvented."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is to terminate immediately."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://fiber.google.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "The Internet we all want \u2014 at a price that doesn\u2019t change"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://fiber.google.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "The Internet we all want \u2014 at a price that doesn\u2019t change"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "The most awarded internet. Now reinvented."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://fiber.google.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "The Internet we all want \u2014 at a price that doesn\u2019t change"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://fiber.google.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "The Internet we all want \u2014 at a price that doesn\u2019t change"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://fiber.google.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "The Internet we all want \u2014 at a price that doesn\u2019t change"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://fiber.google.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "The Internet we all want \u2014 at a price that doesn\u2019t change"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://fiber.google.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "The Internet we all want \u2014 at a price that doesn\u2019t change"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://fiber.google.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "The Internet we all want \u2014 at a price that doesn\u2019t change"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://fiber.google.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "The Internet we all want \u2014 at a price that doesn\u2019t change"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://fiber.google.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "The Internet we all want \u2014 at a price that doesn\u2019t change"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://fiber.google.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "The Internet we all want \u2014 at a price that doesn\u2019t change"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Fast is just the beginning"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions. All steps are done."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  }
+]

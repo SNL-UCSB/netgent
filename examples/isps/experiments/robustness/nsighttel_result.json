@@ -1,0 +1,330 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to Nsight Telservices page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "about:blank"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://www.nsighttel.com/services/"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is complete. The user query asks to terminate the task immediately after completing the previous step."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": [
+      {
+        "name": "START",
+        "description": "Navigate to Nsight Telservices page",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "This site can\u2019t be reached"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "ERR_TUNNEL_CONNECTION_FAILED"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "navigate",
+            "params": {
+              "url": "https://www.nsighttel.com/services/"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.cky-btn.cky-btn-accept[aria-label*=\"Accept All\"]",
+              "x": 411.04296875,
+              "y": 749.0
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "If on the Nsight Telservices page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Find offers for your home."
+        }
+      },
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.nsighttel.com/services/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input[type=\"text\"][placeholder*=\"Your address\"][autocomplete=\"off\"][id=\"street\"][name=\"street\"]",
+          "x": 1065.0,
+          "y": 202.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input[type=\"submit\"]",
+          "x": 998.83203125,
+          "y": 245.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The address was entered and the submit button was clicked. The system responded that the address was not found. The task is complete."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": [
+      {
+        "name": "ADDRESS_BAR",
+        "description": "If on the Nsight Telservices page",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "Login"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.search-field[type=\"search\"][placeholder=\"Search\"][id=\"search_term\"][name=\"s\"]",
+              "x": 660.0,
+              "y": 411.25
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button[type=\"submit\"][aria-label=\"Submit\"]",
+              "x": 255.0,
+              "y": 451.5
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed. No results found for the given address."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "We could not find you in our system!"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "h2"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "save_content": true,
+    "executed": [
+      {
+        "name": "NO_SERVICE",
+        "description": "Service not available",
+        "checks": [
+          {
+            "type": "text",
+            "params": {
+              "text": "No results found."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "no_service",
+        "save_content": true,
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "START",
+    "description": "Navigate to Nsight Telservices page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "This site can\u2019t be reached"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "ERR_TUNNEL_CONNECTION_FAILED"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://www.nsighttel.com/services/"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.cky-btn.cky-btn-accept[aria-label*=\"Accept All\"]",
+          "x": 411.04296875,
+          "y": 749.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "If on the Nsight Telservices page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Login"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.search-field[type=\"search\"][placeholder=\"Search\"][id=\"search_term\"][name=\"s\"]",
+          "x": 660.0,
+          "y": 411.25
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button[type=\"submit\"][aria-label=\"Submit\"]",
+          "x": 255.0,
+          "y": 451.5
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed. No results found for the given address."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "No results found."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "save_content": true,
+    "executed": []
+  }
+]

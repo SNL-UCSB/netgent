@@ -1,0 +1,123 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to Nuvera shop page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "about:blank"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://shop.nuvera.net/#/order/1"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Check Address"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input[aria-label*=\"Enter your home address\"][id=\"input-320\"][placeholder*=\"Enter your home address\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 632.0,
+          "y": 602.1953125
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input[aria-label*=\"Enter your home address\"][id=\"input-320\"][placeholder*=\"Enter your home address\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 632.0,
+          "y": 602.1953125
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.pill.mr-3.gtm-next-btn.stepper-next.v-btn.theme--light.elevation-0.v-size--default.primary[type=\"button\"][id=\"address-button\"]",
+          "x": 660.0,
+          "y": 798.1953125
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://nuvera.net/future-service/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "We\u2019re not in your neighborhood yet\u2026"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "save_content": true,
+    "executed": []
+  }
+]

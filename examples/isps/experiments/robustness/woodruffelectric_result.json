@@ -1,0 +1,139 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to Woodruff Electric page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "data:,"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://woodruffelectric.vetro.io/"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user requested to terminate the action at this point."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "If on the Woodruff Electric page",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Check Internet Availability"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input[type=\"text\"][autocomplete=\"off\"][aria-label*=\"Address Search Input\"]",
+          "x": 295.0,
+          "y": 226.5
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": [
+      {
+        "name": "ADDRESS_BAR",
+        "description": "If on the Woodruff Electric page",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://woodruffelectric.vetro.io/map"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Woodruff Electric Coop"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input[type=\"text\"][autocomplete=\"off\"][aria-label*=\"Address Search Input\"]",
+              "x": 295.0,
+              "y": 226.5
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "SERVICEABLE",
+    "description": "Available for Service - (e.g. 'Broadband service is available at your address!')",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Broadband service is available at your address!"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully."
+        }
+      }
+    ],
+    "end_state": "serviceable_with_plans",
+    "save_content": true,
+    "executed": []
+  }
+]

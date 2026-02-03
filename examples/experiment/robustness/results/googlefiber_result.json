@@ -1,0 +1,538 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to Google Fiber page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "data:,"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://fiber.google.com"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as per the instructions."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://fiber.google.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "The most awarded internet. Now reinvented."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.MuiInputBase-input.styles_addressInput__5n4Xk.css-j73zfz.pac-target-input[name=\"street_address\"][placeholder*=\"Enter your address\"][required=\"\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 510.015625,
+          "y": 540.0
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.MuiInputBase-input.styles_addressInput__5n4Xk.css-j73zfz.pac-target-input[name=\"street_address\"][placeholder*=\"Enter your address\"][required=\"\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 510.015625,
+          "y": 540.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.MuiButton-disableElevation.styles_submit__dNtUy.css-8qzx7[type=\"submit\"]",
+          "x": 882.015625,
+          "y": 540.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The current page requires an email address, but the instructions do not provide a step for inputting the email address. Therefore, the task cannot be completed."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": [
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://fiber.google.com/"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Resilient internet \u2013 for whatever life brings"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.MuiInputBase-input.styles_addressInput__5n4Xk.css-j73zfz.pac-target-input[name=\"street_address\"][placeholder*=\"Enter your address\"][required=\"\"][type=\"text\"][autocomplete=\"off\"]",
+              "x": 510.015625,
+              "y": 540.0
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.MuiInputBase-input.styles_addressInput__5n4Xk.css-j73zfz.pac-target-input[name=\"street_address\"][placeholder*=\"Enter your address\"][required=\"\"][type=\"text\"][autocomplete=\"off\"]",
+              "x": 510.015625,
+              "y": 540.0
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.MuiButton-disableElevation.styles_submit__dNtUy.css-8qzx7[type=\"submit\"]",
+              "x": 882.015625,
+              "y": 540.0
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The page indicates that the service is not available in the specified area and prompts for an email address instead of allowing to check availability. The task is therefore not completable."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://fiber.google.com/"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "Resilient internet \u2013 for whatever life brings"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.MuiInputBase-input.styles_addressInput__5n4Xk.css-j73zfz.pac-target-input[name=\"street_address\"][placeholder*=\"Enter your address\"][required=\"\"][type=\"text\"][autocomplete=\"off\"]",
+              "x": 510.015625,
+              "y": 540.0
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.MuiInputBase-input.styles_addressInput__5n4Xk.css-j73zfz.pac-target-input[name=\"street_address\"][placeholder*=\"Enter your address\"][required=\"\"][type=\"text\"][autocomplete=\"off\"]",
+              "x": 510.015625,
+              "y": 540.0
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.MuiButton-disableElevation.styles_submit__dNtUy.css-8qzx7[type=\"submit\"]",
+              "x": 882.015625,
+              "y": 540.0
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "Task completed successfully"
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      },
+      {
+        "name": "ADDRESS_BAR",
+        "description": "Enter address to check availability",
+        "checks": [
+          {
+            "type": "url",
+            "params": {
+              "url": "https://fiber.google.com/"
+            }
+          },
+          {
+            "type": "text",
+            "params": {
+              "text": "The most awarded internet. Now reinvented."
+            }
+          }
+        ],
+        "actions": [
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "input.MuiInputBase-input.styles_addressInput__5n4Xk.css-j73zfz.pac-target-input[name=\"street_address\"][placeholder*=\"Enter your address\"][required=\"\"][type=\"text\"][autocomplete=\"off\"]",
+              "x": 510.015625,
+              "y": 540.0
+            }
+          },
+          {
+            "type": "type",
+            "params": {
+              "text": "%address%",
+              "by": "css selector",
+              "selector": "input.MuiInputBase-input.styles_addressInput__5n4Xk.css-j73zfz.pac-target-input[name=\"street_address\"][placeholder*=\"Enter your address\"][required=\"\"][type=\"text\"][autocomplete=\"off\"]",
+              "x": 510.015625,
+              "y": 540.0
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "down"
+            }
+          },
+          {
+            "type": "press_key",
+            "params": {
+              "key": "enter"
+            }
+          },
+          {
+            "type": "click",
+            "params": {
+              "by": "css selector",
+              "selector": "button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.MuiButton-disableElevation.styles_submit__dNtUy.css-8qzx7[type=\"submit\"]",
+              "x": 882.015625,
+              "y": 540.0
+            }
+          },
+          {
+            "type": "terminate",
+            "params": {
+              "reason": "The address entered is not in the service area, and the page displays 'We're not in your area yet.' along with an email address input field. Therefore, the task is terminated as per the instructions."
+            }
+          }
+        ],
+        "end_state": "",
+        "save_content": false,
+        "executed": []
+      }
+    ]
+  },
+  {
+    "name": "ENTER_EMAIL",
+    "description": "Not available - enter email for updates",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Enter your email address to receive updates."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The user query instructs to terminate the task immediately."
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "save_content": true,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://fiber.google.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Resilient internet \u2013 for whatever life brings"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.MuiInputBase-input.styles_addressInput__5n4Xk.css-j73zfz.pac-target-input[name=\"street_address\"][placeholder*=\"Enter your address\"][required=\"\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 510.015625,
+          "y": 540.0
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.MuiInputBase-input.styles_addressInput__5n4Xk.css-j73zfz.pac-target-input[name=\"street_address\"][placeholder*=\"Enter your address\"][required=\"\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 510.015625,
+          "y": 540.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.MuiButton-disableElevation.styles_submit__dNtUy.css-8qzx7[type=\"submit\"]",
+          "x": 882.015625,
+          "y": 540.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The page indicates that the service is not available in the specified area and prompts for an email address instead of allowing to check availability. The task is therefore not completable."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://fiber.google.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Resilient internet \u2013 for whatever life brings"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.MuiInputBase-input.styles_addressInput__5n4Xk.css-j73zfz.pac-target-input[name=\"street_address\"][placeholder*=\"Enter your address\"][required=\"\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 510.015625,
+          "y": 540.0
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.MuiInputBase-input.styles_addressInput__5n4Xk.css-j73zfz.pac-target-input[name=\"street_address\"][placeholder*=\"Enter your address\"][required=\"\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 510.015625,
+          "y": 540.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.MuiButton-disableElevation.styles_submit__dNtUy.css-8qzx7[type=\"submit\"]",
+          "x": 882.015625,
+          "y": 540.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://fiber.google.com/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "The most awarded internet. Now reinvented."
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input.MuiInputBase-input.styles_addressInput__5n4Xk.css-j73zfz.pac-target-input[name=\"street_address\"][placeholder*=\"Enter your address\"][required=\"\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 510.015625,
+          "y": 540.0
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input.MuiInputBase-input.styles_addressInput__5n4Xk.css-j73zfz.pac-target-input[name=\"street_address\"][placeholder*=\"Enter your address\"][required=\"\"][type=\"text\"][autocomplete=\"off\"]",
+          "x": 510.015625,
+          "y": 540.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "down"
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.MuiButton-disableElevation.styles_submit__dNtUy.css-8qzx7[type=\"submit\"]",
+          "x": 882.015625,
+          "y": 540.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The address entered is not in the service area, and the page displays 'We're not in your area yet.' along with an email address input field. Therefore, the task is terminated as per the instructions."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  }
+]

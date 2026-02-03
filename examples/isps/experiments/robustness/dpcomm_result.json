@@ -1,0 +1,164 @@
+[
+  {
+    "name": "START",
+    "description": "Navigate to D-P Communications page",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "data:,"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://www.d-pcomm.com"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The task is completed as the website has been navigated to and the instruction is to terminate."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "ADDRESS_BAR",
+    "description": "Enter address to check availability",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "2 GIG Internet"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "input[type=\"text\"][placeholder*=\"Enter your address to view available plans\"][name=\"address\"]",
+          "x": 358.0078125,
+          "y": 750.0
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "%address%",
+          "by": "css selector",
+          "selector": "input[type=\"text\"][placeholder*=\"Enter your address to view available plans\"][name=\"address\"]",
+          "x": 358.0078125,
+          "y": 750.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "button",
+          "x": 819.0078125,
+          "y": 750.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "INTERNET",
+    "description": "Build your bundle - select Internet",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Internet"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Start building your bundle by adding your desired services!"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.toggleWrap",
+          "x": 816.3125,
+          "y": 570.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.toggleWrap",
+          "x": 816.3125,
+          "y": 570.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully as per the instructions."
+        }
+      }
+    ],
+    "end_state": "",
+    "save_content": false,
+    "executed": []
+  },
+  {
+    "name": "NO_SERVICE",
+    "description": "Service not available",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "https://www.d-pcomm.com/bundle-builder/"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Select your services"
+        }
+      },
+      {
+        "type": "text",
+        "params": {
+          "text": "Start building your bundle by adding your desired services!"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Task completed successfully"
+        }
+      }
+    ],
+    "end_state": "no_service",
+    "save_content": true,
+    "executed": []
+  }
+]
