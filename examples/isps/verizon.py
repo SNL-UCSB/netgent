@@ -48,40 +48,23 @@ prompts = [
         ),
         StatePrompt(
             name="SERVICEABLE",
-            description="Choose your plan - service is available",
-            triggers=["If you see 'Choose your plan'"],
-            actions=["TERMINATE AT THIS POINT"],
-            end_state="serviceable_with_plans",
-            save_content=True,
-        ),
-        StatePrompt(
-            name="SERVICEABLE_LTE",
-            description="LTE Home Internet is available",
-            triggers=["If you see 'Good news, LTE Home Internet is available at your address.'"],
-            actions=["TERMINATE AT THIS POINT"],
-            end_state="serviceable_with_plans",
-            save_content=True,
-        ),
-        StatePrompt(
-            name="SERVICEABLE_5G",
-            description="5G Home Internet is available",
-            triggers=["If you see 'Good news, 5G Home Internet is available at your address.'"],
+            description="Verizon Home Internet is available (Choose your plan / LTE / 5G)",
+            triggers=[
+                "If you see 'Choose your plan'",
+                "If you see 'Good news, LTE Home Internet is available at your address.'",
+                "If you see 'Good news, 5G Home Internet is available at your address.'"
+            ],
             actions=["TERMINATE AT THIS POINT"],
             end_state="serviceable_with_plans",
             save_content=True,
         ),
         StatePrompt(
             name="NO_SERVICE",
-            description="Be among the first to know - no service",
-            triggers=["If you see 'Be among the first to know'"],
-            actions=["TERMINATE AT THIS POINT"],
-            end_state="no_service",
-            save_content=True,
-        ),
-        StatePrompt(
-            name="NO_SERVICE_ADDITIONAL",
-            description="Verizon Home Internet isn't available",
-            triggers=["If you see 'Verizon Home Internet isn't available at your address'"],
+            description="Verizon Home Internet isn't available / Be among the first to know",
+            triggers=[
+                "If you see 'Be among the first to know'",
+                "If you see 'Verizon Home Internet isn't available at your address'"
+            ],
             actions=["TERMINATE AT THIS POINT"],
             end_state="no_service",
             save_content=True,

@@ -77,7 +77,7 @@ def main():
                 return None
 
             # Identify LLM spans
-            llm_spans = df[df['name'] == 'ChatVertexAI'].copy()
+            llm_spans = df[df['name'] == 'ChatGoogleGenerativeAI'].copy()
             
             component_tokens = []
             for trace_id in df['trace_id'].unique():
