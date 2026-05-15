@@ -1,0 +1,60 @@
+{
+  "specification": "1. Go to 'https://meeting.zoho.com/<secret>meeting_code</secret>'.\n    2. If a consent, cookie, or welcome dialog appears, dismiss it.\n    3. On the pre-join screen, type <secret>display_name</secret> into the name / display name input.\n    4. Click the 'Join meeting' button (or equivalent join/continue button that admits the participant).\n    5. Once inside the meeting (or while waiting to be let in), wait for <secret>wait_seconds</secret> seconds before stopping.",
+  "states": [
+    {
+      "checks": [
+        {
+          "type": "always_true",
+          "params": {}
+        }
+      ],
+      "actions": [
+        {
+          "type": "go_to_url",
+          "params": {
+            "url": "https://meeting.zoho.com/{{meeting_code}}",
+            "new_tab": false
+          }
+        },
+        {
+          "type": "input_text",
+          "params": {
+            "selector": "input.blueOutline[id=\"uname\"][name=\"username\"]",
+            "text": "{{display_name}}"
+          }
+        },
+        {
+          "type": "click_element",
+          "params": {
+            "selector": "button.primary-btn.joinBtn"
+          }
+        },
+        {
+          "type": "wait",
+          "params": {
+            "seconds": "{{wait_seconds}}"
+          }
+        },
+        {
+          "type": "click_element",
+          "params": {
+            "selector": "button.default_btn1[id=\"jpContinueBtn\"]"
+          }
+        },
+        {
+          "type": "wait",
+          "params": {
+            "seconds": "{{wait_seconds}}"
+          }
+        }
+      ],
+      "end_state": "Workflow Completed",
+      "executed": []
+    }
+  ],
+  "parameters": [
+    "meeting_code",
+    "display_name",
+    "wait_seconds"
+  ]
+}

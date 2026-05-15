@@ -1,0 +1,99 @@
+{
+  "specification": "1. Go to 'https://teams.live.com/meet/<secret>meeting_code</secret>'.\n    2. If a consent, cookie, or welcome dialog appears, dismiss it.\n    3. On the pre-join screen, type <secret>display_name</secret> into the name / display name input.\n    4. Click the 'Join now' button.\n    5. If a meeting passcode prompt appears, type <secret>passcode</secret> into the passcode input.\n    6. Click the 'Rejoin call' button (or equivalent button that re-submits the join request with the passcode).\n    7. If the meeting still requires another confirmation, click the 'Join call' / 'Join' button again to enter the meeting.\n    8. Once inside the meeting (or while waiting in the lobby to be admitted), wait for <secret>wait_seconds</secret> seconds before stopping.",
+  "states": [
+    {
+      "checks": [
+        {
+          "type": "always_true",
+          "params": {}
+        }
+      ],
+      "actions": [
+        {
+          "type": "go_to_url",
+          "params": {
+            "url": "https://teams.live.com/meet/{{meeting_code}}",
+            "new_tab": false
+          }
+        },
+        {
+          "type": "click_element",
+          "params": {
+            "selector": "button.primary[aria-label=\"Join meeting from this browser\"]"
+          }
+        },
+        {
+          "type": "wait",
+          "params": {
+            "seconds": "{{wait_seconds}}"
+          }
+        },
+        {
+          "type": "input_text",
+          "params": {
+            "selector": "input.r12stul0.f1w2t2ij[placeholder=\"Type your name\"][type=\"text\"]",
+            "text": "{{display_name}}"
+          }
+        },
+        {
+          "type": "click_element",
+          "params": {
+            "selector": "button.fui-Button.r1f29ykk[id=\"prejoin-join-button\"][aria-label=\"Join now\"]"
+          }
+        },
+        {
+          "type": "wait",
+          "params": {
+            "seconds": "{{wait_seconds}}"
+          }
+        },
+        {
+          "type": "input_text",
+          "params": {
+            "selector": "input.r12stul0.fokr779[aria-label=\"Meeting ID\"][placeholder=\"Type a meeting ID\"]",
+            "text": "{{meeting_code}}"
+          }
+        },
+        {
+          "type": "input_text",
+          "params": {
+            "selector": "input.r12stul0.fokr779[aria-label=\"Meeting Passcode\"][placeholder=\"Type a meeting passcode\"]",
+            "text": "{{passcode}}"
+          }
+        },
+        {
+          "type": "click_element",
+          "params": {
+            "selector": "button.fui-Button.r1f29ykk[type=\"button\"]"
+          }
+        },
+        {
+          "type": "click_element",
+          "params": {
+            "selector": "button.fui-Button.r1f29ykk[id=\"prejoin-join-button\"][aria-label=\"Join now\"]"
+          }
+        },
+        {
+          "type": "wait",
+          "params": {
+            "seconds": "{{wait_seconds}}"
+          }
+        },
+        {
+          "type": "wait",
+          "params": {
+            "seconds": "{{wait_seconds}}"
+          }
+        }
+      ],
+      "end_state": "Workflow Completed",
+      "executed": []
+    }
+  ],
+  "parameters": [
+    "meeting_code",
+    "display_name",
+    "passcode",
+    "wait_seconds"
+  ]
+}

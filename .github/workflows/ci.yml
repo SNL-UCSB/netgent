@@ -1,0 +1,51 @@
+name: ci
+
+on:
+  # Fire on every PR regardless of target branch — covers stacked PRs
+  # without enumerating their bases. The `push:` trigger stays main-only
+  # since we squash-merge to main and don't need redundant runs on
+  # feature-branch pushes.
+  pull_request:
+    paths:
+      - "src/**"
+      - "scripts/**"
+      - "tests/**"
+      - "pyproject.toml"
+      - "uv.lock"
+      - ".github/workflows/ci.yml"
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "scripts/**"
+      - "tests/**"
+      - "pyproject.toml"
+      - "uv.lock"
+      - ".github/workflows/ci.yml"
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "latest"
+
+      - name: Set up Python
+        run: uv python install 3.11
+
+      - name: Install dependencies
+        run: uv sync --frozen
+
+      - name: ruff format (check)
+        run: uv run ruff format --check src tests scripts
+
+      - name: ruff lint
+        run: uv run ruff check src tests scripts
+
+      - name: pytest
+        run: uv run pytest

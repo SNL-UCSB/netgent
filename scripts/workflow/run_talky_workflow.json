@@ -1,0 +1,50 @@
+{
+  "specification": "1. Go to 'https://talky.io/'.\n    2. If a consent, cookie, or welcome dialog appears, dismiss it.\n    3. In the room name input field on the landing page, type <secret>room_name</secret>.\n    4. Click the 'Start Call' button (or equivalent button that starts/joins the call).\n    5. If a screen appears asking for a display name or nickname, type <secret>display_name</secret> and submit.\n    6. If a permission, microphone, camera, or 'continue without devices' prompt appears, dismiss or continue through it to enter the room.\n    7. Once inside the room, wait for <secret>wait_seconds</secret> seconds before stopping.",
+  "states": [
+    {
+      "checks": [
+        {
+          "type": "always_true",
+          "params": {}
+        }
+      ],
+      "actions": [
+        {
+          "type": "go_to_url",
+          "params": {
+            "url": "https://talky.io/",
+            "new_tab": false
+          }
+        },
+        {
+          "type": "input_text",
+          "params": {
+            "selector": "input.create-room-form-input[placeholder=\"choose a room name\"]",
+            "text": "{{room_name}}"
+          }
+        },
+        {
+          "type": "click_element",
+          "params": {
+            "selector": "button.create-room-form-button.button-default[type=\"submit\"]"
+          }
+        },
+        {
+          "type": "click_element",
+          "params": {
+            "selector": "button.sc-AxjAm.sc-fznWqX"
+          }
+        },
+        {
+          "type": "wait",
+          "params": {
+            "seconds": "{{wait_seconds}}"
+          }
+        }
+      ],
+      "end_state": "Workflow Completed",
+      "executed": []
+    }
+  ],
+  "parameters": ["room_name", "display_name", "wait_seconds"]
+}

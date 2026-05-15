@@ -1,0 +1,1 @@
+"""Trigger registry package."""

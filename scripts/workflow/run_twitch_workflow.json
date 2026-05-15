@@ -1,0 +1,57 @@
+{
+  "specification": "1. Go to 'https://www.twitch.tv/'.\n    2. If a consent, cookie, age, or sign-in dialog appears, dismiss it if possible without signing in.\n    3. On the homepage, select a visible live channel or featured video that is already shown there.\n    4. Wait for the player page to finish loading.\n    5. If playback has not started, press the Play button.\n    6. When the player is active and playback is running, wait for <secret>watch_seconds</secret> seconds before stopping.",
+  "states": [
+    {
+      "checks": [
+        {
+          "type": "always_true",
+          "params": {}
+        }
+      ],
+      "actions": [
+        {
+          "type": "go_to_url",
+          "params": {
+            "url": "https://www.twitch.tv/",
+            "new_tab": false
+          }
+        },
+        {
+          "type": "click_element",
+          "params": {
+            "selector": "button.cikFpu"
+          }
+        },
+        {
+          "type": "wait",
+          "params": {
+            "seconds": "{{watch_seconds}}"
+          }
+        },
+        {
+          "type": "click_element",
+          "params": {
+            "selector": "div"
+          }
+        },
+        {
+          "type": "click_element",
+          "params": {
+            "selector": "a.ScCoreLink-sc-16kq0mq-0.fytYW[href=\"/hasanabi\"]"
+          }
+        },
+        {
+          "type": "wait",
+          "params": {
+            "seconds": "{{watch_seconds}}"
+          }
+        }
+      ],
+      "end_state": "Workflow Completed",
+      "executed": []
+    }
+  ],
+  "parameters": [
+    "watch_seconds"
+  ]
+}

@@ -1,0 +1,75 @@
+# `docker compose up` starts Browserless on :3000. The `netgent`
+# service sits behind the `app` profile so it doesn't auto-start —
+# bring it up explicitly when you want to run scripts inside the
+# container:
+#
+#   docker compose up -d browserless
+#   docker compose --profile app run --rm netgent \
+#       python scripts/run_netgent.py
+#
+# The netgent container reaches Browserless on the compose network at
+# `ws://browserless:3000/playwright/chromium?token=...`. From the host
+# (e.g. running uv locally), use `ws://localhost:3000/...` instead.
+
+services:
+  # Browserless v2 — runs Chromium and exposes a Playwright-compatible
+  # websocket endpoint. The code in src/main.py calls
+  # `pw.chromium.connect(endpoint)`, which requires the
+  # `/playwright/chromium` path. The CDP path (`/chromium`) is for
+  # `connect_over_cdp` callers and is unused here.
+  browserless:
+    image: ghcr.io/browserless/chromium:latest
+    container_name: netgent-browserless
+    ports:
+      - "${BROWSERLESS_PORT:-3000}:3000"
+    environment:
+      # TOKEN is required in v2 — Browserless refuses to start without
+      # one. The default below is the documented public placeholder;
+      # override via `.env` for anything beyond local dev.
+      TOKEN: ${BROWSERLESS_TOKEN:-6R0W53R135510}
+      CONCURRENT: ${BROWSERLESS_CONCURRENT:-5}
+      QUEUED: ${BROWSERLESS_QUEUED:-5}
+      TIMEOUT: ${BROWSERLESS_TIMEOUT:-60000}
+    restart: unless-stopped
+    healthcheck:
+      # Browserless exposes `/sysinfo` on the same port; cheap probe
+      # that confirms the HTTP server is up before dependents start.
+      test:
+        - "CMD"
+        - "wget"
+        - "-q"
+        - "-O"
+        - "/dev/null"
+        - "http://localhost:3000/sysinfo"
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    shm_size: "2gb"
+
+  # netgent app container — opt-in via `--profile app`. Bind-mounts
+  # src/ and scripts/ so code edits on the host are visible without a
+  # rebuild. Drop the volumes for a production-style image.
+  netgent:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: netgent-app
+    profiles: ["app"]
+    depends_on:
+      browserless:
+        condition: service_healthy
+    environment:
+      # Pointed at the in-network browserless. The token must match
+      # what the browserless service was launched with.
+      BROWSERLESS_WS_ENDPOINT: ws://browserless:3000/playwright/chromium?token=${BROWSERLESS_TOKEN:-6R0W53R135510}
+      BROWSER_USE_HEADLESS: "true"
+    env_file:
+      # API keys, AWS creds, etc. Optional so `compose up` works on a
+      # fresh checkout without a .env present.
+      - path: .env
+        required: false
+    volumes:
+      - ./src:/app/src
+      - ./scripts:/app/scripts
+    command: ["sleep", "infinity"]

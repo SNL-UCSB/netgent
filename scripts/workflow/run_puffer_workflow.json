@@ -1,0 +1,79 @@
+{
+  "specification": "1. Go to 'https://puffer.stanford.edu/accounts/login'.\n    2. On the Puffer login page, enter username <secret>username</secret> and password <secret>password</secret>.\n    3. If a consent or agreement checkbox is present, select it.\n    4. Submit the login form.\n    5. After login, click the 'Watch TV' button.\n    6. Wait for the channel page to finish loading.\n    7. Select the 'Fox' channel.\n    8. When the player screen is active and playback has started, wait for <secret>watch_seconds</secret> seconds before stopping.",
+  "states": [
+    {
+      "checks": [
+        {
+          "type": "always_true",
+          "params": {}
+        }
+      ],
+      "actions": [
+        {
+          "type": "go_to_url",
+          "params": {
+            "url": "https://puffer.stanford.edu/accounts/login",
+            "new_tab": false
+          }
+        },
+        {
+          "type": "input_text",
+          "params": {
+            "selector": "input.form-control[name=\"username\"][placeholder=\"Username\"]",
+            "text": "{{username}}"
+          }
+        },
+        {
+          "type": "input_text",
+          "params": {
+            "selector": "input.form-control[name=\"password\"][placeholder=\"Password\"]",
+            "text": "{{password}}"
+          }
+        },
+        {
+          "type": "click_element",
+          "params": {
+            "selector": "label.custom-control-label"
+          }
+        },
+        {
+          "type": "click_element",
+          "params": {
+            "selector": "button.btn-primary.btn-lg[type=\"submit\"]"
+          }
+        },
+        {
+          "type": "click_element",
+          "params": {
+            "selector": "a.btn-primary.btn-lg[role=\"button\"]"
+          }
+        },
+        {
+          "type": "click_element",
+          "params": {
+            "selector": "button.list-group-item.list-group-item-action[name=\"fox\"][type=\"button\"]"
+          }
+        },
+        {
+          "type": "wait",
+          "params": {
+            "seconds": "{{watch_seconds}}"
+          }
+        },
+        {
+          "type": "wait",
+          "params": {
+            "seconds": "{{watch_seconds}}"
+          }
+        }
+      ],
+      "end_state": "Workflow Completed",
+      "executed": []
+    }
+  ],
+  "parameters": [
+    "username",
+    "password",
+    "watch_seconds"
+  ]
+}

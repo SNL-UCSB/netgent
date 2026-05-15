@@ -1,0 +1,44 @@
+{
+  "specification": "1. Go to 'https://app.zoom.us/wc'.\n    2. If a consent, cookie, or welcome dialog appears, dismiss it.\n    3. Click the 'Join a Meeting' (or 'Join Meeting') button / link to open the join form.\n    4. In the meeting ID / meeting number input, type <secret>meeting_id</secret>.\n    5. Submit the meeting ID by clicking the 'Join' button (or pressing Enter) to advance to the next screen.\n    6. If the browser prompts for camera / microphone permissions, dismiss or continue through it \u2014 do not cancel.\n    7. If a passcode input appears, type <secret>passcode</secret> into the passcode field and submit it.\n    8. If a display name / 'Your Name' input appears, type <secret>display_name</secret> into it.\n    9. Click the final 'Join' / 'Join Meeting' button to enter the meeting.\n    10. Once inside the meeting (or while waiting in the lobby / waiting room to be admitted), wait for <secret>wait_seconds</secret> seconds before stopping.",
+  "states": [
+    {
+      "checks": [
+        {
+          "type": "always_true",
+          "params": {}
+        }
+      ],
+      "actions": [
+        {
+          "type": "go_to_url",
+          "params": {
+            "url": "https://app.zoom.us/wc",
+            "new_tab": false
+          }
+        },
+        {
+          "type": "click_element",
+          "params": {
+            "selector": "button.MuiButtonBase-root.MuiButton-root[aria-label=\"Join Meeting\"][type=\"button\"]"
+          }
+        },
+        {
+          "type": "input_text",
+          "params": {
+            "selector": "input.join-meetingId[placeholder=\"Meeting ID or Personal Link Name\"][type=\"text\"]",
+            "text": "{{meeting_id}}"
+          }
+        },
+        {
+          "type": "send_keys",
+          "params": {
+            "keys": "Enter"
+          }
+        }
+      ],
+      "end_state": "Workflow Completed",
+      "executed": []
+    }
+  ],
+  "parameters": ["meeting_id", "passcode", "display_name", "wait_seconds"]
+}

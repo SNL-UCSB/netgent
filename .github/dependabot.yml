@@ -1,0 +1,57 @@
+# Dependabot configuration — weekly dependency updates for the
+# uv-managed Python project plus the GitHub Actions used in CI.
+# Major-version updates are held (engineers upgrade manually when
+# ready); minor/patch updates are grouped to keep PR volume low.
+# GitHub-published security advisories bypass both the schedule and
+# the major-version hold automatically (Dependabot built-in).
+
+version: 2
+updates:
+  # ── Python (uv) ─────────────────────────────────────────────────────
+  # `uv` is the native Dependabot ecosystem for uv-managed Python
+  # projects — it updates `pyproject.toml` AND regenerates `uv.lock`.
+  # The generic `pip` ecosystem only touches `pyproject.toml` and
+  # would leave `uv.lock` to drift on every Dependabot PR.
+  - package-ecosystem: "uv"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "America/Los_Angeles"
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "chore(deps)"
+      prefix-development: "chore(deps-dev)"
+    groups:
+      python-minor-patch:
+        update-types:
+          - "minor"
+          - "patch"
+    ignore:
+      # Hold majors — they're breaking changes that need explicit
+      # upgrade work, not weekly noise. Security advisories override
+      # this automatically (Dependabot's documented behavior).
+      - dependency-name: "*"
+        update-types:
+          - "version-update:semver-major"
+
+  # ── GitHub Actions ──────────────────────────────────────────────────
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "America/Los_Angeles"
+    commit-message:
+      prefix: "chore(deps)"
+    groups:
+      actions-minor-patch:
+        update-types:
+          - "minor"
+          - "patch"
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - "version-update:semver-major"

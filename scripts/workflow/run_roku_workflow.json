@@ -1,0 +1,62 @@
+{
+  "specification": "1. Go to 'https://therokuchannel.roku.com/'\n    2. Search for 'Mafia' in the search bar.\n    3.  select the first result.\n    4. Once on the Movie/Show Page, press the Play/Resume button.\n    5. When in the player screen, wait for <secret>watch_seconds</secret> seconds before stopping.",
+  "states": [
+    {
+      "checks": [
+        {
+          "type": "always_true",
+          "params": {}
+        }
+      ],
+      "actions": [
+        {
+          "type": "go_to_url",
+          "params": {
+            "url": "https://therokuchannel.roku.com/",
+            "new_tab": false
+          }
+        },
+        {
+          "type": "input_text",
+          "params": {
+            "selector": "input.MuiInputBase-input.MuiOutlinedInput-input[placeholder=\"Search\"][type=\"text\"]",
+            "text": "Mafia"
+          }
+        },
+        {
+          "type": "send_keys",
+          "params": {
+            "keys": "Enter"
+          }
+        },
+        {
+          "type": "click_element",
+          "params": {
+            "selector": "a.roku-collection-item[aria-label=\"Mafia Hunters\"]"
+          }
+        },
+        {
+          "type": "click_element",
+          "params": {
+            "selector": "a.roku-button.padded[aria-label=\"Play Mafia Hunters\"]"
+          }
+        },
+        {
+          "type": "wait",
+          "params": {
+            "seconds": "{{watch_seconds}}"
+          }
+        },
+        {
+          "type": "wait",
+          "params": {
+            "seconds": "{{watch_seconds}}"
+          }
+        }
+      ],
+      "end_state": "Workflow Completed",
+      "executed": []
+    }
+  ],
+  "parameters": ["watch_seconds"]
+}
