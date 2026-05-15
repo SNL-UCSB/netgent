@@ -18,9 +18,7 @@ from core.context import ExecutionContext
 from schema import ProcessOutcome
 from services.ping import PingProcessError, PingService
 
-requires_ping = pytest.mark.skipif(
-    shutil.which("ping") is None, reason="ping binary not on PATH"
-)
+requires_ping = pytest.mark.skipif(shutil.which("ping") is None, reason="ping binary not on PATH")
 
 
 def _run(coro):
@@ -64,9 +62,7 @@ def test_ctx_parameter_accepted_when_passed():
     ctx = ExecutionContext.from_test()
 
     async def go():
-        return await PingService().run(
-            "127.0.0.1", ctx=ctx, count=1, timeout_seconds=2
-        )
+        return await PingService().run("127.0.0.1", ctx=ctx, count=1, timeout_seconds=2)
 
     outcome = _run(go())
     assert outcome.returncode == 0

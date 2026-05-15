@@ -9,19 +9,19 @@ from langgraph.graph import END, START, MessagesState
 from langgraph.graph.state import StateGraph
 from playwright.async_api import async_playwright
 
-from clients.netgent.src.agent.subagents.browser.execute.agent import (
+from agents.subagents.browser.execute.agent import (
     create_agent as create_execute_agent,
 )
-from clients.netgent.src.agent.subagents.browser.generate.agent import (
+from agents.subagents.browser.generate.agent import (
     create_agent as create_browser_generate_agent,
 )
-from clients.netgent.src.agent.subagents.browser.util import open_browser_session
-from clients.netgent.src.engine.controller import ProgramController
-from clients.netgent.src.engine.executor import StateExecutor
-from clients.netgent.src.engine.runner import WorkflowRunner
-from clients.netgent.src.registry.actions.playwright import PLAYWRIGHT_ACTIONS
-from clients.netgent.src.registry.triggers.base import always_true
-from clients.netgent.src.registry.triggers.playwright import PLAYWRIGHT_TRIGGERS
+from agents.subagents.browser.util import open_browser_session
+from engine.controller import ProgramController
+from engine.executor import StateExecutor
+from engine.runner import WorkflowRunner
+from registry.actions.playwright import PLAYWRIGHT_ACTIONS
+from registry.triggers.base import always_true
+from registry.triggers.playwright import PLAYWRIGHT_TRIGGERS
 
 
 class BrowserState(MessagesState):
@@ -83,10 +83,7 @@ def _infer_browser_parameter_name(
         candidates = [
             name
             for name in parameters
-            if any(
-                token in name.lower()
-                for token in ("wait", "time", "seconds", "duration")
-            )
+            if any(token in name.lower() for token in ("wait", "time", "seconds", "duration"))
         ]
         if len(candidates) == 1:
             return candidates[0]
@@ -133,9 +130,7 @@ def _parameterize_browser_workflow(
                     )
 
                 if replacement_name is not None:
-                    params[param_name] = _browser_parameter_placeholder(
-                        replacement_name
-                    )
+                    params[param_name] = _browser_parameter_placeholder(replacement_name)
 
     workflow["parameters"] = list(parameters.keys())
     return workflow
@@ -263,9 +258,7 @@ async def run_workflow(state: BrowserState) -> dict[str, Any]:
     return {
         "result": final_result,
         "workflow": (
-            response.get("workflow", workflow)
-            if isinstance(response, dict)
-            else workflow
+            response.get("workflow", workflow) if isinstance(response, dict) else workflow
         ),
     }
 
@@ -296,9 +289,7 @@ def create_agent():
 
 async def main():
     task = (
-        "Run a simple browser workflow. "
-        "First navigate to a test page. "
-        "Second wait for 5 seconds."
+        "Run a simple browser workflow. First navigate to a test page. Second wait for 5 seconds."
     )
     workflow = {
         "specification": (

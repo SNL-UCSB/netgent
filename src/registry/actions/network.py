@@ -2,12 +2,12 @@ from __future__ import annotations
 
 from typing import Literal
 
-from clients.netgent.src.registry.actions.base import action
-from clients.netgent.src.registry.actions.exception import ActionError
-from clients.netgent.src.schema import ProcessOutcome
-from clients.netgent.src.services.iperf import IperfService
-from clients.netgent.src.services.ndt import NdtService
-from clients.netgent.src.services.ping import PingService
+from registry.actions.base import action
+from registry.actions.exception import ActionError
+from schema import ProcessOutcome
+from services.iperf import IperfService
+from services.ndt import NdtService
+from services.ping import PingService
 
 
 @action(name="iperf")

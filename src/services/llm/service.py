@@ -155,15 +155,11 @@ class LLMService:
         """
         try:
             return await asyncio.wait_for(
-                self._call_with_fallback(
-                    messages, model_name, response_format, model_kwargs
-                ),
+                self._call_with_fallback(messages, model_name, response_format, model_kwargs),
                 timeout=settings.LLM_TOTAL_TIMEOUT,
             )
         except TimeoutError:
-            logger.exception(
-                "LLM total timeout exceeded after %ss", settings.LLM_TOTAL_TIMEOUT
-            )
+            logger.exception("LLM total timeout exceeded after %ss", settings.LLM_TOTAL_TIMEOUT)
             raise RuntimeError(
                 f"llm call timed out after {settings.LLM_TOTAL_TIMEOUT}s total budget"
             ) from None
@@ -187,9 +183,7 @@ class LLMService:
         before_sleep=before_sleep_log(logger, logging.WARNING),
         reraise=True,
     )
-    async def _invoke_with_retry(
-        self, llm: Any, messages: LanguageModelInput
-    ) -> Any:
+    async def _invoke_with_retry(self, llm: Any, messages: LanguageModelInput) -> Any:
         try:
             response = await llm.ainvoke(messages)
             logger.debug("LLM call succeeded")
@@ -242,19 +236,13 @@ class LLMService:
 
         def _override_target(idx: int) -> Any:
             base = LLMRegistry.get(LLMRegistry.LLMS[idx]["name"], **model_kwargs)
-            return (
-                base.with_structured_output(response_format)
-                if response_format
-                else base
-            )
+            return base.with_structured_output(response_format) if response_format else base
 
         def _default_target(_: int) -> Any:
             return self._llm
 
         def _default_advance(_: int) -> int | None:
-            return (
-                self._current_model_index if self._switch_to_next_model() else None
-            )
+            return self._current_model_index if self._switch_to_next_model() else None
 
         if model_name or response_format or model_kwargs:
             names = LLMRegistry.get_all_names()
@@ -265,11 +253,7 @@ class LLMService:
                     f"available models: {', '.join(names)}"
                 )
 
-            start = (
-                names.index(model_name)
-                if model_name
-                else self._current_model_index
-            )
+            start = names.index(model_name) if model_name else self._current_model_index
             total = len(LLMRegistry.LLMS)
 
             def _override_advance(idx: int) -> int | None:

@@ -14,7 +14,7 @@ import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from netgent.main import NetGent  # noqa: E402
+from main import NetGent  # noqa: E402
 
 
 def main() -> None:
@@ -24,9 +24,7 @@ def main() -> None:
     parser.add_argument("--wait-seconds", default="30")
     parser.add_argument(
         "--workflow",
-        default=os.path.join(
-            os.path.dirname(__file__), "workflow", "run_meet_workflow.json"
-        ),
+        default=os.path.join(os.path.dirname(__file__), "workflow", "run_meet_workflow.json"),
         help="Path to the saved workflow JSON.",
     )
     parser.add_argument("--headless", action="store_true")

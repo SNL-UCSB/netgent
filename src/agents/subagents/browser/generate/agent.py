@@ -8,15 +8,15 @@ from langgraph.runtime import Runtime
 from playwright.async_api import Playwright, async_playwright
 from pydantic import BaseModel, ConfigDict
 
-from clients.netgent.src.agent.model_factory import get_browser_use_model
-from clients.netgent.src.agent.subagents.browser.generate.evolution import (
+from agents.model_factory import get_browser_use_model
+from agents.subagents.browser.generate.evolution import (
     BrowserEvolution,
     build_evolutionary_prompt,
     coerce_evolution,
     update_evolution,
 )
-from clients.netgent.src.agent.subagents.browser.generate.generate import gen_workflow
-from clients.netgent.src.agent.subagents.browser.util import (
+from agents.subagents.browser.generate.generate import gen_workflow
+from agents.subagents.browser.util import (
     build_controller,
     open_browser_session,
     parse_agent_history,
@@ -65,9 +65,7 @@ def _build_task_with_parameters(task: str, parameters: dict[str, str]) -> str:
         "Available runtime parameter placeholders:",
     ]
     for name in parameters:
-        lines.append(
-            f"  - {name}: use <secret>{name}</secret> when an action needs this value"
-        )
+        lines.append(f"  - {name}: use <secret>{name}</secret> when an action needs this value")
     lines.append(
         "Do not hardcode literal parameter values into actions when one of these placeholders applies."
     )

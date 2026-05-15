@@ -4,8 +4,8 @@ from typing import Any, Literal
 
 from playwright.async_api import Page
 
-from clients.netgent.src.registry.context import Context
-from clients.netgent.src.registry.triggers.base import TriggerError, trigger
+from registry.context import Context
+from registry.triggers.base import TriggerError, trigger
 
 ElementState = Literal["attached", "detached", "hidden", "visible"]
 
