@@ -34,6 +34,38 @@
           "params": {
             "keys": "Enter"
           }
+        },
+        {
+          "type": "wait",
+          "params": {
+            "seconds": "3"
+          }
+        },
+        {
+          "type": "input_text",
+          "params": {
+            "selector": "iframe#webclient >>> input#input-for-pwd",
+            "text": "{{passcode}}"
+          }
+        },
+        {
+          "type": "input_text",
+          "params": {
+            "selector": "iframe#webclient >>> input#input-for-name",
+            "text": "{{display_name}}"
+          }
+        },
+        {
+          "type": "click_element",
+          "params": {
+            "selector": "iframe#webclient >>> button.preview-join-button"
+          }
+        },
+        {
+          "type": "wait",
+          "params": {
+            "seconds": "{{wait_seconds}}"
+          }
         }
       ],
       "end_state": "Workflow Completed",

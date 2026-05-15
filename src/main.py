@@ -157,8 +157,16 @@ class NetGent:
                 browser = await playwright.chromium.connect_over_cdp(self._cdp_url)
                 context = browser.contexts[0] if browser.contexts else (await browser.new_context())
             else:
-                browser = await playwright.chromium.launch(headless=self._headless)
+                browser = await playwright.chromium.launch(
+                    headless=self._headless,
+                    args=[
+                        "--use-fake-ui-for-media-stream",
+                        "--use-fake-device-for-media-stream",
+                    ],
+                )
                 context = await browser.new_context()
+
+            await context.grant_permissions(["camera", "microphone"])
 
             page = await context.new_page()
             try:

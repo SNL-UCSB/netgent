@@ -73,6 +73,22 @@ def _normalize_selector(selector: str) -> str:
     return normalized
 
 
+def _locate(page: Page, selector: str) -> Any:
+    """Return a Locator, piercing iframes via the `>>>` separator.
+
+    Example: `iframe#webclient >>> input[type="password"]` resolves to the
+    password input inside the `webclient` iframe.
+    """
+    if ">>>" not in selector:
+        return page.locator(selector)
+
+    parts = [segment.strip() for segment in selector.split(">>>")]
+    scope: Any = page
+    for frame_sel in parts[:-1]:
+        scope = scope.frame_locator(frame_sel)
+    return scope.locator(parts[-1])
+
+
 def _xpath_string_literal(value: str) -> str:
     if "'" not in value:
         return f"'{value}'"
@@ -294,7 +310,7 @@ async def click_element(
     page = _resolve_page(ctx)
 
     normalized_selector = _normalize_selector(selector)
-    base_locator = page.locator(normalized_selector)
+    base_locator = _locate(page, normalized_selector)
     locator = base_locator.first
 
     count = await base_locator.count()
@@ -304,7 +320,7 @@ async def click_element(
     await _prepare_locator(locator, timeout_ms)
 
     async def build_locator() -> Any:
-        next_locator = page.locator(normalized_selector).first
+        next_locator = _locate(page, normalized_selector).first
         await _prepare_locator(next_locator, timeout_ms)
         return next_locator
 
@@ -397,7 +413,7 @@ async def input_text(
     page = _resolve_page(ctx)
 
     normalized_selector = _normalize_selector(selector)
-    locator = page.locator(normalized_selector).first
+    locator = _locate(page, normalized_selector).first
 
     count = await locator.count()
     if count == 0:
@@ -540,7 +556,7 @@ async def scroll(
         }
 
     normalized_selector = _normalize_selector(selector)
-    locator = page.locator(normalized_selector).first
+    locator = _locate(page, normalized_selector).first
 
     count = await locator.count()
     if count == 0:
@@ -719,7 +735,7 @@ async def select_dropdown_option(
     ctx = ctx or ActionContext()
     page = _resolve_page(ctx)
     normalized_selector = _normalize_selector(selector)
-    locator = page.locator(normalized_selector).first
+    locator = _locate(page, normalized_selector).first
 
     count = await locator.count()
     if count == 0:
