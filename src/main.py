@@ -154,7 +154,10 @@ class NetGent:
         playwright = await async_playwright().start()
         try:
             if self._cdp_url:
-                browser = await playwright.chromium.connect_over_cdp(self._cdp_url)
+                # Remote mode uses the Playwright WS protocol (e.g. browserless
+                # at /chromium/playwright). The legacy field name `cdp_url` is
+                # historical — `connect_over_cdp` is the wrong call here.
+                browser = await playwright.chromium.connect(self._cdp_url)
                 context = browser.contexts[0] if browser.contexts else (await browser.new_context())
             else:
                 browser = await playwright.chromium.launch(
