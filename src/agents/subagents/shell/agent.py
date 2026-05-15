@@ -2,18 +2,18 @@ from __future__ import annotations
 
 from typing import Any
 
-from clients.netgent.src.agent.subagents.shell.prompts import (
+from agents.subagents.shell.prompts import (
     DECIDE_PROMPT,
     TASK_PROMPT,
     build_parameters_prompt,
 )
-from clients.netgent.src.agent.subagents.shell.schema import (
+from agents.subagents.shell.schema import (
     RunIPerf3Tool,
     RunNDT7Tool,
     RunPingTool,
     SendMessage,
 )
-from clients.netgent.src.agent.subagents.shell.tool_nodes import (
+from agents.subagents.shell.tool_nodes import (
     bad_tool_name,
     run_iperf3,
     run_ndt7,
@@ -34,18 +34,18 @@ from langgraph.graph import END, START, MessagesState, StateGraph
 from langgraph.runtime import Runtime
 from pydantic import BaseModel, ConfigDict
 
-from clients.netgent.src.agent.model_factory import get_langchain_model
-from clients.netgent.src.engine.controller import ProgramController
-from clients.netgent.src.engine.executor import StateExecutor
-from clients.netgent.src.engine.runner import WorkflowRunner
-from clients.netgent.src.engine.schema import (
+from agents.model_factory import get_langchain_model
+from engine.controller import ProgramController
+from engine.executor import StateExecutor
+from engine.runner import WorkflowRunner
+from engine.schema import (
     WorkflowAction,
     WorkflowCheck,
     WorkflowSchema,
     WorkflowState,
 )
-from clients.netgent.src.registry.actions.network import NETWORK_ACTIONS
-from clients.netgent.src.registry.triggers.base import always_true
+from registry.actions.network import NETWORK_ACTIONS
+from registry.triggers.base import always_true
 
 load_dotenv()
 

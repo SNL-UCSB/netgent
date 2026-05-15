@@ -2,9 +2,9 @@ from __future__ import annotations
 
 from typing import Any
 
-from clients.netgent.src.engine.controller import ProgramController
-from clients.netgent.src.engine.executor import StateExecutor
-from clients.netgent.src.engine.schema import WorkflowSchema
+from engine.controller import ProgramController
+from engine.executor import StateExecutor
+from engine.schema import WorkflowSchema
 
 
 class WorkflowRunner:

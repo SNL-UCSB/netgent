@@ -14,8 +14,11 @@ import json
 import os
 import sys
 
-# Ensure shared packages are importable
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+# `pyproject.toml` declares pythonpath=["src"] for pytest; we replicate it
+# here so `from main import NetGent` and bare imports like
+# `from services.ping import ...` both resolve when running the script.
+_HERE = os.path.dirname(__file__)
+sys.path.insert(0, os.path.join(_HERE, "..", "src"))
 
 # Shell actions read USE_LOCAL once at import time to decide between direct
 # execution and namespace execution (`ip netns exec`). Force local mode
@@ -23,7 +26,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 # is Linux-only, and this script is for local testing only.
 os.environ["USE_LOCAL"] = "true"
 
-from netgent.main import NetGent
+from main import NetGent
 from dotenv import load_dotenv
 
 # Load .env from repo root

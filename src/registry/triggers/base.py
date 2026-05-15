@@ -5,9 +5,9 @@ from collections.abc import Callable, Iterable
 from dataclasses import dataclass
 from typing import Any
 
-from clients.netgent.src.registry.base import RegistryBase, RegistryDefinition
-from clients.netgent.src.registry.context import Context, ContextInput
-from clients.netgent.src.registry.exception import NetGentWorkflowError
+from registry.base import RegistryBase, RegistryDefinition
+from registry.context import Context, ContextInput
+from registry.exception import NetGentWorkflowError
 
 RegisteredTrigger = Callable[..., Any]
 TRIGGER_NAME_ATTRIBUTE = "__trigger_name__"
@@ -110,7 +110,7 @@ trigger_registry = TriggerRegistry()
 trigger = trigger_registry.trigger
 register_trigger = trigger_registry.trigger
 
-from clients.netgent.src.registry.triggers.base_action import always_true
+from registry.triggers.base_action import always_true
 
 __all__ = [
     "TriggerDefinition",

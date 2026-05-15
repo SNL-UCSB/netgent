@@ -4,7 +4,7 @@ import re
 from collections.abc import Iterable, Iterator, Mapping
 from typing import Any, TypeAlias
 
-from clients.netgent.src.registry.exception import NetGentWorkflowError
+from registry.exception import NetGentWorkflowError
 
 ContextInput: TypeAlias = "Context | Mapping[str, Any] | Iterable[Any] | Any | None"
 

@@ -4,7 +4,7 @@ import json
 import re
 from typing import Any
 
-from clients.netgent.src.engine.schema import (
+from engine.schema import (
     WorkflowAction,
     WorkflowCheck,
     WorkflowSchema,

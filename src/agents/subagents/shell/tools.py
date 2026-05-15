@@ -3,24 +3,24 @@ from typing import Literal
 
 from langchain.tools import tool
 
-from clients.netgent.src.adapters.iperf import (
+from adapters.iperf import (
     IPerf3BinaryNotFoundError,
     IPerf3Error,
 )
-from clients.netgent.src.adapters.ndt import (
+from adapters.ndt import (
     NDT7BinaryNotFoundError,
     NDT7Error,
 )
-from clients.netgent.src.adapters.ping import (
+from adapters.ping import (
     PingBinaryNotFoundError,
     PingError,
 )
-from clients.netgent.src.agent.subagents.shell.schema import (
+from agents.subagents.shell.schema import (
     RunIPerf3Tool,
     RunNDT7Tool,
     RunPingTool,
 )
-from clients.netgent.src.services import iperf, ndt, ping
+from services import iperf, ndt, ping
 
 
 @tool(args_schema=RunIPerf3Tool)

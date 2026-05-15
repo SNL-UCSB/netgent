@@ -14,7 +14,7 @@ import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from netgent.main import NetGent  # noqa: E402
+from main import NetGent  # noqa: E402
 
 
 def main() -> None:

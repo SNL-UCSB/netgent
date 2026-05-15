@@ -97,8 +97,8 @@ def _resolve_params(
     return resolved
 
 
-from clients.netgent.src.registry.actions.base import ActionRegistry
-from clients.netgent.src.registry.actions.network import NETWORK_ACTIONS
+from registry.actions.base import ActionRegistry
+from registry.actions.network import NETWORK_ACTIONS
 
 logger = logging.getLogger(__name__)
 

@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 
-from netgent.main import NetGent
+from main import NetGent
 
 
 def _strip_artifacts(value):

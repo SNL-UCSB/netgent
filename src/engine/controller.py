@@ -5,7 +5,7 @@ import time
 from collections.abc import Iterable, Mapping
 from typing import Any
 
-from clients.netgent.src.registry.triggers.base import TriggerRegistry, trigger_registry
+from registry.triggers.base import TriggerRegistry, trigger_registry
 
 logger = logging.getLogger(__name__)
 

@@ -5,7 +5,7 @@ from collections.abc import Callable, Iterable, Iterator, Mapping
 from dataclasses import dataclass
 from typing import Any
 
-from clients.netgent.src.registry.context import Context, ContextInput
+from registry.context import Context, ContextInput
 
 
 @dataclass(frozen=True, slots=True)

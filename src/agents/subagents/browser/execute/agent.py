@@ -18,13 +18,13 @@ from playwright.async_api import (
 )
 from pydantic import BaseModel, ConfigDict
 
-from clients.netgent.src.agent.model_factory import get_browser_use_model
-from clients.netgent.src.agent.subagents.browser.generate.generate import gen_workflow
-from clients.netgent.src.agent.subagents.browser.util import (
+from agents.model_factory import get_browser_use_model
+from agents.subagents.browser.generate.generate import gen_workflow
+from agents.subagents.browser.util import (
     build_controller,
     parse_agent_history,
 )
-from clients.netgent.src.engine.runner import WorkflowRunner
+from engine.runner import WorkflowRunner
 
 DEFAULT_MAX_STEPS = int(os.getenv("BROWSER_USE_MAX_STEPS", "30"))
 DEFAULT_MAX_REPAIR_ATTEMPTS = int(os.getenv("BROWSER_USE_MAX_REPAIR_ATTEMPTS", "2"))

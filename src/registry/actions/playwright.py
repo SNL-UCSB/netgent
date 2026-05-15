@@ -9,8 +9,8 @@ from typing import Any
 from playwright.async_api import Error as PlaywrightError
 from playwright.async_api import Page
 
-from clients.netgent.src.registry.actions.base import ActionContext, action
-from clients.netgent.src.registry.actions.exception import ActionError
+from registry.actions.base import ActionContext, action
+from registry.actions.exception import ActionError
 
 
 def _require_page(ctx: ActionContext) -> Page:
