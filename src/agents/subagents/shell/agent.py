@@ -157,9 +157,7 @@ def workflow_conversion(tool_run: dict[str, Any]) -> WorkflowAction:
 
     action_type = WORKFLOW_ACTION_TYPES[tool_name]
     params = {
-        key: value
-        for key, value in tool_args.items()
-        if key != "reasoning" and value is not None
+        key: value for key, value in tool_args.items() if key != "reasoning" and value is not None
     }
     return WorkflowAction(type=action_type, params=params)
 
@@ -179,9 +177,7 @@ def generate_workflow(state: ShellRunAgentState) -> dict[str, Any]:
                 elif isinstance(param_value, (int, float)):
                     str_value = str(param_value)
                     if str_value in value_to_key:
-                        action.params[param_name] = (
-                            "{{" + value_to_key[str_value] + "}}"
-                        )
+                        action.params[param_name] = "{{" + value_to_key[str_value] + "}}"
 
     workflow = WorkflowSchema(
         specification=state["task"],
@@ -223,9 +219,7 @@ async def run_workflow(
 
 
 def create_agent():
-    graph = StateGraph(
-        state_schema=ShellRunAgentState, context_schema=ShellAgentContext
-    )
+    graph = StateGraph(state_schema=ShellRunAgentState, context_schema=ShellAgentContext)
     graph.add_node("add_task_message", add_task_message)
     graph.add_node("decide", decide)
     graph.add_node("run_iperf3", run_iperf3)

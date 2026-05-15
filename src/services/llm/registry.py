@@ -58,9 +58,7 @@ class LLMRegistry:
                 model="gemini-2.5-pro",
                 google_api_key=_GOOGLE_API_KEY,
                 max_output_tokens=settings.MAX_TOKENS,
-                temperature=(
-                    0.2 if settings.ENVIRONMENT == Environment.PRODUCTION else 0.5
-                ),
+                temperature=(0.2 if settings.ENVIRONMENT == Environment.PRODUCTION else 0.5),
             ),
         },
     ]

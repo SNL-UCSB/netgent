@@ -131,9 +131,7 @@ def _build_final_workflow(
     }
 
 
-async def execute_workflow(
-    state: BrowserExecuteState, runtime: Runtime[BrowserExecuteContext]
-):
+async def execute_workflow(state: BrowserExecuteState, runtime: Runtime[BrowserExecuteContext]):
     runner = runtime.context.runner
     workflow = state.get("workflow")
     if not isinstance(workflow, dict):
@@ -221,9 +219,7 @@ async def execute_workflow(
     }
 
 
-async def _execute_state_actions(
-    state: dict[str, Any], runner: WorkflowRunner
-) -> list[Any]:
+async def _execute_state_actions(state: dict[str, Any], runner: WorkflowRunner) -> list[Any]:
     actions = state.get("actions")
     if not isinstance(actions, list):
         raise ValueError("State 'actions' must be a list")
@@ -249,12 +245,8 @@ async def _execute_state_actions(
     return results
 
 
-def _build_debug_task(
-    state: BrowserExecuteState, runtime: Runtime[BrowserExecuteContext]
-) -> str:
-    page = runtime.context.runner.executor.registry.context.get(
-        "page", runtime.context.page
-    )
+def _build_debug_task(state: BrowserExecuteState, runtime: Runtime[BrowserExecuteContext]) -> str:
+    page = runtime.context.runner.executor.registry.context.get("page", runtime.context.page)
     current_url = page.url
     error = state.get("error") or "Unknown workflow execution error"
     failed_action = state.get("failed_action")
@@ -284,12 +276,8 @@ def _build_debug_task(
     return "\n".join(lines)
 
 
-async def debug_workflow(
-    state: BrowserExecuteState, runtime: Runtime[BrowserExecuteContext]
-):
-    page = runtime.context.runner.executor.registry.context.get(
-        "page", runtime.context.page
-    )
+async def debug_workflow(state: BrowserExecuteState, runtime: Runtime[BrowserExecuteContext]):
+    page = runtime.context.runner.executor.registry.context.get("page", runtime.context.page)
     debug_task = _build_debug_task(state, runtime)
     browser_agent = Agent(
         page=page,

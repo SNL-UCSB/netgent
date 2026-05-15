@@ -37,9 +37,7 @@ def _strip_screenshots(value):
     """Recursively remove base64 screenshot/har blobs for readable output."""
     if isinstance(value, dict):
         return {
-            k: _strip_screenshots(v)
-            for k, v in value.items()
-            if k not in ("screenshot", "har")
+            k: _strip_screenshots(v) for k, v in value.items() if k not in ("screenshot", "har")
         }
     if isinstance(value, list):
         return [_strip_screenshots(v) for v in value]

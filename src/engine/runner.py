@@ -42,9 +42,7 @@ class WorkflowRunner:
         supplied = set(self.executor._parameters or {})
         missing = [name for name in declared if name not in supplied]
         if missing:
-            raise ValueError(
-                f"Missing required workflow parameters: {', '.join(missing)}"
-            )
+            raise ValueError(f"Missing required workflow parameters: {', '.join(missing)}")
 
     async def run(self, workflow: dict[str, Any]) -> list[Any]:
         validated_workflow = self.validate(workflow)

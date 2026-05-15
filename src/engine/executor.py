@@ -114,9 +114,7 @@ class StateExecutor:
         parameters: dict[str, str] | None = None,
     ) -> None:
         if registry is not None and (context is not None or actions is not None):
-            raise ValueError(
-                "Pass either `registry` or `context` / `actions`, not both"
-            )
+            raise ValueError("Pass either `registry` or `context` / `actions`, not both")
 
         self.registry = registry or ActionRegistry(
             context=context,
@@ -149,9 +147,7 @@ class StateExecutor:
 
         if self._parameters:
             action_func = self.registry.get(action_type)
-            params = _resolve_params(
-                params, self._parameters, _get_type_hints(action_func)
-            )
+            params = _resolve_params(params, self._parameters, _get_type_hints(action_func))
 
         logger.info("Executing action '%s' with params=%s", action_type, params)
 

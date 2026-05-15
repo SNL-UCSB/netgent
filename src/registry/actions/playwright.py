@@ -99,10 +99,7 @@ async def _wait_after_action(page: Page) -> None:
 
 def _is_context_loss_error(error: Exception) -> bool:
     error_text = str(error)
-    return (
-        "Cannot find context with specified id" in error_text
-        or "Protocol error" in error_text
-    )
+    return "Cannot find context with specified id" in error_text or "Protocol error" in error_text
 
 
 def _is_network_error(error: Exception) -> bool:
@@ -195,16 +192,12 @@ async def _fallback_coordinate_click(
 
     box = await locator.bounding_box()
     if box is None:
-        raise ActionError(
-            "Failed to click selector by coordinates: bounding box unavailable"
-        )
+        raise ActionError("Failed to click selector by coordinates: bounding box unavailable")
 
     width = float(box.get("width") or 0)
     height = float(box.get("height") or 0)
     if width <= 0 or height <= 0:
-        raise ActionError(
-            "Failed to click selector by coordinates: element has no visible size"
-        )
+        raise ActionError("Failed to click selector by coordinates: element has no visible size")
 
     x = float(box["x"]) + width / 2
     y = float(box["y"]) + height / 2

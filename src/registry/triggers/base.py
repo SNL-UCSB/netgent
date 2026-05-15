@@ -99,9 +99,7 @@ class TriggerRegistry(RegistryBase):
             raise TriggerError(f"Trigger '{definition.name}' failed: {exc}") from exc
 
         if not isinstance(result, bool):
-            raise TriggerError(
-                f"Trigger '{definition.name}' must return a boolean value"
-            )
+            raise TriggerError(f"Trigger '{definition.name}' must return a boolean value")
 
         return result
 

@@ -112,9 +112,7 @@ GENERIC_CLASS_TOKENS = {
     "selected",
 }
 VALID_CSS_CLASS_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_-]*$")
-PROBABLY_DYNAMIC_VALUE_RE = re.compile(
-    r"(^\d+$)|([0-9]{4,})|([a-f0-9]{8,})|([A-Za-z0-9_-]{24,})"
-)
+PROBABLY_DYNAMIC_VALUE_RE = re.compile(r"(^\d+$)|([0-9]{4,})|([a-f0-9]{8,})|([A-Za-z0-9_-]{24,})")
 LONG_TEXT_ATTRIBUTE_KEYS = {
     "title",
     "aria-label",
@@ -324,9 +322,7 @@ def generate_selectors(interacted_element: Any) -> list[str]:
     if not isinstance(interacted_element, dict):
         return []
 
-    tag = _normalize_text(
-        _get_element_string(interacted_element, "tag_name", "tagName")
-    )
+    tag = _normalize_text(_get_element_string(interacted_element, "tag_name", "tagName"))
     attributes = interacted_element.get("attributes")
     if not isinstance(attributes, dict):
         attributes = {}
@@ -334,9 +330,7 @@ def generate_selectors(interacted_element: Any) -> list[str]:
     candidates: list[str] = []
     seen: set[str] = set()
     meaningful_attributes = _meaningful_attributes(attributes)
-    class_selector = "".join(
-        f".{token}" for token in _meaningful_class_tokens(attributes)
-    )
+    class_selector = "".join(f".{token}" for token in _meaningful_class_tokens(attributes))
 
     enhanced_selector = _build_enhanced_css_selector(tag, attributes)
     _append_candidate(candidates, seen, enhanced_selector)
@@ -369,11 +363,7 @@ def generate_selectors(interacted_element: Any) -> list[str]:
 
     if strong_attribute is not None:
         key, value = strong_attribute
-        base = (
-            f"{tag}{_attribute_selector(key, value)}"
-            if tag
-            else _attribute_selector(key, value)
-        )
+        base = f"{tag}{_attribute_selector(key, value)}" if tag else _attribute_selector(key, value)
         _append_candidate(candidates, seen, base)
 
         if (
@@ -405,11 +395,7 @@ def generate_selectors(interacted_element: Any) -> list[str]:
         _append_candidate(
             candidates,
             seen,
-            (
-                f"{tag}{_attribute_selector(key, value)}"
-                if tag
-                else _attribute_selector(key, value)
-            ),
+            (f"{tag}{_attribute_selector(key, value)}" if tag else _attribute_selector(key, value)),
         )
 
     if class_selector and tag:

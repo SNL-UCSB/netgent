@@ -83,10 +83,7 @@ def _infer_browser_parameter_name(
         candidates = [
             name
             for name in parameters
-            if any(
-                token in name.lower()
-                for token in ("wait", "time", "seconds", "duration")
-            )
+            if any(token in name.lower() for token in ("wait", "time", "seconds", "duration"))
         ]
         if len(candidates) == 1:
             return candidates[0]
@@ -133,9 +130,7 @@ def _parameterize_browser_workflow(
                     )
 
                 if replacement_name is not None:
-                    params[param_name] = _browser_parameter_placeholder(
-                        replacement_name
-                    )
+                    params[param_name] = _browser_parameter_placeholder(replacement_name)
 
     workflow["parameters"] = list(parameters.keys())
     return workflow
@@ -263,9 +258,7 @@ async def run_workflow(state: BrowserState) -> dict[str, Any]:
     return {
         "result": final_result,
         "workflow": (
-            response.get("workflow", workflow)
-            if isinstance(response, dict)
-            else workflow
+            response.get("workflow", workflow) if isinstance(response, dict) else workflow
         ),
     }
 
@@ -296,9 +289,7 @@ def create_agent():
 
 async def main():
     task = (
-        "Run a simple browser workflow. "
-        "First navigate to a test page. "
-        "Second wait for 5 seconds."
+        "Run a simple browser workflow. First navigate to a test page. Second wait for 5 seconds."
     )
     workflow = {
         "specification": (

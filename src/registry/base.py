@@ -174,17 +174,13 @@ class RegistryBase:
 
         if param is not None:
             if not isinstance(param, Mapping):
-                raise self.ERROR(
-                    f"`param` must be a mapping of {self.LABEL.lower()} arguments"
-                )
+                raise self.ERROR(f"`param` must be a mapping of {self.LABEL.lower()} arguments")
             merged.update(param)
 
         duplicate_keys = merged.keys() & kwargs.keys()
         if duplicate_keys:
             duplicates = ", ".join(sorted(duplicate_keys))
-            raise self.ERROR(
-                f"Duplicate {self.LABEL.lower()} arguments provided: {duplicates}"
-            )
+            raise self.ERROR(f"Duplicate {self.LABEL.lower()} arguments provided: {duplicates}")
 
         merged.update(kwargs)
 
@@ -271,9 +267,7 @@ class RegistryBase:
 
         return None
 
-    def _set_entry_metadata(
-        self, entry_obj: Callable[..., Any], entry_name: str
-    ) -> None:
+    def _set_entry_metadata(self, entry_obj: Callable[..., Any], entry_name: str) -> None:
         for target in (entry_obj, getattr(entry_obj, "__func__", None)):
             if target is None:
                 continue
@@ -282,9 +276,7 @@ class RegistryBase:
             except (AttributeError, TypeError):
                 pass
 
-    def _get_definition_entry(
-        self, definition: RegistryDefinition
-    ) -> Callable[..., Any]:
+    def _get_definition_entry(self, definition: RegistryDefinition) -> Callable[..., Any]:
         return definition.entry
 
     @staticmethod

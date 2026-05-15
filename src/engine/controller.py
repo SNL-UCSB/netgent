@@ -20,9 +20,7 @@ class ProgramController:
         config: Mapping[str, Any] | None = None,
     ) -> None:
         if registry is not None and (context is not None or triggers is not None):
-            raise ValueError(
-                "Pass either `registry` or `context` / `triggers`, not both"
-            )
+            raise ValueError("Pass either `registry` or `context` / `triggers`, not both")
 
         self.registry = registry or TriggerRegistry(
             context=context,

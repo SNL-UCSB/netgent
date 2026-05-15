@@ -138,9 +138,7 @@ def _coerce_history_items(
         if isinstance(items, list):
             return items
 
-    raise ValueError(
-        "history must be a list of steps or a dict containing a 'history' list"
-    )
+    raise ValueError("history must be a list of steps or a dict containing a 'history' list")
 
 
 def _parse_action(action: dict[str, Any]) -> tuple[str | None, dict[str, Any]]:
@@ -273,9 +271,7 @@ def get_browserless_ws_endpoint() -> str | None:
     return endpoint or None
 
 
-async def open_browser_session(
-    playwright: Playwright, *, record_har_path: str | None = None
-):
+async def open_browser_session(playwright: Playwright, *, record_har_path: str | None = None):
     endpoint = get_browserless_ws_endpoint()
     stealth = _stealth_enabled()
     if endpoint:

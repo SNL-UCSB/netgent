@@ -102,15 +102,9 @@ class Context:
                 yield _normalize_context_name(str(name)), value
             return
 
-        if isinstance(values, Iterable) and not isinstance(
-            values, (str, bytes, bytearray)
-        ):
+        if isinstance(values, Iterable) and not isinstance(values, (str, bytes, bytearray)):
             for value in values:
-                if (
-                    isinstance(value, tuple)
-                    and len(value) == 2
-                    and isinstance(value[0], str)
-                ):
+                if isinstance(value, tuple) and len(value) == 2 and isinstance(value[0], str):
                     yield _normalize_context_name(value[0]), value[1]
                     continue
 

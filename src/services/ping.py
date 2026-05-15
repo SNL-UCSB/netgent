@@ -41,7 +41,6 @@ class PingProcessError(PingError):
 
 
 class PingService(BaseService):
-
     def __init__(self) -> None:
         self._adapter = PingAdapter()
 

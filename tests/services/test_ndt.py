@@ -102,7 +102,5 @@ def test_ndt_live_measurement():
     assert isinstance(outcome, ProcessOutcome)
     assert outcome.returncode == 0
     # ndt-client -format json emits NDJSON; first non-empty line should be JSON.
-    first = next(
-        (line for line in outcome.stdout.splitlines() if line.strip()), ""
-    )
+    first = next((line for line in outcome.stdout.splitlines() if line.strip()), "")
     assert first.startswith("{"), "expected JSON-line stdout from ndt-client"

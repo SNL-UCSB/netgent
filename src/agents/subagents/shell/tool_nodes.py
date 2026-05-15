@@ -63,9 +63,7 @@ def bad_tool_name(state: ShellRunAgentState) -> dict[str, list[ToolMessage]]:
         "Make sure you are calling one of the allowed tools!"
     )
     last_message = state["messages"][-1]
-    last_message.tool_calls[0]["name"] = last_message.tool_calls[0]["name"].replace(
-        ":", ""
-    )
+    last_message.tool_calls[0]["name"] = last_message.tool_calls[0]["name"].replace(":", "")
     return {
         "messages": [
             last_message,
@@ -163,9 +161,7 @@ async def run_ndt7(state: ShellRunAgentState) -> dict[str, list[ToolMessage]]:
     download = args.get("download", True)
     upload = args.get("upload", True)
     if not download and not upload:
-        return _error_message(
-            tool_call["id"], "At least one of download or upload must be true."
-        )
+        return _error_message(tool_call["id"], "At least one of download or upload must be true.")
 
     try:
         async with NdtService() as svc:

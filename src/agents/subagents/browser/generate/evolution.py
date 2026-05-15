@@ -124,9 +124,7 @@ def build_evolutionary_prompt(task: str, evolution: BrowserEvolution) -> str:
         return task
 
     best_action_sequence = [
-        action
-        for action in evolution.best_action_sequence
-        if _is_relevant_action_label(action)
+        action for action in evolution.best_action_sequence if _is_relevant_action_label(action)
     ]
 
     successful_action_counts = _counter_from_mapping(evolution.successful_action_counts)
@@ -144,9 +142,7 @@ def build_evolutionary_prompt(task: str, evolution: BrowserEvolution) -> str:
         for action, _ in error_action_counts.most_common()
         if _is_relevant_action_label(action)
     ][:MAX_ACTIONS]
-    common_urls = [
-        url for url, _ in url_counts.most_common(MAX_URLS) if url not in IGNORED_URLS
-    ]
+    common_urls = [url for url, _ in url_counts.most_common(MAX_URLS) if url not in IGNORED_URLS]
     common_errors = [message for message, _ in error_messages.most_common(MAX_ERRORS)]
 
     lines = [
@@ -158,9 +154,7 @@ def build_evolutionary_prompt(task: str, evolution: BrowserEvolution) -> str:
     ]
 
     if isinstance(evolution.best_step_count, int):
-        lines.append(
-            f"- Best known completion used {evolution.best_step_count} step(s)."
-        )
+        lines.append(f"- Best known completion used {evolution.best_step_count} step(s).")
 
     if best_action_sequence:
         lines.append(
@@ -172,9 +166,7 @@ def build_evolutionary_prompt(task: str, evolution: BrowserEvolution) -> str:
         lines.append("- Likely pages or URLs involved: " + ", ".join(common_urls))
 
     if preferred_actions:
-        lines.append(
-            "- Actions that have tended to help: " + ", ".join(preferred_actions)
-        )
+        lines.append("- Actions that have tended to help: " + ", ".join(preferred_actions))
 
     if avoid_actions:
         lines.append(
@@ -221,9 +213,7 @@ def update_evolution(
 
         model_output = step.get("model_output") or {}
         actions = model_output.get("action") if isinstance(model_output, dict) else None
-        interacted_elements = (
-            state.get("interacted_element") if isinstance(state, dict) else None
-        )
+        interacted_elements = state.get("interacted_element") if isinstance(state, dict) else None
         action_labels: list[str] = []
         if isinstance(actions, list):
             for index, action in enumerate(actions):
@@ -233,9 +223,7 @@ def update_evolution(
                 if action_type in IGNORED_ACTION_TYPES:
                     continue
                 interacted_element = None
-                if isinstance(interacted_elements, list) and index < len(
-                    interacted_elements
-                ):
+                if isinstance(interacted_elements, list) and index < len(interacted_elements):
                     interacted_element = interacted_elements[index]
                 action_label = _describe_action(action_type, interacted_element)
                 action_labels.append(action_label)

@@ -65,9 +65,7 @@ def _build_task_with_parameters(task: str, parameters: dict[str, str]) -> str:
         "Available runtime parameter placeholders:",
     ]
     for name in parameters:
-        lines.append(
-            f"  - {name}: use <secret>{name}</secret> when an action needs this value"
-        )
+        lines.append(f"  - {name}: use <secret>{name}</secret> when an action needs this value")
     lines.append(
         "Do not hardcode literal parameter values into actions when one of these placeholders applies."
     )

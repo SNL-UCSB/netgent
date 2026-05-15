@@ -45,9 +45,7 @@ class NetGent:
         parameters: dict[str, str] | None = None,
         type: WorkflowType = "shell",
     ) -> dict[str, Any]:
-        return asyncio.run(
-            self.arun_workflow(workflow, parameters=parameters, type=type)
-        )
+        return asyncio.run(self.arun_workflow(workflow, parameters=parameters, type=type))
 
     async def arun_workflow(
         self,
@@ -122,9 +120,7 @@ class NetGent:
 
     # ── runner builders (shell + browser) ────────────────────────────
     @staticmethod
-    def _shell_runner(
-        *, parameters: dict[str, str] | None = None
-    ) -> WorkflowRunner:
+    def _shell_runner(*, parameters: dict[str, str] | None = None) -> WorkflowRunner:
         return WorkflowRunner(
             controller=ProgramController(triggers=(always_true,)),
             executor=StateExecutor(actions=NETWORK_ACTIONS, parameters=parameters),
@@ -132,9 +128,7 @@ class NetGent:
         )
 
     @staticmethod
-    def _browser_runner(
-        *, page: Any, parameters: dict[str, str] | None = None
-    ) -> WorkflowRunner:
+    def _browser_runner(*, page: Any, parameters: dict[str, str] | None = None) -> WorkflowRunner:
         # Imported lazily so the shell path doesn't pull in Playwright
         # transitively.
         from registry.actions.playwright import PLAYWRIGHT_ACTIONS
@@ -161,9 +155,7 @@ class NetGent:
         try:
             if self._cdp_url:
                 browser = await playwright.chromium.connect_over_cdp(self._cdp_url)
-                context = browser.contexts[0] if browser.contexts else (
-                    await browser.new_context()
-                )
+                context = browser.contexts[0] if browser.contexts else (await browser.new_context())
             else:
                 browser = await playwright.chromium.launch(headless=self._headless)
                 context = await browser.new_context()
