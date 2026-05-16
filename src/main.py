@@ -44,8 +44,16 @@ class NetGent:
         *,
         parameters: dict[str, str] | None = None,
         type: WorkflowType = "shell",
+        action_period: float | None = None,
     ) -> dict[str, Any]:
-        return asyncio.run(self.arun_workflow(workflow, parameters=parameters, type=type))
+        return asyncio.run(
+            self.arun_workflow(
+                workflow,
+                parameters=parameters,
+                type=type,
+                action_period=action_period,
+            )
+        )
 
     async def arun_workflow(
         self,
@@ -53,9 +61,12 @@ class NetGent:
         *,
         parameters: dict[str, str] | None = None,
         type: WorkflowType = "shell",
+        action_period: float | None = None,
     ) -> dict[str, Any]:
         if type == "shell":
-            runner = self._shell_runner(parameters=parameters)
+            runner = self._shell_runner(
+                parameters=parameters, action_period=action_period
+            )
             try:
                 output = await runner.run(workflow)
             except Exception as exc:
@@ -64,7 +75,11 @@ class NetGent:
 
         if type == "browser":
             async with self._playwright_page() as page:
-                runner = self._browser_runner(page=page, parameters=parameters)
+                runner = self._browser_runner(
+                    page=page,
+                    parameters=parameters,
+                    action_period=action_period,
+                )
                 try:
                     output = await runner.run(workflow)
                 except Exception as exc:
@@ -120,19 +135,38 @@ class NetGent:
 
     # ── runner builders (shell + browser) ────────────────────────────
     @staticmethod
-    def _shell_runner(*, parameters: dict[str, str] | None = None) -> WorkflowRunner:
+    def _shell_runner(
+        *,
+        parameters: dict[str, str] | None = None,
+        action_period: float | None = None,
+    ) -> WorkflowRunner:
+        executor_config: dict[str, Any] | None = (
+            None if action_period is None else {"action_period": action_period}
+        )
         return WorkflowRunner(
             controller=ProgramController(triggers=(always_true,)),
-            executor=StateExecutor(actions=NETWORK_ACTIONS, parameters=parameters),
+            executor=StateExecutor(
+                actions=NETWORK_ACTIONS,
+                parameters=parameters,
+                config=executor_config,
+            ),
             config={},
         )
 
     @staticmethod
-    def _browser_runner(*, page: Any, parameters: dict[str, str] | None = None) -> WorkflowRunner:
+    def _browser_runner(
+        *,
+        page: Any,
+        parameters: dict[str, str] | None = None,
+        action_period: float | None = None,
+    ) -> WorkflowRunner:
         # Imported lazily so the shell path doesn't pull in Playwright
         # transitively.
         from registry.actions.playwright import PLAYWRIGHT_ACTIONS
 
+        executor_config: dict[str, Any] | None = (
+            None if action_period is None else {"action_period": action_period}
+        )
         return WorkflowRunner(
             controller=ProgramController(
                 triggers=(always_true,),
@@ -142,6 +176,7 @@ class NetGent:
                 actions=PLAYWRIGHT_ACTIONS,
                 context={"page": page},
                 parameters=parameters,
+                config=executor_config,
             ),
             config={},
         )
@@ -175,8 +210,18 @@ class NetGent:
             try:
                 yield page
             finally:
-                await context.close()
-                await browser.close()
+                # Pages/contexts can be closed mid-workflow by the remote
+                # site (Zoom tears down the join tab once the meeting client
+                # mounts). Swallow teardown errors so a successful workflow
+                # run isn't masked by a TargetClosedError.
+                try:
+                    await context.close()
+                except Exception:
+                    pass
+                try:
+                    await browser.close()
+                except Exception:
+                    pass
         finally:
             await playwright.stop()
 
