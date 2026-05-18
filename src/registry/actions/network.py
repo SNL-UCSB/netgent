@@ -8,6 +8,7 @@ from schema import ProcessOutcome
 from services.iperf import IperfService
 from services.ndt import NdtService
 from services.ping import PingService
+from services.wget import WgetService
 
 
 @action(name="iperf")
@@ -84,7 +85,27 @@ async def run_ping(
         )
 
 
-NETWORK_ACTIONS = (run_iperf, run_ndt, run_ping)
+@action(name="wget")
+async def run_wget(
+    url: str,
+    output_file: str | None = None,
+    timeout_seconds: int | None = None,
+    tries: int | None = None,
+    user_agent: str | None = None,
+    no_check_certificate: bool = False,
+) -> ProcessOutcome:
+    async with WgetService() as svc:
+        return await svc.run(
+            url,
+            output_file=output_file,
+            timeout_seconds=timeout_seconds,
+            tries=tries,
+            user_agent=user_agent,
+            no_check_certificate=no_check_certificate,
+        )
 
 
-__all__ = ["NETWORK_ACTIONS", "run_iperf", "run_ndt", "run_ping"]
+NETWORK_ACTIONS = (run_iperf, run_ndt, run_ping, run_wget)
+
+
+__all__ = ["NETWORK_ACTIONS", "run_iperf", "run_ndt", "run_ping", "run_wget"]
