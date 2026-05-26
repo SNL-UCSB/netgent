@@ -45,9 +45,9 @@ class LLMRegistry:
             ),
         },
         {
-            "name": "gemini-3.1-flash-lite-preview",
+            "name": "gemini-3.1-flash-lite",
             "llm": ChatGoogleGenerativeAI(
-                model="gemini-3.1-flash-lite-preview",
+                model="gemini-3.1-flash-lite",
                 google_api_key=_GOOGLE_API_KEY,
                 max_output_tokens=settings.MAX_TOKENS,
             ),

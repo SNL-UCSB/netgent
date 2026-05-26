@@ -112,7 +112,7 @@ class Settings(BaseSettings):
     GOOGLE_API_KEY: str | None = None
     # Default model name resolved against `LLMRegistry.LLMS`. The LLM service
     # falls back to `LLMS[0]` if this name isn't found.
-    DEFAULT_LLM_MODEL: str = "gemini-3.1-flash-lite-preview"
+    DEFAULT_LLM_MODEL: str = "gemini-3.1-flash-lite"
     # Per-call cap. Forwarded to the chat model where supported.
     MAX_TOKENS: int = 2000
     # Per-model retry budget; the LLM service uses tenacity to retry on
