@@ -77,6 +77,15 @@
           "by": "css selector",
           "selector": "video"
         }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": ".channel-root, [data-test-selector=\"chat-scrollable-area__message-container\"], [data-a-target=\"chat-input\"], [data-a-target=\"chat-scrollable-area__message-container\"]",
+          "check_visibility": false,
+          "timeout": 5
+        }
       }
     ],
     "actions": [
