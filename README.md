@@ -148,3 +148,67 @@ results = agent.run(state_prompts=[], state_repository=your_saved_repo)
 See the example scripts and CLI source for more patterns, and customize credentials or cache directory as needed.
 
 For API key configuration details, refer to [API_KEYS.md](API_KEYS.md).
+
+## QoE Logging (Stats for Nerds)
+
+NetGent can record video Quality-of-Experience (QoE) metrics throughout a streaming session, the same data that YouTube exposes via its "Stats for Nerds" overlay. This is useful for correlating the network traffic NetGent generates with the player's perceived playback quality.
+
+Instead of scraping the fragile right-click overlay, the logger reads the metrics directly from the player via JavaScript and samples them on a background thread, writing one JSON object per sample to a JSONL file.
+
+### Supported platforms
+
+| Platform | Source | Captured metrics (when playing) |
+|----------|--------|---------------------------------|
+| **YouTube** | `movie_player.getStatsForNerds()` + `<video>` | resolution, codecs, bandwidth, buffer health, dropped/total frames, network activity, live latency, video id/title/author |
+| **Twitch** | `HTMLVideoElement` API | resolution, dropped/total frames, buffer-ahead seconds, playback rate, paused/muted/volume, channel name, live vs. VOD |
+
+The platform is detected per-sample from the page URL, so a single logger handles a session that navigates between sites.
+
+### How to enable it in a workflow
+
+QoE logging is exposed as two ordinary workflow **actions**, so you enable it by adding them to a workflow state (no flags or env vars required):
+
+| Action | Parameters | Description |
+|--------|------------|-------------|
+| `start_stats_logging` | `out_path` (default `netgent_video_stats.jsonl`), `interval` (seconds, default `2.0`) | Starts the background sampler. |
+| `stop_stats_logging` | — | Stops the sampler and flushes the log. (Also called automatically on browser shutdown.) |
+
+A typical pattern is to start logging once the player is present and keep the state alive for the session using the `"config": { "continuous": true }` state flag:
+
+```json
+{
+  "name": "Watching YouTube Video",
+  "description": "On a YouTube watch page - log QoE stats for the session",
+  "config": { "continuous": true },
+  "checks": [
+    { "type": "element", "params": { "by": "css selector", "selector": "#movie_player", "check_visibility": false, "timeout": 5 } }
+  ],
+  "actions": [
+    { "type": "start_stats_logging", "params": { "out_path": "youtube_stats.jsonl", "interval": 2.0 } },
+    { "type": "wait", "params": { "seconds": 5 } }
+  ],
+  "end_state": ""
+}
+```
+
+Because each sample is flushed to disk immediately (line-buffered append), the log survives even if the session is interrupted before `stop_stats_logging` runs.
+
+### Ready-to-run examples
+
+```bash
+# YouTube
+netgent -e examples/web_browsing/youtube/results/youtube_stats_result.json   # -> youtube_stats.jsonl
+
+# Twitch
+netgent -e examples/web_browsing/twitch-watch/results/twitch-stats_result.json   # -> twitch_stats.jsonl
+```
+
+Each line of the resulting JSONL file looks like:
+
+```json
+{"timestamp": 1781242765.92, "url": "https://www.youtube.com/watch?v=...", "stats": {"platform": "youtube", "resolution": "1920x1080", "bandwidth_kbps": "5120 Kbps", "buffer_health_seconds": "12.34 s", "dropped_video_frames": 0, "total_video_frames": 900, "title": "...", "author": "..."}}
+```
+
+> **Note:** Browsers block autoplay on fresh, gesture-less sessions, so a video may load paused (reporting `0x0` resolution and zeroed playback counters). To capture live playback metrics, make sure the workflow actually starts playback (e.g. a click on the player or a `playVideo()` call) before/while logging.
+
+The generated `*_stats.jsonl` logs are git-ignored.

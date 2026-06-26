@@ -1,0 +1,100 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "chrome://new-tab-page/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://www.twitch.tv/"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Navigated to Twitch; the On Twitch Home Page state will pick a stream."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "On Twitch Home Page",
+    "description": "On Twitch Home Page - open a live stream",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Live on Twitch"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "div.ScAspectRatio-sc-18km980-1.jgpfbi.tw-aspect",
+          "x": 354.5859375,
+          "y": 1272.90625
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 8
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Opened a stream; the Watching Twitch Stream state will take over."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "Watching Twitch Stream",
+    "description": "On a Twitch stream page - start logging video stats and keep sampling for the session",
+    "config": {
+      "continuous": true
+    },
+    "checks": [
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "video"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "start_stats_logging",
+        "params": {
+          "out_path": "twitch_stats.jsonl",
+          "interval": 2.0
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  }
+]

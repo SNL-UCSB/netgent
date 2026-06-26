@@ -154,3 +154,8 @@ downloaded_files/
 google_creds.json
 
 google_key.json
+
+# QoE / Stats-for-Nerds logs (generated at runtime)
+*_stats.jsonl
+netgent_video_stats.jsonl
+run.log

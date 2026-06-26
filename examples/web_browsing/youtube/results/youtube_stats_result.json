@@ -1,0 +1,71 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start the Process",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "chrome://new-tab-page/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://www.youtube.com/watch?v=jfKfPfyJRdk"
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 10
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Navigated to the watch page and waited for it to load; the Watching YouTube Video state will take over."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "Watching YouTube Video",
+    "description": "On a YouTube watch page - start logging Stats for Nerds and keep sampling for the session",
+    "config": {
+      "continuous": true
+    },
+    "checks": [
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "#movie_player",
+          "check_visibility": false,
+          "timeout": 5
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "start_stats_logging",
+        "params": {
+          "out_path": "youtube_stats.jsonl",
+          "interval": 2.0
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  }
+]

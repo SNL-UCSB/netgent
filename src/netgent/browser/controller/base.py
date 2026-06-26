@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from seleniumbase import Driver
 import time
 from ..registry import action, trigger, ActionTriggerMeta
+from ..stats_logger import VideoStatsLogger
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -13,11 +14,29 @@ class BaseController(ABC, metaclass=ActionTriggerMeta):
     
     def __init__(self, driver: Driver):
         self.driver = driver
+        self.stats_logger = VideoStatsLogger(driver)
 
     @action()
     def navigate(self, url: str):
         """Navigate to a specified URL"""
         self.driver.get(url)
+
+    @action()
+    def start_stats_logging(self, out_path: str = "netgent_video_stats.jsonl", interval: float = 2.0):
+        """Start logging video 'Stats for Nerds' metrics (YouTube/Twitch) to a JSONL file in the background.
+
+        Args:
+            out_path: File to append JSONL stats samples to
+            interval: Seconds between samples
+        """
+        self.stats_logger.configure(out_path=out_path, interval=interval)
+        self.stats_logger.start()
+        return out_path
+
+    @action()
+    def stop_stats_logging(self):
+        """Stop the background video stats logger and flush the log file."""
+        self.stats_logger.stop()
 
     @action()
     def wait(self, seconds: float):
@@ -32,6 +51,8 @@ class BaseController(ABC, metaclass=ActionTriggerMeta):
     
     def quit(self):
         """Quit the browser (not an action - used for cleanup)"""
+        if self.stats_logger:
+            self.stats_logger.stop()
         if self.driver:
             self.driver.quit()
 
