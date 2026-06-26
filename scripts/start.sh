@@ -1,98 +1,189 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Only set DISPLAY if virtual display is enabled later
-export RESOLUTION="${RESOLUTION:-1920x1080x24}"
-export NOVNC_PORT="${NOVNC_PORT:-8080}"
-export VNC_PORT="${VNC_PORT:-5900}"
-export VNC_LISTEN_HOST="${VNC_LISTEN_HOST:-localhost}"
+# ---------------------------------------------------------------------------
+# NetGent container entrypoint.
+#
+# Two modes, auto-detected from the arguments:
+#
+#   1. Legacy single-workflow mode (unchanged): invoked with the netgent CLI
+#      flags -e/--execute or -g/--generate. One browser on display :99, one
+#      optional noVNC view on $NOVNC_PORT. Delegates to cli.py exactly as before.
+#
+#   2. Multi-workflow mode: invoked with one or more positional workflow files.
+#      Each file is run concurrently:
+#        - *.json  -> a NetGent executable workflow (its own browser, its own
+#                     Xvfb display, its own Chrome profile, and -- with -s --
+#                     its own noVNC port so the cursors never collide).
+#        - *.sh    -> an arbitrary bash workflow (wget, ping, ...). No display.
+#      Example:  start-netgent youtube.json netflix.json ping.sh -s
+# ---------------------------------------------------------------------------
 
+export RESOLUTION="${RESOLUTION:-1920x1080x24}"
+export VNC_LISTEN_HOST="${VNC_LISTEN_HOST:-localhost}"
+BASE_NOVNC_PORT="${NOVNC_PORT:-8080}"
+BASE_VNC_PORT="${VNC_PORT:-5900}"
+BASE_DISPLAY_NUM="${BASE_DISPLAY_NUM:-99}"
+
+# Where per-workflow results and logs go. Prefer a mounted /out, else ./out.
+OUT_DIR="${OUT_DIR:-/out}"
+if [ ! -d "$OUT_DIR" ]; then
+  OUT_DIR="$(pwd)/out"
+fi
+mkdir -p "$OUT_DIR"
+
+# --- Argument inspection ---------------------------------------------------
 USE_VDISPLAY=0
+LEGACY=0
+WORKFLOWS=()
 for arg in "$@"; do
   case "$arg" in
     -s|--screen)
       USE_VDISPLAY=1
       ;;
+    -e|--execute|-g|--generate)
+      LEGACY=1
+      ;;
+    *)
+      WORKFLOWS+=("$arg")
+      ;;
   esac
 done
 
-if [ "$USE_VDISPLAY" -eq 1 ]; then
-  echo "Starting VNC/noVNC setup..."
-  export DISPLAY="${DISPLAY:-:99}"
-  Xvfb "$DISPLAY" -screen 0 "$RESOLUTION" &
+# --- Bring up an X display (and, optionally, a noVNC view) for it -----------
+# start_display <display_num> <vnc_port> <novnc_port> <use_vnc>
+start_display() {
+  local dnum="$1" vncport="$2" novncport="$3" usevnc="$4"
+  local disp=":${dnum}"
+
+  Xvfb "$disp" -screen 0 "$RESOLUTION" &
   sleep 2
-
-  fluxbox 2>/dev/null &
+  # Lightweight WM for proper window focus/placement (needed by pyautogui).
+  DISPLAY="$disp" fluxbox 2>/dev/null &
   sleep 1
 
-  # Keep raw VNC local; noVNC proxies to it
-  # Use -viewonly flag to make VNC read-only (view-only mode)
-  echo "Starting x11vnc on port $VNC_PORT (view-only mode)..."
-  if [ -n "${VNC_PASSWORD:-}" ]; then
-    x11vnc -display "$DISPLAY" -bg -forever -quiet \
-            -listen "$VNC_LISTEN_HOST" -xkb -nodpms -viewonly \
-            -rfbport "$VNC_PORT" -passwd "$VNC_PASSWORD" &
-  else
-    x11vnc -display "$DISPLAY" -bg -forever -nopw -quiet \
-            -listen "$VNC_LISTEN_HOST" -xkb -nodpms -viewonly \
-            -rfbport "$VNC_PORT" &
-  fi
-  sleep 1
-
-  # Start websockify (noVNC) - bind to 0.0.0.0 to allow access from outside container
-  echo "Starting websockify on port $NOVNC_PORT..."
-  cd /opt/noVNC/utils/websockify || { echo "ERROR: Cannot find /opt/noVNC/utils/websockify"; exit 1; }
-  
-  # Try different methods to start websockify
-  WEBSOCKIFY_PID=""
-  if [ -f "websockify.py" ]; then
-    echo "Using websockify.py..."
-    python3 websockify.py --web /opt/noVNC 0.0.0.0:$NOVNC_PORT localhost:$VNC_PORT > /tmp/websockify.log 2>&1 &
-    WEBSOCKIFY_PID=$!
-  elif python3 -c "import websockify" 2>/dev/null; then
-    echo "Using python3 -m websockify..."
-    python3 -m websockify --web /opt/noVNC 0.0.0.0:$NOVNC_PORT localhost:$VNC_PORT > /tmp/websockify.log 2>&1 &
-    WEBSOCKIFY_PID=$!
-  else
-    echo "ERROR: websockify not found. Trying alternative..."
-    python3 -m websockify --web /opt/noVNC $NOVNC_PORT localhost:$VNC_PORT > /tmp/websockify.log 2>&1 &
-    WEBSOCKIFY_PID=$!
-  fi
-  
-  sleep 3
-  
-  # Verify websockify is running
-  if [ -n "$WEBSOCKIFY_PID" ] && ps -p $WEBSOCKIFY_PID > /dev/null 2>&1; then
-    echo "✓ websockify is running (PID: $WEBSOCKIFY_PID)"
-  else
-    echo "⚠ WARNING: websockify may not have started correctly"
-    echo "Check logs: cat /tmp/websockify.log"
-    if [ -f /tmp/websockify.log ]; then
-      tail -20 /tmp/websockify.log
+  if [ "$usevnc" -eq 1 ]; then
+    echo "Starting x11vnc for $disp on port $vncport (view-only)..."
+    if [ -n "${VNC_PASSWORD:-}" ]; then
+      x11vnc -display "$disp" -bg -forever -quiet \
+             -listen "$VNC_LISTEN_HOST" -xkb -nodpms -viewonly \
+             -rfbport "$vncport" -passwd "$VNC_PASSWORD"
+    else
+      x11vnc -display "$disp" -bg -forever -nopw -quiet \
+             -listen "$VNC_LISTEN_HOST" -xkb -nodpms -viewonly \
+             -rfbport "$vncport"
     fi
-  fi
-  
-  # Check if port is listening
-  if netstat -tuln 2>/dev/null | grep -q ":$NOVNC_PORT " || ss -tuln 2>/dev/null | grep -q ":$NOVNC_PORT "; then
-    echo "✓ Port $NOVNC_PORT is listening"
-  else
-    echo "⚠ WARNING: Port $NOVNC_PORT may not be listening. Checking processes..."
-    ps aux | grep -E 'websockify|x11vnc' | grep -v grep || echo "No VNC processes found"
-  fi
-  
-  echo "VNC/noVNC should be accessible at http://localhost:$NOVNC_PORT"
-else
-  # Start a bare X server so DISPLAY is usable, but skip VNC/noVNC
-  export DISPLAY="${DISPLAY:-:99}"
-  Xvfb "$DISPLAY" -screen 0 "$RESOLUTION" &
-  sleep 2
-  # Optional lightweight WM for proper focus handling; ignore failures
-  fluxbox 2>/dev/null &
-  sleep 1
-fi
 
+    echo "Starting websockify (noVNC) for $disp on port $novncport..."
+    python3 -m websockify --web /opt/noVNC \
+            "0.0.0.0:${novncport}" "localhost:${vncport}" \
+            > "/tmp/websockify_${novncport}.log" 2>&1 &
+    sleep 1
+    echo "  -> view at http://localhost:${novncport}"
+  fi
+}
+
+# Always run sshd (kept from the original entrypoint).
 mkdir -p /run/sshd
 /usr/sbin/sshd
 
-# Finally, launch the Python application:
-exec python3 /home/agent/app/src/netgent/cli.py "$@"
+# ===========================================================================
+# Legacy single-workflow mode: preserve the exact previous behavior.
+# ===========================================================================
+if [ "$LEGACY" -eq 1 ]; then
+  export DISPLAY=":${BASE_DISPLAY_NUM}"
+  if [ "$USE_VDISPLAY" -eq 1 ]; then
+    echo "Starting VNC/noVNC setup..."
+  fi
+  start_display "$BASE_DISPLAY_NUM" "$BASE_VNC_PORT" "$BASE_NOVNC_PORT" "$USE_VDISPLAY"
+  exec python3 /home/agent/app/src/netgent/cli.py "$@"
+fi
+
+# ===========================================================================
+# Multi-workflow mode.
+# ===========================================================================
+if [ "${#WORKFLOWS[@]}" -eq 0 ]; then
+  echo "Error: no workflows provided."
+  echo "Usage: start-netgent [-s] <workflow1> [<workflow2> ...]"
+  echo "  *.json -> NetGent executable workflow (browser)"
+  echo "  *.sh   -> bash workflow (wget, ping, ...)"
+  exit 1
+fi
+
+echo "=== NetGent multi-workflow run: ${#WORKFLOWS[@]} workflow(s) ==="
+[ "$USE_VDISPLAY" -eq 1 ] && echo "Live viewing enabled (one noVNC port per browser workflow)."
+
+declare -a PIDS=()
+declare -a NAMES=()
+dnum="$BASE_DISPLAY_NUM"
+vncport="$BASE_VNC_PORT"
+novncport="$BASE_NOVNC_PORT"
+
+for wf in "${WORKFLOWS[@]}"; do
+  base="$(basename "$wf")"
+  name="${base%.*}"
+  # Resolve to an absolute path so a per-workflow cwd doesn't break it.
+  wfabs="$(readlink -f "$wf" 2>/dev/null || echo "$wf")"
+  wdir="$OUT_DIR/$name"
+  mkdir -p "$wdir"
+
+  if [ ! -f "$wfabs" ]; then
+    echo "[$name] WARNING: file not found ($wf) - skipping"
+    continue
+  fi
+
+  case "$wf" in
+    *.json)
+      start_display "$dnum" "$vncport" "$novncport" "$USE_VDISPLAY"
+      if [ "$USE_VDISPLAY" -eq 1 ]; then
+        echo "[$name] browser workflow on DISPLAY :${dnum} -> watch at http://localhost:${novncport}"
+      else
+        echo "[$name] browser workflow on DISPLAY :${dnum} (no screen)"
+      fi
+      (
+        cd "$wdir"
+        DISPLAY=":${dnum}" python3 /home/agent/app/src/netgent/cli.py \
+          -e "$wfabs" \
+          --user-data-dir "/tmp/netgent-profiles/${name}" \
+          -o "$wdir/${name}_result.json" \
+          > "$wdir/${name}.log" 2>&1
+      ) &
+      PIDS+=($!)
+      NAMES+=("$name")
+      dnum=$((dnum + 1))
+      vncport=$((vncport + 1))
+      novncport=$((novncport + 1))
+      ;;
+    *.sh)
+      echo "[$name] bash workflow -> logging to $wdir/${name}.log"
+      (
+        cd "$wdir"
+        bash "$wfabs" > "$wdir/${name}.log" 2>&1
+      ) &
+      PIDS+=($!)
+      NAMES+=("$name")
+      ;;
+    *)
+      echo "[$name] WARNING: unsupported type (expected .json or .sh) - skipping"
+      ;;
+  esac
+done
+
+echo "=== ${#PIDS[@]} workflow(s) launched. Waiting for completion... ==="
+
+overall_status=0
+for i in "${!PIDS[@]}"; do
+  pid="${PIDS[$i]}"
+  wf_name="${NAMES[$i]}"
+  if wait "$pid"; then
+    echo "[$wf_name] completed successfully."
+  else
+    code=$?
+    echo "[$wf_name] FAILED (exit $code)."
+    overall_status=1
+  fi
+done
+
+echo "=== All workflows finished (overall status: $overall_status) ==="
+echo "Results and logs are in: $OUT_DIR/<workflow-name>/"
+exit "$overall_status"
