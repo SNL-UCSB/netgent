@@ -13,6 +13,10 @@ ENV DISPLAY=:99 \
 WORKDIR /home/agent/app
 
 # System deps (Xvfb, VNC, noVNC needs), Chrome dependencies, SSH (optional)
+RUN echo 'Acquire::http::Pipeline-Depth "0";' > /etc/apt/apt.conf.d/99fixbadproxy && \
+       echo 'Acquire::http::No-Cache "true";' >> /etc/apt/apt.conf.d/99fixbadproxy && \
+       echo 'Acquire::BrokenProxy "true";' >> /etc/apt/apt.conf.d/99fixbadproxy && \
+       echo 'Acquire::Retries "5";' >> /etc/apt/apt.conf.d/99fixbadproxy
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates curl wget unzip git xauth \
     xvfb x11vnc fluxbox \
