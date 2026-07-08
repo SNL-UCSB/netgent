@@ -245,6 +245,13 @@
         }
       },
       {
+        "type": "play_video",
+        "params": {
+          "selector": "video",
+          "timeout": 10
+        }
+      },
+      {
         "type": "start_stats_logging",
         "params": {
           "out_path": "/out/hulu_watch_stats.jsonl",

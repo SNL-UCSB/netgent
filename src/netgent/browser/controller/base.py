@@ -218,6 +218,44 @@ class BaseController(ABC, metaclass=ActionTriggerMeta):
         except Exception:
             self.driver.execute_script("arguments[0].click();", element)
         return text
+
+    @action()
+    def play_video(self, selector: str = "video", muted: bool = None, timeout: float = 10):
+        """Ask the first matching HTML video element to play."""
+        video = WebDriverWait(self.driver, timeout).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, selector))
+        )
+        self.driver.execute_script(
+            """
+            const video = arguments[0];
+            const muted = arguments[1];
+            video.scrollIntoView({block: 'center'});
+            if (muted !== null) {
+                video.muted = muted;
+            }
+            try {
+                const result = video.play();
+                if (result && typeof result.catch === 'function') {
+                    result.catch(() => {});
+                }
+            } catch (e) {}
+            """,
+            video,
+            muted,
+        )
+        time.sleep(1)
+        return self.driver.execute_script(
+            """
+            const video = arguments[0];
+            return {
+                paused: video.paused,
+                current_time_secs: video.currentTime,
+                video_width: video.videoWidth,
+                video_height: video.videoHeight
+            };
+            """,
+            video,
+        )
     
     def quit(self):
         """Quit the browser (not an action - used for cleanup)"""
