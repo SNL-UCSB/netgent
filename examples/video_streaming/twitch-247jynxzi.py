@@ -12,7 +12,7 @@ from netgent import NetGent, StatePrompt
 load_dotenv()
 
 ROOT = Path(__file__).resolve().parents[2]
-WORKFLOW_DIR = ROOT / "examples" / "web_browsing" / "twitch-247jynxzi"
+WORKFLOW_DIR = ROOT / "examples" / "video_streaming" / "twitch-247jynxzi"
 PROMPTS_PATH = WORKFLOW_DIR / "prompts" / "twitch-247jynxzi_prompts.json"
 RESULT_PATH = WORKFLOW_DIR / "results" / "twitch-247jynxzi_result.json"
 API_KEYS_PATH = ROOT / "api_keys.json"

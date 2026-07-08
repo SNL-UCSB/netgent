@@ -16,8 +16,8 @@
       "If the current page is the Twitch channel page for 247jynxzi and a video player element is present"
     ],
     "actions": [
-      "Click the video player once to start or focus playback if necessary.",
-      "Start Twitch stats logging to twitch_247jynxzi_stats.jsonl every 2 seconds.",
+      "Do not click the video player or ad overlays.",
+      "Start Twitch stats logging to /out/twitch_247jynxzi_stats.jsonl every 2 seconds.",
       "Watch the stream for 15 seconds.",
       "Stop stats logging.",
       "Terminate the workflow."

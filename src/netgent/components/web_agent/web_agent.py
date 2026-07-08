@@ -54,7 +54,7 @@ class WebAgent():
         params = action_output.get("params", {})
         
         # Actions that interact with elements via MMID
-        element_actions = {"click", "type", "scroll_to", "move", "scroll"}
+        element_actions = {"click", "type", "type_env", "scroll_to", "move", "scroll"}
         
         # Build the final params dict for the action
         final_params = params.copy()

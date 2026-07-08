@@ -1,0 +1,274 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start from a fresh browser tab and open Hulu's auth flow.",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "chrome://new-tab-page/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://auth.hulu.com/web/login"
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 8
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Opened Hulu login."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "Hulu Email Login",
+    "description": "Hulu login form requesting an email address.",
+    "checks": [
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "input[type='email'], input[name='email'], input#email, input[autocomplete='email']",
+          "check_visibility": false,
+          "timeout": 8
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "set_env_value",
+        "params": {
+          "env_var": "HULU_EMAIL",
+          "selectors": [
+            "input[type='email']",
+            "input[name='email']",
+            "input#email",
+            "input[autocomplete='email']"
+          ]
+        }
+      },
+      {
+        "type": "click_first",
+        "params": {
+          "selectors": [
+            "button[type='submit']",
+            "button[data-testid*='continue']",
+            "button[data-testid*='login']"
+          ]
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Submitted Hulu email from HULU_EMAIL."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "Hulu Password Login",
+    "description": "Hulu login form requesting the account password.",
+    "checks": [
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "input[type='password'], input[name='password'], input#password, input[autocomplete='current-password']",
+          "check_visibility": false,
+          "timeout": 8
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "set_env_value",
+        "params": {
+          "env_var": "HULU_PASSWORD",
+          "selectors": [
+            "input[type='password']",
+            "input[name='password']",
+            "input#password",
+            "input[autocomplete='current-password']"
+          ]
+        }
+      },
+      {
+        "type": "click_first",
+        "params": {
+          "selectors": [
+            "button[type='submit']",
+            "button[data-testid*='login']"
+          ]
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 12
+        }
+      },
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://www.hulu.com/watch/60da223c-d2a0-411a-95c9-665a839371f9"
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 10
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Submitted Hulu password and returned to the target watch page."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "Hulu Verification Required",
+    "description": "Hulu is asking for email passcode or additional verification.",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Check your email inbox",
+          "check_visibility": false,
+          "timeout": 5
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Hulu requested an email passcode/manual verification; automation cannot continue without that code."
+        }
+      }
+    ],
+    "end_state": "Manual Verification Required",
+    "executed": []
+  },
+  {
+    "name": "Hulu Profile Selection",
+    "description": "Hulu profile picker after login.",
+    "checks": [
+      {
+        "type": "text",
+        "params": {
+          "text": "Who's watching?",
+          "check_visibility": false,
+          "timeout": 5
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click_text_env",
+        "params": {
+          "env_var": "HULU_PROFILE_NAME"
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      },
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://www.hulu.com/watch/60da223c-d2a0-411a-95c9-665a839371f9"
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 10
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Selected Hulu profile and opened the target watch page."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "Watching Hulu Video",
+    "description": "On a Hulu watch page with the player available.",
+    "checks": [
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "video",
+          "check_visibility": false,
+          "timeout": 10
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "video"
+        }
+      },
+      {
+        "type": "start_stats_logging",
+        "params": {
+          "out_path": "/out/hulu_watch_stats.jsonl",
+          "interval": 2.0
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 30
+        }
+      },
+      {
+        "type": "stop_stats_logging",
+        "params": {}
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Watched Hulu video and collected playback stats."
+        }
+      }
+    ],
+    "end_state": "Action Completed",
+    "executed": []
+  }
+]

@@ -49,16 +49,9 @@
     ],
     "actions": [
       {
-        "type": "click",
-        "params": {
-          "by": "css selector",
-          "selector": "video"
-        }
-      },
-      {
         "type": "start_stats_logging",
         "params": {
-          "out_path": "twitch_247jynxzi_stats.jsonl",
+          "out_path": "/out/twitch_247jynxzi_stats.jsonl",
           "interval": 2.0
         }
       },

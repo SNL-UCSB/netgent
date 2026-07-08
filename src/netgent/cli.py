@@ -21,6 +21,8 @@ from netgent.utils.message import StatePrompt
 from langchain_google_vertexai import ChatVertexAI
 from langchain_google_genai import ChatGoogleGenerativeAI
 
+DEFAULT_LLM_MODEL = "gemini-pro-latest"
+
 
 def _to_jsonable(obj: Any) -> Any:
     """Recursively convert result to JSON-serializable structures.
@@ -125,15 +127,19 @@ def load_prompts(prompts_input: str) -> List[StatePrompt]:
 
 def create_llm(api_keys: Dict[str, str]) -> Any:
     """Create LLM instance based on available API keys."""
+    model = api_keys.get('model') or os.environ.get('NETGENT_LLM_MODEL') or DEFAULT_LLM_MODEL
+
     # Try Google Generative AI first
     if 'google_api_key' in api_keys:
+        print(f"Using Google Generative AI model: {model}")
         return ChatGoogleGenerativeAI(
-            model="gemini-2.0-flash-exp", 
+            model=model,
             temperature=0.2, 
             api_key=api_keys['google_api_key']
         )
-    
-    return ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2)
+
+    print(f"Using Vertex AI model: {model}")
+    return ChatVertexAI(model=model, temperature=0.2)
 
 
 def setup_browser_cache(credentials: Dict[str, str]) -> Optional[str]:

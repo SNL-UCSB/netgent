@@ -102,6 +102,25 @@ Note: With `-s` enabled, you can view the browser automation at http://localhost
 - Use `--user-data-dir` to specify a browser profile directory.
 - See all options with `netgent --help`.
 
+### Smoke workflow scripts
+
+The repository includes smoke scripts under [`scripts/`](scripts/) that build the Docker image and run a workflow with noVNC enabled:
+
+```bash
+# Generate Hulu's executable state repository with the LLM-driven synthesis loop.
+MODE=generate ./scripts/smoke_hulu_watch.sh
+
+# Replay the generated Hulu repository from out/hulu-watch_state_repository.json.
+MODE=execute ./scripts/smoke_hulu_watch.sh
+
+# Run the Twitch 247jynxzi workflow.
+MODE=execute ./scripts/smoke_twitch_247jynxzi.sh
+```
+
+For Hulu, set `HULU_EMAIL`, `HULU_PASSWORD`, and `HULU_PROFILE_NAME` in your ignored `.env` file before running the script. `MODE=generate` uses the prompts in `examples/web_browsing/hulu-watch/prompts/` and asks the LLM/state-synthesis loop to discover the actual Hulu selectors and actions in the browser. The resulting replayable JSON is written under `out/` (for example, `out/hulu-watch_state_repository.json`). Runtime `out/` files are git-ignored because they are generated artifacts and may contain site-specific selectors from the live session.
+
+Hulu may show ads or ad controls before playback. During generation, the LLM observes the live page and can synthesize states around the ad/player UI it sees; once generated, replay uses the saved JSON. If Hulu changes its login, profile, ad, or player UI, rerun `MODE=generate` to refresh the state repository before replaying.
+
 ### Initializing the Docker Container
 
 A Dockerfile is provided to simplify environment setup and sandboxed execution.

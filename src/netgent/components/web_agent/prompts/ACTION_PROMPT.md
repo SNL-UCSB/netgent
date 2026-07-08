@@ -34,6 +34,23 @@
   }
   ```
 
+### **type_env** - Type secret text from an environment variable into an element
+
+- **action**: "type_env"
+- **mmid** (int): The unique identifier of the input element (text field, textarea, etc.) to type into
+- **params** (dict): `{"env_var": "ENVIRONMENT_VARIABLE_NAME"}`
+- **Description**: Types the value of an environment variable into the selected input. Use this for protected credentials so generated JSON never stores raw secrets.
+- **Credential rule**: For Hulu login, use `HULU_EMAIL` for the email field and `HULU_PASSWORD` for the password field. Never output the actual email or password in JSON.
+- **Example JSON**:
+  ```json
+  {
+    "action": "type_env",
+    "mmid": 456,
+    "params": { "env_var": "HULU_EMAIL" },
+    "reasoning": "Typing the Hulu email from the environment without exposing it"
+  }
+  ```
+
 ### **scroll** - Scroll within an element or the page
 
 - **action**: "scroll"
@@ -160,6 +177,17 @@ You MUST respond with a JSON object following this exact schema:
   "mmid": 10,
   "params": { "text": "LangChain documentation" },
   "reasoning": "Typing the search query into the search box"
+}
+```
+
+### Example 2b: Typing a secret from an environment variable
+
+```json
+{
+  "action": "type_env",
+  "mmid": 10,
+  "params": { "env_var": "HULU_PASSWORD" },
+  "reasoning": "Typing the Hulu password from the environment without exposing it"
 }
 ```
 

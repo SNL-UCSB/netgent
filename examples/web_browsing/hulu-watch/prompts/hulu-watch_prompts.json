@@ -1,0 +1,75 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start from a fresh browser tab and open Hulu's auth flow.",
+    "triggers": [
+      "If the browser is on a new tab or blank page"
+    ],
+    "actions": [
+      "Navigate directly to https://auth.hulu.com/web/login and wait for Hulu to load."
+    ]
+  },
+  {
+    "name": "Hulu Email Login",
+    "description": "Hulu is asking for the account email before playback.",
+    "triggers": [
+      "If the page has a Hulu email input field"
+    ],
+    "actions": [
+      "Use the type_env action with env_var HULU_EMAIL to type the email into the email field. Never type or save the raw email in generated JSON.",
+      "Continue to the password step.",
+      "Terminate this state."
+    ]
+  },
+  {
+    "name": "Hulu Password Login",
+    "description": "Hulu is asking for the account password before playback.",
+    "triggers": [
+      "If the page has a Hulu password input field"
+    ],
+    "actions": [
+      "Use the type_env action with env_var HULU_PASSWORD to type the password into the password field. Never type or save the raw password in generated JSON.",
+      "Submit the login form and wait for the account page or watch page to load.",
+      "Navigate directly to https://www.hulu.com/watch/60da223c-d2a0-411a-95c9-665a839371f9 and wait for the player to load.",
+      "Terminate this state."
+    ]
+  },
+  {
+    "name": "Hulu Verification Required",
+    "description": "Hulu is asking for an email passcode or additional verification.",
+    "triggers": [
+      "If the page says Check your email inbox"
+    ],
+    "actions": [
+      "Terminate the workflow because manual verification is required."
+    ],
+    "end_state": "Manual Verification Required"
+  },
+  {
+    "name": "Hulu Profile Selection",
+    "description": "Hulu is asking which profile is watching.",
+    "triggers": [
+      "If the page says Who's watching?"
+    ],
+    "actions": [
+      "Use the env-backed text click action to select the Hulu profile named by HULU_PROFILE_NAME.",
+      "Navigate directly to https://www.hulu.com/watch/60da223c-d2a0-411a-95c9-665a839371f9 and wait for the player to load.",
+      "Terminate this state."
+    ]
+  },
+  {
+    "name": "Watching Hulu Video",
+    "description": "On the Hulu watch page with a video player available.",
+    "triggers": [
+      "If the current page has an HTML video player element"
+    ],
+    "actions": [
+      "Click the video player once to start or focus playback if necessary.",
+      "Start video stats logging to /out/hulu_watch_stats.jsonl every 2 seconds.",
+      "Watch the video for 30 seconds.",
+      "Stop stats logging.",
+      "Terminate the workflow."
+    ],
+    "end_state": "Action Completed"
+  }
+]
