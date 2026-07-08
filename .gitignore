@@ -154,6 +154,12 @@ downloaded_files/
 google_creds.json
 
 google_key.json
+api_keys.json
+api_keys.*.json
+!api_keys.example.json
+browser_cache/
+examples/user_data/
+out/
 
 # QoE / Stats-for-Nerds logs (generated at runtime)
 *_stats.jsonl

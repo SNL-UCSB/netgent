@@ -1,0 +1,27 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start from a fresh browser tab and open the target Twitch live channel.",
+    "triggers": [
+      "If the browser is on a new tab or blank page"
+    ],
+    "actions": [
+      "Navigate directly to https://www.twitch.tv/247jynxzi and wait for Twitch to load."
+    ]
+  },
+  {
+    "name": "Watching 247jynxzi Live Stream",
+    "description": "On the 247jynxzi Twitch channel page with the video player available.",
+    "triggers": [
+      "If the current page is the Twitch channel page for 247jynxzi and a video player element is present"
+    ],
+    "actions": [
+      "Click the video player once to start or focus playback if necessary.",
+      "Start Twitch stats logging to twitch_247jynxzi_stats.jsonl every 2 seconds.",
+      "Watch the stream for 15 seconds.",
+      "Stop stats logging.",
+      "Terminate the workflow."
+    ],
+    "end_state": "Action Completed"
+  }
+]

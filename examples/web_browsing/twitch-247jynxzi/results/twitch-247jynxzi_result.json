@@ -1,0 +1,85 @@
+[
+  {
+    "name": "On Browser Home Page",
+    "description": "Start from a fresh browser tab and open 247jynxzi's Twitch channel.",
+    "checks": [
+      {
+        "type": "url",
+        "params": {
+          "url": "chrome://new-tab-page/"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://www.twitch.tv/247jynxzi"
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 8
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Navigated to 247jynxzi's Twitch channel."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "Watching 247jynxzi Live Stream",
+    "description": "On the 247jynxzi Twitch channel page with the player available.",
+    "checks": [
+      {
+        "type": "element",
+        "params": {
+          "by": "css selector",
+          "selector": "video",
+          "check_visibility": false,
+          "timeout": 10
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "css selector",
+          "selector": "video"
+        }
+      },
+      {
+        "type": "start_stats_logging",
+        "params": {
+          "out_path": "twitch_247jynxzi_stats.jsonl",
+          "interval": 2.0
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 15
+        }
+      },
+      {
+        "type": "stop_stats_logging",
+        "params": {}
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Watched 247jynxzi live stream and collected Twitch playback stats."
+        }
+      }
+    ],
+    "end_state": "Action Completed",
+    "executed": []
+  }
+]
