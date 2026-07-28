@@ -4,11 +4,12 @@ from seleniumbase import Driver
 from netgent.components.program_controller.controller import ProgramController
 from netgent.components.state_executor.executor import StateExecutor
 from netgent.browser.session import BrowserSession
-from netgent.browser.controller import PyAutoGUIController, BaseController
+from netgent.browser.controller import PyAutoGUIController, BaseController, DesktopController
 from typing import Any, Optional, TypedDict
 from langchain_core.language_models.chat_models import BaseChatModel
 from netgent.components.state_synthesis import StateSynthesis
 import time
+import json
 from netgent.components.web_agent import WebAgent
 from netgent.utils.message import StatePrompt
 load_dotenv()
@@ -27,17 +28,29 @@ class NetGentState(TypedDict):
     executed_states: Optional[list[dict[str, Any]]]
 
 class NetGent():
-    def __init__(self, driver: Driver = None, controller: BaseController = None, llm: BaseChatModel = None, config: Optional[dict] = None, llm_enabled: bool = True, user_data_dir: Optional[str] = None):
+    def __init__(self, driver: Driver = None, controller: BaseController = None, llm: BaseChatModel = None, config: Optional[dict] = None, llm_enabled: bool = True, user_data_dir: Optional[str] = None, desktop: bool = False, hostbridge_url: Optional[str] = None, target_app: Optional[str] = None):
         self.llm = llm
         self.llm_enabled = llm_enabled
-        self.driver = driver
-        if self.driver is None:
-            self.driver = BrowserSession(user_data_dir=user_data_dir).driver
         self.controller = controller
         if self.controller is None:
-            self.controller = PyAutoGUIController(self.driver)
+            if desktop:
+                # Desktop domain: no Selenium/browser. The controller talks to
+                # the macOS host bridge; interactions happen on the user's
+                # machine while this orchestrator runs (e.g. inside Docker).
+                self.controller = DesktopController(bridge_url=hostbridge_url, target_app=target_app)
+                self.driver = None
+            else:
+                self.driver = driver
+                if self.driver is None:
+                    self.driver = BrowserSession(user_data_dir=user_data_dir).driver
+                self.controller = PyAutoGUIController(self.driver)
+        else:
+            self.driver = getattr(self.controller, "driver", driver)
 
-        
+        # "desktop" selects the AX/host-bridge perception + prompt variants;
+        # "web" keeps the original DOM/browser behavior unchanged.
+        self.domain = "desktop" if isinstance(self.controller, DesktopController) else "web"
+
         default_config = {
             "action_period": 1,
             "transition_period": 3,
@@ -49,8 +62,8 @@ class NetGent():
         
         self.program_controller = ProgramController(self.controller, self.config)
         self.state_executor = StateExecutor(self.controller, self.config)
-        self.web_agent = WebAgent(self.llm, self.controller)
-        self.state_synthesis = StateSynthesis(self.llm, self.controller)
+        self.web_agent = WebAgent(self.llm, self.controller, domain=self.domain)
+        self.state_synthesis = StateSynthesis(self.llm, self.controller, domain=self.domain)
         self.workflow = StateGraph(NetGentState)
         self.graph = self.compile()
     
@@ -192,23 +205,118 @@ class NetGent():
         print(state_synthesis_state)
         return {**state,"synthesis_prompt": state_synthesis_state.get('prompt'), "synthesis_choice": state_synthesis_state.get('choice'), "synthesis_triggers": state_synthesis_state.get('triggers')}
     
+    def _desktop_snapshot_elements(self) -> dict:
+        """Return the target app's current interactable elements (desktop only).
+
+        Best-effort: returns {} on the browser path or if perception fails.
+        """
+        if self.domain != "desktop":
+            return {}
+        try:
+            elements, _, _ = self.controller.snapshot()
+            return elements or {}
+        except Exception as e:
+            print(f"Desktop pre-action snapshot failed: {e}")
+            return {}
+
+    def _bootstrap_app_check(self, actions: list) -> Optional[dict]:
+        """If this state opens/activates an app, return an APP_ABSENT trigger for
+        it (true only until the app is running). Makes the bootstrap state
+        self-clearing without depending on the LLM's trigger choice."""
+        for a in (actions or []):
+            if a.get("type") in ("open_application", "activate_application", "navigate"):
+                name = (a.get("params") or {}).get("name") or (a.get("params") or {}).get("url")
+                if name:
+                    return {"type": "app", "params": {"name": name, "negate": True}}
+        return None
+
+    def _self_clearing_check(self, pre_elements: dict, actions: list) -> Optional[dict]:
+        """Build a negated 'element' check for a control that appeared after
+        this state's actions ran, so the state's trigger turns false once its
+        work is done.
+
+        Returns None when not applicable (e.g. an app-opening bootstrap state,
+        which is already self-clearing via its APP_ABSENT trigger, or when no
+        stable new control appeared).
+        """
+        # Bootstrap "open the app" states are self-clearing via APP_ABSENT; a
+        # cross-application diff here would be noise, so skip them.
+        for a in (actions or []):
+            if a.get("type") in ("open_application", "activate_application", "navigate"):
+                return None
+
+        # Let the UI settle (results panels, place cards, etc. may load), then
+        # observe what is on screen now.
+        time.sleep(self.config.get("transition_period", 3))
+        post_elements = self._desktop_snapshot_elements()
+        if not post_elements:
+            return None
+
+        def _key(el):
+            return ((el.get("role") or ""), (el.get("title") or "").strip())
+
+        pre_keys = {_key(el) for el in pre_elements.values()}
+
+        # Prefer a newly-appeared, clearly-labeled actionable control (a button
+        # is the most reliable "this step produced a result" marker).
+        candidates = []
+        for el in post_elements.values():
+            role = el.get("role") or ""
+            title = (el.get("title") or "").strip()
+            if not title or len(title) >= 80:
+                continue
+            if _key(el) in pre_keys:
+                continue
+            rank = 0 if role in ("AXButton", "AXMenuButton", "AXPopUpButton") else 1
+            candidates.append((rank, role, title))
+
+        if not candidates:
+            return None
+        candidates.sort(key=lambda c: c[0])
+        _, role, title = candidates[0]
+        selector = json.dumps({"role": role, "title": title})
+        print(f"Self-clearing marker for state: {role} '{title}' (negated)")
+        return {"type": "element", "params": {"by": "ax", "selector": selector, "negate": True}}
+
     def _web_agent(self, state: NetGentState):
+        # Perceive the target BEFORE this state acts (desktop only). Combined
+        # with a post-action snapshot below, this lets us make the synthesized
+        # state self-clearing (see _self_clearing_check), which is what enables
+        # reliable *multi-state* desktop generation.
+        pre_elements = self._desktop_snapshot_elements()
+
         synthesis_state = {"prompt": state.get('synthesis_prompt', '')}
         web_agent_state = self.web_agent.run(user_query="ONLY FOLLOW THE FOLLOWING INSTRUCTION(S):\n"
             + synthesis_state["prompt"]
             + "\nONCE YOU COMPLETE THE TASK, YOU TERMINATE INMEDIATLY. DO NOT DO ANYTHING ELSE NO MATTER THE RESULT OF THE TASK. THERE WILL BE OTHER STATES TO HANDLE THE RESULT OF THE TASK.")
         print(web_agent_state)
-        
+
         # Extract actions from web agent output
         actions = web_agent_state.get('actions', [])
         synthesis_choice = state.get('synthesis_choice')
         synthesis_triggers = state.get('synthesis_triggers', [])
-        
+
+        # Make each generated desktop state self-clearing so the machine
+        # advances to the next state instead of re-running this one:
+        #  - A bootstrap "open the app" state clears via an APP_ABSENT trigger
+        #    derived directly from its open_application action (deterministic).
+        #  - Any other state clears via a NEGATED check for a control that only
+        #    *appeared* after its actions ran (diff of before/after snapshots).
+        checks = list(synthesis_triggers or [])
+        if self.domain == "desktop":
+            bootstrap = self._bootstrap_app_check(actions)
+            if bootstrap is not None:
+                checks = [bootstrap]
+            else:
+                clearing = self._self_clearing_check(pre_elements, actions)
+                if clearing is not None and clearing not in checks:
+                    checks.append(clearing)
+
         # Create new state from synthesis and web agent output
         new_state = {
             "name": synthesis_choice.name if synthesis_choice else "generated_state",
             "description": synthesis_choice.description if synthesis_choice else "",
-            "checks": synthesis_triggers,
+            "checks": checks,
             "actions": actions,
             "end_state": synthesis_choice.end_state if synthesis_choice else "",
             "executed": []

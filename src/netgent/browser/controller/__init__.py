@@ -38,6 +38,7 @@ Usage:
 
 from .base import BaseController
 from .pyautogui_controller import PyAutoGUIController
+from .desktop_controller import DesktopController
 from ..registry import (
     action, ActionRegistry, ActionController,
     trigger, TriggerRegistry, TriggerController,
@@ -45,7 +46,7 @@ from ..registry import (
 )
 
 __all__ = [
-    "BaseController", "PyAutoGUIController",
+    "BaseController", "PyAutoGUIController", "DesktopController",
     "action", "ActionRegistry", "ActionController",
     "trigger", "TriggerRegistry", "TriggerController",
     "ActionTriggerMeta"

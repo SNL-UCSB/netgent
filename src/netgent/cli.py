@@ -128,12 +128,27 @@ def create_llm(api_keys: Dict[str, str]) -> Any:
     # Try Google Generative AI first
     if 'google_api_key' in api_keys:
         return ChatGoogleGenerativeAI(
-            model="gemini-2.0-flash-exp", 
-            temperature=0.2, 
+            model="gemini-2.5-flash",
+            temperature=0.2,
             api_key=api_keys['google_api_key']
         )
-    
-    return ChatVertexAI(model="gemini-2.0-flash-exp", temperature=0.2)
+
+    # Vertex AI via a service-account JSON loaded from the api_keys file.
+    # ChatVertexAI() with no args falls back to Application Default
+    # Credentials, which fails ("Unable to find your project") unless the
+    # environment is already configured -- so build credentials + project
+    # explicitly from the service-account dict we were given.
+    if api_keys.get('type') == 'service_account' and api_keys.get('project_id'):
+        from google.oauth2 import service_account
+        credentials = service_account.Credentials.from_service_account_info(api_keys)
+        return ChatVertexAI(
+            model="gemini-2.5-flash",
+            temperature=0.2,
+            project=api_keys['project_id'],
+            credentials=credentials,
+        )
+
+    return ChatVertexAI(model="gemini-2.5-flash", temperature=0.2)
 
 
 def setup_browser_cache(credentials: Dict[str, str]) -> Optional[str]:
@@ -142,6 +157,28 @@ def setup_browser_cache(credentials: Dict[str, str]) -> Optional[str]:
     if cache_file and os.path.isfile(cache_file):
         print(f"Using browser cache file: {cache_file}")
         return cache_file
+    return None
+
+
+def derive_target_app(executable_code: List[Dict[str, Any]]) -> Optional[str]:
+    """Infer the desktop workflow's target application from its actions.
+
+    The controller normally learns the target app when an open/activate action
+    runs. But if that state is skipped (e.g. the app is already open, so its
+    "open" trigger is false), nothing would scope the element checks/clicks to
+    the app. Pre-seeding the target from the first open/activate action makes
+    perception and actions correctly scoped from the very first cycle,
+    regardless of whether the app was already running.
+    """
+    try:
+        for state in executable_code:
+            for action in state.get("actions", []):
+                if action.get("type") in ("open_application", "activate_application"):
+                    name = (action.get("params") or {}).get("name")
+                    if name:
+                        return name
+    except Exception:
+        pass
     return None
 
 
@@ -157,18 +194,35 @@ def execution_mode(args):
     cache_file = None
     if hasattr(args, 'credentials') and args.credentials:
         credentials = load_credentials(args.credentials)
-    # Setup browser cache if provided (CLI flag takes precedence over credentials)
-    cache_file = getattr(args, 'user_data_dir', None) or setup_browser_cache(credentials)
-    
-    # Initialize agent with LLM disabled (execution mode)
-    # Pass cache directory to browser session if available
-    agent = NetGent(llm=None, llm_enabled=False, user_data_dir=cache_file)
-    
-    print(f"Loaded {len(executable_code)} executable states")
-    if cache_file:
-        print(f"Using browser cache: {cache_file}")
+
+    if getattr(args, 'desktop', False):
+        # Desktop mode: drive native macOS apps via the host bridge (no browser).
+        # Prefer an explicit --target-app; otherwise infer it from the workflow's
+        # open/activate action so element checks and clicks are scoped to the app
+        # from the first cycle even if the "open the app" state gets skipped.
+        target_app = getattr(args, 'target_app', None) or derive_target_app(executable_code)
+        agent = NetGent(
+            llm=None, llm_enabled=False, desktop=True,
+            hostbridge_url=getattr(args, 'hostbridge_url', None),
+            target_app=target_app,
+        )
+        print(f"Loaded {len(executable_code)} executable states")
+        print(f"Desktop mode via host bridge: {agent.controller.bridge_url}")
+        if target_app:
+            print(f"Desktop target application: {target_app}")
     else:
-        print("No browser cache specified - using fresh browser session")
+        # Setup browser cache if provided (CLI flag takes precedence over credentials)
+        cache_file = getattr(args, 'user_data_dir', None) or setup_browser_cache(credentials)
+
+        # Initialize agent with LLM disabled (execution mode)
+        # Pass cache directory to browser session if available
+        agent = NetGent(llm=None, llm_enabled=False, user_data_dir=cache_file)
+
+        print(f"Loaded {len(executable_code)} executable states")
+        if cache_file:
+            print(f"Using browser cache: {cache_file}")
+        else:
+            print("No browser cache specified - using fresh browser session")
     print("Starting execution...")
     
     # Run the agent
@@ -198,20 +252,41 @@ def generation_mode(args):
     
     # Load prompts
     prompts = load_prompts(args.prompts)
-    
-    # Setup browser cache if provided (CLI flag takes precedence over credentials)
-    cache_file = getattr(args, 'user_data_dir', None) or setup_browser_cache(credentials)
-    
+
     # Create LLM instance
     llm = create_llm(api_keys)
-    
-    # Initialize agent with LLM enabled (generation mode)
-    # Pass cache directory to browser session if available
-    agent = NetGent(llm=llm, llm_enabled=True, user_data_dir=cache_file)
-    
-    print(f"Loaded {len(prompts)} state prompts")
-    if cache_file:
-        print(f"Using browser cache: {cache_file}")
+
+    if getattr(args, 'desktop', False):
+        # Desktop mode: generate a workflow that drives native macOS apps.
+        # We intentionally do NOT pre-seed a target app here: leaving it unset
+        # gives the (recommended single) generated state an empty, always-true
+        # trigger, so it runs once and ends via its end_state on replay,
+        # regardless of whether the app was already open. The controller learns
+        # the real target when the workflow's open_application action runs, which
+        # scopes the subsequent clicks. (Multi-state desktop workflows are best
+        # hand-authored -- see examples/desktop/README.md -- because generation
+        # cannot reference a later step's UI marker that isn't on screen yet.)
+        target_app = getattr(args, 'target_app', None)
+        agent = NetGent(
+            llm=llm, llm_enabled=True, desktop=True,
+            hostbridge_url=getattr(args, 'hostbridge_url', None),
+            target_app=target_app,
+        )
+        print(f"Loaded {len(prompts)} state prompts")
+        print(f"Desktop mode via host bridge: {agent.controller.bridge_url}")
+        if target_app:
+            print(f"Desktop target application: {target_app}")
+    else:
+        # Setup browser cache if provided (CLI flag takes precedence over credentials)
+        cache_file = getattr(args, 'user_data_dir', None) or setup_browser_cache(credentials)
+
+        # Initialize agent with LLM enabled (generation mode)
+        # Pass cache directory to browser session if available
+        agent = NetGent(llm=llm, llm_enabled=True, user_data_dir=cache_file)
+
+        print(f"Loaded {len(prompts)} state prompts")
+        if cache_file:
+            print(f"Using browser cache: {cache_file}")
     print("Starting code generation...")
     
     # Run the agent
@@ -289,6 +364,27 @@ Examples:
         metavar='DIR',
         default=None,
         help='Browser user data directory (overrides credentials.browser_cache_file)'
+    )
+    parser.add_argument(
+        '--desktop',
+        action='store_true',
+        help='Drive native macOS desktop apps via the host bridge instead of a browser'
+    )
+    parser.add_argument(
+        '--hostbridge-url',
+        dest='hostbridge_url',
+        metavar='URL',
+        default=None,
+        help='URL of the macOS host bridge (default: http://host.docker.internal:8765 '
+             'or $NETGENT_HOSTBRIDGE_URL). Only used with --desktop.'
+    )
+    parser.add_argument(
+        '--target-app',
+        dest='target_app',
+        metavar='NAME',
+        default=None,
+        help='Initial target application name or bundle id for desktop mode '
+             '(usually set by the workflow via open_application). Only used with --desktop.'
     )
     parser.add_argument(
         '--version',

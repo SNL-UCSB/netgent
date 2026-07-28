@@ -36,5 +36,6 @@ Usage:
 from .session import BrowserSession
 from .controller.pyautogui_controller import PyAutoGUIController
 from .controller.base import BaseController
+from .controller.desktop_controller import DesktopController
 
-__all__ = ["BrowserSession", "PyAutoGUIController", "BaseController"]
+__all__ = ["BrowserSession", "PyAutoGUIController", "BaseController", "DesktopController"]
