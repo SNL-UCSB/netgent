@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Open Maps",
+    "description": "Launch Maps if it is not already running",
+    "triggers": ["When Maps is not yet open"],
+    "actions": [
+      "Open the Maps application"
+    ],
+    "end_state": ""
+  },
+  {
+    "name": "Search the address",
+    "description": "Maps is open with its search field: type the address and search",
+    "triggers": ["When Maps is open and its search field is visible"],
+    "actions": [
+      "Click the search field in Maps",
+      "Type '1600 Pennsylvania Avenue NW, Washington, DC 20500' into the search field",
+      "Press Enter to run the search"
+    ],
+    "end_state": ""
+  },
+  {
+    "name": "Open directions",
+    "description": "A searched place with a Directions button is visible: open directions",
+    "triggers": ["When a searched location is shown and its Directions button is visible"],
+    "actions": [
+      "Click the Directions button for the searched location",
+      "TERMINATE"
+    ],
+    "end_state": "Directions opened"
+  }
+]

@@ -53,7 +53,7 @@ class ActionOutput(Message):
     action: str = Field(description="The name of the action to execute (e.g., 'click', 'type', 'navigate', 'scroll', 'press_key', 'wait', 'terminate')")
     mmid: Optional[int] = Field(default=None, description="The MMID (unique identifier) of the element to interact with. Required for actions like click, type that interact with specific elements.")
     params: dict = Field(default_factory=dict, description="Additional parameters for the action (e.g., text for type action, url for navigate, key for press_key, etc.)")
-    reasoning: str = Field(description="Brief explanation of why this action is being taken")
+    reasoning: str = Field(default="", description="Brief explanation of why this action is being taken")
     def __str__(self):
         return f"<action_output>\naction: {self.action}\nmmid: {self.mmid}\nparams: {self.params}\nreasoning: {self.reasoning}\n</action_output>"
 

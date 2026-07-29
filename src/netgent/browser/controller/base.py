@@ -9,6 +9,11 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from selenium.webdriver.support.ui import WebDriverWait
 
+# Interactions that reference a perceived element by its mmid. Shared by the
+# perception layer so both browser and desktop controllers agree on which
+# actions need an element resolved before execution.
+ELEMENT_ACTIONS = {"click", "type", "scroll_to", "move", "scroll"}
+
 class BaseController(ABC, metaclass=ActionTriggerMeta):
     """Base controller with automatic action and trigger registration via combined metaclass."""
     
@@ -228,6 +233,104 @@ class BaseController(ABC, metaclass=ActionTriggerMeta):
 
         abs_x += width * percentage
         abs_y += height * 0.5
-        
+
         return abs_x, abs_y
+
+    # -- Perception Layer --
+    #
+    # These methods give the agent (web_agent / state_synthesis) a
+    # controller-agnostic way to observe the target. The browser controller
+    # implements them on top of the DOM (mark_page / find_trigger / driver).
+    # The desktop controller overrides them to observe the macOS accessibility
+    # tree through the host bridge. Everything downstream (the LangGraph state
+    # machine, triggers, actions, code generation and replay) is identical.
+
+    def snapshot(self) -> tuple[dict, str, str]:
+        """Return (elements, prompt, screenshot_b64) for the current view.
+
+        - elements: dict keyed by mmid (str) with per-element metadata used to
+          resolve an action back to a selector/coordinates.
+        - prompt: a human/LLM readable listing of the interactable elements.
+        - screenshot_b64: base64 PNG of the current view (supplementary only).
+        """
+        from ..utils import mark_page
+        elements, prompt, screenshot = mark_page(self.driver).with_retry().invoke(None)
+        return elements, prompt, screenshot
+
+    def get_context(self) -> dict:
+        """Return lightweight context about the current view (url + title)."""
+        try:
+            return {"url": self.driver.current_url, "title": self.driver.title}
+        except Exception:
+            return {"url": "", "title": ""}
+
+    def build_trigger_candidates(self) -> dict:
+        """Build the dict of candidate triggers offered to state synthesis.
+
+        Returns a mapping of trigger-key -> {"type": ..., "params": {...}}.
+        The browser controller derives these from the current URL plus the
+        visible interactable elements (text and enhanced CSS selectors).
+        """
+        from ..utils import find_trigger
+        page_triggers = find_trigger(self.driver)
+
+        triggers_dict: dict = {}
+        # URL is always offered as a trigger for the browser domain.
+        triggers_dict["URL"] = {
+            "type": "url",
+            "params": {"url": self.driver.current_url},
+        }
+        for i, trig in enumerate(page_triggers):
+            if trig.get("text", "") != "":
+                triggers_dict[f"TEXT_{i}"] = {
+                    "type": "text",
+                    "params": {"text": trig.get("text", "")},
+                }
+            if trig.get("enhancedCssSelector", "") != "":
+                triggers_dict[f"CSS_{i}"] = {
+                    "type": "element",
+                    "params": {
+                        "by": "css selector",
+                        "selector": trig.get("enhancedCssSelector", ""),
+                    },
+                }
+        return triggers_dict
+
+    def resolve_element_action(self, action_output: dict, elements: dict) -> dict:
+        """Convert an LLM action (referencing an mmid) into a replayable action.
+
+        Produces {"type": <action>, "params": {...}} where element-targeting
+        actions carry both a durable selector (re-resolved at replay time) and
+        fallback absolute screen coordinates.
+        """
+        action_name = action_output.get("action")
+        mmid = action_output.get("mmid")
+        params = dict(action_output.get("params", {}))
+
+        if mmid is not None and action_name in ELEMENT_ACTIONS and elements:
+            element_data = elements.get(str(mmid))
+            if element_data:
+                selector = (
+                    element_data.get('enhanced_css_selector') or
+                    element_data.get('css_selector') or
+                    element_data.get('xpath')
+                )
+                if selector:
+                    if element_data.get('enhanced_css_selector') or element_data.get('css_selector'):
+                        params['by'] = 'css selector'
+                    else:
+                        params['by'] = 'xpath'
+                    params['selector'] = selector
+
+                abs_x, abs_y = self.get_element_coordinates(
+                    element_data.get('x', 0),
+                    element_data.get('y', 0),
+                    element_data.get('width', 0),
+                    element_data.get('height', 0),
+                    percentage=0.5,
+                )
+                params['x'] = abs_x
+                params['y'] = abs_y
+
+        return {"type": action_name, "params": params}
     

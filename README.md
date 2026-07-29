@@ -149,6 +149,93 @@ See the example scripts and CLI source for more patterns, and customize credenti
 
 For API key configuration details, refer to [API_KEYS.md](API_KEYS.md).
 
+## Desktop Application Automation (macOS)
+
+NetGent can automate **native macOS desktop applications** in addition to the
+browser — for example, launch an application and perform a task in it.
+Everything else is unchanged: the same state repository, the same
+triggers/actions, and the same **Code Execution (`-e`)** and **Code Generation
+(`-g`)** modes described above. You simply add the `--desktop` flag.
+
+### How it works
+
+A Docker container cannot touch the host's macOS Accessibility API or move its
+real mouse/keyboard, so NetGent splits into two pieces:
+
+- The **orchestrator** (state machine, state synthesis, agent) runs as usual —
+  including inside Docker.
+- A small **host bridge** runs **natively on your Mac** and performs the actual
+  perception and input on your real screen.
+
+The orchestrator's `DesktopController` sends observations/actions to the bridge
+over HTTP (`host.docker.internal:8765` from Docker). Crucially, the agent
+perceives the app through the **macOS Accessibility (AX) tree** — the desktop
+analogue of the browser DOM. Each element has a role, a label, and its true
+on-screen position, so the agent selects an element by id and the bridge clicks
+its real coordinates with PyAutoGUI. **It does not guess coordinates from a
+screenshot.** Every observation and action is scoped to the target application,
+and the app is re-activated before each action, so clicks never land in a
+background app or outside the window.
+
+All host-bridge code lives in [`src/netgent_hostbridge/`](src/netgent_hostbridge/).
+
+### 1. Start the host bridge (on the macOS host, once)
+
+```bash
+pip install -r src/netgent_hostbridge/requirements.txt
+python -m netgent_hostbridge --port 8765
+```
+
+Grant the process **Accessibility** (required) and **Screen Recording**
+(optional, for screenshots) in *System Settings → Privacy & Security*. Leave it
+running.
+
+### 2. Run a desktop workflow
+
+Code Execution mode (replay a pre-built desktop workflow):
+
+```bash
+docker run --platform=linux/amd64 --rm \
+  -e NETGENT_HOSTBRIDGE_URL=http://host.docker.internal:8765 \
+  -v "$PWD/examples/desktop/maps_result.json:/maps.json:ro" \
+  -v "$PWD/out:/out" \
+  netgent \
+  -e /maps.json --desktop -o /out/maps_execution.json
+```
+
+Code Generation mode (synthesize a desktop workflow from natural language):
+
+```bash
+docker run --platform=linux/amd64 --rm \
+  -e NETGENT_HOSTBRIDGE_URL=http://host.docker.internal:8765 \
+  -v "$PWD/api_keys.json:/keys.json:ro" \
+  -v "$PWD/examples/desktop/maps_prompts.json:/prompts.json:ro" \
+  -v "$PWD/examples/desktop:/work" \
+  netgent \
+  -g /keys.json '{}' /prompts.json --desktop -o /work/maps_generated.json
+```
+
+Generation produces **multi-state** desktop workflows: each state prompt becomes
+a state, and NetGent automatically makes every state *self-clearing* so the
+machine advances instead of looping. A "open the app" state clears via an
+app-not-running trigger; every other state clears via a check on a UI control
+that only *appears* after the state acts — discovered by diffing the
+accessibility tree before vs. after the state's actions (e.g. the "Search"
+state gets a "Directions button not yet visible" trigger, since Directions
+appears only after a successful search).
+
+Desktop workflows use the actions `open_application`, `activate_application`,
+`click`, `type`, `press_key`, `hotkey`, `scroll`, `wait`, `terminate`, and the
+triggers `app`, `window`, `text`, and `element` (AX locator). See
+[`examples/desktop/`](examples/desktop/) for a complete Maps example (open Maps
+launch Maps, click the search field, and search an address) and
+[`src/netgent_hostbridge/README.md`](src/netgent_hostbridge/README.md) for the
+bridge's HTTP API and permission setup.
+
+> **Note:** `--desktop` targets macOS (Accessibility + PyAutoGUI). Because the
+> bridge runs on the host, no browser, Xvfb, or noVNC is involved in desktop
+> mode; the `-s`/`--screen` flag is browser-only.
+
 ## QoE Logging (Stats for Nerds)
 
 NetGent can record video Quality-of-Experience (QoE) metrics throughout a streaming session, the same data that YouTube exposes via its "Stats for Nerds" overlay. This is useful for correlating the network traffic NetGent generates with the player's perceived playback quality.

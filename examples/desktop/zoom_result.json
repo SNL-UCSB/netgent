@@ -1,0 +1,153 @@
+[
+  {
+    "name": "Open Zoom",
+    "description": "Launch Zoom if it is not already running",
+    "checks": [
+      {
+        "type": "app",
+        "params": {
+          "name": "zoom.us",
+          "negate": true
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "open_application",
+        "params": {
+          "name": "zoom.us"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The 'zoom.us' application has been successfully opened as per Step 1 of the Global Plan. The next step is to terminate the task."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "Start meeting and join configured",
+    "description": "Zoom's main window is open; start a meeting via the app menu bar (the home screen's New Meeting icon is not exposed to accessibility -- it renders as a single unclickable image, not real buttons), then on the pre-join screen mute audio and turn off video before joining. Do all of this in one continuous sequence, in order -- do not click Start until after both toggle buttons are clicked.",
+    "checks": [
+      {
+        "type": "app",
+        "params": {
+          "name": "zoom.us"
+        }
+      },
+      {
+        "type": "window",
+        "params": {
+          "title": "Zoom Workplace"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "ax",
+          "selector": "{\"role\": \"AXButton\", \"title\": \"Take notes\"}",
+          "negate": true
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "ax",
+          "selector": "{\"path\": [[\"AXMenuBar\", 0], [\"AXMenuBarItem\", 1]], \"role\": \"AXMenuBarItem\", \"title\": \"Zoom Workplace\"}",
+          "x": 108.5,
+          "y": 15.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "ax",
+          "selector": "{\"path\": [[\"AXMenuBar\", 0], [\"AXMenuBarItem\", 1], [\"AXMenu\", 0], [\"AXMenuItem\", 11]], \"role\": \"AXMenuItem\", \"title\": \"Start meeting\"}",
+          "x": 176.5,
+          "y": 247.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "ax",
+          "selector": "{\"path\": [[\"AXWindow\", 0], [\"AXTabGroup\", 0], [\"AXButton\", 1]], \"role\": \"AXButton\", \"title\": \"Audio, turn off, currently unmuted\"}",
+          "x": 678.0,
+          "y": 551.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "ax",
+          "selector": "{\"path\": [[\"AXWindow\", 0], [\"AXTabGroup\", 0], [\"AXButton\", 0]], \"role\": \"AXButton\", \"title\": \"Video, turn off, currently on\"}",
+          "x": 762.0,
+          "y": 551.0
+        }
+      },
+      {
+        "type": "click",
+        "params": {
+          "by": "ax",
+          "selector": "{\"path\": [[\"AXWindow\", 0], [\"AXButton\", 0]], \"role\": \"AXButton\", \"title\": \"Start\"}",
+          "x": 959.0,
+          "y": 674.0
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The previous actions successfully initiated a Zoom meeting, muted the microphone, turned off the camera, and entered the meeting. The current accessibility state shows the meeting is active. The user's plan indicates that the task is complete and requires termination."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "Wait then terminate",
+    "description": "The in-meeting window is visible; wait briefly then stop (ending the meeting is handled separately)",
+    "checks": [
+      {
+        "type": "app",
+        "params": {
+          "name": "zoom.us"
+        }
+      },
+      {
+        "type": "window",
+        "params": {
+          "title": "Zoom Meeting"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "ax",
+          "selector": "{\"path\": [[\"AXWindow\", 0], [\"AXTabGroup\", 0]], \"role\": \"AXTabGroup\", \"title\": \"Sthanav Murali, Computer audio muted\"}"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 5
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The previous action was to wait for 5 seconds, which has now completed. The current accessibility state shows the Zoom meeting window. The next step in the provided plan is to terminate the task."
+        }
+      }
+    ],
+    "end_state": "Meeting started",
+    "executed": []
+  }
+]

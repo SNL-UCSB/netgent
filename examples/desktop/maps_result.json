@@ -1,0 +1,145 @@
+[
+  {
+    "name": "Open Maps",
+    "description": "Launch Maps if it is not already running",
+    "checks": [
+      {
+        "type": "app",
+        "params": {
+          "name": "Maps",
+          "negate": true
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "open_application",
+        "params": {
+          "name": "Maps"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The Maps application has been successfully opened as per Step 1 of the task. Step 2 instructs to terminate immediately after completing Step 1."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "Search the address",
+    "description": "Maps is open with its search field: type the address and search",
+    "checks": [
+      {
+        "type": "app",
+        "params": {
+          "name": "Maps"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "ax",
+          "selector": "{\"path\": [[\"AXWindow\", 0], [\"AXGroup\", 0], [\"AXGroup\", 0], [\"AXGroup\", 0], [\"AXGroup\", 1], [\"AXGroup\", 0], [\"AXGroup\", 0], [\"AXTextField\", 0]], \"role\": \"AXTextField\", \"title\": \"Apple Maps\"}"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "ax",
+          "selector": "{\"role\": \"AXButton\", \"title\": \"Share\"}",
+          "negate": true
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "ax",
+          "selector": "{\"path\": [[\"AXWindow\", 0], [\"AXGroup\", 0], [\"AXGroup\", 0], [\"AXGroup\", 0], [\"AXGroup\", 1], [\"AXGroup\", 0], [\"AXGroup\", 0], [\"AXTextField\", 0]], \"role\": \"AXTextField\", \"title\": \"Apple Maps\"}",
+          "x": 309.0,
+          "y": 105.0
+        }
+      },
+      {
+        "type": "type",
+        "params": {
+          "text": "1600 Pennsylvania Avenue NW, Washington, DC 20500",
+          "by": "ax",
+          "selector": "{\"path\": [[\"AXWindow\", 0], [\"AXGroup\", 0], [\"AXGroup\", 0], [\"AXGroup\", 0], [\"AXGroup\", 1], [\"AXGroup\", 0], [\"AXGroup\", 0], [\"AXTextField\", 0]], \"role\": \"AXTextField\", \"title\": \"Apple Maps\"}",
+          "x": 309.0,
+          "y": 105.0
+        }
+      },
+      {
+        "type": "press_key",
+        "params": {
+          "key": "enter"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The previous actions successfully clicked the search field, typed the address '1600 Pennsylvania Avenue NW, Washington, DC 20500', and pressed Enter. The current accessibility state shows the search result for \"1600 Pennsylvania Avenue NW, Washington, DC 20500\" (mmid 18), indicating that the search has been performed and the results are displayed. All steps of the user query have been completed. Terminating as per the global plan."
+        }
+      }
+    ],
+    "end_state": "",
+    "executed": []
+  },
+  {
+    "name": "Open directions",
+    "description": "A searched place with a Directions button is visible: open directions",
+    "checks": [
+      {
+        "type": "app",
+        "params": {
+          "name": "Maps"
+        }
+      },
+      {
+        "type": "window",
+        "params": {
+          "title": "Washington Mall \u2014 Washington"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "ax",
+          "selector": "{\"path\": [[\"AXWindow\", 0], [\"AXGroup\", 0], [\"AXGroup\", 0], [\"AXGroup\", 0], [\"AXGroup\", 0], [\"AXGroup\", 0], [\"AXGroup\", 0], [\"AXGroup\", 0], [\"AXGroup\", 1], [\"AXButton\", 0]], \"role\": \"AXButton\", \"title\": \"Directions\"}"
+        }
+      },
+      {
+        "type": "element",
+        "params": {
+          "by": "ax",
+          "selector": "{\"role\": \"AXButton\", \"title\": \"Reorder\"}",
+          "negate": true
+        }
+      }
+    ],
+    "actions": [
+      {
+        "type": "click",
+        "params": {
+          "by": "ax",
+          "selector": "{\"path\": [[\"AXWindow\", 0], [\"AXGroup\", 0], [\"AXGroup\", 0], [\"AXGroup\", 0], [\"AXGroup\", 0], [\"AXGroup\", 0], [\"AXGroup\", 0], [\"AXGroup\", 0], [\"AXGroup\", 1], [\"AXButton\", 0]], \"role\": \"AXButton\", \"title\": \"Directions\"}",
+          "x": 558.0,
+          "y": 206.5
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "The previous action successfully clicked the \"Directions\" button, as indicated by the current accessibility state showing \"Directions\" (mmid 0) as a static text, which means the Directions panel is now open. The user's first instruction was to click the \"Directions\" button, which has been completed. The next instruction is to terminate immediately."
+        }
+      }
+    ],
+    "end_state": "Directions opened",
+    "executed": []
+  }
+]
