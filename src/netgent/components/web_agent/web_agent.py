@@ -8,10 +8,11 @@ from pydantic import BaseModel, Field
 from dotenv import load_dotenv
 from ...browser.controller.base import BaseController
 from ...browser.registry import ActionRegistry
-from ...browser.utils import mark_page
 from netgent.utils.message import Message, format_context, Metadata, ActionOutput
 import time
 import os
+import re
+import json
 load_dotenv()
 
 
@@ -24,10 +25,13 @@ class WebAgentState(TypedDict):
 
 
 class WebAgent():
-    def __init__(self, llm: BaseChatModel, controller: BaseController):
+    def __init__(self, llm: BaseChatModel, controller: BaseController, domain: str = "web"):
         self.llm = llm
         self.controller = controller
-        self.driver = controller.driver
+        # Desktop controllers have no Selenium driver; perception goes through
+        # the controller's snapshot()/get_context() instead.
+        self.driver = getattr(controller, "driver", None)
+        self.domain = domain
         self.action_registry = ActionRegistry(controller)
         self.workflow = self._initalize_workflow()
         self.graph = self.workflow.compile()
@@ -44,60 +48,22 @@ class WebAgent():
 
     def _get_prompt(self, name: str) -> str:
         prompts_dir = os.path.join(os.path.dirname(__file__), 'prompts')
+        # Prefer a domain-specific variant (e.g. prompts/desktop/ACTION_PROMPT.md)
+        # and fall back to the shared browser prompt when none exists.
+        if self.domain and self.domain != "web":
+            domain_file = os.path.join(prompts_dir, self.domain, f"{name}.md")
+            if os.path.isfile(domain_file):
+                with open(domain_file, 'r') as f:
+                    return f.read()
         prompt_file = os.path.join(prompts_dir, f"{name}.md")
         with open(prompt_file, 'r') as f:
             return f.read()
     
     def _convert_action_to_json(self, action_output: dict) -> dict:
-        action_name = action_output.get("action")
-        mmid = action_output.get("mmid")
-        params = action_output.get("params", {})
-        
-        # Actions that interact with elements via MMID
-        element_actions = {"click", "type", "scroll_to", "move", "scroll"}
-        
-        # Build the final params dict for the action
-        final_params = params.copy()
-        
-        # If this action uses MMID and we have element data
-        if mmid is not None and action_name in element_actions and self.elements:
-            element_data = self.elements.get(str(mmid))
-            print(self.elements)
-            if element_data:
-                # Prefer enhanced CSS selector, then CSS selector, then XPath
-                selector = (
-                    element_data.get('enhanced_css_selector') or 
-                    element_data.get('css_selector') or 
-                    element_data.get('xpath')
-                )
-                
-                if selector:
-                    # Determine the selector type
-                    if element_data.get('enhanced_css_selector') or element_data.get('css_selector'):
-                        final_params['by'] = 'css selector'
-                    else:
-                        final_params['by'] = 'xpath'
-                    
-                    final_params['selector'] = selector
-                
-                # Get absolute screen coordinates using the controller method
-                # This converts element coordinates to actual screen coordinates
-                abs_x, abs_y = self.controller.get_element_coordinates(
-                    element_data.get('x', 0), 
-                    element_data.get('y', 0), 
-                    element_data.get('width', 0), 
-                    element_data.get('height', 0),
-                    percentage=0.5  # Click in the center of the element
-                )
-                
-                # Add absolute screen coordinates as fallback
-                final_params['x'] = abs_x
-                final_params['y'] = abs_y
-        
-        return {
-            "type": action_name,
-            "params": final_params
-        }
+        # Delegate mmid -> replayable action mapping to the controller, so the
+        # browser (CSS/xpath) and desktop (AX locator) domains each attach the
+        # right durable locator plus fallback coordinates.
+        return self.controller.resolve_element_action(action_output, self.elements)
 
 
     def run(self, user_query: str, messages: List[Message] = [], wait_period: float = 0.5):
@@ -108,15 +74,18 @@ class WebAgent():
     
     def _annotate(self, state: WebAgentState):
         time.sleep(2 * self.wait_period)
-        self.elements, self.prompt, self.screenshot = mark_page(self.driver).with_retry().invoke(None)
+        # Controller-agnostic perception: DOM snapshot for browsers, AX-tree
+        # snapshot (via the host bridge) for desktop apps.
+        self.elements, self.prompt, self.screenshot = self.controller.snapshot()
+        context = self.controller.get_context()
         state["messages"] += [Metadata(
-            timestamp=state["timestep"], 
-            elements=self.elements, 
-            element_description=self.prompt, 
-            screenshot=self.screenshot, 
+            timestamp=state["timestep"],
+            elements=self.elements,
+            element_description=self.prompt,
+            screenshot=self.screenshot,
             dom="",
-            url=self.driver.current_url, 
-            title=self.driver.title
+            url=context.get("url", ""),
+            title=context.get("title", "")
         )]
         state["timestep"] += 1
         return { **state }
@@ -181,8 +150,7 @@ class WebAgent():
 
 
 
-        chain = prompt | self.llm | self.action_parser
-        response = chain.invoke({})
+        response = self._invoke_action(prompt)
 
         state["messages"] += [ActionOutput(**response)]
         
@@ -199,6 +167,65 @@ class WebAgent():
         state["timestep"] += 1
         return { **state }
     
+    def _invoke_action(self, prompt, max_attempts: int = 2) -> dict:
+        """Get the next action from the LLM, robust to malformed output.
+
+        Occasionally the model returns prose or not-quite-JSON (a common
+        LLM failure), which would otherwise raise an OutputParserException and
+        crash the whole run. We: (1) try the strict JSON parser a couple of
+        times, (2) fall back to salvaging a JSON object from the raw text, and
+        (3) as a last resort emit a `terminate` action so the state ends
+        gracefully instead of aborting the workflow.
+        """
+        last_err = None
+        for attempt in range(max_attempts):
+            try:
+                return (prompt | self.llm | self.action_parser).invoke({})
+            except Exception as e:
+                last_err = e
+                print(f"Action parse attempt {attempt + 1}/{max_attempts} failed: {e}")
+
+        # Salvage: pull a JSON object out of the raw model text ourselves.
+        try:
+            raw = (prompt | self.llm).invoke({})
+            text = getattr(raw, "content", None) or str(raw)
+            if isinstance(text, list):  # some providers return content parts
+                text = " ".join(str(p) for p in text)
+            parsed = self._extract_json_object(text)
+            if parsed is not None:
+                print("Salvaged action from raw model output.")
+                return parsed
+        except Exception as e:
+            print(f"Raw action salvage failed: {e}")
+
+        print("Could not parse a valid action from the model; terminating this state gracefully.")
+        return {
+            "action": "terminate",
+            "mmid": None,
+            "params": {"reason": f"Unable to parse a valid action from model output ({last_err})."},
+            "reasoning": "",
+        }
+
+    @staticmethod
+    def _extract_json_object(text: str) -> Optional[dict]:
+        """Best-effort extraction of an action JSON object from raw text."""
+        if not text:
+            return None
+        # Prefer a fenced ```json { ... } ``` block if present.
+        fenced = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", text, re.DOTALL)
+        candidate = fenced.group(1) if fenced else None
+        if candidate is None:
+            start, end = text.find("{"), text.rfind("}")
+            if start != -1 and end != -1 and end > start:
+                candidate = text[start:end + 1]
+        if candidate is None:
+            return None
+        try:
+            obj = json.loads(candidate)
+        except Exception:
+            return None
+        return obj if isinstance(obj, dict) and "action" in obj else None
+
     def _should_continue(self, state: WebAgentState):
         """Check if the agent should continue or terminate."""
         # Check if the last action was terminate

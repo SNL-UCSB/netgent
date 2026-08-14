@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Open Zoom",
+    "description": "Launch Zoom if it is not already running",
+    "triggers": ["When Zoom is not yet open"],
+    "actions": [
+      "Open the 'zoom.us' application"
+    ],
+    "end_state": ""
+  },
+  {
+    "name": "Start meeting and join configured",
+    "description": "Zoom's main window is open; start a meeting via the app menu bar (the home screen's New Meeting icon is not exposed to accessibility -- it renders as a single unclickable image, not real buttons), then on the pre-join screen mute audio and turn off video before joining. Do all of this in one continuous sequence, in order -- do not click Start until after both toggle buttons are clicked.",
+    "triggers": ["When Zoom is open and the 'Zoom Workplace' menu bar item is visible"],
+    "actions": [
+      "Click the 'Zoom Workplace' menu bar item to open the app menu",
+      "Click the 'Start meeting' menu item",
+      "Wait for the pre-join preview window to appear",
+      "Click the button whose title contains 'Audio, turn off' to mute the microphone",
+      "Click the button whose title contains 'Video, turn off' to turn off the camera",
+      "Click the 'Start' button to enter the meeting"
+    ],
+    "end_state": ""
+  },
+  {
+    "name": "Wait then terminate",
+    "description": "The in-meeting window is visible; wait briefly then stop (ending the meeting is handled separately)",
+    "triggers": ["When the in-meeting window is visible"],
+    "actions": [
+      "Wait for 5 seconds",
+      "TERMINATE"
+    ],
+    "end_state": "Meeting started"
+  }
+]

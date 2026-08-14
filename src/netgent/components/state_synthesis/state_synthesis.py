@@ -5,7 +5,6 @@ from langchain_core.messages import SystemMessage, HumanMessage
 from typing import List, TypedDict, Any, Optional
 from langchain_core.language_models.chat_models import BaseChatModel
 from netgent.browser.controller.base import BaseController
-from netgent.browser.utils import find_trigger
 from netgent.browser.registry import TriggerRegistry
 from netgent.utils.message import StatePrompt
 from .prompt import get_prompt
@@ -20,9 +19,10 @@ class StateSynthesisState(TypedDict):
     prompt: Optional[str] # Generated prompt for browser agent
 
 class StateSynthesis():
-    def __init__(self, llm: BaseChatModel, controller: BaseController):
+    def __init__(self, llm: BaseChatModel, controller: BaseController, domain: str = "web"):
         self.llm = llm
         self.controller = controller
+        self.domain = domain
         self.trigger_registry = TriggerRegistry(controller)
         self.workflow = self._initalize_workflow()
         self.graph = self.workflow.compile()
@@ -44,19 +44,39 @@ class StateSynthesis():
         """
         Include the History of Action, Current Website State, and the Available States
         """
+        context = self.controller.get_context()
+
+        # On desktop, get_context() falls back to the *frontmost* app when the
+        # target app isn't running yet (so the agent can still see the screen
+        # to open it) -- but that fallback is misleading here: it can make an
+        # unrelated frontmost app (e.g. the terminal) look like "the current
+        # app", causing the LLM to skip the "open the app" state entirely. Ask
+        # the ground-truth "is it running" question directly and state it
+        # plainly so the state choice can't be fooled by whatever happens to
+        # be frontmost.
+        app_status_line = ""
+        target_app = getattr(self.controller, "target_app", None)
+        if self.domain == "desktop" and target_app:
+            try:
+                running = self.controller.check_app(name=target_app)
+            except Exception:
+                running = None
+            if running is not None:
+                app_status_line = f"Target application '{target_app}' is currently running: {running}\n    "
+
         messages = [
-            SystemMessage(content=get_prompt("CHOOSE_STATE_PROMPT").format(
+            SystemMessage(content=get_prompt("CHOOSE_STATE_PROMPT", self.domain).format(
                 STATES='\n'.join(str(prompt) for prompt in state['prompts']) + '\n'
             )),
             HumanMessage(content=[
                 {
-                    "type": "text", 
+                    "type": "text",
                     "text": f"""
     ## History of Action
     {self._prompt_execution(state.get('executed', [])) if state.get('executed') else 'No History of Actions'}
-    ## Current Website State
-    URL: {self.controller.driver.current_url}
-    Title: {self.controller.driver.title}
+    ## Current Application State
+    {app_status_line}Context: {context.get('url', '')}
+    Title: {context.get('title', '')}
     """
                 }
             ])
@@ -89,37 +109,13 @@ class StateSynthesis():
         return { **state, "choice": choice }
     
     def _define_trigger(self, state: StateSynthesisState):
-        # Define the Trigger for the State
-        # Get available triggers from the page
-        page_triggers = find_trigger(self.controller.driver)
-        
-        # Get all available trigger types from the registry
+        # Define the Trigger for the State.
+        # The controller supplies the concrete candidate triggers for its domain
+        # (URL/text/CSS for browsers; app/window/text/AX-element for desktop).
         available_trigger_types = list(self.trigger_registry.get_all_triggers().keys())
         print("AVAILABLE_TRIGGER_TYPES: ", available_trigger_types)
-        
-        #--- TODO: Current Hardcoded Triggers But Should be Dynamic (We Will Be Changed in the Future) ---#
-        triggers_dict = {}
-        # Add URL as Trigger 0
-        triggers_dict["URL"] = {
-            "type": "url",
-            "params": {"url": self.controller.driver.current_url}
-        }
-        # Process other Triggers Starting from Index 1
-        for i, trigger in enumerate(page_triggers):
-            if trigger.get("text", "") != "":
-                triggers_dict[f"TEXT_{i}"] = {
-                    "type": "text",
-                    "params": {"text": trigger.get("text", "")}
-                }
-            if trigger.get("enhancedCssSelector", "") != "":
-                triggers_dict[f"CSS_{i}"] = {
-                    "type": "element",
-                    "params": {
-                        "by": "css selector",
-                        "selector": trigger.get("enhancedCssSelector", "")
-                    }
-                }
-        #--- Current Hardcoded Triggers But Should be Dynamic (We Will Be Changed in the Future) ---#
+
+        triggers_dict = self.controller.build_trigger_candidates()
 
         # Format Triggers for Prompt
         formatted_triggers = []
@@ -131,7 +127,7 @@ class StateSynthesis():
         triggers_prompt = "\n".join(formatted_triggers)
         print("TRIGGERS_PROMPT: ", triggers_prompt)
         messages = [
-            SystemMessage(content=get_prompt("DEFINE_TRIGGER_PROMPT").format(
+            SystemMessage(content=get_prompt("DEFINE_TRIGGER_PROMPT", self.domain).format(
                 AVAILABLE_TRIGGERS=triggers_prompt
             )),
             HumanMessage(content=[
@@ -155,18 +151,26 @@ class StateSynthesis():
         return { **state, "triggers": triggers }
     
     def _prompt_action(self, state: StateSynthesisState):
+        context = self.controller.get_context()
+        # Append TERMINATE as a properly numbered final instruction (not a bare
+        # trailing line) so the planning LLM can't mistake it for a competing
+        # directive that overrides/replaces the preceding action(s) -- that
+        # ambiguity previously caused single-action states (e.g. just "open the
+        # app") to be planned as an immediate termination, skipping the action.
+        numbered_instructions = list(state['choice'].actions) + ["TERMINATE"]
+        instruction_text = "\n".join(f"{i+1}. {step}" for i, step in enumerate(numbered_instructions))
         messages = [
-            SystemMessage(content=get_prompt("PROMPT_ACTION_PROMPT")),
+            SystemMessage(content=get_prompt("PROMPT_ACTION_PROMPT", self.domain)),
             HumanMessage(content=[
                 {
-                    "type": "text", 
+                    "type": "text",
                     "text": f"""## User Instruction
-    {chr(10).join(f"{i+1}. {action}" for i, action in enumerate(state['choice'].actions)) + chr(10) + "TERMINATE ACTION"}
+    {instruction_text}
     ## History of Action
     {self._prompt_execution(state.get('executed', [])) if state.get('executed') else 'No History of Actions'}
-    ## Current Website State
-    URL: {self.controller.driver.current_url}
-    Title: {self.controller.driver.title}
+    ## Current Application State
+    Context: {context.get('url', '')}
+    Title: {context.get('title', '')}
     """
                 },
             ])

@@ -6,13 +6,15 @@ Controllers implement browser actions using the decorator-based registry pattern
 This module provides:
     - Abstract base class with common actions and triggers
     - PyAutoGUI-based implementation for robust interaction
+    - Playwright-based implementation for fast, deterministic interaction
     - Decorators for action/trigger registration
     - Registry classes for managing actions and triggers
 
 Classes:
     BaseController: Abstract base with common browser operations
     PyAutoGUIController: Concrete implementation using PyAutoGUI
-    
+    PlaywrightController: Concrete implementation using Playwright
+
 Decorators:
     @action(): Register a method as a browser action
     @trigger(): Register a method as a state trigger
@@ -38,6 +40,8 @@ Usage:
 
 from .base import BaseController
 from .pyautogui_controller import PyAutoGUIController
+from .playwright_controller import PlaywrightController
+from .desktop_controller import DesktopController
 from ..registry import (
     action, ActionRegistry, ActionController,
     trigger, TriggerRegistry, TriggerController,
@@ -45,7 +49,7 @@ from ..registry import (
 )
 
 __all__ = [
-    "BaseController", "PyAutoGUIController",
+    "BaseController", "PyAutoGUIController", "PlaywrightController", "DesktopController",
     "action", "ActionRegistry", "ActionController",
     "trigger", "TriggerRegistry", "TriggerController",
     "ActionTriggerMeta"

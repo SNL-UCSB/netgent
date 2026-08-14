@@ -42,7 +42,8 @@ RUN chmod +x /usr/local/bin/configure_novnc.sh \
 # Python Dependencies First for Better Layer Caching
 COPY requirements.txt .
 RUN pip install -r requirements.txt \
-  && seleniumbase get chromedriver --path
+  && seleniumbase get chromedriver --path \
+  && playwright install --with-deps chromium
 
 # Copy Application
 COPY src/netgent/ src/netgent/
