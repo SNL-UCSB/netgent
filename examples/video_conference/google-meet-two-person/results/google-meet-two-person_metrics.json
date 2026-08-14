@@ -1,0 +1,72 @@
+{
+  "page_count": 2,
+  "pages": [
+    {
+      "url": "https://meet.google.com/qix-iqte-fqs?authuser=0",
+      "title": "Meet - qix-iqte-fqs",
+      "resources": {
+        "count": 250,
+        "transfer_bytes": 10622,
+        "decoded_body_bytes": 32656978,
+        "by_initiator_type": {
+          "script": 7,
+          "link": 111,
+          "css": 4,
+          "fetch": 123,
+          "other": 2,
+          "audio": 1,
+          "img": 2
+        }
+      },
+      "webrtc": {
+        "connection_count": 2,
+        "bytes_received": 11845124,
+        "bytes_sent": 15772819,
+        "packets_received": 15338,
+        "packets_sent": 22494,
+        "packets_lost": 1,
+        "frames_decoded": 620,
+        "frames_encoded": 887,
+        "jitter_seconds_max": 0.008,
+        "connection_states": [
+          "closed",
+          "connected"
+        ]
+      }
+    },
+    {
+      "url": "https://meet.google.com/qix-iqte-fqs?authuser=1",
+      "title": "Meet - qix-iqte-fqs",
+      "resources": {
+        "count": 250,
+        "transfer_bytes": 15632,
+        "decoded_body_bytes": 33905667,
+        "by_initiator_type": {
+          "script": 8,
+          "link": 107,
+          "img": 2,
+          "css": 5,
+          "other": 2,
+          "fetch": 123,
+          "audio": 1,
+          "xmlhttprequest": 2
+        }
+      },
+      "webrtc": {
+        "connection_count": 2,
+        "bytes_received": 10965649,
+        "bytes_sent": 15189898,
+        "packets_received": 15988,
+        "packets_sent": 19273,
+        "packets_lost": 0,
+        "frames_decoded": 582,
+        "frames_encoded": 623,
+        "jitter_seconds_max": 0.0084,
+        "connection_states": [
+          "closed",
+          "connected"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+[
+  {
+    "name": "Run two-person Google Meet",
+    "description": "Create, join, admit, verify, and measure a two-account Google Meet.",
+    "checks": [],
+    "actions": [
+      {
+        "type": "start_webrtc_tracking",
+        "params": {}
+      },
+      {
+        "type": "remember_tab",
+        "params": {
+          "name": "host"
+        }
+      },
+      {
+        "type": "navigate",
+        "params": {
+          "url": "https://meet.google.com/new?authuser=0"
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 3
+        }
+      },
+      {
+        "type": "store_current_url",
+        "params": {
+          "name": "meeting_url",
+          "strip_query": true
+        }
+      },
+      {
+        "type": "open_stored_url",
+        "params": {
+          "name": "meeting_url",
+          "suffix": "?authuser=1",
+          "tab_name": "joiner"
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 3
+        }
+      },
+      {
+        "type": "click_first_text",
+        "params": {
+          "texts": [
+            "Ask to join",
+            "Join now"
+          ],
+          "timeout": 15
+        }
+      },
+      {
+        "type": "switch_tab",
+        "params": {
+          "name": "host"
+        }
+      },
+      {
+        "type": "click_accessible_name",
+        "params": {
+          "names": "People",
+          "timeout": 15
+        }
+      },
+      {
+        "type": "click_first",
+        "params": {
+          "selectors": "button[aria-label^=\"Admit \"]",
+          "timeout": 15
+        }
+      },
+      {
+        "type": "switch_tab",
+        "params": {
+          "name": "joiner"
+        }
+      },
+      {
+        "type": "wait_for_text",
+        "params": {
+          "text": "Please wait until a meeting host brings you into the call",
+          "visible": false,
+          "timeout": 30
+        }
+      },
+      {
+        "type": "wait_for_element",
+        "params": {
+          "selector": "button[aria-label=\"Meeting details\"]",
+          "visible": true,
+          "timeout": 30
+        }
+      },
+      {
+        "type": "switch_tab",
+        "params": {
+          "name": "host"
+        }
+      },
+      {
+        "type": "wait",
+        "params": {
+          "seconds": 30
+        }
+      },
+      {
+        "type": "collect_webrtc_metrics",
+        "params": {
+          "out_path": "/out/google_meet_two_person_metrics.json"
+        }
+      },
+      {
+        "type": "terminate",
+        "params": {
+          "reason": "Two participants admitted, verified, and measured."
+        }
+      }
+    ],
+    "end_state": "Two-person Google Meet completed",
+    "executed": []
+  }
+]

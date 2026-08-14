@@ -46,7 +46,7 @@ Reference:
 """
 from .utils import StatePrompt, Message, Element, Toolcall, ActionOutput, Decision, Reflection, Metadata, ExecutedState, format_context, format_context_without_reflection, save_context_to_file, load_context_from_file
 from .agent import NetGent, NetGentState
-from .browser import BrowserSession, PyAutoGUIController, BaseController
+from .browser import BrowserSession, PyAutoGUIController, PlaywrightController, BaseController, DesktopController
 from .components import (
     ProgramController,
     StateExecutor,
@@ -62,7 +62,9 @@ __all__ = [
     # Browser components
     "BrowserSession",
     "PyAutoGUIController",
+    "PlaywrightController",
     "BaseController",
+    "DesktopController",
     # Workflow components
     "ProgramController",
     "StateExecutor",

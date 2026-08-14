@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Run two-person Google Meet",
+    "description": "Create, join, admit, verify, and measure a two-account Google Meet.",
+    "triggers": [
+      "If the browser is on a new tab, blank page, or any Google Meet page"
+    ],
+    "actions": [
+      "Start WebRTC tracking.",
+      "Remember the current tab as host.",
+      "Navigate to https://meet.google.com/new?authuser=0 and wait 3 seconds.",
+      "Store the current URL as meeting_url without its query string.",
+      "Open meeting_url with ?authuser=1 in a new tab named joiner and wait 3 seconds.",
+      "Click Ask to join or Join now.",
+      "Switch to host, open People, and click Admit.",
+      "Switch to joiner and require the waiting-room message to disappear and the Meeting details button to appear.",
+      "Switch to host and keep both participants connected for 30 seconds.",
+      "Collect WebRTC metrics in /out/google_meet_two_person_metrics.json.",
+      "Terminate the workflow."
+    ],
+    "end_state": "Two-person Google Meet completed"
+  }
+]

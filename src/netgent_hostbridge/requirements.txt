@@ -1,0 +1,15 @@
+# Host-bridge dependencies. Install these on the macOS HOST (not in Docker):
+#   pip install -r src/netgent/hostbridge/requirements.txt
+#
+# The HTTP server itself is stdlib-only; these are for AX perception + input.
+# NOTE: atomacos pins pyautogui<0.9.42, which is older than the pyautogui
+# version the browser path (requirements.txt) uses. That's fine here -- the
+# actuator only relies on stable, long-standing pyautogui APIs (click, moveTo,
+# scroll, press, typewrite, hotkey, size, screenshot) -- so we let atomacos's
+# constraint win instead of pinning our own.
+atomacos>=3.3.0,<4.0.0
+pyautogui<0.9.42
+pyobjc-framework-Cocoa>=9.0
+pyobjc-framework-Quartz>=9.0
+pyobjc-framework-ApplicationServices>=9.0
+Pillow>=9.0.0

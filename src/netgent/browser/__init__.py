@@ -8,6 +8,7 @@ Components:
     BrowserSession: Manages SeleniumBase browser instances with anti-detection
     BaseController: Abstract base class defining actions and triggers
     PyAutoGUIController: Concrete implementation using PyAutoGUI for robust control
+    PlaywrightController: Concrete implementation using Playwright
     ActionRegistry: Registry for managing browser actions
     TriggerRegistry: Registry for managing state triggers
 
@@ -35,6 +36,8 @@ Usage:
 
 from .session import BrowserSession
 from .controller.pyautogui_controller import PyAutoGUIController
+from .controller.playwright_controller import PlaywrightController
 from .controller.base import BaseController
+from .controller.desktop_controller import DesktopController
 
-__all__ = ["BrowserSession", "PyAutoGUIController", "BaseController"]
+__all__ = ["BrowserSession", "PyAutoGUIController", "PlaywrightController", "BaseController", "DesktopController"]
